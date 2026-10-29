@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+
+# Directorios de compilación
+dist/
+.astro/
+.wrangler/
+
+# Entorno y logs
+.env
+.env.production
+*.log
+npm-debug.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

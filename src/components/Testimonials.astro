@@ -1,0 +1,83 @@
+---
+import { Quote, Star, MapPin } from 'lucide-react';
+
+const testimonios = [
+  {
+    quote: "Acudí a la consulta con Luisa sumida en una crisis de angustia y desasosiego que me impedía conciliar el sueño y rendir en el trabajo. El trabajo con EMDR fue revelador: desarticulamos bloqueos que arrastraba desde hacía años. Su templanza y respeto transmiten una paz inmensa.",
+    author: "Carmen M.",
+    servicio: "Tratamiento de Ansiedad y EMDR",
+    ciudad: "Salamanca",
+    tiempo: "Paciente en consulta"
+  },
+  {
+    quote: "La delicadeza y el rigor científico de Luisa marcan una diferencia abismal. Jamás te sientes juzgado. Su capacidad para conectar lo que siente el cuerpo con la mente me permitió superar el duelo tras la pérdida de mi padre. Un antes y un después en mi vida.",
+    author: "Javier R.",
+    servicio: "Duelo y Regulación Somática",
+    ciudad: "Zamora",
+    tiempo: "Paciente en consulta"
+  },
+  {
+    quote: "Como pareja estábamos a punto de romper debido a dinámicas destructivas y silencios dolorosos. Luisa nos brindó un espacio seguro y pautas muy lúcidas para volver a mirarnos con ternura y empatía. La terapia online funcionó con una cercanía impecable.",
+    author: "Elena y Marcos",
+    servicio: "Psicoterapia de Pareja",
+    ciudad: "Consulta Online",
+    tiempo: "Terapia de Pareja"
+  }
+];
+---
+
+<section id="testimonios" class="py-24 bg-gradient-to-b from-sand-100/50 via-brand-50/30 to-sand-50 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Encabezado -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-1 text-amber-500 mb-3">
+        {[...Array(5)].map(() => (
+          <Star class="w-4 h-4 fill-amber-400 text-amber-400" />
+        ))}
+      </div>
+      <h2 class="text-xs uppercase tracking-widest text-brand-600 font-semibold mb-2">
+        Experiencias de Consulta
+      </h2>
+      <p class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight">
+        Voces que encontraron un <span class="font-semibold text-brand-700">camino hacia el bienestar</span>
+      </p>
+    </div>
+
+    <!-- Grid minimalista de testimonios -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonios.map((item) => (
+        <div class="bg-white rounded-3xl p-8 sm:p-9 border border-sand-200/90 shadow-soft-elevation flex flex-col justify-between relative group hover:border-brand-300 transition-colors duration-300">
+          
+          <div class="mb-6">
+            <Quote class="w-8 h-8 text-brand-200 group-hover:text-brand-300 transition-colors mb-4" />
+            <blockquote class="text-slateText-base/90 text-sm sm:text-base leading-relaxed italic font-normal">
+              "{item.quote}"
+            </blockquote>
+          </div>
+
+          <div class="pt-6 border-t border-sand-100 flex items-center justify-between">
+            <div>
+              <p class="font-semibold text-slateText-dark text-sm sm:text-base">{item.author}</p>
+              <p class="text-xs text-brand-600 font-medium">{item.servicio}</p>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-slateText-muted bg-sand-100 px-2.5 py-1 rounded-full">
+              <MapPin class="w-3 h-3 text-brand-600" />
+              <span>{item.ciudad}</span>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Garantía de Confidencialidad -->
+    <div class="mt-12 text-center">
+      <p class="text-xs text-slateText-muted max-w-xl mx-auto">
+        * En cumplimiento del código deontológico de la psicología y la legislación de protección de datos sanitaria, las iniciales y referencias han sido anonimizadas para preservar la estricta privacidad de los pacientes.
+      </p>
+    </div>
+
+  </div>
+</section>
+

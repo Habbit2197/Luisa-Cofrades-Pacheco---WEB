@@ -1,0 +1,203 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Footer from '../components/Footer.astro';
+import { Award, CheckCircle2, Phone, Mail, MapPin, Calendar, HeartHandshake } from 'lucide-react';
+---
+
+<Layout>
+  <!-- Hero Section envolvente con Framer Motion -->
+  <HeroSection />
+
+  <!-- Sección Sobre Mí / Trayectoria Profesional -->
+  <section id="sobre-mi" class="py-24 bg-white border-b border-sand-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Galería de imágenes del gabinete -->
+        <div class="lg:col-span-5 order-2 lg:order-1">
+          <div class="relative">
+            <div class="rounded-3xl overflow-hidden shadow-card-hover border border-sand-200 aspect-[4/5] bg-sand-100">
+              <img 
+                src="/assets/media/la-puerta.jpg" 
+                alt="Acceso al Gabinete de Psicología" 
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            
+            <!-- Badge flotante de experiencia docente -->
+            <div class="absolute -bottom-6 -right-4 sm:-right-6 bg-brand-700 text-white p-5 rounded-2xl shadow-card-hover max-w-xs border border-brand-600">
+              <div class="flex items-center gap-2 mb-1.5">
+                <Award class="w-5 h-5 text-brand-300" />
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-200">Docencia Universitaria</span>
+              </div>
+              <p class="text-xs text-sand-100 leading-snug">
+                Docente externa del Máster en Psicología General Sanitaria en la <strong>Universidad de Salamanca (USAL)</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Texto biográfico y enfoque -->
+        <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-100 text-sand-900 text-xs font-semibold uppercase tracking-wider">
+            <span>¿Quiénes somos?</span>
+          </div>
+          
+          <h2 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight leading-tight">
+            Ciencia, experiencia internacional y <br />
+            <span class="font-semibold text-brand-700">un compromiso honesto con cada persona</span>
+          </h2>
+
+          <div class="text-base text-slateText-muted leading-relaxed space-y-4">
+            <p>
+              Tras un intenso periplo formativo y vivencial aprendiendo y ejerciendo la psicología en contextos internacionales tan contrastados como la India, consolidé mi labor en áreas de alta complejidad clínica como el daño cerebral adquirido y el apoyo psicosocial.
+            </p>
+            <p>
+              Hoy desarrollo mi ejercicio sanitario en <strong>Salamanca</strong> y <strong>Zamora</strong>. Concibo la psicoterapia no como un recetario frío de técnicas, sino como un vínculo seguro donde el paciente puede desarmar sus defensas, comprender el origen de su sufrimiento y activar sus recursos naturales de resiliencia y autorregulación.
+            </p>
+          </div>
+
+          <!-- Acreditaciones y certificaciones clínicas -->
+          <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+              <span class="text-xs sm:text-sm text-slateText-base font-medium">Especialista certificada en EMDR (Asociación EMDR España)</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+              <span class="text-xs sm:text-sm text-slateText-base font-medium">Formada en Terapia Sensoriomotriz (Procesamiento somático)</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+              <span class="text-xs sm:text-sm text-slateText-base font-medium">Perito Judicial en el Tribunal Superior de Justicia de CyL</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
+              <span class="text-xs sm:text-sm text-slateText-base font-medium">Registro Sanitario Oficial y estricto secreto profesional</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Grid de Terapias y Servicios -->
+  <ServicesGrid />
+
+  <!-- Sección de Testimonios -->
+  <Testimonials />
+
+  <!-- Sección de Contacto y Solicitud de Cita -->
+  <section id="contacto" class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-4xl mx-auto bg-sand-50 rounded-3xl p-8 sm:p-14 border border-sand-200 shadow-card-hover">
+        <div class="text-center max-w-xl mx-auto mb-10">
+          <div class="w-12 h-12 rounded-2xl bg-brand-100 flex items-center justify-center text-brand-700 mx-auto mb-4">
+            <HeartHandshake class="w-6 h-6" />
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight">
+            Da el primer paso hacia <span class="font-semibold text-brand-700">tu bienestar</span>
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-slateText-muted leading-relaxed">
+            Puedes llamarme directamente o enviarme una solicitud. Responderé a la mayor brevedad con la máxima confidencialidad.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          
+          <!-- Teléfono y Datos Directos -->
+          <div class="space-y-6 bg-white p-7 rounded-2xl border border-sand-200">
+            <h3 class="text-lg font-semibold text-slateText-dark">Atención directa</h3>
+            
+            <a 
+              href="tel:+34675809974" 
+              class="flex items-center gap-4 p-4 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-900 transition-colors group"
+            >
+              <div class="w-10 h-10 rounded-lg bg-brand-600 text-white flex items-center justify-center shrink-0">
+                <Phone class="w-5 h-5" />
+              </div>
+              <div>
+                <p class="text-xs text-brand-700 font-medium">Llámanos o escribe por WhatsApp</p>
+                <p class="text-lg font-bold tracking-tight text-slateText-dark">+34 675 80 99 74</p>
+              </div>
+            </a>
+
+            <div class="space-y-3 pt-2 text-sm text-slateText-muted">
+              <div class="flex items-center gap-2.5">
+                <Mail class="w-4 h-4 text-brand-600 shrink-0" />
+                <a href="mailto:contacto@luisacofrades.com" class="hover:text-brand-700">contacto@luisacofrades.com</a>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <MapPin class="w-4 h-4 text-brand-600 shrink-0" />
+                <span>Salamanca: C/ del Prior 5-7, 1º B</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <MapPin class="w-4 h-4 text-brand-600 shrink-0" />
+                <span>Zamora: Roelos de Sayago</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario Minimalista de Contacto -->
+          <form class="space-y-4" onsubmit="event.preventDefault(); alert('Gracias por contactar. Nos pondremos en contacto contigo lo antes posible.');">
+            <div>
+              <label class="block text-xs font-semibold text-slateText-dark mb-1">Nombre completo</label>
+              <input 
+                type="text" 
+                required 
+                placeholder="Tu nombre" 
+                class="w-full px-4 py-3 rounded-xl border border-sand-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slateText-dark mb-1">Teléfono o Correo electrónico</label>
+              <input 
+                type="text" 
+                required 
+                placeholder="+34 600 00 00 00 o email@ejemplo.com" 
+                class="w-full px-4 py-3 rounded-xl border border-sand-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slateText-dark mb-1">Tipo de consulta / Modalidad</label>
+              <select class="w-full px-4 py-3 rounded-xl border border-sand-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all text-slateText-base">
+                <option>Consulta Presencial en Salamanca</option>
+                <option>Consulta Presencial en Zamora</option>
+                <option>Terapia Online por Videoconsulta</option>
+                <option>Terapia EMDR / Trauma</option>
+                <option>Peritaje Psicológico Forense</option>
+              </select>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full py-4 px-6 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-sm hover:shadow-card-hover transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              <Calendar class="w-4 h-4" />
+              <span>Solicitar Cita Previa</span>
+            </button>
+
+            <p class="text-[11px] text-slateText-muted text-center leading-tight">
+              Tus datos serán tratados bajo estricta confidencialidad sanitaria conforme al RGPD.
+            </p>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer con enlaces legales y acreditaciones -->
+  <Footer />
+</Layout>
+

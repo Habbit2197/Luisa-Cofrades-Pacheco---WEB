@@ -1,0 +1,137 @@
+---
+import { Brain, Heart, Sparkles, Activity, Users, Scale, Shield, ArrowUpRight, FileText } from 'lucide-react';
+
+const servicios = [
+  {
+    id: "emdr",
+    title: "Terapia EMDR",
+    tagline: "Especialidad en Trauma y Bloqueos",
+    desc: "Método psicoterapéutico avalado por la OMS para reprocesar experiencias traumáticas, duelos no resueltos, fobias y recuerdos dolorosos enquistados.",
+    icon: Brain,
+    badge: "Especialista Acreditada",
+    pdfUrl: "/assets/documentos/quecc81-es-emdr.pdf"
+  },
+  {
+    id: "ansiedad-panico",
+    title: "Ansiedad y Ataques de Pánico",
+    tagline: "Regulación Neurofisiológica",
+    desc: "Comprensión del sistema de alerta corporal, reestructuración cognitiva y herramientas de autorregulación somática para desactivar la hiperactivación y el miedo.",
+    icon: Activity,
+    badge: "Frecuente"
+  },
+  {
+    id: "sensoriomotriz",
+    title: "Terapia Sensoriomotriz",
+    tagline: "Cuerpo, Mente y Emoción",
+    desc: "Enfoque terapéutico puntero que integra las respuestas corporales y somáticas en el tratamiento del trauma y las dificultades en el apego.",
+    icon: Sparkles,
+    badge: "Vanguardia Clínica"
+  },
+  {
+    id: "adultos-pareja",
+    title: "Psicoterapia de Adultos y Pareja",
+    tagline: "Vínculos y Crisis Vitales",
+    desc: "Acompañamiento en momentos de incertidumbre, crisis de relación, rupturas dolorosas, problemas de comunicación y reconexión afectiva genuina.",
+    icon: Users
+  },
+  {
+    id: "autoestima-duelo",
+    title: "Autoestima, Duelo y Resiliencia",
+    tagline: "Reconstrucción del Autoconcepto",
+    desc: "Sanar pérdidas significativas, trascender la autocrítica destructiva y consolidar un diálogo interno compasivo, firme y constructivo.",
+    icon: Heart
+  },
+  {
+    id: "peritajes",
+    title: "Peritajes Psico-Jurídicos",
+    tagline: "Evaluación Forense Oficial",
+    desc: "Informes y peritajes psicológicos rigurosos con ratificación judicial en juzgados y en el Tribunal Superior de Justicia de Castilla y León.",
+    icon: Scale,
+    badge: "Judicial TSJ"
+  }
+];
+---
+
+<section id="servicios" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Cabecera de la sección -->
+  <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-100 text-sand-900 text-xs font-semibold uppercase tracking-wider mb-4 border border-sand-200">
+      <Shield class="w-3.5 h-3.5 text-brand-600" />
+      <span>Áreas de Intervención y Terapias</span>
+    </div>
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-slateText-dark tracking-tight leading-tight">
+      Un enfoque integrador y científico, <br />
+      <span class="font-semibold text-brand-700">centrado en tu historia única</span>
+    </h2>
+    <p class="mt-4 text-base sm:text-lg text-slateText-muted leading-relaxed">
+      Cada persona procesa el dolor de forma singular. Combinamos la psicoterapia relacional con técnicas somáticas y neurobiológicas avanzadas.
+    </p>
+  </div>
+
+  <!-- Grid de tarjetas con micro-interacciones -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {servicios.map((item) => {
+      const Icon = item.icon;
+      return (
+        <article class="group relative bg-white rounded-3xl p-8 border border-sand-200/90 shadow-soft-elevation hover:shadow-card-hover hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+          
+          {/* Acento decorativo sutil al hover */}
+          <div class="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-gradient-to-r group-hover:from-brand-400 group-hover:to-brand-600 transition-all duration-300"></div>
+
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                <Icon class="w-7 h-7" />
+              </div>
+
+              {item.badge && (
+                <span class="text-xs font-medium px-3 py-1 rounded-full bg-sand-100/90 text-brand-800 border border-sand-200">
+                  {item.badge}
+                </span>
+              )}
+            </div>
+
+            <p class="text-xs uppercase tracking-wider font-semibold text-brand-600 mb-1">
+              {item.tagline}
+            </p>
+            <h3 class="text-xl sm:text-2xl font-semibold text-slateText-dark group-hover:text-brand-700 transition-colors">
+              {item.title}
+            </h3>
+
+            <p class="mt-3.5 text-slateText-muted text-sm sm:text-base leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+
+          <!-- Pie de tarjeta -->
+          <div class="mt-8 pt-5 border-t border-sand-100 flex items-center justify-between">
+            {item.pdfUrl ? (
+              <a 
+                href={item.pdfUrl} 
+                target="_blank" 
+                rel="noopener"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-calmAccent hover:text-calmAccent-hover transition-colors"
+              >
+                <FileText class="w-4 h-4" />
+                <span>Ver guía PDF "¿Qué es EMDR?"</span>
+              </a>
+            ) : (
+              <span class="text-xs text-slateText-muted font-medium">Presencial y Online</span>
+            )}
+
+            <a 
+              href="#contacto" 
+              class="inline-flex items-center gap-1 text-sm font-semibold text-brand-600 group-hover:text-brand-800 transition-colors"
+              aria-label={`Consultar sobre ${item.title}`}
+            >
+              <span>Consultar</span>
+              <ArrowUpRight class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+
+        </article>
+      );
+    })}
+  </div>
+</section>
+
