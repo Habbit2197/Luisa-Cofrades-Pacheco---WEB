@@ -1,0 +1,6 @@
+/wp-content/uploads/*  /assets/:splat  301
+/sobre-mi/  /#sobre-mi  301
+/contacto/  /#contacto  301
+/servicios/  /#servicios  301
+/feed/  /  301
+/xmlrpc.php  /  404
