@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { ShieldCheck, ArrowLeft } from 'lucide-react';
+---
+
+<Layout 
+  title="Política de Privacidad y Protección de Datos | Luisa Cofrades"
+  description="Información detallada sobre el tratamiento de datos personales y confidencialidad sanitaria conforme al RGPD y la LOPD-GDD."
+>
+  <header class="bg-gradient-to-b from-brand-100/60 via-sand-50/80 to-sand-50 border-b border-sand-200/80 pt-20 pb-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/" class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-brand-700 hover:text-brand-900 mb-6 transition-colors group">
+        <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <span>Volver a Inicio</span>
+      </a>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-200/60 text-brand-900 text-xs font-semibold uppercase tracking-wider mb-4 border border-brand-300/60">
+        <ShieldCheck class="w-3.5 h-3.5 text-brand-700" />
+        <span>Cumplimiento Normativo Sanitario</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight">
+        Política de Protección de Datos Personales
+      </h1>
+      <p class="mt-2 text-sm text-slateText-muted">
+        Conforme al Reglamento General de Protección de Datos (RGPD UE 2016/679) y la Ley Orgánica 3/2018 (LOPD-GDD).
+      </p>
+    </div>
+  </header>
+
+  <main class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-slateText-base leading-relaxed text-sm sm:text-base">
+      
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">1. Responsable del Tratamiento</h2>
+        <p>
+          El responsable del tratamiento de los datos recabados en este sitio web es <strong>Dña. Luisa A. Cofrades Pacheco</strong>, Psicóloga Sanitaria Colegiada n.º BI05747 en el Colegio Oficial de la Psicología, con consultas en Salamanca (Calle del Prior 5-7, 1º B) y Zamora (Roelos de Sayago).
+        </p>
+        <p>
+          Correo electrónico de contacto para privacidad: <strong>contacto@luisacofrades.com</strong>.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">2. Finalidad del Tratamiento de Datos</h2>
+        <p>Los datos facilitados por los usuarios a través del formulario de contacto, llamadas telefónicas o correo electrónico se tratarán exclusivamente para:</p>
+        <ul class="list-disc pl-5 space-y-1 text-slateText-muted">
+          <li>Gestionar las solicitudes de cita previa y consultas de información.</li>
+          <li>Prestación de los servicios de asistencia psicológica, clínica y pericial solicitados.</li>
+          <li>Gestión administrativa, facturación y cumplimiento de obligaciones deontológicas sanitarias.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">3. Confidencialidad y Secreto Profesional Sanitario</h2>
+        <p>
+          Toda la información clínica y personal facilitada por los pacientes está sujeta al <strong>estricto secreto profesional sanitario</strong> conforme a la Ley 41/2002 de Autonomía del Paciente y el Código Deontológico de la Psicología. Sus datos no serán cedidos a terceros salvo obligación legal expresa.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">4. Ejercicio de Derechos (ARCO+)</h2>
+        <p>
+          El usuario puede ejercer en cualquier momento sus derechos de acceso, rectificación, supresión, limitación del tratamiento, portabilidad y oposición dirigiéndose por escrito a <a href="mailto:contacto@luisacofrades.com" class="text-brand-700 underline">contacto@luisacofrades.com</a> acreditando su identidad.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

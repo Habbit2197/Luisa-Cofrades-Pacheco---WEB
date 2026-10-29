@@ -113,12 +113,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
           </a>
 
           <!-- Navegación desktop -->
-          <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slateText-muted">
-            <a href="#sobre-mi" class="hover:text-brand-700 transition-colors">Sobre mí</a>
-            <a href="#servicios" class="hover:text-brand-700 transition-colors">Terapias</a>
-            <a href="#emdr" class="hover:text-brand-700 transition-colors">EMDR</a>
-            <a href="#sedes" class="hover:text-brand-700 transition-colors">Sedes (Salamanca y Zamora)</a>
-            <a href="#testimonios" class="hover:text-brand-700 transition-colors">Testimonios</a>
+          <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slateText-muted">
+            <a href="/#sobre-mi" class="hover:text-brand-700 transition-colors">Sobre mí</a>
+            <a href="/#servicios" class="hover:text-brand-700 transition-colors">Terapias</a>
+            <a href="/#sedes" class="hover:text-brand-700 transition-colors">Sedes</a>
+            <a href="/blog" class="hover:text-brand-700 transition-colors flex items-center gap-1">
+              <span>Artículos</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+            </a>
+            <a href="/#contacto" class="hover:text-brand-700 transition-colors">Contacto</a>
           </nav>
 
           <!-- Botón de Acción Directo -->

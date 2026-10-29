@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { ArrowLeft, Cookie } from 'lucide-react';
+---
+
+<Layout 
+  title="Política de Cookies | Luisa Cofrades Pacheco"
+  description="Información transparente sobre las cookies utilizadas en el sitio web de Luisa Cofrades Pacheco."
+>
+  <header class="bg-gradient-to-b from-brand-100/60 via-sand-50/80 to-sand-50 border-b border-sand-200/80 pt-20 pb-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/" class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-brand-700 hover:text-brand-900 mb-6 transition-colors group">
+        <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <span>Volver a Inicio</span>
+      </a>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-200/60 text-brand-900 text-xs font-semibold uppercase tracking-wider mb-4 border border-brand-300/60">
+        <Cookie class="w-3.5 h-3.5 text-brand-700" />
+        <span>Privacidad y Navegación</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight">
+        Política de Cookies
+      </h1>
+      <p class="mt-2 text-sm text-slateText-muted">
+        Navegación limpia, respetuosa con tu privacidad y sin rastreadores invasivos.
+      </p>
+    </div>
+  </header>
+
+  <main class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-slateText-base leading-relaxed text-sm sm:text-base">
+      
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">1. ¿Qué son las Cookies?</h2>
+        <p>
+          Las cookies son pequeños ficheros de texto que se almacenan en su navegador web al visitar sitios web. Sirven para recordar preferencias técnicas y facilitar una navegación fluida.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">2. Compromiso de Privacidad en este Sitio Web</h2>
+        <p>
+          En este sitio web <strong>no utilizamos cookies publicitarias ni de seguimiento intrusivo de terceros</strong>. Todas las tipografías y recursos gráficos se alojan en el servidor propio para garantizar que ningún dato de navegación sea transferido a plataformas externas como Google o Meta sin tu consentimiento.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">3. Cómo Configurar o Desactivar las Cookies</h2>
+        <p>
+          Puede permitir, bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de las opciones de su navegador de Internet (Chrome, Firefox, Safari, Edge).
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

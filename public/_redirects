@@ -1,6 +1,22 @@
+# Redirecciones de Activos y Medios
 /wp-content/uploads/*  /assets/:splat  301
+
+# Redirecciones de Páginas Principales
 /sobre-mi/  /#sobre-mi  301
 /contacto/  /#contacto  301
 /servicios/  /#servicios  301
+/posts/  /blog  301
 /feed/  /  301
 /xmlrpc.php  /  404
+
+# Redirecciones de Artículos de Blog con estructura de fechas de WordPress
+/2023/11/25/supervivencia-emocional-una-ventana-hacia-la-sensibilidad/*  /blog/supervivencia-emocional-una-ventana-hacia-la-sensibilidad  301
+/2021/11/26/que-me-emociona/*  /blog/que-me-emociona  301
+/2021/11/26/carta-a-mi-ansiedad/*  /blog/carta-a-mi-ansiedad  301
+/2020/12/15/el-poder-de-la-dulzura/*  /blog/el-poder-de-la-dulzura  301
+/2016/03/04/no-soy-mentiroso-tengo-miedo-de-decir-la-verdad/*  /blog/no-soy-mentiroso-tengo-miedo-de-decir-la-verdad  301
+/2015/04/20/la-paralisis-del-analisis/*  /blog/la-paralisis-del-analisis  301
+/2015/02/23/historias-con-finales-mas-felices/*  /blog/historias-con-finales-mas-felices  301
+/2015/01/19/cinco-claves-para-tener-relaciones-sanas/*  /blog/cinco-claves-para-tener-relaciones-sanas  301
+/2015/01/18/reivindicate/*  /blog/reivindicate  301
+/2013/09/07/bienvenidos-a-mi-rincon/*  /blog/bienvenidos-a-mi-rincon  301

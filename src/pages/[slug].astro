@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { Calendar, Phone, ArrowLeft, CheckCircle2, ShieldCheck, HeartHandshake, MapPin } from 'lucide-react';
+import fs from 'node:fs';
+import path from 'node:path';
+
+export async function getStaticPaths() {
+  const dataPath = path.resolve('data.json');
+  const siteData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+
+  // Excluir slugs reservados
+  const excluded = ['index', 'sobre-mi', 'contacto', 'aviso-legal', 'politica-de-privacidad', 'politica-de-cookies'];
+
+  return siteData.servicios
+    .filter((s: any) => !excluded.includes(s.slug))
+    .map((servicio: any) => ({
+      params: { slug: servicio.slug },
+      props: { servicio, allServicios: siteData.servicios }
+    }));
+}
+
+const { servicio, allServicios } = Astro.props;
+
+// Obtener otros servicios recomendados para el sidebar
+const otrosServicios = allServicios
+  .filter((s: any) => s.slug !== servicio.slug && s.slug !== 'soluciones' && s.slug !== 'me-dedico-a')
+  .slice(0, 5);
+
+// Dividir el contenido completo en párrafos limpios
+const parrafos = servicio.contenidoCompleto
+  ? servicio.contenidoCompleto.split(/(?<=\.)\s+(?=[A-Z¿¡])/)
+  : [servicio.extracto];
+---
+
+<Layout 
+  title={`${servicio.titulo} | Luisa Cofrades - Psicología`}
+  description={servicio.extracto}
+>
+  <!-- Cabecera de la Página de Servicio -->
+  <header class="bg-gradient-to-b from-brand-100/60 via-sand-50/80 to-sand-50 border-b border-sand-200/80 pt-20 pb-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Migas de pan / Volver -->
+      <a 
+        href="/#servicios" 
+        class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-brand-700 hover:text-brand-900 mb-6 transition-colors group"
+      >
+        <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <span>Volver a todas las terapias</span>
+      </a>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-200/60 text-brand-900 text-xs font-semibold uppercase tracking-wider mb-4 border border-brand-300/60">
+        <ShieldCheck class="w-3.5 h-3.5 text-brand-700" />
+        <span>Gabinete de Psicología Clínica · Luisa Cofrades</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-light text-slateText-dark tracking-tight leading-tight">
+        {servicio.titulo}
+      </h1>
+
+      <p class="mt-4 text-lg text-slateText-muted max-w-3xl leading-relaxed">
+        {servicio.extracto}
+      </p>
+    </div>
+  </header>
+
+  <!-- Contenido Principal y Sidebar de Contacto -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- Columna de Texto Clínico (8 columnas) -->
+        <article class="lg:col-span-8 space-y-6 text-slateText-base leading-relaxed text-base sm:text-lg">
+          
+          <div class="p-6 sm:p-8 rounded-3xl bg-sand-50 border border-sand-200 mb-8">
+            <h2 class="text-xl font-semibold text-brand-900 mb-3 flex items-center gap-2">
+              <HeartHandshake class="w-5 h-5 text-brand-600" />
+              <span>Abordaje Terapéutico</span>
+            </h2>
+            <p class="text-slateText-muted text-sm sm:text-base leading-relaxed">
+              En las consultas de <strong>Salamanca</strong>, <strong>Zamora</strong> o en modalidad <strong>online</strong>, cada proceso se diseña adaptado a tu ritmo, combinando la orientación integradora con técnicas basadas en la evidencia (EMDR, Terapia Sensoriomotriz y Regulación Emocional).
+            </p>
+          </div>
+
+          <!-- Párrafos detallados extraídos del contenido original -->
+          {parrafos.map((p: string, idx: number) => (
+            <p class="leading-relaxed text-slateText-base/90">
+              {p}
+            </p>
+          ))}
+
+          <!-- Garantías Sanitarias -->
+          <div class="mt-12 pt-8 border-t border-sand-200 space-y-3">
+            <h3 class="text-base font-semibold text-slateText-dark">Garantía y Metodología:</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slateText-muted">
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Colegiada N.º BI05747 (COP)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Especialista Asociación EMDR España</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Confidencialidad absoluta</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Atención Presencial y Online</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banner de Cita Rápida -->
+          <div class="mt-12 p-8 rounded-3xl bg-brand-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-brand-300 font-semibold mb-1">¿Necesitas ayuda?</p>
+              <h3 class="text-xl sm:text-2xl font-light">Solicita una primera sesión informativa</h3>
+            </div>
+            <a 
+              href="/#contacto" 
+              class="px-6 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-medium text-sm transition-colors shrink-0 flex items-center gap-2"
+            >
+              <Calendar class="w-4 h-4" />
+              <span>Pedir cita</span>
+            </a>
+          </div>
+
+        </article>
+
+        <!-- Sidebar de Reserva y Otros Servicios (4 columnas) -->
+        <aside class="lg:col-span-4 space-y-8">
+          
+          <!-- Tarjeta de Contacto Directo -->
+          <div class="p-6 rounded-3xl bg-sand-50 border border-sand-200 shadow-soft-elevation space-y-5">
+            <h3 class="text-lg font-semibold text-slateText-dark">Contacto Directo</h3>
+            <p class="text-xs text-slateText-muted leading-relaxed">
+              Para resolver dudas o concertar tu sesión en Salamanca, Zamora o por videoconferencia:
+            </p>
+
+            <a 
+              href="tel:+34675809974" 
+              class="flex items-center gap-3 p-3.5 rounded-xl bg-white hover:bg-brand-50 text-slateText-dark border border-sand-200 transition-colors"
+            >
+              <div class="w-10 h-10 rounded-lg bg-brand-600 text-white flex items-center justify-center shrink-0">
+                <Phone class="w-5 h-5" />
+              </div>
+              <div>
+                <p class="text-[11px] text-slateText-muted">Teléfono y WhatsApp</p>
+                <p class="text-base font-bold text-slateText-dark">+34 675 80 99 74</p>
+              </div>
+            </a>
+
+            <div class="pt-2 text-xs text-slateText-muted space-y-2">
+              <div class="flex items-start gap-2">
+                <MapPin class="w-4 h-4 text-brand-600 shrink-0 mt-0.5" />
+                <span><strong>Salamanca:</strong> Calle del Prior 5-7, 1º B</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <MapPin class="w-4 h-4 text-brand-600 shrink-0 mt-0.5" />
+                <span><strong>Zamora:</strong> Roelos de Sayago</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Otras Áreas de Intervención -->
+          <div class="p-6 rounded-3xl bg-white border border-sand-200 space-y-4">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-slateText-dark">
+              Otras Áreas Terapéuticas
+            </h3>
+            <ul class="divide-y divide-sand-100 text-sm">
+              {otrosServicios.map((s: any) => (
+                <li class="py-2.5">
+                  <a 
+                    href={`/${s.slug}`} 
+                    class="text-slateText-muted hover:text-brand-700 transition-colors flex items-center justify-between"
+                  >
+                    <span>{s.titulo}</span>
+                    <span class="text-xs text-brand-600">→</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

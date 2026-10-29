@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { ArrowLeft, Scale } from 'lucide-react';
+---
+
+<Layout 
+  title="Aviso Legal | Luisa Cofrades Pacheco"
+  description="Aviso legal y condiciones de uso del sitio web oficial de Luisa Cofrades Pacheco, Psicóloga Sanitaria."
+>
+  <header class="bg-gradient-to-b from-brand-100/60 via-sand-50/80 to-sand-50 border-b border-sand-200/80 pt-20 pb-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/" class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-brand-700 hover:text-brand-900 mb-6 transition-colors group">
+        <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <span>Volver a Inicio</span>
+      </a>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-200/60 text-brand-900 text-xs font-semibold uppercase tracking-wider mb-4 border border-brand-300/60">
+        <Scale class="w-3.5 h-3.5 text-brand-700" />
+        <span>Información Legal y Titularidad</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight">
+        Aviso Legal
+      </h1>
+      <p class="mt-2 text-sm text-slateText-muted">
+        En cumplimiento del artículo 10 de la Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE).
+      </p>
+    </div>
+  </header>
+
+  <main class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-slateText-base leading-relaxed text-sm sm:text-base">
+      
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">1. Datos Identificativos del Titular</h2>
+        <ul class="list-disc pl-5 space-y-1 text-slateText-muted">
+          <li><strong>Titular:</strong> Luisa A. Cofrades Pacheco</li>
+          <li><strong>Actividad Profesional:</strong> Psicología General Sanitaria y Psicoterapia</li>
+          <li><strong>Colegiación:</strong> Colegiada n.º BI05747 en el Colegio Oficial de la Psicología</li>
+          <li><strong>Consultas:</strong> Calle del Prior 5-7, 1º B (37002 Salamanca) y Roelos de Sayago (Zamora)</li>
+          <li><strong>Teléfono:</strong> +34 675 80 99 74</li>
+          <li><strong>Correo Electrónico:</strong> contacto@luisacofrades.com</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">2. Propiedad Intelectual</h2>
+        <p>
+          Todos los contenidos de este sitio web, incluyendo textos, reflexiones clínicas, artículos, logotipos e imágenes son propiedad de Luisa Cofrades Pacheco o de terceros que han autorizado su uso, quedando expresamente prohibida su reproducción sin consentimiento previo por escrito.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-slateText-dark">3. Carácter Informativo</h2>
+        <p>
+          Los contenidos publicados en este sitio web tienen carácter divulgativo e informativo sobre psicología y salud emocional. En ningún caso constituyen por sí mismos un diagnóstico médico o psicológico vinculante ni sustituyen la consulta personalizada con un facultativo sanitario.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
