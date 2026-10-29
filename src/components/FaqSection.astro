@@ -1,0 +1,62 @@
+---
+import { HelpCircle, ChevronDown, ShieldCheck } from 'lucide-react';
+
+const faqs = [
+  {
+    q: "¿Cómo sé si ha llegado el momento de acudir al psicólogo?",
+    a: "No es necesario haber tocado fondo ni sufrir un problema invalidante. Acudir a consulta es un acto de responsabilidad hacia uno mismo cuando notas que la angustia, las preocupaciones recurrentes, la tristeza o los conflictos de pareja te desbordan y los recursos que usabas habitualmente ya no te devuelven la serenidad."
+  },
+  {
+    q: "¿En qué consiste la terapia EMDR y por qué es tan eficaz?",
+    a: "EMDR (Desensibilización y Reprocesamiento por Movimientos Oculares) es un modelo psicoterapéutico respaldado por la Organización Mundial de la Salud (OMS). Ayuda al cerebro a reactivar su capacidad natural de procesar recuerdos dolorosos o traumáticos que quedaron mal archivados en la memoria, aliviando el sufrimiento emocional de raíz."
+  },
+  {
+    q: "¿La terapia online ofrece los mismos resultados que la presencial?",
+    a: "Sí. Múltiples estudios clínicos confirman que la psicoterapia online ofrece la misma eficacia clínica y cercanía terapéutica que las sesiones presenciales, permitiendo además una mayor flexibilidad de horarios y la comodidad de atenderte desde tu propio hogar en un entorno íntimo."
+  },
+  {
+    q: "¿Cómo es la primera sesión de contacto?",
+    a: "La primera sesión es un encuentro tranquilo y sin juicio. El objetivo principal es escuchar tu motivo de consulta, comprender qué estás experimentando y resolver tus dudas. A partir de ahí, trazamos conjuntamente un plan de trabajo adaptado a tus necesidades y ritmo vital."
+  },
+  {
+    q: "¿Qué garantías sanitarias y de confidencialidad tengo?",
+    a: "Como Psicóloga Sanitaria Colegiada (N.º BI05747), todo el proceso se rige estrictamente por la Ley 41/2002 de Autonomía del Paciente, el Código Deontológico de la Psicología y el RGPD. Tus datos y el contenido de las sesiones están blindados bajo secreto profesional absoluto."
+  }
+];
+---
+
+<section id="faq" class="py-24 bg-white border-t border-sand-200/80">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sand-100 text-sand-900 text-xs font-semibold uppercase tracking-wider mb-3">
+        <HelpCircle class="w-3.5 h-3.5 text-brand-600" />
+        <span>Preguntas Frecuentes</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight">
+        Respuestas claras a tus <span class="font-semibold text-brand-700">dudas iniciales</span>
+      </h2>
+      <p class="mt-3 text-slateText-muted text-sm sm:text-base leading-relaxed">
+        Dar el paso hacia la terapia genera preguntas legítimas. Aquí resolvemos las más habituales.
+      </p>
+    </div>
+
+    <!-- Lista interactiva de acordeones nativos accesibles y fluidos -->
+    <div class="space-y-4">
+      {faqs.map((item, idx) => (
+        <details class="group bg-sand-50/60 rounded-2xl border border-sand-200/90 overflow-hidden transition-all duration-200 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between p-6 cursor-pointer select-none text-slateText-dark font-semibold text-base sm:text-lg hover:text-brand-700 transition-colors">
+            <span>{item.q}</span>
+            <span class="ml-4 shrink-0 w-8 h-8 rounded-full bg-white border border-sand-200 flex items-center justify-center text-brand-600 group-open:rotate-180 transition-transform duration-300">
+              <ChevronDown class="w-4 h-4" />
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-slateText-muted text-sm sm:text-base leading-relaxed border-t border-sand-200/50 pt-4">
+            <p>{item.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>
