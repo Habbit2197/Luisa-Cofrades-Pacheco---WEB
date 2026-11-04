@@ -26,7 +26,9 @@ import {
   CreditCard, 
   ClipboardList, 
   Play, 
-  ShieldCheck 
+  ShieldCheck,
+  Users,
+  GraduationCap
 } from 'lucide-react';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -44,79 +46,140 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <!-- Hero Section con Framer Motion, imagen de la taza/vela y propuesta de valor -->
   <HeroSection />
 
-  <!-- Sección El Centro / Sobre Mí / Trayectoria Profesional y Credenciales -->
+  <!-- Sección El Centro / Sobre Mí / Maquetada en 3 Bloques Limpios -->
   <section id="el-centro" class="py-24 bg-white border-b border-sand-200/80 scroll-mt-20">
     <div id="sobre-mi" class="scroll-mt-20"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Cabecera de la sección -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-100 text-sand-900 text-xs font-semibold uppercase tracking-wider">
+          <ShieldCheck class="w-4 h-4 text-brand-600" />
+          <span>El Centro · Luisa Cofrades</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight">
+          Un espacio seguro de <span class="font-semibold text-brand-700">calma, rigor y crecimiento</span>
+        </h2>
+        <p class="text-slateText-muted text-sm sm:text-base leading-relaxed">
+          Equipo especializado en trauma y experiencias adversas con consultas presenciales en Salamanca y Zamora, y atención terapéutica online.
+        </p>
+      </div>
+
+      <!-- Maquetación en Tres Bloques Limpios (Tarjetas Clínicas) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
         
-        <!-- Galería de imágenes del gabinete -->
-        <div class="lg:col-span-5 order-2 lg:order-1">
-          <div class="relative">
-            <div class="rounded-3xl overflow-hidden shadow-card-hover border border-sand-200 aspect-[4/5] bg-sand-100">
-              <img 
-                src="/assets/media/la-puerta.jpg" 
-                alt="Acceso al Gabinete de Psicología de Luisa Cofrades" 
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
+        <!-- Bloque 1: ¿Quiénes Somos? y Espacio Terapéutico -->
+        <div class="bg-sand-50/70 rounded-3xl p-8 sm:p-9 border border-sand-200/90 shadow-soft-elevation hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-5">
+            <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center">
+              <HeartHandshake class="w-6 h-6" />
             </div>
-            
-            <!-- Badge flotante de acreditaciones oficiales -->
-            <div class="absolute -bottom-6 -right-4 sm:-right-6 bg-brand-700 text-white p-5 rounded-2xl shadow-card-hover max-w-xs border border-brand-600">
-              <div class="flex items-center gap-2 mb-1.5">
-                <Award class="w-5 h-5 text-brand-300" />
-                <span class="text-xs font-semibold uppercase tracking-wider text-brand-200">Colegiación Oficial</span>
-              </div>
-              <p class="text-xs text-sand-100 leading-snug">
-                Psicóloga Colegiada <strong>N.º BI05747</strong> (COP). Especialista EuroPsy y docente externa en la Universidad de Salamanca.
-              </p>
+
+            <div>
+              <span class="text-xs uppercase tracking-wider text-brand-600 font-semibold">Espacio Terapéutico</span>
+              <h3 class="text-xl sm:text-2xl font-semibold text-slateText-dark mt-1">
+                ¿Quiénes Somos? y Espacio Terapéutico
+              </h3>
+            </div>
+
+            <!-- Texto literal solicitado -->
+            <p className="text-sm sm:text-base text-slateText-base leading-relaxed text-justify sm:text-left">
+              Psicología para vivir es un espacio seguro, diseñado para que te sientas en calma desde el primer momento. Somos un equipo especializado en trauma y experiencias adversas, liderado por Luisa Cofrades. Integramos diferentes corrientes para ofrecerte un tratamiento a medida, siempre desde el rigor científico y la calidez humana.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-sand-200/80">
+            <div class="flex items-center gap-2 text-xs font-medium text-brand-800">
+              <CheckCircle2 class="w-4 h-4 text-brand-600 shrink-0" />
+              <span>Colegiada N.º BI05747 · Especialista EuroPsy</span>
             </div>
           </div>
         </div>
 
-        <!-- Texto biográfico y enfoque -->
-        <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-100 text-sand-900 text-xs font-semibold uppercase tracking-wider">
-            <span>El Centro · Luisa Cofrades</span>
-          </div>
-          
-          <h2 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight leading-tight">
-            Ciencia, rigor clínico y <br />
-            <span class="font-semibold text-brand-700">un compromiso honesto con cada persona</span>
-          </h2>
+        <!-- Bloque 2: Formación y Educación -->
+        <div class="bg-sand-50/70 rounded-3xl p-8 sm:p-9 border border-sand-200/90 shadow-soft-elevation hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-5">
+            <div class="w-12 h-12 rounded-2xl bg-brand-200 text-brand-900 flex items-center justify-center">
+              <BookOpen class="w-6 h-6" />
+            </div>
 
-          <div class="text-base text-slateText-muted leading-relaxed space-y-4">
-            <p>
-              Soy <strong>Luisa A. Cofrades Pacheco</strong>, psicóloga sanitaria y psicoterapeuta EuroPsy certificada, miembro de la División de Psicoterapia del Consejo General del COP. Tras formarme y ejercer la psicología en diversos entornos sanitarios e internacionales, consolidé mi labor en campos de alta exigencia como el daño cerebral adquirido y el acompañamiento en trauma complejo y experiencias adversas.
-            </p>
-            <p>
-              Concibo la terapia como un espacio seguro donde el paciente no se siente juzgado, sino comprendido en su totalidad. Integro técnicas neurofisiológicas y somáticas de vanguardia como <strong>EMDR</strong> (Nivel I y II adultos y adolescentes, y protocolo Caja de Arena) y <strong>Terapia Sensoriomotriz</strong>, ayudando a desenredar memorias traumáticas, ansiedad y patrones de dolor enquistados.
+            <div>
+              <span class="text-xs uppercase tracking-wider text-brand-600 font-semibold">Grupos y Empresas</span>
+              <h3 class="text-xl sm:text-2xl font-semibold text-slateText-dark mt-1">
+                Formación y Educación
+              </h3>
+            </div>
+
+            <!-- Texto literal solicitado -->
+            <p className="text-sm sm:text-base text-slateText-base leading-relaxed text-justify sm:text-left">
+              Impartimos formación especializada para grupos y empresas en áreas clave como buenos hábitos, resolución de conflictos, motivación, prevención de adicciones, escuela de padres y comunicación. Adaptamos nuestros talleres para aportar herramientas prácticas y transformadoras.
             </p>
           </div>
 
-          <!-- Acreditaciones y certificaciones clínicas -->
-          <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <div class="flex items-start gap-2.5">
-              <CheckCircle2 class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
-              <span class="text-xs sm:text-sm text-slateText-base font-medium">Especialista Asociación EMDR España</span>
+          <div class="mt-8 pt-6 border-t border-sand-200/80">
+            <div class="flex items-center gap-2 text-xs font-medium text-brand-800">
+              <CheckCircle2 class="w-4 h-4 text-brand-600 shrink-0" />
+              <span>Docente colaboradora Máster USAL</span>
             </div>
-            <div class="flex items-start gap-2.5">
-              <CheckCircle2 class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
-              <span class="text-xs sm:text-sm text-slateText-base font-medium">Especialista en Terapia Sensoriomotriz</span>
+          </div>
+        </div>
+
+        <!-- Bloque 3: Supervisión Clínica -->
+        <div class="bg-sand-50/70 rounded-3xl p-8 sm:p-9 border border-sand-200/90 shadow-soft-elevation hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-5">
+            <div class="w-12 h-12 rounded-2xl bg-brand-700 text-white flex items-center justify-center">
+              <Award class="w-6 h-6" />
             </div>
-            <div class="flex items-start gap-2.5">
-              <CheckCircle2 class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
-              <span class="text-xs sm:text-sm text-slateText-base font-medium">Perito Judicial Psicológico en TSJ de Castilla y León</span>
+
+            <div>
+              <span class="text-xs uppercase tracking-wider text-brand-600 font-semibold">Para Psicólogos</span>
+              <h3 class="text-xl sm:text-2xl font-semibold text-slateText-dark mt-1">
+                Supervisión Clínica
+              </h3>
             </div>
-            <div class="flex items-start gap-2.5">
-              <CheckCircle2 class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
-              <span class="text-xs sm:text-sm text-slateText-base font-medium">Docente Máster en Psicología Sanitaria (USAL)</span>
+
+            <!-- Texto literal solicitado -->
+            <p className="text-sm sm:text-base text-slateText-base leading-relaxed text-justify sm:text-left">
+              Ofrecemos espacios de supervisión para otros profesionales de la psicología. Un acompañamiento clínico riguroso para analizar casos, resolver bloqueos terapéuticos y seguir creciendo en la práctica profesional con la mirada puesta en el abordaje del trauma.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-sand-200/80">
+            <div class="flex items-center gap-2 text-xs font-medium text-brand-800">
+              <CheckCircle2 class="w-4 h-4 text-brand-600 shrink-0" />
+              <span>Especialista Asociación EMDR España</span>
             </div>
           </div>
         </div>
 
       </div>
+
+      <!-- Barra complementaria de credenciales y acceso al gabinete -->
+      <div class="bg-sand-50 rounded-3xl p-6 sm:p-8 border border-sand-200 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <img 
+            src="/assets/media/la-puerta.jpg" 
+            alt="Entrada al gabinete de psicología de Luisa Cofrades" 
+            class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-2xl border border-sand-300 shrink-0"
+            loading="lazy"
+          />
+          <div>
+            <h4 class="text-base font-semibold text-slateText-dark">Luisa A. Cofrades Pacheco</h4>
+            <p class="text-xs text-brand-700 font-medium">Psicóloga Sanitaria Colegiada N.º BI05747 (COP) · EuroPsy</p>
+            <p class="text-xs text-slateText-muted mt-0.5">Consultas en Salamanca Centro, Roelos de Sayago (Zamora) y atención online.</p>
+          </div>
+        </div>
+
+        <div class="shrink-0 flex items-center gap-3">
+          <a 
+            href="#contacto" 
+            class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-medium transition-colors shadow-sm"
+          >
+            Concertar cita o supervisión
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 

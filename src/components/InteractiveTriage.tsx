@@ -37,9 +37,12 @@ export default function InteractiveTriage() {
   const selectedReasonLabel = reasons.find(r => r.id === reason)?.label || 'Consulta General';
   const selectedModalityLabel = modalities.find(m => m.id === modality)?.label || 'A convenir';
 
-  const whatsappMessage = encodeURIComponent(
-    `Hola Luisa, mi nombre es ${name.trim() || '[Mi Nombre]'}. Me gustaría solicitar cita previa para una consulta de psicología. \n- Motivo principal: ${selectedReasonLabel}\n- Modalidad preferida: ${selectedModalityLabel}\n¿Podrías indicarme disponibilidad? Muchas gracias.`
-  );
+  // Formato oficial de la API de WhatsApp
+  const whatsappUrl = name.trim() || reason || modality
+    ? `https://wa.me/34675809974?text=${encodeURIComponent(
+        `Hola, me gustaría solicitar información para concertar una cita.${name.trim() ? ` Mi nombre es ${name.trim()}.` : ''}\n- Motivo: ${selectedReasonLabel}\n- Modalidad: ${selectedModalityLabel}`
+      )}`
+    : 'https://wa.me/34675809974?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20concertar%20una%20cita';
 
   return (
     <div className="bg-white rounded-3xl p-6 sm:p-10 border border-sand-200 shadow-card-hover max-w-3xl mx-auto">
@@ -78,7 +81,7 @@ export default function InteractiveTriage() {
               ¿Cuál es la razón principal de tu consulta?
             </h3>
             <p className="text-xs sm:text-sm text-slateText-muted">
-              Selecciona la opción que más se aproxime a lo que estás sintiendo:
+              Selecciona una opción para que podamos orientarte mejor (o haz clic en WhatsApp directo):
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -89,20 +92,30 @@ export default function InteractiveTriage() {
                     setReason(r.id);
                     setStep(2);
                   }}
-                  className={`text-left p-4 rounded-2xl border transition-all duration-200 flex flex-col justify-between ${
+                  className={`text-left p-4 rounded-2xl border transition-all duration-200 ${
                     reason === r.id
-                      ? 'bg-brand-50 border-brand-500 ring-2 ring-brand-500'
-                      : 'bg-sand-50/50 border-sand-200 hover:border-brand-300 hover:bg-white'
+                      ? 'border-brand-600 bg-brand-50 shadow-sm'
+                      : 'border-sand-200 hover:border-brand-300 hover:bg-sand-50/60'
                   }`}
                 >
-                  <span className="font-semibold text-slateText-dark text-sm block mb-1">
-                    {r.label}
-                  </span>
-                  <span className="text-xs text-slateText-muted leading-relaxed">
-                    {r.desc}
-                  </span>
+                  <p className="font-semibold text-sm text-slateText-dark">{r.label}</p>
+                  <p className="text-xs text-slateText-muted mt-1 leading-relaxed">{r.desc}</p>
                 </button>
               ))}
+            </div>
+
+            {/* Acceso rápido a WhatsApp oficial */}
+            <div className="pt-4 border-t border-sand-100 flex items-center justify-between">
+              <span className="text-xs text-slateText-muted">¿Prefieres escribir directamente?</span>
+              <a
+                href="https://wa.me/34675809974?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20concertar%20una%20cita"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5"
+              >
+                <MessageCircle className="w-4 h-4 text-emerald-600" />
+                <span>Abrir WhatsApp directo</span>
+              </a>
             </div>
           </motion.div>
         )}
@@ -117,7 +130,7 @@ export default function InteractiveTriage() {
             transition={{ duration: 0.3 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => setStep(1)}
                 className="text-xs text-brand-700 hover:text-brand-900 inline-flex items-center gap-1 font-medium"
@@ -131,7 +144,7 @@ export default function InteractiveTriage() {
               ¿Qué modalidad te resulta más cómoda?
             </h3>
             <p className="text-xs sm:text-sm text-slateText-muted">
-              Luisa Cofrades atiende en dos sedes físicas en Castilla y León y en formato telemático seguro:
+              Atendemos presencialmente en Salamanca y Zamora, y por videoconsulta cifrada desde cualquier lugar:
             </p>
 
             <div className="space-y-3 pt-2">
@@ -144,22 +157,18 @@ export default function InteractiveTriage() {
                       setModality(m.id);
                       setStep(3);
                     }}
-                    className={`w-full text-left p-4 sm:p-5 rounded-2xl border transition-all duration-200 flex items-center gap-4 ${
+                    className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 flex items-center gap-4 ${
                       modality === m.id
-                        ? 'bg-brand-50 border-brand-500 ring-2 ring-brand-500'
-                        : 'bg-sand-50/50 border-sand-200 hover:border-brand-300 hover:bg-white'
+                        ? 'border-brand-600 bg-brand-50 shadow-sm'
+                        : 'border-sand-200 hover:border-brand-300 hover:bg-sand-50/60'
                     }`}
                   >
-                    <div className="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center text-brand-700 shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="font-semibold text-slateText-dark text-sm sm:text-base">
-                        {m.label}
-                      </p>
-                      <p className="text-xs text-slateText-muted">
-                        {m.desc}
-                      </p>
+                      <p className="font-semibold text-sm text-slateText-dark">{m.label}</p>
+                      <p className="text-xs text-slateText-muted mt-0.5">{m.desc}</p>
                     </div>
                   </button>
                 );
@@ -168,7 +177,7 @@ export default function InteractiveTriage() {
           </motion.div>
         )}
 
-        {/* PASO 3: CONFIRMACIÓN Y CONTACTO DIRECTO */}
+        {/* PASO 3: RESUMEN Y ENVÍO */}
         {step === 3 && (
           <motion.div
             key="step3"
@@ -176,7 +185,7 @@ export default function InteractiveTriage() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
-            className="space-y-6"
+            className="space-y-5"
           >
             <div className="flex items-center gap-2">
               <button
@@ -209,10 +218,10 @@ export default function InteractiveTriage() {
               />
             </div>
 
-            {/* Opciones de Envío Directo */}
+            {/* Opciones de Envío Directo con formato oficial de la API de WhatsApp */}
             <div className="space-y-3 pt-2">
               <a
-                href={`https://wa.me/34675809974?text=${whatsappMessage}`}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-all shadow-sm hover:shadow-card-hover"
@@ -240,4 +249,3 @@ export default function InteractiveTriage() {
     </div>
   );
 }
-

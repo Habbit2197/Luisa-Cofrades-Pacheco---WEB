@@ -9,10 +9,8 @@ import {
   Layers, 
   MessageCircleHeart,
   ArrowRight,
-  ShieldCheck,
   CheckCircle2,
-  Calendar,
-  HeartHandshake
+  Calendar
 } from 'lucide-react';
 
 interface Difficulty {
@@ -33,12 +31,12 @@ const difficulties: Difficulty[] = [
     title: 'Tristeza',
     icon: CloudRain,
     emoji: '🌧️',
-    shortDesc: 'Desánimo persistente, sensación de vacío o dificultad para reconectar con el disfrute de la vida.',
-    fullDesc: 'La tristeza sostenida no es un defecto personal, sino un mensaje del organismo que necesita ser escuchado y sostenido. Trabajamos desde un enfoque humanista y compasivo para comprender su origen, aliviar la carga y recuperar la vitalidad.',
+    shortDesc: 'Te acompañamos a transitar el dolor y la apatía, buscando el origen de esa tristeza profunda.',
+    fullDesc: 'Te acompañamos a transitar el dolor y la apatía, buscando el origen de esa tristeza profunda para que puedas recuperar la vitalidad y el sentido.',
     focusPoints: [
-      'Espacio seguro de desahogo sin juicios ni exigencias',
-      'Identificación y procesamiento de heridas emocionales no resueltas',
-      'Reconexión gradual con el placer y el sentido cotidiano'
+      'Espacio seguro de desahogo y contención sin juicios',
+      'Identificación del origen emocional y vital del dolor',
+      'Reconexión gradual con la vitalidad y el sentido propio'
     ],
     therapyMethod: 'Psicoterapia Humanista e Integrativa',
     linkSlug: 'duelo'
@@ -48,12 +46,12 @@ const difficulties: Difficulty[] = [
     title: 'Rupturas y dependencias emocionales',
     icon: HeartOff,
     emoji: '💔',
-    shortDesc: 'Dificultad para soltar vínculos dañinos, miedo a la soledad o duelos complejos tras una separación.',
-    fullDesc: 'Los patrones de apego dolorosos y la dependencia emocional generan un profundo desgaste vital. Te acompañamos a desenredar la culpa, reconstruir tu centro interior y establecer límites afectivos saludables y firmes.',
+    shortDesc: 'Trabajamos los apegos y el duelo por la pérdida para reconstruir tu identidad y libertad.',
+    fullDesc: 'Trabajamos los apegos y el duelo por la pérdida, ayudándote a reconstruir tu identidad y a establecer relaciones futuras desde la libertad y el amor propio.',
     focusPoints: [
-      'Elaboración del duelo de la separación afectiva',
-      'Sanación de heridas tempranas de apego y abandono',
-      'Desarrollo de autonomía emocional y límites claros'
+      'Elaboración del duelo afectivo y cierre de ciclos',
+      'Sanación de heridas y dependencias de apego',
+      'Construcción de vínculos sanos desde el amor propio y la libertad'
     ],
     therapyMethod: 'Terapia Sistémica y Reparación de Apego',
     linkSlug: 'psicoterapia-de-pareja'
@@ -63,12 +61,12 @@ const difficulties: Difficulty[] = [
     title: 'Baja autoestima',
     icon: Sparkles,
     emoji: '✨',
-    shortDesc: 'Voz interior excesivamente autocrítica, inseguridad recurrente y dificultad para valorarse.',
-    fullDesc: 'La autocrítica destructiva sabotea proyectos y relaciones. A través de la terapia transformamos el diálogo interno punitivo en una mirada apreciativa y justa hacia uno mismo, fundamentada en el autorrespeto.',
+    shortDesc: 'Fomentamos una mirada compasiva hacia ti mismo/a, sanando las heridas que te limitan.',
+    fullDesc: 'Fomentamos una mirada compasiva hacia ti mismo/a, sanando las heridas que te impiden reconocer tu propio valor y potencial.',
     focusPoints: [
-      'Desactivación del juez interno severo y de la culpa aprendida',
-      'Fortalecimiento de la asertividad y el derecho a decir «no»',
-      'Consolidación de una confianza personal sólida y realista'
+      'Transformación de la autocrítica destructiva en compasión',
+      'Sanación de vivencias que minaron la seguridad personal',
+      'Reconocimiento genuino del propio valor y potencial'
     ],
     therapyMethod: 'Reestructuración del Autoconcepto y Autocompasión',
     linkSlug: 'autoestima'
@@ -78,14 +76,14 @@ const difficulties: Difficulty[] = [
     title: 'Ansiedad',
     icon: Activity,
     emoji: '⚡',
-    shortDesc: 'Pensamientos en bucle, inquietud continua, opresión física en el pecho o sensación de pérdida de control.',
-    fullDesc: 'La ansiedad es una alarma neurofisiológica de alerta ante una amenaza percibida. Con abordajes somáticos y EMDR desactivamos la hiperactivación corporal, devolviendo la calma a tu mente y a tu sistema nervioso.',
+    shortDesc: 'Herramientas para calmar el sistema nervioso, entender su mensaje y recuperar la calma.',
+    fullDesc: 'Te ofrecemos herramientas para calmar el sistema nervioso, entender qué mensaje trae tu ansiedad y recuperar el control y la calma en tu día a día.',
     focusPoints: [
-      'Regulación somática del sistema nervioso simpático/parasimpático',
-      'Desactivación de detonantes con estimulación bilateral EMDR',
-      'Herramientas prácticas para frenar la rumiación y el pánico'
+      'Regulación somática y calma del sistema nervioso',
+      'Comprensión del mensaje y detonantes de la alarma ansiosa',
+      'Recuperación progresiva del control y la tranquilidad diaria'
     ],
-    therapyMethod: 'EMDR y Regulación Neurovegetativa Somática',
+    therapyMethod: 'EMDR y Regulación Somática del Sistema Nervioso',
     linkSlug: 'ansiedad'
   },
   {
@@ -93,12 +91,12 @@ const difficulties: Difficulty[] = [
     title: 'Violencia / impulsividad',
     icon: AlertCircle,
     emoji: '🔥',
-    shortDesc: 'Reacciones de ira desbordada, frustración explosiva o conductas impulsivas que dañan a quienes te rodean.',
-    fullDesc: 'Detrás de la impulsividad y la reactividad suele esconderse una dificultad para autorregular emociones intensas ante la vulnerabilidad. Dotamos de recursos para ampliar la ventana de tolerancia y actuar desde la calma.',
+    shortDesc: 'Exploramos las raíces de la reactividad para aprender a regular tus emociones.',
+    fullDesc: 'Exploramos las raíces de la reactividad, ofreciéndote un espacio seguro para aprender a gestionar la frustración y regular tus emociones.',
     focusPoints: [
-      'Detección temprana de señales corporales de desbordamiento',
-      'Comprensión del dolor o miedo que enmascara la ira',
-      'Entrenamiento en contención saludable y resolución pacífica'
+      'Comprensión profunda de las raíces de la reactividad',
+      'Espacio seguro para modular la frustración y el enfado',
+      'Estrategias prácticas de autorregulación emocional'
     ],
     therapyMethod: 'Terapia Sensoriomotriz y Gestión de Impulsos',
     linkSlug: 'psicoterapia'
@@ -108,12 +106,12 @@ const difficulties: Difficulty[] = [
     title: 'Rigidez mental',
     icon: Layers,
     emoji: '🧩',
-    shortDesc: 'Perfeccionismo paralizante, necesidad excesiva de control, rumiación mental e intolerancia al cambio.',
-    fullDesc: 'Cuando la mente intenta controlar cada detalle para evitar el malestar, la vida se vuelve una prisión de exigencias. Fomentamos la flexibilidad cognitiva para vivir con mayor ligereza y adaptabilidad ante lo imprevisto.',
+    shortDesc: 'Flexibilizar tus patrones de pensamiento, reduciendo la autoexigencia hacia perspectivas amables.',
+    fullDesc: 'Te ayudamos a flexibilizar tus patrones de pensamiento, reduciendo la autoexigencia y abriendo espacio a nuevas perspectivas más amables.',
     focusPoints: [
-      'Desarticulación del pensamiento dicotómico (todo o nada)',
-      'Aceptación consciente de la incertidumbre sin angustia',
-      'Mayor espontaneidad y toma de decisiones liberada de la exigencia'
+      'Flexibilización de patrones rígidos y autoexigentes',
+      'Apertura a nuevas perspectivas más serenas y amables',
+      'Mayor tolerancia a la incertidumbre y adaptación vital'
     ],
     therapyMethod: 'Flexibilidad Cognitiva y Aceptación Consciente',
     linkSlug: 'toc'
@@ -123,12 +121,12 @@ const difficulties: Difficulty[] = [
     title: 'CNV (Comunicación No Violenta)',
     icon: MessageCircleHeart,
     emoji: '💬',
-    shortDesc: 'Aprender a expresar necesidades profundas sin atacar ni someterse, transformando el conflicto en empatía.',
-    fullDesc: 'La Comunicación No Violenta (CNV) es una herramienta terapéutica transformadora para parejas, familias y relaciones laborales. Permite identificar necesidades universales insatisfechas y dialogar desde la honestidad y la empatía.',
+    shortDesc: 'Formas de expresión que conectan con tus necesidades y las de los demás.',
+    fullDesc: 'Entrenamos formas de expresión que conectan con tus necesidades y las de los demás, mejorando tus vínculos y reduciendo el conflicto.',
     focusPoints: [
-      'Diferenciación entre observaciones neutras y juicios hirientes',
-      'Identificación clara de sentimientos y necesidades genuinas',
-      'Peticiones concretas, constructivas y libres de exigencia'
+      'Conexión profunda con las propias necesidades y emociones',
+      'Escucha empática sin juicio hacia la otra persona',
+      'Resolución pacífica y constructiva de los conflictos'
     ],
     therapyMethod: 'Entrenamiento Relacional en Comunicación No Violenta',
     linkSlug: 'psicoterapia-de-pareja'
@@ -195,7 +193,7 @@ export default function TherapyExplorer() {
         })}
       </div>
 
-      {/* Panel Detallado del Abordaje Terapéutico Seleccionado */}
+      {/* Panel Detallado del Abordaje Terapéutico Seleccionado (Framer Motion) */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeDifficulty.id}
@@ -207,7 +205,7 @@ export default function TherapyExplorer() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            <div className="lg:col-span-8 space-y-4">
+            <div className="lg:col-span-8 space-y-5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-100 text-sand-900 text-xs font-semibold uppercase tracking-wider">
                 <activeDifficulty.icon className="w-4 h-4 text-brand-600" />
                 <span>Abordaje Clínico: {activeDifficulty.title}</span>
@@ -217,15 +215,18 @@ export default function TherapyExplorer() {
                 ¿Cómo intervenimos en <span className="font-semibold text-brand-700">{activeDifficulty.title}</span>?
               </h4>
 
-              <p className="text-sm sm:text-base text-slateText-muted leading-relaxed">
-                {activeDifficulty.fullDesc}
-              </p>
+              {/* Texto clínico exacto requerido */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-brand-50/70 border border-brand-200/70 shadow-sm">
+                <p className="text-base sm:text-lg text-slateText-dark leading-relaxed font-normal">
+                  "{activeDifficulty.fullDesc}"
+                </p>
+              </div>
 
               <div className="pt-2">
                 <p className="text-xs font-semibold uppercase tracking-wider text-slateText-dark mb-3">
                   Pilares de nuestra intervención:
                 </p>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {activeDifficulty.focusPoints.map((point, index) => (
                     <li key={index} className="flex items-start gap-2.5 text-xs sm:text-sm text-slateText-base">
                       <CheckCircle2 className="w-4 h-4 text-brand-600 shrink-0 mt-0.5" />
