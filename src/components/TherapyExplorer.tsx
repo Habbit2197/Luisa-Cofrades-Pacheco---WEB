@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  CloudRain, 
-  HeartOff, 
+  CloudSun, 
+  Heart, 
   Sparkles, 
-  Activity, 
-  AlertCircle, 
-  Layers, 
+  Wind, 
+  Compass, 
+  Feather, 
   MessageCircleHeart,
   ArrowRight,
   CheckCircle2,
@@ -33,12 +33,12 @@ const difficulties: Difficulty[] = [
   {
     id: 'tristeza',
     title: 'Tristeza',
-    icon: CloudRain,
-    emoji: '🌧️',
+    icon: CloudSun,
+    emoji: '🌤️',
     accent: 'sky',
-    accentBorder: 'hover:border-accent-sky hover:shadow-accent-sky/20',
-    accentBg: 'bg-accent-sky/20 text-[#0284C7]',
-    accentText: 'text-[#0284C7]',
+    accentBorder: 'hover:border-accent-sky/60 hover:shadow-accent-sky/10',
+    accentBg: 'bg-accent-sky/10 text-sky-600',
+    accentText: 'text-sky-600',
     shortDesc: 'Te acompañamos a transitar el dolor y la apatía, buscando el origen de esa tristeza profunda.',
     fullDesc: 'Te acompañamos a transitar el dolor y la apatía, buscando el origen de esa tristeza profunda para que puedas recuperar la vitalidad y el sentido.',
     focusPoints: [
@@ -52,12 +52,12 @@ const difficulties: Difficulty[] = [
   {
     id: 'rupturas',
     title: 'Rupturas y dependencias emocionales',
-    icon: HeartOff,
-    emoji: '💔',
+    icon: Heart,
+    emoji: '🌱',
     accent: 'fuchsia',
-    accentBorder: 'hover:border-accent-fuchsia hover:shadow-accent-fuchsia/20',
-    accentBg: 'bg-accent-fuchsia/20 text-[#C026D3]',
-    accentText: 'text-[#C026D3]',
+    accentBorder: 'hover:border-accent-fuchsia/60 hover:shadow-accent-fuchsia/10',
+    accentBg: 'bg-accent-fuchsia/10 text-fuchsia-600',
+    accentText: 'text-fuchsia-600',
     shortDesc: 'Trabajamos los apegos y el duelo por la pérdida para reconstruir tu identidad y libertad.',
     fullDesc: 'Trabajamos los apegos y el duelo por la pérdida, ayudándote a reconstruir tu identidad y a establecer relaciones futuras desde la libertad y el amor propio.',
     focusPoints: [
@@ -74,9 +74,9 @@ const difficulties: Difficulty[] = [
     icon: Sparkles,
     emoji: '✨',
     accent: 'violet',
-    accentBorder: 'hover:border-accent-violet hover:shadow-accent-violet/20',
-    accentBg: 'bg-accent-violet/20 text-[#7C3AED]',
-    accentText: 'text-[#7C3AED]',
+    accentBorder: 'hover:border-accent-violet/60 hover:shadow-accent-violet/10',
+    accentBg: 'bg-accent-violet/10 text-violet-600',
+    accentText: 'text-violet-600',
     shortDesc: 'Fomentamos una mirada compasiva hacia ti mismo/a, sanando las heridas que te limitan.',
     fullDesc: 'Fomentamos una mirada compasiva hacia ti mismo/a, sanando las heridas que te impiden reconocer tu propio valor y potencial.',
     focusPoints: [
@@ -90,12 +90,12 @@ const difficulties: Difficulty[] = [
   {
     id: 'ansiedad',
     title: 'Ansiedad',
-    icon: Activity,
-    emoji: '⚡',
+    icon: Wind,
+    emoji: '🌿',
     accent: 'mint',
-    accentBorder: 'hover:border-accent-mint hover:shadow-accent-mint/20',
-    accentBg: 'bg-accent-mint/30 text-[#059669]',
-    accentText: 'text-[#059669]',
+    accentBorder: 'hover:border-accent-mint/60 hover:shadow-accent-mint/10',
+    accentBg: 'bg-accent-mint/15 text-emerald-600',
+    accentText: 'text-emerald-600',
     shortDesc: 'Herramientas para calmar el sistema nervioso, entender su mensaje y recuperar la calma.',
     fullDesc: 'Te ofrecemos herramientas para calmar el sistema nervioso, entender qué mensaje trae tu ansiedad y recuperar el control y la calma en tu día a día.',
     focusPoints: [
@@ -109,12 +109,12 @@ const difficulties: Difficulty[] = [
   {
     id: 'impulsividad',
     title: 'Violencia / impulsividad',
-    icon: AlertCircle,
-    emoji: '🔥',
+    icon: Compass,
+    emoji: '🧭',
     accent: 'fuchsia',
-    accentBorder: 'hover:border-accent-fuchsia hover:shadow-accent-fuchsia/20',
-    accentBg: 'bg-accent-fuchsia/20 text-[#C026D3]',
-    accentText: 'text-[#C026D3]',
+    accentBorder: 'hover:border-accent-fuchsia/60 hover:shadow-accent-fuchsia/10',
+    accentBg: 'bg-accent-fuchsia/10 text-fuchsia-600',
+    accentText: 'text-fuchsia-600',
     shortDesc: 'Exploramos las raíces de la reactividad para aprender a regular tus emociones.',
     fullDesc: 'Exploramos las raíces de la reactividad, ofreciéndote un espacio seguro para aprender a gestionar la frustración y regular tus emociones.',
     focusPoints: [
@@ -128,12 +128,12 @@ const difficulties: Difficulty[] = [
   {
     id: 'rigidez',
     title: 'Rigidez mental',
-    icon: Layers,
-    emoji: '🧩',
+    icon: Feather,
+    emoji: '🕊️',
     accent: 'violet',
-    accentBorder: 'hover:border-accent-violet hover:shadow-accent-violet/20',
-    accentBg: 'bg-accent-violet/20 text-[#7C3AED]',
-    accentText: 'text-[#7C3AED]',
+    accentBorder: 'hover:border-accent-violet/60 hover:shadow-accent-violet/10',
+    accentBg: 'bg-accent-violet/10 text-violet-600',
+    accentText: 'text-violet-600',
     shortDesc: 'Flexibilizar tus patrones de pensamiento, reduciendo la autoexigencia hacia perspectivas amables.',
     fullDesc: 'Te ayudamos a flexibilizar tus patrones de pensamiento, reduciendo la autoexigencia y abriendo espacio a nuevas perspectivas más amables.',
     focusPoints: [
@@ -150,9 +150,9 @@ const difficulties: Difficulty[] = [
     icon: MessageCircleHeart,
     emoji: '💬',
     accent: 'sky',
-    accentBorder: 'hover:border-accent-sky hover:shadow-accent-sky/20',
-    accentBg: 'bg-accent-sky/20 text-[#0284C7]',
-    accentText: 'text-[#0284C7]',
+    accentBorder: 'hover:border-accent-sky/60 hover:shadow-accent-sky/10',
+    accentBg: 'bg-accent-sky/10 text-sky-600',
+    accentText: 'text-sky-600',
     shortDesc: 'Formas de expresión que conectan con tus necesidades y las de los demás.',
     fullDesc: 'Entrenamos formas de expresión que conectan con tus necesidades y las de los demás, mejorando tus vínculos y reduciendo el conflicto.',
     focusPoints: [
@@ -199,7 +199,7 @@ export default function TherapyExplorer() {
                   <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-colors ${
                     isSelected ? 'bg-white/20 text-white' : diff.accentBg
                   }`}>
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-5 h-5" strokeWidth={1.75} />
                   </div>
                   <span className="text-xl select-none" aria-hidden="true">
                     {diff.emoji}
@@ -244,7 +244,7 @@ export default function TherapyExplorer() {
             
             <div className="lg:col-span-8 space-y-5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gray-50 border border-gray-100 text-brand-graphite text-xs font-semibold uppercase tracking-wider">
-                <activeDifficulty.icon className={`w-4 h-4 ${activeDifficulty.accentText}`} />
+                <activeDifficulty.icon className={`w-4 h-4 ${activeDifficulty.accentText}`} strokeWidth={1.75} />
                 <span>Abordaje Clínico: {activeDifficulty.title}</span>
               </div>
 

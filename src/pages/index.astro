@@ -46,20 +46,125 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <!-- Hero Section con Framer Motion, imagen de la taza/vela y propuesta de valor -->
   <HeroSection />
 
-  <!-- Sección El Centro / Sobre Mí / Maquetada en 3 Bloques Limpios -->
-  <section id="el-centro" class="py-24 bg-white border-b border-gray-100 scroll-mt-20">
-    <div id="sobre-mi" class="scroll-mt-20"></div>
+  <!-- Sección Sobre Mí / El Centro (Bloque de Biografía Premium Split-Screen) -->
+  <section id="sobre-mi" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100 scroll-mt-20">
+    <div id="el-centro" class="scroll-mt-20"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Cabecera de la sección -->
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-semibold uppercase tracking-wider border border-brand-aqua/20">
-          <ShieldCheck class="w-4 h-4 text-brand-aqua" />
-          <span>El Centro · Luisa Cofrades</span>
+      <!-- Split-screen: Columna Imagen de Luisa + Columna Biografía Personal Brand -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20 lg:mb-24">
+        
+        <!-- Columna Imagen -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative max-w-md mx-auto lg:max-w-none">
+            <!-- Aura decorativa de fondo suave en tono brand-aqua -->
+            <div class="absolute -inset-4 bg-gradient-to-tr from-brand-aqua/20 to-brand-aqua/5 rounded-3xl -z-10 blur-xl transform -rotate-1 opacity-70"></div>
+            
+            <!-- Fotografía de Luisa con bordes suaves y sombra -->
+            <div class="relative overflow-hidden rounded-2xl shadow-lg border border-gray-100 bg-gray-50">
+              <img 
+                src="/assets/media/luisa_1.webp" 
+                alt="Luisa Cofrades Pacheco - Psicóloga Sanitaria Colegiada" 
+                width="600"
+                height="750"
+                loading="lazy"
+                decoding="async"
+                class="aspect-[4/5] object-cover rounded-2xl shadow-lg w-full"
+              />
+            </div>
+
+            <!-- Floating Trust Badge -->
+            <div class="absolute -bottom-5 sm:-bottom-6 right-2 sm:right-4 bg-white/95 backdrop-blur-md px-4 py-3 sm:px-5 sm:py-3.5 rounded-2xl shadow-md border border-gray-100 flex items-center gap-3 max-w-[280px] sm:max-w-xs">
+              <div class="w-10 h-10 rounded-xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center shrink-0">
+                <ShieldCheck class="w-5 h-5 text-brand-aqua" />
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-brand-graphite">Colegiada N.º BI05747</p>
+                <p class="text-[11px] text-brand-aqua font-medium">COP · Acreditación EuroPsy</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <h2 class="text-3xl sm:text-4xl font-light text-brand-graphite tracking-tight">
+
+        <!-- Columna Texto: Saludo grande, especialidad en Aqua y espaciado generoso -->
+        <div class="lg:col-span-7 space-y-6 text-brand-graphite">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-semibold uppercase tracking-wider border border-brand-aqua/20">
+            <ShieldCheck class="w-4 h-4 text-brand-aqua" />
+            <span>Sobre Mí · Luisa Cofrades</span>
+          </div>
+
+          <div class="space-y-2">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-brand-graphite tracking-tight leading-tight">
+              Hola, soy <span class="font-semibold text-brand-aqua">Luisa Cofrades</span>
+            </h2>
+            <p class="text-lg sm:text-xl font-medium text-brand-aqua">
+              Psicóloga General Sanitaria · Especialista en Trauma, EMDR y Enfoque Humanista
+            </p>
+          </div>
+
+          <!-- Párrafos con espaciado amplio (space-y-6) para dar descanso y lectura zen -->
+          <div class="space-y-6 text-base sm:text-lg leading-relaxed text-brand-graphite/85">
+            <p>
+              Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado/a con respeto, sin juicios ni etiquetas.
+            </p>
+
+            <p>
+              Con una amplia trayectoria acompañando a personas en momentos de crisis, duelo, dolor y transformación, integro el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> y la <strong class="text-brand-graphite font-semibold">Terapia Sensoriomotriz</strong> con una mirada <strong class="text-brand-graphite font-semibold">humanista e integrativa</strong>. Abordamos juntos el origen profundo de los traumas, los patrones de apego y la ansiedad, atendiendo a lo que la mente y el cuerpo expresan.
+            </p>
+
+            <p>
+              Como <span class="text-brand-aqua font-semibold">Colegiada N.º BI05747</span> y especialista acreditada <strong class="text-brand-graphite font-semibold">EuroPsy</strong> por la Federación Europea de Asociaciones de Psicólogos, mi compromiso es brindarte un acompañamiento riguroso, cálido y personalizado en nuestras consultas presenciales de <strong class="text-brand-graphite font-semibold">Salamanca</strong> y <strong class="text-brand-graphite font-semibold">Zamora</strong>, o a través de la atención <strong class="text-brand-graphite font-semibold">online</strong>.
+            </p>
+          </div>
+
+          <!-- Acreditaciones en cápsulas Trust Design -->
+          <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium text-brand-graphite">
+            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-100">
+              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+              <span>Colegiada N.º BI05747 (COP)</span>
+            </div>
+            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-100">
+              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+              <span>Especialista EuroPsy en Psicoterapia</span>
+            </div>
+            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-100">
+              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+              <span>Asociación EMDR España Acreditada</span>
+            </div>
+            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-100">
+              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+              <span>Docente colaboradora Máster USAL</span>
+            </div>
+          </div>
+
+          <!-- Botones de llamada a la acción -->
+          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <a 
+              href="#contacto" 
+              class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-sm transition-all shadow-sm hover:shadow-card-hover"
+            >
+              <Calendar class="w-4 h-4" />
+              <span>Concertar cita con Luisa</span>
+            </a>
+            <a 
+              href="#servicios" 
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-brand-graphite font-medium text-sm border border-gray-200 transition-colors shadow-xs"
+            >
+              <span>Ver áreas de consulta</span>
+              <ArrowRight class="w-4 h-4 text-brand-aqua" />
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Cabecera complementaria del Centro y sus Áreas -->
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3 pt-6 border-t border-gray-100">
+        <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold">El Centro · Psicología para Vivir</span>
+        <h3 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
           Un espacio seguro de <span class="font-semibold text-brand-aqua">calma, rigor y crecimiento</span>
-        </h2>
+        </h3>
         <p class="text-brand-graphite/70 text-sm sm:text-base leading-relaxed">
           Equipo especializado en trauma y experiencias adversas con consultas presenciales en Salamanca y Zamora, y atención terapéutica online.
         </p>
@@ -77,13 +182,13 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
 
             <div>
               <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold">Espacio Terapéutico</span>
-              <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1">
+              <h4 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1">
                 ¿Quiénes Somos? y Espacio Terapéutico
-              </h3>
+              </h4>
             </div>
 
             <!-- Texto literal solicitado -->
-            <p className="text-sm sm:text-base text-brand-graphite leading-relaxed text-justify sm:text-left">
+            <p class="text-sm sm:text-base text-brand-graphite leading-relaxed text-justify sm:text-left">
               Psicología para vivir es un espacio seguro, diseñado para que te sientas en calma desde el primer momento. Somos un equipo especializado en trauma y experiencias adversas, liderado por Luisa Cofrades. Integramos diferentes corrientes para ofrecerte un tratamiento a medida, siempre desde el rigor científico y la calidez humana.
             </p>
           </div>
@@ -105,13 +210,13 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
 
             <div>
               <span class="text-xs uppercase tracking-wider text-[#7C3AED] font-semibold">Grupos y Empresas</span>
-              <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1">
+              <h4 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1">
                 Formación y Educación
-              </h3>
+              </h4>
             </div>
 
             <!-- Texto literal solicitado -->
-            <p className="text-sm sm:text-base text-brand-graphite leading-relaxed text-justify sm:text-left">
+            <p class="text-sm sm:text-base text-brand-graphite leading-relaxed text-justify sm:text-left">
               Impartimos formación especializada para grupos y empresas en áreas clave como buenos hábitos, resolución de conflictos, motivación, prevención de adicciones, escuela de padres y comunicación. Adaptamos nuestros talleres para aportar herramientas prácticas y transformadoras.
             </p>
           </div>
@@ -133,13 +238,13 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
 
             <div>
               <span class="text-xs uppercase tracking-wider text-[#0284C7] font-semibold">Para Psicólogos</span>
-              <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1">
+              <h4 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1">
                 Supervisión Clínica
-              </h3>
+              </h4>
             </div>
 
             <!-- Texto literal solicitado -->
-            <p className="text-sm sm:text-base text-brand-graphite leading-relaxed text-justify sm:text-left">
+            <p class="text-sm sm:text-base text-brand-graphite leading-relaxed text-justify sm:text-left">
               Ofrecemos espacios de supervisión para otros profesionales de la psicología. Un acompañamiento clínico riguroso para analizar casos, resolver bloqueos terapéuticos y seguir creciendo en la práctica profesional con la mirada puesta en el abordaje del trauma.
             </p>
           </div>
@@ -187,7 +292,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   </section>
 
   <!-- Grid de Dificultades Emocionales: ¿Cuidamos juntos de tu salud mental? -->
-  <section class="py-24 bg-white border-b border-gray-100">
+  <section class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-16">
         <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Orientación Personalizada</span>
@@ -204,7 +309,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   </section>
 
   <!-- Sección de EMDR: Evidencia Científica, Vídeo Dra. Anabel González y Guía PDF -->
-  <section id="emdr" class="py-24 bg-white border-b border-gray-100 scroll-mt-20">
+  <section id="emdr" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
@@ -305,8 +410,39 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <!-- Grid de Terapias y Servicios Completo -->
   <ServicesGrid />
 
+  <!-- Banner de Ambiente 1: Imagen de respiro y calma antes de Tarifas -->
+  <section class="relative overflow-hidden py-24 sm:py-28 min-h-[360px] flex items-center justify-center text-center">
+    <!-- Fotografía Unsplash de calma y serenidad -->
+    <img 
+      src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1920&q=80" 
+      alt="Ambiente acogedor, luz suave y calma" 
+      width="1920"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover object-center"
+    />
+    <!-- Overlay con brand-aqua al 20% y contraste para legibilidad limpia -->
+    <div class="absolute inset-0 bg-brand-graphite/45 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-brand-aqua/20"></div>
+
+    <!-- Contenido del Banner -->
+    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-white space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-semibold uppercase tracking-wider border border-white/30">
+        <Sparkles class="w-3.5 h-3.5 text-white" />
+        <span>Espacio para tu Bienestar</span>
+      </div>
+      <p class="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight leading-snug drop-shadow-sm">
+        "Darte un tiempo para ti no es un lujo, es el primer paso para volver a habitar tu vida con serenidad."
+      </p>
+      <p class="text-sm sm:text-base text-white/90 max-w-xl mx-auto font-normal">
+        Atención cuidada, personalizada y sin prisas en un clima de confianza mutua.
+      </p>
+    </div>
+  </section>
+
   <!-- Sección de Tarifas y Cuestionario Previo de la Clienta -->
-  <section id="tarifas" class="py-24 bg-gray-50/60 border-b border-gray-100 scroll-mt-20">
+  <section id="tarifas" class="py-20 sm:py-24 lg:py-28 bg-gray-50/60 border-b border-gray-100 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-16">
@@ -485,7 +621,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         <div class="pt-2">
           <a 
             href="https://docs.google.com/forms/d/e/1FAIpQLSchCicLOpw2Lt_aJ6FGr4VvUC5wAxPSjW_PoVJtpWAE_4jkMg/viewform"
-            target="_blank"
+            target="_blank" 
             rel="noopener noreferrer"
             class="inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-sm shadow-sm hover:shadow-card-hover transition-all duration-200 group"
           >
@@ -500,7 +636,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   </section>
 
   <!-- Sección de Sedes Presenciales (Salamanca y Zamora) -->
-  <section id="sedes" class="py-24 bg-white border-b border-gray-100">
+  <section id="sedes" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-16">
@@ -607,7 +743,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   </section>
 
   <!-- Sección de Artículos y Reflexiones Clínicas -->
-  <section class="py-24 bg-gray-50/50 border-b border-gray-100">
+  <section class="py-20 sm:py-24 lg:py-28 bg-gray-50/50 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
@@ -660,11 +796,42 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
     </div>
   </section>
 
+  <!-- Banner de Ambiente 2: Imagen de respiro y confianza antes de Testimonios -->
+  <section class="relative overflow-hidden py-24 sm:py-28 min-h-[360px] flex items-center justify-center text-center">
+    <!-- Fotografía Unsplash de camino sereno, luz suave y naturaleza -->
+    <img 
+      src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1920&q=80" 
+      alt="Luz suave y naturaleza en calma" 
+      width="1920"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover object-center"
+    />
+    <!-- Overlay con brand-aqua al 20% y contraste para legibilidad limpia -->
+    <div class="absolute inset-0 bg-brand-graphite/45 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-brand-aqua/20"></div>
+
+    <!-- Contenido del Banner -->
+    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-white space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-semibold uppercase tracking-wider border border-white/30">
+        <HeartHandshake class="w-3.5 h-3.5 text-white" />
+        <span>Vínculo Terapéutico y Confianza</span>
+      </div>
+      <p class="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight leading-snug drop-shadow-sm">
+        "Sanar es aprender a mirarse con ternura, desatar viejos nudos y recuperar la confianza en tu camino."
+      </p>
+      <p class="text-sm sm:text-base text-white/90 max-w-xl mx-auto font-normal">
+        Acompañamiento clínico respaldado por la evidencia científica y la calidez humana.
+      </p>
+    </div>
+  </section>
+
   <!-- Sección de Testimonios -->
   <Testimonials />
 
   <!-- Asistente de Consulta y Triage Interactivo (Paso a Paso) -->
-  <section id="contacto" class="py-24 bg-white relative scroll-mt-20">
+  <section id="contacto" class="py-20 sm:py-24 lg:py-28 bg-white relative scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-xl mx-auto mb-12">
