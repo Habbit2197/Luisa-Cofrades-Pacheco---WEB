@@ -7,7 +7,6 @@
 /servicios/  /#servicios  301
 /posts/  /blog  301
 /feed/  /  301
-/xmlrpc.php  /  404
 
 # Redirecciones de Artículos de Blog con estructura de fechas de WordPress
 /2023/11/25/supervivencia-emocional-una-ventana-hacia-la-sensibilidad/*  /blog/supervivencia-emocional-una-ventana-hacia-la-sensibilidad  301
