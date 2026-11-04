@@ -7,16 +7,23 @@ import FloatingMobileBar from '../components/FloatingMobileBar.astro';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
   ogImage?: string;
+  type?: 'website' | 'article';
 }
 
 const {
   title = "Psicología para vivir centro de Luisa Cofrades.",
   description = "¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas.",
-  ogImage = "/assets/branding/logo-luisa-positivo404x.png"
+  image = Astro.props.ogImage || "/assets/branding/og-image.jpg",
+  type
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacofrades.com');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
+
+const isBlogPost = Astro.url.pathname.startsWith('/blog/') && Astro.url.pathname !== '/blog/' && Astro.url.pathname !== '/blog';
+const ogType = type || (isBlogPost ? 'article' : 'website');
 ---
 
 <!doctype html>
@@ -25,7 +32,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/assets/branding/cropped-logo-simbolo404x.png" />
-    <link rel="canonical" href={canonicalURL} />
+    <link rel="canonical" href={canonicalURL.href} />
     
     <!-- Metadatos SEO Primarios -->
     <title>{title}</title>
@@ -35,13 +42,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph / Meta de Redes Sociales -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Luisa Cofrades Pacheco" />
+    <meta property="og:locale" content="es_ES" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(ogImage, canonicalURL)} />
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="Psicología para vivir centro de Luisa Cofrades." />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:secure_url" content={ogImageURL.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -49,7 +60,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
     <meta name="twitter:creator" content="@LCofrades" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(ogImage, canonicalURL)} />
+    <meta name="twitter:image" content={ogImageURL.href} />
 
     <!-- Schema.org JSON-LD para Gabinete Sanitario de Psicología -->
     <script type="application/ld+json" is:inline>
@@ -57,8 +68,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
         "@context": "https://schema.org",
         "@type": "PsychologicalClinic",
         "name": "Psicología para vivir centro de Luisa Cofrades.",
-        "image": "https://luisacofrades.com/assets/branding/logo-luisa-positivo404x.png",
-        "url": "https://luisacofrades.com",
+        "image": "https://luisa-cofrades-pacheco---web.javier-barmont97.workers.dev/assets/branding/og-image.jpg",
+        "url": "https://luisa-cofrades-pacheco---web.javier-barmont97.workers.dev",
         "telephone": "+34675809974",
         "priceRange": "$$",
         "address": [

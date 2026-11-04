@@ -17,6 +17,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 
+// Determinar imagen destacada si existe (JPG/PNG, no WebP para máxima compatibilidad Open Graph)
+const candidateImage = post.imagenDestacada || post.imagen || post.image || post.foto;
+const postImage = candidateImage && /\.(jpe?g|png)$/i.test(candidateImage)
+  ? candidateImage
+  : undefined;
+
 // Separar contenido en párrafos limpios
 const parrafos = post.contenidoCompleto
   ? post.contenidoCompleto.split(/(?<=\.)\s+(?=[A-Z¿¡])/)
@@ -26,6 +32,7 @@ const parrafos = post.contenidoCompleto
 <Layout 
   title={`${post.titulo} | Luisa Cofrades Pacheco`}
   description={post.resumen}
+  image={postImage}
 >
   <header class="bg-gradient-to-b from-brand-100/60 via-sand-50/80 to-sand-50 border-b border-sand-200/80 pt-20 pb-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
