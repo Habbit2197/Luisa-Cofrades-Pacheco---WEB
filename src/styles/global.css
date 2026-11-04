@@ -7,56 +7,58 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #FFFFFF;
+    color: #374151;
   }
 
   ::selection {
-    background-color: #C8DDD0;
-    color: #14221B;
+    background-color: #ACE1DE;
+    color: #12413F;
   }
 }
 
-/* Scrollbar sutil y orgánico */
+/* Scrollbar sutil y moderno */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAF8F5;
+  background: #F9FAFB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C8DDD0;
+  background: #ACE1DE;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A4C6B1;
+  background: #289E99;
 }
 
-/* Efectos de vidrio y gradientes suaves */
+/* Paneles y tarjetas limpias sobre fondo blanco */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(231, 221, 203, 0.7);
+  border: 1px solid rgba(243, 244, 246, 0.9);
 }
 
 .glass-panel-dark {
-  background: rgba(20, 34, 27, 0.85);
+  background: rgba(31, 41, 55, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(95, 142, 114, 0.2);
+  border: 1px solid rgba(40, 158, 153, 0.25);
 }
 
 /* Animación sutil de respiración/pulso para badges */
 @keyframes calm-pulse {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.8;
+    opacity: 0.85;
   }
   50% {
-    transform: scale(1.04);
+    transform: scale(1.03);
     opacity: 1;
   }
 }
@@ -64,4 +66,3 @@
 .animate-calm-pulse {
   animation: calm-pulse 4s ease-in-out infinite;
 }
-

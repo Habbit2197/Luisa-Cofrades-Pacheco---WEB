@@ -45,23 +45,23 @@ export default function InteractiveTriage() {
     : 'https://wa.me/34675809974?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20concertar%20una%20cita';
 
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-10 border border-sand-200 shadow-card-hover max-w-3xl mx-auto">
+    <div className="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm hover:shadow-card-hover transition-shadow max-w-3xl mx-auto">
       
       {/* Indicador de pasos */}
-      <div className="flex items-center justify-between border-b border-sand-100 pb-5 mb-8">
+      <div className="flex items-center justify-between border-b border-gray-100 pb-5 mb-8">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-brand-100 text-brand-800 flex items-center justify-center font-bold text-xs">
+          <div className="w-8 h-8 rounded-full bg-brand-aqua/10 text-brand-aqua flex items-center justify-center font-bold text-xs">
             {step}/3
           </div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-slateText-muted">
+          <span className="text-xs font-semibold uppercase tracking-wider text-brand-graphite/70">
             {step === 1 && 'Paso 1: ¿Qué estás experimentando?'}
             {step === 2 && 'Paso 2: ¿Dónde prefieres la consulta?'}
             {step === 3 && 'Paso 3: Tu solicitud personalizada'}
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 text-xs text-brand-700">
-          <ShieldCheck className="w-4 h-4 text-brand-600" />
+        <div className="flex items-center gap-1.5 text-xs text-brand-aqua font-medium">
+          <ShieldCheck className="w-4 h-4 text-brand-aqua" />
           <span className="hidden sm:inline">100% Confidencial</span>
         </div>
       </div>
@@ -77,10 +77,10 @@ export default function InteractiveTriage() {
             transition={{ duration: 0.3 }}
             className="space-y-4"
           >
-            <h3 className="text-xl sm:text-2xl font-light text-slateText-dark">
+            <h3 className="text-xl sm:text-2xl font-light text-brand-graphite">
               ¿Cuál es la razón principal de tu consulta?
             </h3>
-            <p className="text-xs sm:text-sm text-slateText-muted">
+            <p className="text-xs sm:text-sm text-brand-graphite/70">
               Selecciona una opción para que podamos orientarte mejor (o haz clic en WhatsApp directo):
             </p>
 
@@ -94,26 +94,26 @@ export default function InteractiveTriage() {
                   }}
                   className={`text-left p-4 rounded-2xl border transition-all duration-200 ${
                     reason === r.id
-                      ? 'border-brand-600 bg-brand-50 shadow-sm'
-                      : 'border-sand-200 hover:border-brand-300 hover:bg-sand-50/60'
+                      ? 'border-brand-aqua bg-brand-aqua/10 shadow-sm'
+                      : 'border-gray-200 hover:border-brand-aqua hover:bg-gray-50'
                   }`}
                 >
-                  <p className="font-semibold text-sm text-slateText-dark">{r.label}</p>
-                  <p className="text-xs text-slateText-muted mt-1 leading-relaxed">{r.desc}</p>
+                  <p className="font-semibold text-sm text-brand-graphite">{r.label}</p>
+                  <p className="text-xs text-brand-graphite/70 mt-1 leading-relaxed">{r.desc}</p>
                 </button>
               ))}
             </div>
 
             {/* Acceso rápido a WhatsApp oficial */}
-            <div className="pt-4 border-t border-sand-100 flex items-center justify-between">
-              <span className="text-xs text-slateText-muted">¿Prefieres escribir directamente?</span>
+            <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+              <span className="text-xs text-brand-graphite/70">¿Prefieres escribir directamente?</span>
               <a
                 href="https://wa.me/34675809974?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20concertar%20una%20cita"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5"
+                className="text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark flex items-center gap-1.5"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-600" />
+                <MessageCircle className="w-4 h-4 text-brand-aqua" />
                 <span>Abrir WhatsApp directo</span>
               </a>
             </div>
@@ -133,17 +133,17 @@ export default function InteractiveTriage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setStep(1)}
-                className="text-xs text-brand-700 hover:text-brand-900 inline-flex items-center gap-1 font-medium"
+                className="text-xs text-brand-aqua hover:text-brand-aqua-dark inline-flex items-center gap-1 font-medium"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Modificar motivo</span>
               </button>
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-light text-slateText-dark">
+            <h3 className="text-xl sm:text-2xl font-light text-brand-graphite">
               ¿Qué modalidad te resulta más cómoda?
             </h3>
-            <p className="text-xs sm:text-sm text-slateText-muted">
+            <p className="text-xs sm:text-sm text-brand-graphite/70">
               Atendemos presencialmente en Salamanca y Zamora, y por videoconsulta cifrada desde cualquier lugar:
             </p>
 
@@ -159,16 +159,16 @@ export default function InteractiveTriage() {
                     }}
                     className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 flex items-center gap-4 ${
                       modality === m.id
-                        ? 'border-brand-600 bg-brand-50 shadow-sm'
-                        : 'border-sand-200 hover:border-brand-300 hover:bg-sand-50/60'
+                        ? 'border-brand-aqua bg-brand-aqua/10 shadow-sm'
+                        : 'border-gray-200 hover:border-brand-aqua hover:bg-gray-50'
                     }`}
                   >
-                    <div className="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="font-semibold text-sm text-slateText-dark">{m.label}</p>
-                      <p className="text-xs text-slateText-muted mt-0.5">{m.desc}</p>
+                      <p className="font-semibold text-sm text-brand-graphite">{m.label}</p>
+                      <p className="text-xs text-brand-graphite/70 mt-0.5">{m.desc}</p>
                     </div>
                   </button>
                 );
@@ -190,23 +190,23 @@ export default function InteractiveTriage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setStep(2)}
-                className="text-xs text-brand-700 hover:text-brand-900 inline-flex items-center gap-1 font-medium"
+                className="text-xs text-brand-aqua hover:text-brand-aqua-dark inline-flex items-center gap-1 font-medium"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Modificar modalidad</span>
               </button>
             </div>
 
-            <div className="bg-sand-50 p-5 rounded-2xl border border-sand-200 space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand-700">Resumen de tu solicitud:</p>
-              <div className="text-sm text-slateText-dark font-medium flex flex-wrap gap-x-4 gap-y-1">
+            <div className="bg-gray-50 p-5 rounded-2xl border border-gray-100 space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-aqua">Resumen de tu solicitud:</p>
+              <div className="text-sm text-brand-graphite font-medium flex flex-wrap gap-x-4 gap-y-1">
                 <span>• Motivo: <strong>{selectedReasonLabel}</strong></span>
                 <span>• Modalidad: <strong>{selectedModalityLabel}</strong></span>
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slateText-dark mb-1.5">
+              <label className="block text-xs font-semibold text-brand-graphite mb-1.5">
                 ¿Cuál es tu nombre? (opcional)
               </label>
               <input
@@ -214,17 +214,17 @@ export default function InteractiveTriage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Escribe tu nombre para dirigirnos a ti"
-                className="w-full px-4 py-3 rounded-xl border border-sand-200 bg-sand-50/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-aqua transition-all text-brand-graphite"
               />
             </div>
 
-            {/* Opciones de Envío Directo con formato oficial de la API de WhatsApp */}
+            {/* Opciones de Envío Directo: botones con fondo bg-brand-aqua */}
             <div className="space-y-3 pt-2">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-all shadow-sm hover:shadow-card-hover"
+                className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-sm transition-all shadow-sm hover:shadow-card-hover"
               >
                 <MessageCircle className="w-5 h-5 text-white" />
                 <span>Enviar solicitud directa por WhatsApp</span>
@@ -232,14 +232,14 @@ export default function InteractiveTriage() {
 
               <a
                 href="tel:+34675809974"
-                className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white hover:bg-sand-100 text-slateText-dark border border-sand-200 font-medium text-sm transition-colors"
+                className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-brand-graphite border border-gray-200 font-medium text-sm transition-colors shadow-sm"
               >
-                <Phone className="w-4 h-4 text-brand-600" />
+                <Phone className="w-4 h-4 text-brand-aqua" />
                 <span>Llamar por teléfono al 675 80 99 74</span>
               </a>
             </div>
 
-            <p className="text-[11px] text-slateText-muted text-center leading-tight">
+            <p className="text-[11px] text-brand-graphite/60 text-center leading-tight">
               Tus datos y motivo de consulta están protegidos bajo estricto secreto profesional sanitario conforme a la LOPD.
             </p>
           </motion.div>

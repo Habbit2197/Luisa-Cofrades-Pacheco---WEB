@@ -18,6 +18,10 @@ interface Difficulty {
   title: string;
   icon: any;
   emoji: string;
+  accent: 'sky' | 'fuchsia' | 'violet' | 'mint';
+  accentBorder: string;
+  accentBg: string;
+  accentText: string;
   shortDesc: string;
   fullDesc: string;
   focusPoints: string[];
@@ -31,6 +35,10 @@ const difficulties: Difficulty[] = [
     title: 'Tristeza',
     icon: CloudRain,
     emoji: '🌧️',
+    accent: 'sky',
+    accentBorder: 'hover:border-accent-sky hover:shadow-accent-sky/20',
+    accentBg: 'bg-accent-sky/20 text-[#0284C7]',
+    accentText: 'text-[#0284C7]',
     shortDesc: 'Te acompañamos a transitar el dolor y la apatía, buscando el origen de esa tristeza profunda.',
     fullDesc: 'Te acompañamos a transitar el dolor y la apatía, buscando el origen de esa tristeza profunda para que puedas recuperar la vitalidad y el sentido.',
     focusPoints: [
@@ -46,6 +54,10 @@ const difficulties: Difficulty[] = [
     title: 'Rupturas y dependencias emocionales',
     icon: HeartOff,
     emoji: '💔',
+    accent: 'fuchsia',
+    accentBorder: 'hover:border-accent-fuchsia hover:shadow-accent-fuchsia/20',
+    accentBg: 'bg-accent-fuchsia/20 text-[#C026D3]',
+    accentText: 'text-[#C026D3]',
     shortDesc: 'Trabajamos los apegos y el duelo por la pérdida para reconstruir tu identidad y libertad.',
     fullDesc: 'Trabajamos los apegos y el duelo por la pérdida, ayudándote a reconstruir tu identidad y a establecer relaciones futuras desde la libertad y el amor propio.',
     focusPoints: [
@@ -61,6 +73,10 @@ const difficulties: Difficulty[] = [
     title: 'Baja autoestima',
     icon: Sparkles,
     emoji: '✨',
+    accent: 'violet',
+    accentBorder: 'hover:border-accent-violet hover:shadow-accent-violet/20',
+    accentBg: 'bg-accent-violet/20 text-[#7C3AED]',
+    accentText: 'text-[#7C3AED]',
     shortDesc: 'Fomentamos una mirada compasiva hacia ti mismo/a, sanando las heridas que te limitan.',
     fullDesc: 'Fomentamos una mirada compasiva hacia ti mismo/a, sanando las heridas que te impiden reconocer tu propio valor y potencial.',
     focusPoints: [
@@ -76,6 +92,10 @@ const difficulties: Difficulty[] = [
     title: 'Ansiedad',
     icon: Activity,
     emoji: '⚡',
+    accent: 'mint',
+    accentBorder: 'hover:border-accent-mint hover:shadow-accent-mint/20',
+    accentBg: 'bg-accent-mint/30 text-[#059669]',
+    accentText: 'text-[#059669]',
     shortDesc: 'Herramientas para calmar el sistema nervioso, entender su mensaje y recuperar la calma.',
     fullDesc: 'Te ofrecemos herramientas para calmar el sistema nervioso, entender qué mensaje trae tu ansiedad y recuperar el control y la calma en tu día a día.',
     focusPoints: [
@@ -91,6 +111,10 @@ const difficulties: Difficulty[] = [
     title: 'Violencia / impulsividad',
     icon: AlertCircle,
     emoji: '🔥',
+    accent: 'fuchsia',
+    accentBorder: 'hover:border-accent-fuchsia hover:shadow-accent-fuchsia/20',
+    accentBg: 'bg-accent-fuchsia/20 text-[#C026D3]',
+    accentText: 'text-[#C026D3]',
     shortDesc: 'Exploramos las raíces de la reactividad para aprender a regular tus emociones.',
     fullDesc: 'Exploramos las raíces de la reactividad, ofreciéndote un espacio seguro para aprender a gestionar la frustración y regular tus emociones.',
     focusPoints: [
@@ -106,6 +130,10 @@ const difficulties: Difficulty[] = [
     title: 'Rigidez mental',
     icon: Layers,
     emoji: '🧩',
+    accent: 'violet',
+    accentBorder: 'hover:border-accent-violet hover:shadow-accent-violet/20',
+    accentBg: 'bg-accent-violet/20 text-[#7C3AED]',
+    accentText: 'text-[#7C3AED]',
     shortDesc: 'Flexibilizar tus patrones de pensamiento, reduciendo la autoexigencia hacia perspectivas amables.',
     fullDesc: 'Te ayudamos a flexibilizar tus patrones de pensamiento, reduciendo la autoexigencia y abriendo espacio a nuevas perspectivas más amables.',
     focusPoints: [
@@ -121,6 +149,10 @@ const difficulties: Difficulty[] = [
     title: 'CNV (Comunicación No Violenta)',
     icon: MessageCircleHeart,
     emoji: '💬',
+    accent: 'sky',
+    accentBorder: 'hover:border-accent-sky hover:shadow-accent-sky/20',
+    accentBg: 'bg-accent-sky/20 text-[#0284C7]',
+    accentText: 'text-[#0284C7]',
     shortDesc: 'Formas de expresión que conectan con tus necesidades y las de los demás.',
     fullDesc: 'Entrenamos formas de expresión que conectan con tus necesidades y las de los demás, mejorando tus vínculos y reduciendo el conflicto.',
     focusPoints: [
@@ -139,7 +171,7 @@ export default function TherapyExplorer() {
 
   return (
     <div className="w-full">
-      {/* Grid Visual de las 7 Dificultades Exactas */}
+      {/* Grid Visual de las 7 Dificultades con toques dinámicos de color corporativo */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 mb-10">
         {difficulties.map((diff) => {
           const Icon = diff.icon;
@@ -152,15 +184,17 @@ export default function TherapyExplorer() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className={`text-left p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
+                diff.accentBorder
+              } ${
                 isSelected
-                  ? 'bg-brand-700 text-white border-brand-800 shadow-card-hover ring-2 ring-brand-400/40'
-                  : 'bg-white text-slateText-dark border-sand-200/90 hover:bg-sand-50/90 hover:border-brand-300 shadow-card-subtle'
+                  ? 'bg-brand-aqua text-white border-brand-aqua-dark shadow-md ring-2 ring-brand-aqua/30'
+                  : 'bg-white text-brand-graphite border-gray-100 hover:bg-gray-50/80 shadow-sm'
               }`}
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
                   <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-colors ${
-                    isSelected ? 'bg-white/15 text-white' : 'bg-brand-100 text-brand-700'
+                    isSelected ? 'bg-white/20 text-white' : diff.accentBg
                   }`}>
                     <Icon className="w-5 h-5" />
                   </div>
@@ -170,20 +204,20 @@ export default function TherapyExplorer() {
                 </div>
 
                 <h3 className={`text-base font-semibold tracking-tight ${
-                  isSelected ? 'text-white' : 'text-slateText-dark'
+                  isSelected ? 'text-white' : 'text-brand-graphite'
                 }`}>
                   {diff.title}
                 </h3>
 
                 <p className={`mt-2 text-xs leading-relaxed line-clamp-3 ${
-                  isSelected ? 'text-sand-100/90' : 'text-slateText-muted'
+                  isSelected ? 'text-white/90' : 'text-brand-graphite/70'
                 }`}>
                   {diff.shortDesc}
                 </p>
               </div>
 
               <div className={`mt-4 pt-3 border-t flex items-center justify-between text-xs font-medium ${
-                isSelected ? 'border-white/15 text-brand-200' : 'border-sand-100 text-brand-600'
+                isSelected ? 'border-white/20 text-white' : 'border-gray-100 text-brand-aqua'
               }`}>
                 <span>{isSelected ? 'Seleccionado' : 'Conocer abordaje'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -201,35 +235,35 @@ export default function TherapyExplorer() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="bg-white rounded-3xl p-7 sm:p-10 border border-sand-200/90 shadow-card-hover"
+          className="bg-white rounded-3xl p-7 sm:p-10 border border-gray-100 shadow-sm hover:shadow-card-hover transition-shadow"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             <div className="lg:col-span-8 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-100 text-sand-900 text-xs font-semibold uppercase tracking-wider">
-                <activeDifficulty.icon className="w-4 h-4 text-brand-600" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gray-50 border border-gray-100 text-brand-graphite text-xs font-semibold uppercase tracking-wider">
+                <activeDifficulty.icon className={`w-4 h-4 ${activeDifficulty.accentText}`} />
                 <span>Abordaje Clínico: {activeDifficulty.title}</span>
               </div>
 
-              <h4 className="text-2xl sm:text-3xl font-light text-slateText-dark tracking-tight">
-                ¿Cómo intervenimos en <span className="font-semibold text-brand-700">{activeDifficulty.title}</span>?
+              <h4 className="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
+                ¿Cómo intervenimos en <span className="font-semibold text-brand-aqua">{activeDifficulty.title}</span>?
               </h4>
 
               {/* Texto clínico exacto requerido */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-brand-50/70 border border-brand-200/70 shadow-sm">
-                <p className="text-base sm:text-lg text-slateText-dark leading-relaxed font-normal">
+              <div className="p-5 sm:p-6 rounded-2xl bg-gray-50 border border-gray-100 shadow-sm">
+                <p className="text-base sm:text-lg text-brand-graphite leading-relaxed font-normal">
                   "{activeDifficulty.fullDesc}"
                 </p>
               </div>
 
               <div className="pt-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slateText-dark mb-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-brand-graphite mb-3">
                   Pilares de nuestra intervención:
                 </p>
                 <ul className="space-y-2.5">
                   {activeDifficulty.focusPoints.map((point, index) => (
-                    <li key={index} className="flex items-start gap-2.5 text-xs sm:text-sm text-slateText-base">
-                      <CheckCircle2 className="w-4 h-4 text-brand-600 shrink-0 mt-0.5" />
+                    <li key={index} className="flex items-start gap-2.5 text-xs sm:text-sm text-brand-graphite">
+                      <CheckCircle2 className="w-4 h-4 text-brand-aqua shrink-0 mt-0.5" />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -237,24 +271,24 @@ export default function TherapyExplorer() {
               </div>
             </div>
 
-            <div className="lg:col-span-4 bg-sand-50 rounded-2xl p-6 border border-sand-200 space-y-4 text-center lg:text-left">
+            <div className="lg:col-span-4 bg-gray-50 rounded-2xl p-6 border border-gray-100 space-y-4 text-center lg:text-left">
               <div className="space-y-1">
-                <span className="text-xs uppercase tracking-wider text-brand-700 font-semibold">
+                <span className="text-xs uppercase tracking-wider text-brand-aqua font-semibold">
                   Metodología Recomendada
                 </span>
-                <p className="text-sm font-semibold text-slateText-dark">
+                <p className="text-sm font-semibold text-brand-graphite">
                   {activeDifficulty.therapyMethod}
                 </p>
               </div>
 
-              <p className="text-xs text-slateText-muted leading-relaxed">
+              <p className="text-xs text-brand-graphite/70 leading-relaxed">
                 Sesiones presenciales en <strong>Salamanca</strong> y <strong>Zamora</strong>, o por <strong>videoconsulta online</strong>.
               </p>
 
               <div className="pt-2 flex flex-col gap-2.5">
                 <a
                   href="#contacto"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-medium transition-colors shadow-sm"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white text-xs sm:text-sm font-medium transition-colors shadow-sm"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Pedir cita para esta consulta</span>
@@ -263,7 +297,7 @@ export default function TherapyExplorer() {
                 {activeDifficulty.linkSlug && (
                   <a
                     href={`/${activeDifficulty.linkSlug}`}
-                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs text-brand-700 hover:text-brand-900 font-medium transition-colors"
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs text-brand-aqua hover:text-brand-aqua-dark font-medium transition-colors"
                   >
                     <span>Leer más sobre este tratamiento</span>
                     <ArrowRight className="w-3.5 h-3.5" />

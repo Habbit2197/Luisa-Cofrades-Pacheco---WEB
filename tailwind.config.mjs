@@ -4,52 +4,73 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Tono principal: Salvia terapéutico (equilibrio, sosiego, regeneración cognitiva)
+        // Paleta Corporativa Luisa Cofrades
+        'brand-graphite': '#374151',
+        'brand-aqua': {
+          DEFAULT: '#289E99',
+          hover: '#238B86',
+          dark: '#1C726E',
+          light: '#E6F6F5',
+          50: '#F0F9F9',
+          100: '#D5F0EE',
+          200: '#ACE1DE',
+          300: '#7DC8C4',
+          400: '#4EB0AC',
+          500: '#289E99',
+          600: '#238B86',
+          700: '#1C726E',
+          800: '#175956',
+          900: '#12413F',
+        },
+        'accent-sky': '#7DD3FC',
+        'accent-fuchsia': '#D946EF',
+        'accent-violet': '#8B5CF6',
+        'accent-mint': '#6EE7B7',
+        'bg-base': '#FFFFFF',
+
+        // Mapeos de compatibilidad con tokens del diseño
         brand: {
-          50: '#F4F7F5',
-          100: '#E6EFEA',
-          200: '#C8DDD0',
-          300: '#A4C6B1',
-          400: '#7FA88F',
-          500: '#5F8E72',
-          600: '#48715A',
-          700: '#355443',
-          800: '#23392E',
-          900: '#14221B',
+          DEFAULT: '#289E99',
+          50: '#F0F9F9',
+          100: '#E6F6F5',
+          200: '#ACE1DE',
+          300: '#7DC8C4',
+          400: '#4EB0AC',
+          500: '#289E99',
+          600: '#238B86',
+          700: '#1C726E',
+          800: '#175956',
+          900: '#12413F',
         },
-        // Tono arena/lino: calidez humana y cercanía empática
         sand: {
-          50: '#FAF8F5',
-          100: '#F3EEE5',
-          200: '#E7DDCB',
-          300: '#D6C5AA',
-          400: '#C0A987',
-          500: '#A48B66',
-          900: '#3D352A',
+          50: '#FFFFFF',
+          100: '#F9FAFB',
+          200: '#F3F4F6',
+          300: '#E5E7EB',
+          400: '#D1D5DB',
+          500: '#9CA3AF',
+          900: '#111827',
         },
-        // Textos y contrastes clínicos de alta legibilidad
         slateText: {
-          base: '#2D3748',
-          muted: '#64748B',
-          dark: '#1A202C',
+          base: '#374151',
+          muted: '#6B7280',
+          dark: '#1F2937',
         },
-        // Acento terracota suave (vitalidad, calidez emocional para CTAs secundarios)
         calmAccent: {
-          DEFAULT: '#C97A63',
-          hover: '#B56751',
-          light: '#F8ECE8'
+          DEFAULT: '#289E99',
+          hover: '#238B86',
+          light: '#E6F6F5'
         }
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'soft-elevation': '0 10px 30px -10px rgba(45, 55, 72, 0.07)',
-        'card-hover': '0 20px 40px -15px rgba(95, 142, 114, 0.15)',
-        'card-subtle': '0 4px 20px -2px rgba(0, 0, 0, 0.04)',
+        'soft-elevation': '0 4px 20px -2px rgba(55, 65, 81, 0.04)',
+        'card-hover': '0 12px 32px -4px rgba(40, 158, 153, 0.12)',
+        'card-subtle': '0 2px 10px rgba(0, 0, 0, 0.03)',
       }
     },
   },
   plugins: [],
 };
-

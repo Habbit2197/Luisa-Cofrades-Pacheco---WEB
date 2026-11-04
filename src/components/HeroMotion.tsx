@@ -38,24 +38,24 @@ export default function HeroMotion() {
           animate="visible"
         >
           {/* Badge Acreditativo */}
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-100/90 text-brand-800 text-xs sm:text-sm font-medium mb-6 border border-brand-200">
-            <ShieldCheck className="w-4 h-4 text-brand-600" />
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs sm:text-sm font-semibold mb-6 border border-brand-aqua/25">
+            <ShieldCheck className="w-4 h-4 text-brand-aqua" />
             <span>Psicóloga Sanitaria Colegiada · Especialista en EMDR y Trauma</span>
           </motion.div>
 
           {/* Titular Principal */}
           <motion.h1 
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-slateText-dark leading-[1.14]"
+            className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-brand-graphite leading-[1.14]"
           >
             Psicología para vivir <br />
-            <span className="font-semibold text-brand-700">centro de Luisa Cofrades</span>
+            <span className="font-semibold text-brand-aqua">centro de Luisa Cofrades</span>
           </motion.h1>
 
           {/* Subtítulo Empático */}
           <motion.p 
             variants={itemVariants}
-            className="mt-6 text-lg sm:text-xl text-slateText-muted leading-relaxed font-normal"
+            className="mt-6 text-lg sm:text-xl text-brand-graphite/80 leading-relaxed font-normal"
           >
             ¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas con consultas en <strong>Salamanca</strong> y <strong>Zamora</strong>, y atención <strong>online</strong>.
           </motion.p>
@@ -64,40 +64,40 @@ export default function HeroMotion() {
           <motion.div variants={itemVariants} className="mt-8 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
             <a
               href="#contacto"
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-soft-elevation hover:shadow-card-hover transition-all duration-300 group"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium shadow-sm hover:shadow-card-hover transition-all duration-300 group"
             >
-              <Calendar className="w-5 h-5 text-brand-200 group-hover:scale-110 transition-transform" />
+              <Calendar className="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform" />
               <span>Solicitar primera consulta</span>
             </a>
 
             <a
               href="#tarifas"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-sand-100 text-slateText-dark font-medium border border-sand-200 transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-brand-graphite font-medium border border-gray-200 shadow-sm transition-colors duration-200"
             >
               <span>Ver tarifas</span>
             </a>
 
             <a
               href="tel:+34675809974"
-              className="inline-flex items-center justify-center gap-2 px-4 py-3.5 text-brand-700 hover:text-brand-800 font-semibold text-sm transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-4 py-3.5 text-brand-aqua hover:text-brand-aqua-dark font-semibold text-sm transition-colors"
             >
-              <PhoneCall className="w-4 h-4 text-brand-600" />
+              <PhoneCall className="w-4 h-4 text-brand-aqua" />
               <span>675 80 99 74</span>
             </a>
           </motion.div>
 
           {/* Píldoras de Confianza */}
-          <motion.div variants={itemVariants} className="mt-10 pt-6 border-t border-sand-200/80 flex flex-wrap gap-5 text-xs sm:text-sm text-slateText-muted">
+          <motion.div variants={itemVariants} className="mt-10 pt-6 border-t border-gray-100 flex flex-wrap gap-5 text-xs sm:text-sm text-brand-graphite/70">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-brand-500"></span>
+              <span className="w-2 h-2 rounded-full bg-brand-aqua"></span>
               <span>Enfoque sensible al trauma</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-brand-500"></span>
+              <span className="w-2 h-2 rounded-full bg-accent-violet"></span>
               <span>Infanto/juvenil, adultos y pareja</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-brand-500"></span>
+              <span className="w-2 h-2 rounded-full bg-accent-sky"></span>
               <span>Presencial y online</span>
             </div>
           </motion.div>
@@ -112,23 +112,23 @@ export default function HeroMotion() {
         >
           <div className="relative mx-auto max-w-lg lg:max-w-none">
             
-            {/* Halo decorativo de fondo */}
-            <div className="absolute -inset-3 bg-gradient-to-tr from-brand-200/40 via-sand-200/40 to-brand-100/30 rounded-3xl blur-2xl -z-10"></div>
+            {/* Halo decorativo de fondo con tonos del logotipo */}
+            <div className="absolute -inset-3 bg-gradient-to-tr from-accent-sky/20 via-brand-aqua/15 to-accent-fuchsia/15 rounded-3xl blur-2xl -z-10"></div>
 
-            <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-card-hover border border-sand-200 overflow-hidden">
+            <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-card-hover border border-gray-100 overflow-hidden transition-shadow">
               
               {/* Imagen de la taza y la vela */}
-              <div className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-sand-100">
+              <div className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-gray-50 border border-gray-100">
                 <img
                   src="/assets/media/tacita.jpeg"
                   alt="Espacio terapéutico de Psicología para vivir con taza y vela"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slateText-dark/55 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"></div>
                 <div className="absolute bottom-3 left-4 right-4 text-white">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-medium text-white">
-                    <Sparkles className="w-3.5 h-3.5 text-brand-200" />
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-aqua/90 backdrop-blur-md text-xs font-medium text-white shadow-sm">
+                    <Sparkles className="w-3.5 h-3.5 text-white" />
                     <span>Psicología para vivir · Luisa Cofrades</span>
                   </div>
                 </div>
@@ -136,11 +136,11 @@ export default function HeroMotion() {
 
               {/* Texto exacto de la clienta */}
               <div className="mt-5 pt-1 space-y-3">
-                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                  <HeartHandshake className="w-4 h-4 text-brand-600" />
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-aqua">
+                  <HeartHandshake className="w-4 h-4 text-brand-aqua" />
                   <span>Nuestro Enfoque Terapéutico</span>
                 </div>
-                <p className="text-xs sm:text-sm text-slateText-base leading-relaxed text-justify sm:text-left">
+                <p className="text-xs sm:text-sm text-brand-graphite leading-relaxed text-justify sm:text-left">
                   En Psicología para vivir nuestro enfoque terapéutico es humanista, integrativo, sistémico y sensible al trauma. Trabajamos considerando todos los aspectos de tu ser -emoción, cuerpo, mente y espíritu- no solo para que puedas procesar lo que necesites, sino para que puedas generar nuevas perspectivas y mecanismos de afrontamiento y gestionar el asunto en cuestión, y la vida en general, de una manera más saludable y amorosa para ti. Trabajamos infanto/juvenil, adultos y pareja de forma presencial como online.
                 </p>
               </div>

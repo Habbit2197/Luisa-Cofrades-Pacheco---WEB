@@ -4,14 +4,14 @@ import { Phone, MessageCircle, Calendar } from 'lucide-react';
 
 <!-- Barra ergonómica flotante exclusiva para dispositivos móviles -->
 <div class="fixed bottom-4 left-4 right-4 z-40 md:hidden pointer-events-none">
-  <div class="max-w-md mx-auto bg-slateText-dark/95 backdrop-blur-md rounded-2xl p-2 shadow-card-hover border border-white/10 flex items-center justify-between gap-2 pointer-events-auto">
+  <div class="max-w-md mx-auto bg-brand-graphite/95 backdrop-blur-md rounded-2xl p-2 shadow-card-hover border border-white/10 flex items-center justify-between gap-2 pointer-events-auto">
     
     <a 
       href="tel:+34675809974" 
       class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors"
       aria-label="Llamar por teléfono"
     >
-      <Phone class="w-3.5 h-3.5 text-brand-400" />
+      <Phone class="w-3.5 h-3.5 text-accent-sky" />
       <span>Llamar</span>
     </a>
 
@@ -19,7 +19,7 @@ import { Phone, MessageCircle, Calendar } from 'lucide-react';
       href="https://wa.me/34675809974?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20concertar%20una%20cita" 
       target="_blank" 
       rel="noopener noreferrer"
-      class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-colors shadow-sm"
+      class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white text-xs font-semibold transition-colors shadow-sm"
       aria-label="Abrir WhatsApp"
     >
       <MessageCircle class="w-3.5 h-3.5" />
@@ -28,9 +28,9 @@ import { Phone, MessageCircle, Calendar } from 'lucide-react';
 
     <a 
       href="#contacto" 
-      class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold transition-colors shadow-sm"
+      class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors shadow-sm"
     >
-      <Calendar class="w-3.5 h-3.5" />
+      <Calendar class="w-3.5 h-3.5 text-accent-mint" />
       <span>Pedir cita</span>
     </a>
 
