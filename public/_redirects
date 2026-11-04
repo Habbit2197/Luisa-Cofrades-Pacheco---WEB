@@ -1,9 +1,17 @@
 # Redirecciones de Activos y Medios
 /wp-content/uploads/*  /assets/:splat  301
 
-# Redirecciones de Páginas Principales
-/sobre-mi/  /#sobre-mi  301
-/contacto/  /#contacto  301
+# Redirecciones de Secciones y Páginas Principales
+/emdr  /#emdr  302
+/emdr/  /#emdr  302
+/el-centro  /#el-centro  302
+/el-centro/  /#el-centro  302
+/tarifas  /#tarifas  302
+/tarifas/  /#tarifas  302
+/contacto  /#contacto  302
+/contacto/  /#contacto  302
+/sobre-mi/  /#el-centro  301
+/sobre-mi  /#el-centro  301
 /servicios/  /#servicios  301
 /posts/  /blog  301
 /feed/  /  301

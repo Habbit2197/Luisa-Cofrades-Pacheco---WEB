@@ -7,7 +7,27 @@ import InteractiveTriage from '../components/InteractiveTriage';
 import Testimonials from '../components/Testimonials.astro';
 import FaqSection from '../components/FaqSection.astro';
 import Footer from '../components/Footer.astro';
-import { Award, CheckCircle2, Phone, Mail, MapPin, Calendar, HeartHandshake, BookOpen, ArrowRight, ExternalLink, MessageCircle, FileText, Download, Sparkles } from 'lucide-react';
+import { 
+  Award, 
+  CheckCircle2, 
+  Phone, 
+  Mail, 
+  MapPin, 
+  Calendar, 
+  HeartHandshake, 
+  BookOpen, 
+  ArrowRight, 
+  ExternalLink, 
+  MessageCircle, 
+  FileText, 
+  Download, 
+  Sparkles, 
+  Clock, 
+  CreditCard, 
+  ClipboardList, 
+  Play, 
+  ShieldCheck 
+} from 'lucide-react';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -17,12 +37,16 @@ const siteData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 const postsDestacados = (siteData.posts || []).slice(0, 3);
 ---
 
-<Layout>
-  <!-- Hero Section envolvente con Framer Motion -->
+<Layout 
+  title="Psicología para vivir centro de Luisa Cofrades." 
+  description="¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas."
+>
+  <!-- Hero Section con Framer Motion, imagen de la taza/vela y propuesta de valor -->
   <HeroSection />
 
-  <!-- Sección Sobre Mí / Trayectoria Profesional y Credenciales -->
-  <section id="sobre-mi" class="py-24 bg-white border-b border-sand-200/80">
+  <!-- Sección El Centro / Sobre Mí / Trayectoria Profesional y Credenciales -->
+  <section id="el-centro" class="py-24 bg-white border-b border-sand-200/80 scroll-mt-20">
+    <div id="sobre-mi" class="scroll-mt-20"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
@@ -54,7 +78,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         <!-- Texto biográfico y enfoque -->
         <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-100 text-sand-900 text-xs font-semibold uppercase tracking-wider">
-            <span>¿Quiénes somos?</span>
+            <span>El Centro · Luisa Cofrades</span>
           </div>
           
           <h2 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight leading-tight">
@@ -64,10 +88,10 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
 
           <div class="text-base text-slateText-muted leading-relaxed space-y-4">
             <p>
-              Soy <strong>Luisa A. Cofrades Pacheco</strong>, psicóloga sanitaria y psicoterapeuta EuroPsy certificada, miembro de la División de Psicoterapia del Consejo General del COP. Tras formarme y ejercer la psicología en diversos entornos internacionales (incluyendo proyectos sanitarios en la India), consolidé mi labor en campos de alta exigencia como el daño cerebral adquirido y el acompañamiento en trauma complejo.
+              Soy <strong>Luisa A. Cofrades Pacheco</strong>, psicóloga sanitaria y psicoterapeuta EuroPsy certificada, miembro de la División de Psicoterapia del Consejo General del COP. Tras formarme y ejercer la psicología en diversos entornos sanitarios e internacionales, consolidé mi labor en campos de alta exigencia como el daño cerebral adquirido y el acompañamiento en trauma complejo y experiencias adversas.
             </p>
             <p>
-              Concibo la terapia como un espacio seguro donde el paciente no se siente juzgado, sino comprendido. Integro técnicas neurofisiológicas y somáticas de vanguardia como <strong>EMDR</strong> (Nivel I y II adultos y adolescentes, y protocolo Caja de Arena) y <strong>Terapia Sensoriomotriz</strong>, ayudando a desenredar memorias traumáticas, ansiedad y patrones de dolor enquistados.
+              Concibo la terapia como un espacio seguro donde el paciente no se siente juzgado, sino comprendido en su totalidad. Integro técnicas neurofisiológicas y somáticas de vanguardia como <strong>EMDR</strong> (Nivel I y II adultos y adolescentes, y protocolo Caja de Arena) y <strong>Terapia Sensoriomotriz</strong>, ayudando a desenredar memorias traumáticas, ansiedad y patrones de dolor enquistados.
             </p>
           </div>
 
@@ -96,16 +120,16 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
     </div>
   </section>
 
-  <!-- Explorador Interactivo de Terapias por Emociones y Necesidades (Framer Motion) -->
+  <!-- Grid de Dificultades Emocionales: ¿Cuidamos juntos de tu salud mental? -->
   <section class="py-24 bg-sand-50/50 border-b border-sand-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-16">
         <span class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Orientación Personalizada</span>
         <h2 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight mt-2">
-          ¿Qué estás <span class="font-semibold text-brand-700">experimentando hoy?</span>
+          ¿Cuidamos juntos de <span class="font-semibold text-brand-700">tu salud mental?</span>
         </h2>
         <p class="mt-3 text-slateText-muted text-sm sm:text-base leading-relaxed">
-          Selecciona tu situación actual para conocer el abordaje psicoterapéutico más adecuado para ti:
+          Identifica la dificultad que estás experimentando para conocer nuestro enfoque de acompañamiento psicoterapéutico:
         </p>
       </div>
 
@@ -113,43 +137,304 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
     </div>
   </section>
 
+  <!-- Sección de EMDR: Evidencia Científica, Vídeo Dra. Anabel González y Guía PDF -->
+  <section id="emdr" class="py-24 bg-white border-b border-sand-200/80 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-semibold uppercase tracking-wider">
+          <ShieldCheck class="w-4 h-4 text-brand-600" />
+          <span>Especialidad Acreditada · Asociación EMDR España</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight">
+          Terapia EMDR: <span class="font-semibold text-brand-700">Evidencia Científica y Sanación del Trauma</span>
+        </h2>
+        <p class="text-slateText-muted text-sm sm:text-base leading-relaxed">
+          EMDR (Desensibilización y Reprocesamiento por Movimientos Oculares) es un modelo psicoterapéutico neurofisiológico avalado por la Organización Mundial de la Salud (OMS) y las guías clínicas internacionales de mayor prestigio.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Vídeo Responsivo de YouTube (Dra. Anabel González) -->
+        <div class="lg:col-span-7">
+          <div class="bg-sand-50 rounded-3xl p-4 sm:p-5 border border-sand-200 shadow-card-hover">
+            <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-sm bg-sand-900 border border-sand-200">
+              <iframe
+                class="w-full h-full absolute inset-0"
+                src="https://www.youtube-nocookie.com/embed/GjRkylYH31I"
+                title="Evidencia científica de la terapia EMDR - Dra. Anabel González"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+
+            <div class="pt-3.5 px-2 flex items-center justify-between text-xs text-slateText-muted">
+              <span class="flex items-center gap-1.5 font-medium text-brand-700">
+                <Play class="w-3.5 h-3.5 text-brand-600" />
+                <span>Vídeo explicativo: Evidencia científica de EMDR</span>
+              </span>
+              <span>Dra. Anabel González</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Explicación Clínica y Descarga de la Guía Oficial -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="p-6 sm:p-7 rounded-3xl bg-sand-50/80 border border-sand-200/90 space-y-4">
+            <h3 class="text-xl font-semibold text-slateText-dark">
+              ¿Cómo actúa EMDR en tu cerebro?
+            </h3>
+            <p class="text-sm text-slateText-muted leading-relaxed">
+              Cuando vivimos una experiencia dolorosa o traumática, el recuerdo puede quedar congelado en el sistema nervioso con las mismas sensaciones, imágenes y angustia que en el momento original. 
+            </p>
+            <p class="text-sm text-slateText-muted leading-relaxed">
+              Mediante la estimulación bilateral (movimientos oculares o estimulación auditiva/táctil), reactivamos el mecanismo natural de procesamiento adaptativo de la información del cerebro, desactivando la carga emocional dolorosa sin necesidad de revivir el sufrimiento.
+            </p>
+
+            <div class="pt-2 border-t border-sand-200/80 space-y-2 text-xs text-slateText-base font-medium">
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Adultos, adolescentes e infanto-juvenil (Caja de Arena)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Eficaz en trauma simple, complejo, duelos y fobias</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botón de Descarga del PDF Oficial -->
+          <div class="bg-gradient-to-r from-brand-900 to-brand-800 rounded-3xl p-6 text-white shadow-card-hover flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="space-y-1 text-left">
+              <p class="text-xs uppercase tracking-wider text-brand-300 font-semibold flex items-center gap-1.5">
+                <FileText class="w-3.5 h-3.5" />
+                <span>Documento Divulgativo Oficial</span>
+              </p>
+              <h4 class="text-base font-medium text-sand-50">
+                Guía EMDR para pacientes (PDF)
+              </h4>
+            </div>
+
+            <a 
+              href="/assets/documentos/quecc81-es-emdr.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-sand-100 text-brand-900 font-semibold text-xs sm:text-sm transition-all duration-200 shadow-md shrink-0 group"
+            >
+              <Download class="w-4 h-4 text-brand-600 group-hover:scale-110 transition-transform" />
+              <span>Descargar Guía EMDR</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
   <!-- Grid de Terapias y Servicios Completo -->
   <ServicesGrid />
 
-  <!-- Recurso Destacado: Descarga de Guía Oficial EMDR -->
-  <section class="py-16 bg-white">
+  <!-- Sección de Tarifas y Cuestionario Previo de la Clienta -->
+  <section id="tarifas" class="py-24 bg-sand-50/70 border-b border-sand-200/80 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-gradient-to-r from-brand-900 to-brand-800 rounded-3xl p-8 sm:p-12 text-white shadow-card-hover flex flex-col lg:flex-row items-center justify-between gap-8">
-        <div class="max-w-2xl space-y-3 text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-700/80 text-brand-200 text-xs font-semibold uppercase tracking-wider">
-            <FileText class="w-3.5 h-3.5 text-brand-300" />
-            <span>Guía Clínica Oficial</span>
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Claridad y Transparencia</span>
+        <h2 class="text-3xl sm:text-4xl font-light text-slateText-dark tracking-tight mt-2">
+          Tarifas y <span class="font-semibold text-brand-700">Honorarios de Consulta</span>
+        </h2>
+        <p class="mt-3 text-slateText-muted text-sm sm:text-base leading-relaxed">
+          Precios claros para cada modalidad de acompañamiento, sin cuotas ocultas ni compromisos de permanencia.
+        </p>
+      </div>
+
+      <!-- Grid de las 3 Tarifas Exactas -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+        
+        <!-- Sesión individual: 70 € -->
+        <div class="bg-white rounded-3xl p-8 border border-sand-200 shadow-soft-elevation hover:shadow-card-hover transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mb-6">
+              <CreditCard class="w-6 h-6" />
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">Adultos</span>
+            <h3 class="text-2xl font-semibold text-slateText-dark mt-1 mb-3">Sesión individual</h3>
+            <p class="text-xs text-slateText-muted leading-relaxed mb-6">
+              Intervención psicoterapéutica individualizada para ansiedad, trauma (EMDR), duelo, regulación emocional y crecimiento personal.
+            </p>
+
+            <div class="flex items-baseline gap-2 mb-6">
+              <span class="text-4xl font-bold text-brand-900">70 €</span>
+              <span class="text-xs text-slateText-muted">/ sesión</span>
+            </div>
+
+            <div class="space-y-2.5 text-xs text-slateText-base border-t border-sand-100 pt-5">
+              <div class="flex items-center gap-2">
+                <Clock class="w-4 h-4 text-brand-600" />
+                <span>Duración aprox. de 1 hora</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Presencial (Salamanca/Zamora) u Online</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Evaluación de caso y objetivos clínicos</span>
+              </div>
+            </div>
           </div>
-          <h3 class="text-2xl sm:text-3xl font-light tracking-tight">
-            ¿Qué es la terapia EMDR y cómo ayuda a tu cerebro?
-          </h3>
-          <p class="text-sm sm:text-base text-sand-100/80 leading-relaxed font-light">
-            Descarga gratuitamente el documento explicativo elaborado para pacientes sobre la desensibilización y reprocesamiento por movimientos oculares, avalado por la Organización Mundial de la Salud.
+
+          <div class="mt-8 pt-4">
+            <a 
+              href="#contacto" 
+              class="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+            >
+              Pedir cita individual
+            </a>
+          </div>
+        </div>
+
+        <!-- Sesión pareja: 80 € (Destacada) -->
+        <div class="bg-white rounded-3xl p-8 border-2 border-brand-500 shadow-card-hover transition-all flex flex-col justify-between relative">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-700 text-white text-[11px] font-semibold uppercase tracking-wider shadow-sm">
+            Especializada
+          </div>
+
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-200 text-brand-900 flex items-center justify-center mb-6">
+              <HeartHandshake class="w-6 h-6" />
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">Relaciones y Vínculos</span>
+            <h3 class="text-2xl font-semibold text-slateText-dark mt-1 mb-3">Sesión pareja</h3>
+            <p class="text-xs text-slateText-muted leading-relaxed mb-6">
+              Espacio neutral y mediador para abordar crisis de relación, comunicación no violenta (CNV), rupturas y reconexión afectiva.
+            </p>
+
+            <div class="flex items-baseline gap-2 mb-6">
+              <span class="text-4xl font-bold text-brand-900">80 €</span>
+              <span class="text-xs text-slateText-muted">/ sesión</span>
+            </div>
+
+            <div class="space-y-2.5 text-xs text-slateText-base border-t border-sand-100 pt-5">
+              <div class="flex items-center gap-2">
+                <Clock class="w-4 h-4 text-brand-600" />
+                <span>Duración aprox. de 1 hora</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Presencial o por videoconsulta</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Enfoque sistémico y reparador</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4">
+            <a 
+              href="#contacto" 
+              class="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+            >
+              Pedir cita de pareja
+            </a>
+          </div>
+        </div>
+
+        <!-- Sesión niños: 65 € -->
+        <div class="bg-white rounded-3xl p-8 border border-sand-200 shadow-soft-elevation hover:shadow-card-hover transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sand-200 text-sand-900 flex items-center justify-center mb-6">
+              <Sparkles class="w-6 h-6" />
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-600">Infanto-Juvenil</span>
+            <h3 class="text-2xl font-semibold text-slateText-dark mt-1 mb-3">Sesión niños</h3>
+            <p class="text-xs text-slateText-muted leading-relaxed mb-6">
+              Acompañamiento a niños y adolescentes mediante técnicas adaptadas (EMDR Caja de Arena, expresión y juego) y orientación a progenitores.
+            </p>
+
+            <div class="flex items-baseline gap-2 mb-6">
+              <span class="text-4xl font-bold text-brand-900">65 €</span>
+              <span class="text-xs text-slateText-muted">/ sesión</span>
+            </div>
+
+            <div class="space-y-2.5 text-xs text-slateText-base border-t border-sand-100 pt-5">
+              <div class="flex items-center gap-2">
+                <Clock class="w-4 h-4 text-brand-600" />
+                <span>Duración aprox. de 1 hora</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Consulta adaptada en Salamanca</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-600" />
+                <span>Pautas periódicas para las familias</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4">
+            <a 
+              href="#contacto" 
+              class="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+            >
+              Pedir cita infanto-juvenil
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Cuadro Explicativo de la Primera Cita y Cuestionario Previo (Texto Exacto de la Clienta) -->
+      <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-10 border border-sand-200 shadow-card-hover space-y-6">
+        <div class="flex items-center gap-3 text-brand-700">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center shrink-0">
+            <MapPin class="w-5 h-5 text-brand-700" />
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-slateText-dark">
+              Información sobre la primera cita en consulta
+            </h4>
+            <p class="text-xs text-slateText-muted">
+              Ubicación, duración y cuestionario previo de acogida
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-4 text-sm sm:text-base text-slateText-base leading-relaxed">
+          <p>
+            La consulta está en la Calle del Prior, número 5, 1B (Salamanca). Las sesiones tienen una duración aproximada de una hora y los honorarios son de 70 euros. En la primera sesión se evalúa el caso y se establecen los objetivos terapéuticos.
+          </p>
+          <p>
+            Para ganar algo de tiempo, te invito a rellenar este cuestionario en un par de minutos, por favor, y así aprovechamos al máximo la sesión:
           </p>
         </div>
 
-        <div class="shrink-0">
+        <div class="pt-2">
           <a 
-            href="/assets/documentos/quecc81-es-emdr.pdf" 
-            target="_blank" 
+            href="https://docs.google.com/forms/d/e/1FAIpQLSchCicLOpw2Lt_aJ6FGr4VvUC5wAxPSjW_PoVJtpWAE_4jkMg/viewform"
+            target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2.5 px-6 py-4 rounded-xl bg-white hover:bg-sand-100 text-brand-900 font-semibold text-sm transition-all duration-200 shadow-md group"
+            class="inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm shadow-soft-elevation hover:shadow-card-hover transition-all duration-200 group"
           >
-            <Download class="w-4 h-4 text-brand-600 group-hover:scale-110 transition-transform" />
-            <span>Descargar Guía EMDR (PDF)</span>
+            <ClipboardList class="w-5 h-5 text-brand-200 group-hover:scale-110 transition-transform" />
+            <span>Rellenar Cuestionario Previo (Google Forms)</span>
+            <ExternalLink class="w-4 h-4 text-brand-300 ml-1" />
           </a>
         </div>
       </div>
+
     </div>
   </section>
 
   <!-- Sección de Sedes Presenciales (Salamanca y Zamora) -->
-  <section id="sedes" class="py-24 bg-sand-50/60 border-y border-sand-200/80">
+  <section id="sedes" class="py-24 bg-white border-b border-sand-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-16">
@@ -165,7 +450,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         
         <!-- Sede Salamanca -->
-        <div class="bg-white rounded-3xl p-8 border border-sand-200 shadow-soft-elevation flex flex-col justify-between hover:shadow-card-hover transition-all">
+        <div class="bg-sand-50/70 rounded-3xl p-8 border border-sand-200 shadow-soft-elevation flex flex-col justify-between hover:shadow-card-hover transition-all">
           <div>
             <div class="aspect-[16/9] rounded-2xl overflow-hidden mb-6 bg-sand-100">
               <img 
@@ -188,7 +473,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-sand-100 flex items-center justify-between">
+          <div class="mt-6 pt-4 border-t border-sand-200 flex items-center justify-between">
             <a 
               href="https://maps.app.goo.gl/StfS44aCLH8NWewG6" 
               target="_blank" 
@@ -205,7 +490,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         </div>
 
         <!-- Sede Zamora -->
-        <div class="bg-white rounded-3xl p-8 border border-sand-200 shadow-soft-elevation flex flex-col justify-between hover:shadow-card-hover transition-all">
+        <div class="bg-sand-50/70 rounded-3xl p-8 border border-sand-200 shadow-soft-elevation flex flex-col justify-between hover:shadow-card-hover transition-all">
           <div>
             <div class="aspect-[16/9] rounded-2xl overflow-hidden mb-6 bg-sand-100">
               <img 
@@ -228,7 +513,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-sand-100 flex items-center justify-between">
+          <div class="mt-6 pt-4 border-t border-sand-200 flex items-center justify-between">
             <a 
               href="http://goo.gl/Mr6WuY" 
               target="_blank" 
@@ -250,7 +535,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   </section>
 
   <!-- Sección de Artículos y Reflexiones Clínicas -->
-  <section class="py-24 bg-white">
+  <section class="py-24 bg-sand-50/50 border-b border-sand-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
@@ -272,7 +557,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {postsDestacados.map((post: any) => (
-          <article class="bg-sand-50/70 rounded-3xl p-8 border border-sand-200/80 flex flex-col justify-between hover:bg-white hover:shadow-card-hover transition-all duration-300">
+          <article class="bg-white rounded-3xl p-8 border border-sand-200/80 flex flex-col justify-between hover:shadow-card-hover transition-all duration-300">
             <div>
               <p class="text-xs font-semibold text-brand-600 mb-2">
                 {post.fecha ? new Date(post.fecha).toLocaleDateString('es-ES', { month: 'short', year: 'numeric' }) : 'Psicología'}
@@ -307,7 +592,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <Testimonials />
 
   <!-- Asistente de Consulta y Triage Interactivo (Paso a Paso) -->
-  <section id="contacto" class="py-24 bg-sand-50 relative">
+  <section id="contacto" class="py-24 bg-white relative scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-xl mx-auto mb-12">

@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = "Luisa Cofrades Pacheco | Gabinete de Psicología en Salamanca y Zamora",
-  description = "Psicóloga Sanitaria Colegiada. Especialista en EMDR, terapia sensoriomotriz, ansiedad, duelo y trauma. Consultas presenciales en Salamanca y Zamora, y terapia online.",
+  title = "Psicología para vivir centro de Luisa Cofrades.",
+  description = "¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas.",
   ogImage = "/assets/branding/logo-luisa-positivo404x.png"
 } = Astro.props;
 
@@ -40,7 +40,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(ogImage, canonicalURL)} />
     <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="Luisa Cofrades Pacheco - Psicología para vivir" />
+    <meta property="og:site_name" content="Psicología para vivir centro de Luisa Cofrades." />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -55,7 +55,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
       {
         "@context": "https://schema.org",
         "@type": "PsychologicalClinic",
-        "name": "Luisa Cofrades Pacheco - Psicología para vivir",
+        "name": "Psicología para vivir centro de Luisa Cofrades.",
         "image": "https://luisacofrades.com/assets/branding/logo-luisa-positivo404x.png",
         "url": "https://luisacofrades.com",
         "telephone": "+34675809974",
@@ -92,12 +92,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
     </script>
   </head>
   <body class="bg-sand-50 text-slateText-base font-sans antialiased selection:bg-brand-200 selection:text-brand-900 flex flex-col min-h-screen">
-    <!-- Barra superior de contacto rápido y acreditación -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-sand-200/80 transition-all duration-300">
+    <!-- Barra superior de navegación y acreditación -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-sand-200/80 transition-all duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           
-          <!-- Logo de la web con diseño original modernizado -->
+          <!-- Logo con isotipo -->
           <a href="/" class="flex items-center gap-3 group" aria-label="Inicio - Luisa Cofrades">
             <img 
               src="/assets/branding/cropped-logo-simbolo404x.png" 
@@ -114,19 +114,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
             </div>
           </a>
 
-          <!-- Navegación desktop -->
-          <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slateText-muted">
-            <a href="/#sobre-mi" class="hover:text-brand-700 transition-colors">Sobre mí</a>
-            <a href="/#servicios" class="hover:text-brand-700 transition-colors">Terapias</a>
-            <a href="/#sedes" class="hover:text-brand-700 transition-colors">Sedes</a>
-            <a href="/blog" class="hover:text-brand-700 transition-colors flex items-center gap-1">
-              <span>Artículos</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
-            </a>
+          <!-- Navegación desktop: exactamente los 5 enlaces solicitados -->
+          <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slateText-muted">
+            <a href="/" class="hover:text-brand-700 transition-colors">Inicio</a>
+            <a href="/#emdr" class="hover:text-brand-700 transition-colors">EMDR</a>
+            <a href="/#el-centro" class="hover:text-brand-700 transition-colors">El Centro</a>
+            <a href="/#tarifas" class="hover:text-brand-700 transition-colors">Tarifas</a>
             <a href="/#contacto" class="hover:text-brand-700 transition-colors">Contacto</a>
           </nav>
 
-          <!-- Botón de Acción Directo -->
+          <!-- Acciones de contacto y menú móvil -->
           <div class="flex items-center gap-3">
             <a 
               href="tel:+34675809974" 
@@ -139,15 +136,46 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
             </a>
 
             <a 
-              href="#contacto" 
+              href="/#contacto" 
               class="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium shadow-sm hover:shadow-card-hover transition-all duration-200"
             >
               Pedir cita
             </a>
+
+            <!-- Botón Hamburguesa Móvil -->
+            <button 
+              id="mobile-menu-toggle"
+              type="button"
+              class="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-slateText-dark hover:bg-sand-100 transition-colors"
+              aria-controls="mobile-nav-menu"
+              aria-expanded="false"
+              aria-label="Abrir menú de navegación"
+            >
+              <svg id="icon-hamburger" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
 
         </div>
       </div>
+
+      <!-- Menú Desplegable Móvil: exactamente los 5 enlaces solicitados -->
+      <nav 
+        id="mobile-nav-menu" 
+        class="hidden md:hidden border-t border-sand-200/80 bg-white/98 backdrop-blur-md px-6 py-5 shadow-lg"
+      >
+        <div class="flex flex-col gap-4 text-base font-medium text-slateText-dark">
+          <a href="/" class="mobile-nav-link py-2 border-b border-sand-100 hover:text-brand-700 transition-colors">Inicio</a>
+          <a href="/#emdr" class="mobile-nav-link py-2 border-b border-sand-100 hover:text-brand-700 transition-colors">EMDR</a>
+          <a href="/#el-centro" class="mobile-nav-link py-2 border-b border-sand-100 hover:text-brand-700 transition-colors">El Centro</a>
+          <a href="/#tarifas" class="mobile-nav-link py-2 border-b border-sand-100 hover:text-brand-700 transition-colors">Tarifas</a>
+          <a href="/#contacto" class="mobile-nav-link py-2 hover:text-brand-700 transition-colors">Contacto</a>
+        </div>
+      </nav>
     </header>
 
     <main class="flex-grow">
@@ -156,6 +184,39 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
 
     <!-- Barra de llamada flotante en móvil -->
     <FloatingMobileBar />
+
+    <script is:inline>
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav-menu');
+      const iconHamburger = document.getElementById('icon-hamburger');
+      const iconClose = document.getElementById('icon-close');
+      const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (toggleBtn && mobileNav) {
+        toggleBtn.addEventListener('click', () => {
+          const isOpen = !mobileNav.classList.contains('hidden');
+          if (isOpen) {
+            mobileNav.classList.add('hidden');
+            iconHamburger?.classList.remove('hidden');
+            iconClose?.classList.add('hidden');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+          } else {
+            mobileNav.classList.remove('hidden');
+            iconHamburger?.classList.add('hidden');
+            iconClose?.classList.remove('hidden');
+            toggleBtn.setAttribute('aria-expanded', 'true');
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            mobileNav.classList.add('hidden');
+            iconHamburger?.classList.remove('hidden');
+            iconClose?.classList.add('hidden');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    </script>
   </body>
 </html>
-
