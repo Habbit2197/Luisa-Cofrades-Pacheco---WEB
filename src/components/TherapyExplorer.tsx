@@ -180,6 +180,9 @@ export default function TherapyExplorer() {
           return (
             <motion.button
               key={diff.id}
+              type="button"
+              aria-label={`Ver abordaje clínico para ${diff.title}`}
+              aria-pressed={isSelected}
               onClick={() => setSelectedId(diff.id)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -288,6 +291,7 @@ export default function TherapyExplorer() {
               <div className="pt-2 flex flex-col gap-2.5">
                 <a
                   href="#contacto"
+                  aria-label={`Pedir cita para consulta de ${activeDifficulty.title}`}
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white text-xs sm:text-sm font-medium transition-colors shadow-sm"
                 >
                   <Calendar className="w-4 h-4" />
@@ -297,6 +301,7 @@ export default function TherapyExplorer() {
                 {activeDifficulty.linkSlug && (
                   <a
                     href={`/${activeDifficulty.linkSlug}`}
+                    aria-label={`Leer más sobre el tratamiento de ${activeDifficulty.title}`}
                     className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs text-brand-aqua hover:text-brand-aqua-dark font-medium transition-colors"
                   >
                     <span>Leer más sobre este tratamiento</span>

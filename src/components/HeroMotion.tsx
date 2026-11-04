@@ -79,6 +79,7 @@ export default function HeroMotion() {
 
             <a
               href="tel:+34675809974"
+              aria-label="Llamar por teléfono al 675 80 99 74"
               className="inline-flex items-center justify-center gap-2 px-4 py-3.5 text-brand-aqua hover:text-brand-aqua-dark font-semibold text-sm transition-colors"
             >
               <PhoneCall className="w-4 h-4 text-brand-aqua" />
@@ -122,8 +123,12 @@ export default function HeroMotion() {
                 <img
                   src="/assets/media/tacita.jpeg"
                   alt="Espacio terapéutico de Psicología para vivir con taza y vela"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  width={800}
+                  height={500}
                   loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"></div>
                 <div className="absolute bottom-3 left-4 right-4 text-white">

@@ -1,6 +1,7 @@
 ---
 import '@fontsource-variable/plus-jakarta-sans';
 import '../styles/global.css';
+import { ClientRouter as ViewTransitions } from 'astro:transitions';
 import FloatingMobileBar from '../components/FloatingMobileBar.astro';
 
 interface Props {
@@ -90,6 +91,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
         ]
       }
     </script>
+
+    <!-- Astro View Transitions para navegación fluida SPA -->
+    <ViewTransitions />
   </head>
   <body class="bg-white text-brand-graphite font-sans antialiased selection:bg-brand-aqua/20 selection:text-brand-aqua-dark flex flex-col min-h-screen">
     <!-- Barra superior de navegación corporativa -->
@@ -102,6 +106,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
             <img 
               src="/assets/branding/cropped-logo-simbolo404x.png" 
               alt="Símbolo Luisa Cofrades" 
+              width="40"
+              height="40"
+              loading="eager"
+              decoding="async"
               class="w-10 h-10 object-contain rounded-full shadow-sm group-hover:scale-105 transition-transform" 
             />
             <div class="flex flex-col">
@@ -186,37 +194,42 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://luisacof
     <FloatingMobileBar />
 
     <script is:inline>
-      const toggleBtn = document.getElementById('mobile-menu-toggle');
-      const mobileNav = document.getElementById('mobile-nav-menu');
-      const iconHamburger = document.getElementById('icon-hamburger');
-      const iconClose = document.getElementById('icon-close');
-      const navLinks = document.querySelectorAll('.mobile-nav-link');
+      document.addEventListener('astro:page-load', () => {
+        const toggleBtn = document.getElementById('mobile-menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav-menu');
+        const iconHamburger = document.getElementById('icon-hamburger');
+        const iconClose = document.getElementById('icon-close');
+        const navLinks = document.querySelectorAll('.mobile-nav-link');
 
-      if (toggleBtn && mobileNav) {
-        toggleBtn.addEventListener('click', () => {
-          const isOpen = !mobileNav.classList.contains('hidden');
-          if (isOpen) {
-            mobileNav.classList.add('hidden');
-            iconHamburger?.classList.remove('hidden');
-            iconClose?.classList.add('hidden');
-            toggleBtn.setAttribute('aria-expanded', 'false');
-          } else {
-            mobileNav.classList.remove('hidden');
-            iconHamburger?.classList.add('hidden');
-            iconClose?.classList.remove('hidden');
-            toggleBtn.setAttribute('aria-expanded', 'true');
-          }
-        });
+        if (toggleBtn && mobileNav) {
+          toggleBtn.onclick = () => {
+            const isOpen = !mobileNav.classList.contains('hidden');
+            if (isOpen) {
+              mobileNav.classList.add('hidden');
+              iconHamburger?.classList.remove('hidden');
+              iconClose?.classList.add('hidden');
+              toggleBtn.setAttribute('aria-expanded', 'false');
+              toggleBtn.setAttribute('aria-label', 'Abrir menú de navegación');
+            } else {
+              mobileNav.classList.remove('hidden');
+              iconHamburger?.classList.add('hidden');
+              iconClose?.classList.remove('hidden');
+              toggleBtn.setAttribute('aria-expanded', 'true');
+              toggleBtn.setAttribute('aria-label', 'Cerrar menú de navegación');
+            }
+          };
 
-        navLinks.forEach((link) => {
-          link.addEventListener('click', () => {
-            mobileNav.classList.add('hidden');
-            iconHamburger?.classList.remove('hidden');
-            iconClose?.classList.add('hidden');
-            toggleBtn.setAttribute('aria-expanded', 'false');
+          navLinks.forEach((link) => {
+            link.onclick = () => {
+              mobileNav.classList.add('hidden');
+              iconHamburger?.classList.remove('hidden');
+              iconClose?.classList.add('hidden');
+              toggleBtn.setAttribute('aria-expanded', 'false');
+              toggleBtn.setAttribute('aria-label', 'Abrir menú de navegación');
+            };
           });
-        });
-      }
+        }
+      });
     </script>
   </body>
 </html>

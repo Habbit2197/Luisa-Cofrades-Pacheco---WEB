@@ -88,6 +88,8 @@ export default function InteractiveTriage() {
               {reasons.map((r) => (
                 <button
                   key={r.id}
+                  type="button"
+                  aria-label={`Seleccionar motivo: ${r.label}`}
                   onClick={() => {
                     setReason(r.id);
                     setStep(2);
@@ -111,6 +113,7 @@ export default function InteractiveTriage() {
                 href="https://wa.me/34675809974?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20concertar%20una%20cita"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Abrir WhatsApp directo con la clínica"
                 className="text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark flex items-center gap-1.5"
               >
                 <MessageCircle className="w-4 h-4 text-brand-aqua" />
@@ -132,6 +135,8 @@ export default function InteractiveTriage() {
           >
             <div className="flex items-center gap-2">
               <button
+                type="button"
+                aria-label="Volver al paso anterior para modificar el motivo de consulta"
                 onClick={() => setStep(1)}
                 className="text-xs text-brand-aqua hover:text-brand-aqua-dark inline-flex items-center gap-1 font-medium"
               >
@@ -153,6 +158,8 @@ export default function InteractiveTriage() {
                 return (
                   <button
                     key={m.id}
+                    type="button"
+                    aria-label={`Seleccionar modalidad: ${m.label}`}
                     onClick={() => {
                       setModality(m.id);
                       setStep(3);
@@ -189,6 +196,8 @@ export default function InteractiveTriage() {
           >
             <div className="flex items-center gap-2">
               <button
+                type="button"
+                aria-label="Volver al paso anterior para modificar la modalidad de consulta"
                 onClick={() => setStep(2)}
                 className="text-xs text-brand-aqua hover:text-brand-aqua-dark inline-flex items-center gap-1 font-medium"
               >
@@ -206,11 +215,13 @@ export default function InteractiveTriage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-brand-graphite mb-1.5">
+              <label htmlFor="triage-patient-name" className="block text-xs font-semibold text-brand-graphite mb-1.5">
                 ¿Cuál es tu nombre? (opcional)
               </label>
               <input
+                id="triage-patient-name"
                 type="text"
+                aria-label="Nombre para la cita"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Escribe tu nombre para dirigirnos a ti"
@@ -224,6 +235,7 @@ export default function InteractiveTriage() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Enviar solicitud directa por WhatsApp"
                 className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-sm transition-all shadow-sm hover:shadow-card-hover"
               >
                 <MessageCircle className="w-5 h-5 text-white" />
@@ -232,6 +244,7 @@ export default function InteractiveTriage() {
 
               <a
                 href="tel:+34675809974"
+                aria-label="Llamar por teléfono al gabinete al 675 80 99 74"
                 className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-brand-graphite border border-gray-200 font-medium text-sm transition-colors shadow-sm"
               >
                 <Phone className="w-4 h-4 text-brand-aqua" />
