@@ -1,6 +1,8 @@
-name = "luisacofrades-web"
+name = "luisa-cofrades-pacheco---web"
 compatibility_date = "2026-10-01"
-pages_build_output_dir = "./dist"
 
-[env.production]
-vars = { ENVIRONMENT = "production" }
+[assets]
+directory = "./dist"
+
+[vars]
+ENVIRONMENT = "production"
