@@ -7,6 +7,7 @@ import InteractiveTriage from '../components/InteractiveTriage';
 import Testimonials from '../components/Testimonials.astro';
 import FaqSection from '../components/FaqSection.astro';
 import Footer from '../components/Footer.astro';
+import AmbientBanner from '../components/AmbientBanner';
 import { 
   Award, 
   CheckCircle2, 
@@ -52,11 +53,11 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Split-screen: Columna Imagen de Luisa + Columna Biografía Personal Brand -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20 lg:mb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 lg:items-start mb-20 lg:mb-24">
         
-        <!-- Columna Imagen -->
-        <div class="lg:col-span-5 relative">
-          <div class="relative max-w-md mx-auto lg:max-w-none">
+        <!-- Columna Imagen (Pegajosa / Sticky en desktop) -->
+        <div class="lg:col-span-5 relative self-start">
+          <div class="relative max-w-md mx-auto lg:max-w-none sticky top-32 h-max">
             <!-- Aura decorativa de fondo suave en tono brand-aqua -->
             <div class="absolute -inset-4 bg-gradient-to-tr from-brand-aqua/20 to-brand-aqua/5 rounded-3xl -z-10 blur-xl transform -rotate-1 opacity-70"></div>
             
@@ -292,7 +293,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   </section>
 
   <!-- Grid de Dificultades Emocionales: ¿Cuidamos juntos de tu salud mental? -->
-  <section class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100">
+  <section class="py-20 sm:py-24 lg:py-28 bg-brand-aqua/5 border-y border-brand-aqua/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-16">
         <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Orientación Personalizada</span>
@@ -410,39 +411,19 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <!-- Grid de Terapias y Servicios Completo -->
   <ServicesGrid />
 
-  <!-- Banner de Ambiente 1: Imagen de respiro y calma antes de Tarifas -->
-  <section class="relative overflow-hidden py-24 sm:py-28 min-h-[360px] flex items-center justify-center text-center">
-    <!-- Fotografía Unsplash de calma y serenidad -->
-    <img 
-      src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1920&q=80" 
-      alt="Ambiente acogedor, luz suave y calma" 
-      width="1920"
-      height="800"
-      loading="lazy"
-      decoding="async"
-      class="absolute inset-0 w-full h-full object-cover object-center"
-    />
-    <!-- Overlay con brand-aqua al 20% y contraste para legibilidad limpia -->
-    <div class="absolute inset-0 bg-brand-graphite/45 mix-blend-multiply"></div>
-    <div class="absolute inset-0 bg-brand-aqua/20"></div>
-
-    <!-- Contenido del Banner -->
-    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-white space-y-4">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-semibold uppercase tracking-wider border border-white/30">
-        <Sparkles class="w-3.5 h-3.5 text-white" />
-        <span>Espacio para tu Bienestar</span>
-      </div>
-      <p class="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight leading-snug drop-shadow-sm">
-        "Darte un tiempo para ti no es un lujo, es el primer paso para volver a habitar tu vida con serenidad."
-      </p>
-      <p class="text-sm sm:text-base text-white/90 max-w-xl mx-auto font-normal">
-        Atención cuidada, personalizada y sin prisas en un clima de confianza mutua.
-      </p>
-    </div>
-  </section>
+  <!-- Banner de Ambiente 1: Imagen de respiro y calma antes de Tarifas (Framer Motion scroll fade-in) -->
+  <AmbientBanner 
+    client:visible
+    imageUrl="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1920&q=80" 
+    alt="Ambiente acogedor, luz suave y calma" 
+    badgeText="Espacio para tu Bienestar"
+    quote="Darte un tiempo para ti no es un lujo, es el primer paso para volver a habitar tu vida con serenidad."
+    subtitle="Atención cuidada, personalizada y sin prisas en un clima de confianza mutua."
+    icon="sparkles"
+  />
 
   <!-- Sección de Tarifas y Cuestionario Previo de la Clienta -->
-  <section id="tarifas" class="py-20 sm:py-24 lg:py-28 bg-gray-50/60 border-b border-gray-100 scroll-mt-20">
+  <section id="tarifas" class="py-20 sm:py-24 lg:py-28 bg-gray-50 border-b border-gray-100 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-16">
@@ -796,36 +777,16 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
     </div>
   </section>
 
-  <!-- Banner de Ambiente 2: Imagen de respiro y confianza antes de Testimonios -->
-  <section class="relative overflow-hidden py-24 sm:py-28 min-h-[360px] flex items-center justify-center text-center">
-    <!-- Fotografía Unsplash de camino sereno, luz suave y naturaleza -->
-    <img 
-      src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1920&q=80" 
-      alt="Luz suave y naturaleza en calma" 
-      width="1920"
-      height="800"
-      loading="lazy"
-      decoding="async"
-      class="absolute inset-0 w-full h-full object-cover object-center"
-    />
-    <!-- Overlay con brand-aqua al 20% y contraste para legibilidad limpia -->
-    <div class="absolute inset-0 bg-brand-graphite/45 mix-blend-multiply"></div>
-    <div class="absolute inset-0 bg-brand-aqua/20"></div>
-
-    <!-- Contenido del Banner -->
-    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-white space-y-4">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-semibold uppercase tracking-wider border border-white/30">
-        <HeartHandshake class="w-3.5 h-3.5 text-white" />
-        <span>Vínculo Terapéutico y Confianza</span>
-      </div>
-      <p class="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight leading-snug drop-shadow-sm">
-        "Sanar es aprender a mirarse con ternura, desatar viejos nudos y recuperar la confianza en tu camino."
-      </p>
-      <p class="text-sm sm:text-base text-white/90 max-w-xl mx-auto font-normal">
-        Acompañamiento clínico respaldado por la evidencia científica y la calidez humana.
-      </p>
-    </div>
-  </section>
+  <!-- Banner de Ambiente 2: Imagen de respiro y confianza antes de Testimonios (Framer Motion scroll fade-in) -->
+  <AmbientBanner 
+    client:visible
+    imageUrl="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1920&q=80" 
+    alt="Luz suave y naturaleza en calma" 
+    badgeText="Vínculo Terapéutico y Confianza"
+    quote="Sanar es aprender a mirarse con ternura, desatar viejos nudos y recuperar la confianza en tu camino."
+    subtitle="Acompañamiento clínico respaldado por la evidencia científica y la calidez humana."
+    icon="heart"
+  />
 
   <!-- Sección de Testimonios -->
   <Testimonials />
