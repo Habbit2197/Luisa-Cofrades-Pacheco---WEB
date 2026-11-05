@@ -73,152 +73,146 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch mb-20 lg:mb-24">
         
         <!-- Tarjeta Profesional 1: Luisa Cofrades Pacheco -->
-        <article class="bg-gray-50 rounded-3xl p-6 sm:p-9 border border-gray-100 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
-          <div class="space-y-6">
-            <!-- Imagen de Luisa -->
-            <div class="relative overflow-hidden rounded-2xl shadow-md border border-gray-200/80 bg-white">
-              <img 
-                src="/assets/media/Luisa_Art.jpeg" 
-                alt="Luisa Cofrades Pacheco - Directora Clínica y Psicóloga General Sanitaria" 
-                width="600"
-                height="750"
-                loading="lazy"
-                decoding="async"
-                class="aspect-[4/5] object-cover rounded-2xl shadow-md w-full"
-              />
-              <!-- Floating Trust Badge -->
-              <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-md border border-gray-100 flex items-center gap-2.5">
-                <ShieldCheck class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span class="text-xs font-semibold text-brand-graphite">Colegiada N.º BI05747</span>
-              </div>
-            </div>
-
-            <!-- Datos e Identidad -->
-            <div class="space-y-2">
-              <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold">Dirección Clínica & Fundadora</span>
-              <h3 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
-                Luisa Cofrades <span class="font-semibold text-brand-aqua">Pacheco</span>
-              </h3>
-              <p class="text-sm font-medium text-brand-aqua">
-                Psicóloga General Sanitaria · Especialista en Trauma, EMDR y Apego
-              </p>
-            </div>
-
-            <!-- Texto de Enfoque y Biografía con la frase exacta -->
-            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/85">
-              <p>
-                Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado con respeto, sin juicios ni etiquetas.
-              </p>
-              <p>
-                Desarrollo mi intervención clínica desde una <strong class="text-brand-graphite font-semibold">Mirada sistémica, humanista e integrativa</strong>, aunando el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> y la <strong class="text-brand-graphite font-semibold">Terapia Sensoriomotriz</strong> con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.
-              </p>
-            </div>
-
-            <!-- Acreditaciones en cápsulas -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs font-medium text-brand-graphite">
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
-                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                <span>Colegiada N.º BI05747 (COP)</span>
-              </div>
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
-                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                <span>Especialista EuroPsy en Psicoterapia</span>
-              </div>
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
-                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                <span>Asociación EMDR España Acreditada</span>
-              </div>
-              <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white border border-gray-100">
-                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                <span>Docente colaboradora Máster USAL</span>
-              </div>
-            </div>
+        <article class="group bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-aqua/10 overflow-hidden flex flex-col h-full">
+          <!-- Imagen superior ancho completo con aspecto controlado y zoom suave -->
+          <div class="w-full aspect-[4/5] overflow-hidden relative bg-gray-50">
+            <img 
+              src="/assets/media/Luisa_Art.jpeg" 
+              alt="Luisa Cofrades Pacheco - Directora Clínica y Psicóloga General Sanitaria" 
+              width="600"
+              height="750"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
           </div>
 
-          <!-- Botón de Cita con Luisa -->
-          <div class="pt-6 mt-6 border-t border-gray-200/70">
-            <a 
-              href="#contacto" 
-              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-sm transition-all shadow-sm hover:shadow-card-hover"
-            >
-              <Calendar class="w-4 h-4" />
-              <span>Concertar cita con Luisa</span>
-            </a>
+          <!-- Cuerpo de texto con respiro visual editorial -->
+          <div class="p-8 flex flex-col flex-grow justify-between space-y-6">
+            <div class="space-y-4">
+              <div>
+                <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold block mb-1">Dirección Clínica & Fundadora</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-brand-graphite tracking-tight">
+                  Luisa Cofrades Pacheco
+                </h3>
+                <p class="text-brand-aqua font-medium mb-4">
+                  Colegiada N.º BI05747 (COP) · Especialista EuroPsy en Psicoterapia
+                </p>
+              </div>
+
+              <!-- Biografía en tono gris suave -->
+              <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/80">
+                <p>
+                  Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado con respeto, sin juicios ni etiquetas.
+                </p>
+                <p>
+                  Desarrollo mi intervención clínica desde una <strong class="text-brand-graphite font-semibold">Mirada sistémica, humanista e integrativa</strong>, aunando el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> y la <strong class="text-brand-graphite font-semibold">Terapia Sensoriomotriz</strong> con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.
+                </p>
+              </div>
+
+              <!-- Acreditaciones en cápsulas -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs font-medium text-brand-graphite">
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                  <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                  <span>Colegiada N.º BI05747 (COP)</span>
+                </div>
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                  <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                  <span>Especialista EuroPsy</span>
+                </div>
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                  <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                  <span>Asociación EMDR España</span>
+                </div>
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                  <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                  <span>Docente colaboradora USAL</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de Cita con Luisa -->
+            <div class="pt-6 border-t border-gray-100">
+              <a 
+                href="#contacto" 
+                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-sm transition-all shadow-sm hover:shadow-card-hover"
+              >
+                <Calendar class="w-4 h-4" />
+                <span>Concertar cita con Luisa</span>
+              </a>
+            </div>
           </div>
         </article>
 
         <!-- Tarjeta Profesional 2: M.ª Paz Urbón -->
-        <article class="bg-gray-50 rounded-3xl p-6 sm:p-9 border border-gray-100 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
-          <div class="space-y-6">
-            <!-- Imagen de M.ª Paz Urbón -->
-            <div class="relative overflow-hidden rounded-2xl shadow-md border border-gray-200/80 bg-white">
-              <img 
-                src="/assets/media/paz_urbon.jpeg" 
-                alt="M.ª Paz Urbón - María de la Paz Palau Urbón, Psicóloga Sanitaria" 
-                width="600"
-                height="750"
-                loading="lazy"
-                decoding="async"
-                class="aspect-[4/5] object-cover rounded-2xl shadow-md w-full"
-              />
-              <!-- Floating Trust Badge -->
-              <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-md border border-gray-100 flex items-center gap-2.5">
-                <ShieldCheck class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span class="text-xs font-semibold text-brand-graphite">Colegiada N.º CL05542</span>
-              </div>
-            </div>
-
-            <!-- Datos e Identidad -->
-            <div class="space-y-2">
-              <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold">Equipo Clínico Colaborador</span>
-              <h3 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
-                M.ª Paz <span class="font-semibold text-brand-aqua">Urbón</span>
-              </h3>
-              <p class="text-sm font-medium text-brand-aqua">
-                María de la Paz Palau Urbón · Psicóloga General Sanitaria
-              </p>
-            </div>
-
-            <!-- Texto de Enfoque y Biografía -->
-            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/85">
-              <p>
-                Psicóloga General Sanitaria colaboradora en el gabinete, con amplia dedicación y calidez en el acompañamiento psicoterapéutico infanto-juvenil, de familias y personas adultas en procesos de cambio y superación de dificultades emocionales.
-              </p>
-              <p>
-                Acompaño en la gestión de la ansiedad, el fortalecimiento de la autoestima, la intervención en problemas de conducta y apego, y el restablecimiento de una comunicación familiar saludable, siempre desde la empatía activa, la confidencialidad y la evidencia clínica.
-              </p>
-            </div>
-
-            <!-- Acreditaciones en cápsulas -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs font-medium text-brand-graphite">
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
-                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                <span>Colegiada N.º CL05542 (COP CyL)</span>
-              </div>
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
-                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                <span>Psicóloga General Sanitaria</span>
-              </div>
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
-                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                <span>Atención Infanto-Juvenil y Familias</span>
-              </div>
-              <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white border border-gray-100">
-                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                <span>Consulta Presencial y Online</span>
-              </div>
-            </div>
+        <article class="group bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-aqua/10 overflow-hidden flex flex-col h-full">
+          <!-- Imagen superior ancho completo con aspecto controlado y zoom suave -->
+          <div class="w-full aspect-[4/5] overflow-hidden relative bg-gray-50">
+            <img 
+              src="/assets/media/paz_urbon.jpeg" 
+              alt="M.ª Paz Urbón - María de la Paz Palau Urbón, Psicóloga Sanitaria" 
+              width="600"
+              height="750"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
           </div>
 
-          <!-- Botón de Cita con M.ª Paz Urbón -->
-          <div class="pt-6 mt-6 border-t border-gray-200/70">
-            <a 
-              href="#contacto" 
-              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite border border-gray-200 font-medium text-sm transition-all shadow-xs"
-            >
-              <Calendar class="w-4 h-4 text-brand-aqua" />
-              <span>Concertar cita con M.ª Paz</span>
-            </a>
+          <!-- Cuerpo de texto con respiro visual editorial -->
+          <div class="p-8 flex flex-col flex-grow justify-between space-y-6">
+            <div class="space-y-4">
+              <div>
+                <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold block mb-1">Equipo Clínico Colaborador</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-brand-graphite tracking-tight">
+                  M.ª Paz Urbón
+                </h3>
+                <p class="text-brand-aqua font-medium mb-4">
+                  Colegiada N.º CL05542 (COP CyL) · Psicóloga General Sanitaria
+                </p>
+              </div>
+
+              <!-- Biografía en tono gris suave -->
+              <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/80">
+                <p>
+                  Psicóloga General Sanitaria colaboradora en el gabinete, con amplia dedicación y calidez en el acompañamiento psicoterapéutico infanto-juvenil, de familias y personas adultas en procesos de cambio y superación de dificultades emocionales.
+                </p>
+                <p>
+                  Acompaño en la gestión de la ansiedad, el fortalecimiento de la autoestima, la intervención en problemas de conducta y apego, y el restablecimiento de una comunicación familiar saludable, siempre desde la empatía activa, la confidencialidad y la evidencia clínica.
+                </p>
+              </div>
+
+              <!-- Acreditaciones en cápsulas -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs font-medium text-brand-graphite">
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                  <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                  <span>Colegiada N.º CL05542</span>
+                </div>
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                  <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                  <span>Psicóloga General Sanitaria</span>
+                </div>
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                  <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                  <span>Atención Infanto-Juvenil</span>
+                </div>
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                  <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                  <span>Consulta Presencial y Online</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de Cita con M.ª Paz Urbón -->
+            <div class="pt-6 border-t border-gray-100">
+              <a 
+                href="#contacto" 
+                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-brand-graphite border border-gray-200 font-medium text-sm transition-all shadow-xs hover:border-brand-aqua"
+              >
+                <Calendar class="w-4 h-4 text-brand-aqua" />
+                <span>Concertar cita con M.ª Paz</span>
+              </a>
+            </div>
           </div>
         </article>
 
