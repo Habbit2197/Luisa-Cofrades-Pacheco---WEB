@@ -103,9 +103,9 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           
-          <!-- Logo con vídeo animado corporativo -->
+          <!-- Logo con vídeo animado corporativo e intercambio a estático al hacer scroll -->
           <a href="/" class="group flex items-center flex-shrink-0" aria-label="Inicio - Luisa Cofrades Pacheco">
-            <div class="flex-shrink-0 w-48 sm:w-56 md:w-64 h-16 flex items-center justify-start">
+            <div class="flex-shrink-0 relative w-48 sm:w-56 md:w-64 h-16 flex items-center justify-start">
               <video 
                 id="logo-video"
                 src="/assets/branding/entrada_logo.mp4" 
@@ -113,8 +113,17 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
                 loop 
                 muted 
                 playsinline 
-                class="w-full h-full object-contain mix-blend-multiply scale-[1.35] md:scale-150 origin-left"
-                className="w-full h-full object-contain mix-blend-multiply scale-[1.35] md:scale-150 origin-left" 
+                class="absolute inset-0 w-full h-full object-contain mix-blend-multiply scale-[1.35] md:scale-150 origin-left transition-opacity duration-300 opacity-100" 
+              />
+              <img 
+                id="logo-static"
+                src="/assets/branding/logo-luisa-positivo404x.png" 
+                alt="Logo Luisa Cofrades Pacheco" 
+                width="256"
+                height="108"
+                loading="eager"
+                decoding="async"
+                class="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 opacity-0 scale-[1.35] md:scale-150 origin-left" 
               />
             </div>
             <span class="sr-only">Luisa Cofrades Pacheco - Psicología para vivir</span>
@@ -228,14 +237,17 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
           });
         }
 
-        // Control de reproducción del logo al hacer scroll
+        // Intercambio de vídeo a logo estático al hacer scroll para máxima nitidez
         const logoVideo = document.getElementById('logo-video');
-        if (logoVideo) {
+        const logoStatic = document.getElementById('logo-static');
+        if (logoVideo && logoStatic) {
           const handleLogoScroll = () => {
             if (window.scrollY > 50) {
-              logoVideo.pause();
+              logoVideo.style.opacity = '0';
+              logoStatic.style.opacity = '1';
             } else {
-              logoVideo.play().catch(() => {});
+              logoVideo.style.opacity = '1';
+              logoStatic.style.opacity = '0';
             }
           };
 
