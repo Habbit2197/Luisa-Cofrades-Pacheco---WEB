@@ -30,7 +30,6 @@ export default function InteractiveTriage() {
 
   const modalities = [
     { id: 'salamanca', label: 'Presencial en Salamanca', desc: 'Calle del Prior 5-7, 1º B (junto a Plaza Mayor)', icon: MapPin },
-    { id: 'zamora', label: 'Presencial en Zamora', desc: 'Roelos de Sayago (provincia de Zamora)', icon: MapPin },
     { id: 'online', label: 'Videoconsulta Online', desc: 'Desde cualquier lugar por plataforma segura y confidencial', icon: Globe }
   ];
 
@@ -149,7 +148,7 @@ export default function InteractiveTriage() {
               ¿Qué modalidad te resulta más cómoda?
             </h3>
             <p className="text-xs sm:text-sm text-brand-graphite/70">
-              Atendemos presencialmente en Salamanca y Zamora, y por videoconsulta cifrada desde cualquier lugar:
+              Atendemos presencialmente en nuestro centro de Salamanca y por videoconsulta cifrada desde cualquier lugar:
             </p>
 
             <div className="space-y-3 pt-2">

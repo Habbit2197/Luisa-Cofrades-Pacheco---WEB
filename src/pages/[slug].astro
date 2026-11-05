@@ -1,7 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
-import { Calendar, Phone, ArrowLeft, CheckCircle2, ShieldCheck, HeartHandshake, MapPin } from 'lucide-react';
+import { Calendar, Phone, ArrowLeft, CheckCircle2, ShieldCheck, HeartHandshake, MapPin, Sparkles, Box } from 'lucide-react';
+import { Image } from 'astro:assets';
+import cajaArenaImg from '../assets/media/caja_arena.jpg';
+import cda1Img from '../assets/media/cda-1.jpg';
+import cda2Img from '../assets/media/cda-2.jpg';
+import cdanew4Img from '../assets/media/cdanew4.jpg';
+import cdanew5Img from '../assets/media/cdanew5.jpg';
+import cdanew6Img from '../assets/media/cdanew6.jpg';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -79,7 +86,7 @@ const parrafos = servicio.contenidoCompleto
               <span>Abordaje Terapéutico</span>
             </h2>
             <p class="text-slateText-muted text-sm sm:text-base leading-relaxed">
-              En las consultas de <strong>Salamanca</strong>, <strong>Zamora</strong> o en modalidad <strong>online</strong>, cada proceso se diseña adaptado a tu ritmo, combinando la orientación integradora con técnicas basadas en la evidencia (EMDR, Terapia Sensoriomotriz y Regulación Emocional).
+              En la consulta de <strong>Salamanca</strong> o en modalidad <strong>online</strong>, cada proceso se diseña adaptado a tu ritmo, combinando la orientación integradora con técnicas basadas en la evidencia (EMDR, Terapia Sensoriomotriz y Regulación Emocional).
             </p>
           </div>
 
@@ -89,6 +96,93 @@ const parrafos = servicio.contenidoCompleto
               {p}
             </p>
           ))}
+
+          {/* Bloque Inmersivo: Sand Play Therapy (Caja de Arena) para Infanto-Juvenil */}
+          {servicio.slug === 'psicoterapia-infanto-juvenil' && (
+            <section class="mt-14 pt-12 border-t border-brand-200/80 space-y-8">
+              <div class="space-y-3">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-semibold uppercase tracking-wider border border-brand-aqua/20">
+                  <Sparkles class="w-3.5 h-3.5" />
+                  <span>Técnica Especializada y Pionera en Salamanca</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
+                  Sand Play Therapy: <span class="font-semibold text-brand-aqua">La Caja de Arena</span>
+                </h2>
+                <p class="text-brand-graphite/80 text-sm sm:text-base leading-relaxed">
+                  En el trabajo terapéutico con niños y adolescentes, el juego y la representación simbólica son el lenguaje natural para expresar el mundo emocional. La <strong>Caja de Arena</strong> permite externalizar y elaborar vivencias complejas o traumáticas que a menudo no pueden formularse con palabras.
+                </p>
+              </div>
+
+              <!-- Cita inspiradora de Carl G. Jung -->
+              <blockquote class="p-6 rounded-2xl bg-brand-aqua/5 border-l-4 border-brand-aqua text-brand-graphite italic text-sm sm:text-base">
+                “A veces las manos resuelven el misterio con el que el intelecto lucha estérilmente.”
+                <span class="block not-italic text-xs font-semibold text-brand-aqua mt-2">— Carl Gustav Jung</span>
+              </blockquote>
+
+              <!-- Imagen Principal de la Caja de Arena -->
+              <div class="relative overflow-hidden rounded-2xl border border-gray-200 shadow-md group">
+                <Image 
+                  src={cajaArenaImg} 
+                  alt="Sesión de Sand Play Therapy (Caja de Arena) con figuras simbólicas y arena" 
+                  class="w-full h-72 sm:h-96 object-cover rounded-xl shadow-sm group-hover:scale-102 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-graphite/70 via-transparent to-transparent flex items-end p-6">
+                  <p class="text-white text-xs sm:text-sm font-medium">
+                    Bandeja reglamentaria azul y arena fina: el escenario seguro para dar forma a mundos internos no aflorados.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Galería Masonry / Grid Elegante de Miniaturas y Espacio -->
+              <div class="space-y-3 pt-2">
+                <h3 class="text-base font-semibold text-brand-graphite flex items-center gap-2">
+                  <Box class="w-4 h-4 text-brand-aqua" />
+                  <span>El Espacio y las Miniaturas Simbólicas</span>
+                </h3>
+                <p class="text-xs text-brand-graphite/70">
+                  Estanterías con cientos de figuras clasificadas (animales, personajes, naturaleza, barreras) que el niño o joven elige libremente para proyectar su realidad interna:
+                </p>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
+                    <Image 
+                      src={cda1Img} 
+                      alt="Miniaturas de animales y figuras para Sand Play" 
+                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
+                    />
+                  </div>
+                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
+                    <Image 
+                      src={cda2Img} 
+                      alt="Construcción simbólica en la arena" 
+                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
+                    />
+                  </div>
+                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
+                    <Image 
+                      src={cdanew4Img} 
+                      alt="Detalle de elementos terapéuticos de la caja de arena" 
+                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
+                    />
+                  </div>
+                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
+                    <Image 
+                      src={cdanew5Img} 
+                      alt="Estantería de figuras para la terapia de juego" 
+                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
+                    />
+                  </div>
+                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group col-span-2 sm:col-span-1">
+                    <Image 
+                      src={cdanew6Img} 
+                      alt="Espacio de consulta de juego terapéutico infantil" 
+                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
 
           <!-- Garantías Sanitarias -->
           <div class="mt-12 pt-8 border-t border-sand-200 space-y-3">
@@ -137,7 +231,7 @@ const parrafos = servicio.contenidoCompleto
           <div class="p-6 rounded-3xl bg-sand-50 border border-sand-200 shadow-soft-elevation space-y-5">
             <h3 class="text-lg font-semibold text-slateText-dark">Contacto Directo</h3>
             <p class="text-xs text-slateText-muted leading-relaxed">
-              Para resolver dudas o concertar tu sesión en Salamanca, Zamora o por videoconferencia:
+              Para resolver dudas o concertar tu sesión en Salamanca o por videoconferencia:
             </p>
 
             <a 
@@ -157,10 +251,6 @@ const parrafos = servicio.contenidoCompleto
               <div class="flex items-start gap-2">
                 <MapPin class="w-4 h-4 text-brand-600 shrink-0 mt-0.5" />
                 <span><strong>Salamanca:</strong> Calle del Prior 5-7, 1º B</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <MapPin class="w-4 h-4 text-brand-600 shrink-0 mt-0.5" />
-                <span><strong>Zamora:</strong> Roelos de Sayago</span>
               </div>
             </div>
           </div>

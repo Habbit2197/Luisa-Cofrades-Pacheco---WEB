@@ -47,116 +47,180 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <!-- Hero Section con Framer Motion, imagen de la taza/vela y propuesta de valor -->
   <HeroSection />
 
-  <!-- Sección Sobre Mí / El Centro (Bloque de Biografía Premium Split-Screen) -->
-  <section id="sobre-mi" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100 scroll-mt-20">
+  <!-- Sección El Equipo (Sustituye a Sobre Mí: Luisa Cofrades y M.ª Paz Urbon) -->
+  <section id="el-equipo" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100 scroll-mt-20">
+    <!-- Anclas para compatibilidad de navegación interna -->
+    <div id="sobre-mi" class="scroll-mt-20"></div>
     <div id="el-centro" class="scroll-mt-20"></div>
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Split-screen: Columna Imagen de Luisa + Columna Biografía Personal Brand -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 lg:items-start mb-20 lg:mb-24">
+      <!-- Cabecera de la Sección El Equipo -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-semibold uppercase tracking-wider border border-brand-aqua/20">
+          <Users class="w-4 h-4 text-brand-aqua" />
+          <span>El Equipo · Psicología para Vivir</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-brand-graphite tracking-tight leading-tight">
+          Profesionales comprometidas con <span class="font-semibold text-brand-aqua">tu bienestar y salud mental</span>
+        </h2>
+        <p class="text-brand-graphite/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+          Acompañamiento clínico integral con una <strong class="text-brand-graphite font-semibold">mirada sistémica, humanista e integrativa</strong>, rigor científico y calidez humana en cada proceso terapéutico.
+        </p>
+      </div>
+
+      <!-- Grid de 2 Columnas para El Equipo (1 col móvil, 2 col desktop) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch mb-20 lg:mb-24">
         
-        <!-- Columna Imagen (Pegajosa / Sticky en desktop) -->
-        <div class="lg:col-span-5 relative self-start">
-          <div class="relative max-w-md mx-auto lg:max-w-none sticky top-32 h-max">
-            <!-- Aura decorativa de fondo suave en tono brand-aqua -->
-            <div class="absolute -inset-4 bg-gradient-to-tr from-brand-aqua/20 to-brand-aqua/5 rounded-3xl -z-10 blur-xl transform -rotate-1 opacity-70"></div>
-            
-            <!-- Fotografía de Luisa con bordes suaves y sombra -->
-            <div class="relative overflow-hidden rounded-2xl shadow-lg border border-gray-100 bg-gray-50">
+        <!-- Tarjeta Profesional 1: Luisa Cofrades Pacheco -->
+        <article class="bg-gray-50 rounded-3xl p-6 sm:p-9 border border-gray-100 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
+          <div class="space-y-6">
+            <!-- Imagen de Luisa -->
+            <div class="relative overflow-hidden rounded-2xl shadow-md border border-gray-200/80 bg-white">
               <img 
-                src="/assets/media/luisa_1.webp" 
-                alt="Luisa Cofrades Pacheco - Psicóloga Sanitaria Colegiada" 
+                src="/assets/media/Luisa_Art.jpeg" 
+                alt="Luisa Cofrades Pacheco - Directora Clínica y Psicóloga General Sanitaria" 
                 width="600"
                 height="750"
                 loading="lazy"
                 decoding="async"
-                class="aspect-[4/5] object-cover rounded-2xl shadow-lg w-full"
+                class="aspect-[4/5] object-cover rounded-2xl shadow-md w-full"
               />
-            </div>
-
-            <!-- Floating Trust Badge -->
-            <div class="absolute -bottom-5 sm:-bottom-6 right-2 sm:right-4 bg-white/95 backdrop-blur-md px-4 py-3 sm:px-5 sm:py-3.5 rounded-2xl shadow-md border border-gray-100 flex items-center gap-3 max-w-[280px] sm:max-w-xs">
-              <div class="w-10 h-10 rounded-xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center shrink-0">
-                <ShieldCheck class="w-5 h-5 text-brand-aqua" />
-              </div>
-              <div>
-                <p class="text-xs font-semibold text-brand-graphite">Colegiada N.º BI05747</p>
-                <p class="text-[11px] text-brand-aqua font-medium">COP · Acreditación EuroPsy</p>
+              <!-- Floating Trust Badge -->
+              <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-md border border-gray-100 flex items-center gap-2.5">
+                <ShieldCheck class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span class="text-xs font-semibold text-brand-graphite">Colegiada N.º BI05747</span>
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Columna Texto: Saludo grande, especialidad en Aqua y espaciado generoso -->
-        <div class="lg:col-span-7 space-y-6 text-brand-graphite">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-semibold uppercase tracking-wider border border-brand-aqua/20">
-            <ShieldCheck class="w-4 h-4 text-brand-aqua" />
-            <span>Sobre Mí · Luisa Cofrades</span>
-          </div>
-
-          <div class="space-y-2">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-brand-graphite tracking-tight leading-tight">
-              Hola, soy <span class="font-semibold text-brand-aqua">Luisa Cofrades</span>
-            </h2>
-            <p class="text-lg sm:text-xl font-medium text-brand-aqua">
-              Psicóloga General Sanitaria · Especialista en Trauma, EMDR y Enfoque Humanista
-            </p>
-          </div>
-
-          <!-- Párrafos con espaciado amplio (space-y-6) para dar descanso y lectura zen -->
-          <div class="space-y-6 text-base sm:text-lg leading-relaxed text-brand-graphite/85">
-            <p>
-              Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado/a con respeto, sin juicios ni etiquetas.
-            </p>
-
-            <p>
-              Con una amplia trayectoria acompañando a personas en momentos de crisis, duelo, dolor y transformación, integro el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> y la <strong class="text-brand-graphite font-semibold">Terapia Sensoriomotriz</strong> con una mirada <strong class="text-brand-graphite font-semibold">humanista e integrativa</strong>. Abordamos juntos el origen profundo de los traumas, los patrones de apego y la ansiedad, atendiendo a lo que la mente y el cuerpo expresan.
-            </p>
-
-            <p>
-              Como <span class="text-brand-aqua font-semibold">Colegiada N.º BI05747</span> y especialista acreditada <strong class="text-brand-graphite font-semibold">EuroPsy</strong> por la Federación Europea de Asociaciones de Psicólogos, mi compromiso es brindarte un acompañamiento riguroso, cálido y personalizado en nuestras consultas presenciales de <strong class="text-brand-graphite font-semibold">Salamanca</strong> y <strong class="text-brand-graphite font-semibold">Zamora</strong>, o a través de la atención <strong class="text-brand-graphite font-semibold">online</strong>.
-            </p>
-          </div>
-
-          <!-- Acreditaciones en cápsulas Trust Design -->
-          <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium text-brand-graphite">
-            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-100">
-              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-              <span>Colegiada N.º BI05747 (COP)</span>
+            <!-- Datos e Identidad -->
+            <div class="space-y-2">
+              <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold">Dirección Clínica & Fundadora</span>
+              <h3 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
+                Luisa Cofrades <span class="font-semibold text-brand-aqua">Pacheco</span>
+              </h3>
+              <p class="text-sm font-medium text-brand-aqua">
+                Psicóloga General Sanitaria · Especialista en Trauma, EMDR y Apego
+              </p>
             </div>
-            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-100">
-              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-              <span>Especialista EuroPsy en Psicoterapia</span>
+
+            <!-- Texto de Enfoque y Biografía con la frase exacta -->
+            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/85">
+              <p>
+                Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado con respeto, sin juicios ni etiquetas.
+              </p>
+              <p>
+                Desarrollo mi intervención clínica desde una <strong class="text-brand-graphite font-semibold">Mirada sistémica, humanista e integrativa</strong>, aunando el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> y la <strong class="text-brand-graphite font-semibold">Terapia Sensoriomotriz</strong> con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.
+              </p>
             </div>
-            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-100">
-              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-              <span>Asociación EMDR España Acreditada</span>
-            </div>
-            <div class="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-100">
-              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-              <span>Docente colaboradora Máster USAL</span>
+
+            <!-- Acreditaciones en cápsulas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs font-medium text-brand-graphite">
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
+                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                <span>Colegiada N.º BI05747 (COP)</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
+                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                <span>Especialista EuroPsy en Psicoterapia</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
+                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                <span>Asociación EMDR España Acreditada</span>
+              </div>
+              <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white border border-gray-100">
+                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                <span>Docente colaboradora Máster USAL</span>
+              </div>
             </div>
           </div>
 
-          <!-- Botones de llamada a la acción -->
-          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <!-- Botón de Cita con Luisa -->
+          <div class="pt-6 mt-6 border-t border-gray-200/70">
             <a 
               href="#contacto" 
-              class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-sm transition-all shadow-sm hover:shadow-card-hover"
+              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-sm transition-all shadow-sm hover:shadow-card-hover"
             >
               <Calendar class="w-4 h-4" />
               <span>Concertar cita con Luisa</span>
             </a>
-            <a 
-              href="#servicios" 
-              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-brand-graphite font-medium text-sm border border-gray-200 transition-colors shadow-xs"
-            >
-              <span>Ver áreas de consulta</span>
-              <ArrowRight class="w-4 h-4 text-brand-aqua" />
-            </a>
+          </div>
+        </article>
+
+        <!-- Tarjeta Profesional 2: M.ª Paz Urbón -->
+        <article class="bg-gray-50 rounded-3xl p-6 sm:p-9 border border-gray-100 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
+          <div class="space-y-6">
+            <!-- Imagen de M.ª Paz Urbón -->
+            <div class="relative overflow-hidden rounded-2xl shadow-md border border-gray-200/80 bg-white">
+              <img 
+                src="/assets/media/paz_urbon.jpeg" 
+                alt="M.ª Paz Urbón - María de la Paz Palau Urbón, Psicóloga Sanitaria" 
+                width="600"
+                height="750"
+                loading="lazy"
+                decoding="async"
+                class="aspect-[4/5] object-cover rounded-2xl shadow-md w-full"
+              />
+              <!-- Floating Trust Badge -->
+              <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-md border border-gray-100 flex items-center gap-2.5">
+                <ShieldCheck class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span class="text-xs font-semibold text-brand-graphite">Colegiada N.º CL05542</span>
+              </div>
+            </div>
+
+            <!-- Datos e Identidad -->
+            <div class="space-y-2">
+              <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold">Equipo Clínico Colaborador</span>
+              <h3 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
+                M.ª Paz <span class="font-semibold text-brand-aqua">Urbón</span>
+              </h3>
+              <p class="text-sm font-medium text-brand-aqua">
+                María de la Paz Palau Urbón · Psicóloga General Sanitaria
+              </p>
+            </div>
+
+            <!-- Texto de Enfoque y Biografía -->
+            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/85">
+              <p>
+                Psicóloga General Sanitaria colaboradora en el gabinete, con amplia dedicación y calidez en el acompañamiento psicoterapéutico infanto-juvenil, de familias y personas adultas en procesos de cambio y superación de dificultades emocionales.
+              </p>
+              <p>
+                Acompaño en la gestión de la ansiedad, el fortalecimiento de la autoestima, la intervención en problemas de conducta y apego, y el restablecimiento de una comunicación familiar saludable, siempre desde la empatía activa, la confidencialidad y la evidencia clínica.
+              </p>
+            </div>
+
+            <!-- Acreditaciones en cápsulas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs font-medium text-brand-graphite">
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
+                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                <span>Colegiada N.º CL05542 (COP CyL)</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
+                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                <span>Psicóloga General Sanitaria</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100">
+                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                <span>Atención Infanto-Juvenil y Familias</span>
+              </div>
+              <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white border border-gray-100">
+                <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+                <span>Consulta Presencial y Online</span>
+              </div>
+            </div>
           </div>
 
-        </div>
+          <!-- Botón de Cita con M.ª Paz Urbón -->
+          <div class="pt-6 mt-6 border-t border-gray-200/70">
+            <a 
+              href="#contacto" 
+              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite border border-gray-200 font-medium text-sm transition-all shadow-xs"
+            >
+              <Calendar class="w-4 h-4 text-brand-aqua" />
+              <span>Concertar cita con M.ª Paz</span>
+            </a>
+          </div>
+        </article>
 
       </div>
 
@@ -167,7 +231,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
           Un espacio seguro de <span class="font-semibold text-brand-aqua">calma, rigor y crecimiento</span>
         </h3>
         <p class="text-brand-graphite/70 text-sm sm:text-base leading-relaxed">
-          Equipo especializado en trauma y experiencias adversas con consultas presenciales en Salamanca y Zamora, y atención terapéutica online.
+          Equipo especializado en trauma y experiencias adversas con consulta presencial en Salamanca y atención terapéutica online.
         </p>
       </div>
 
@@ -275,7 +339,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
           <div>
             <h4 class="text-base font-semibold text-brand-graphite">Luisa A. Cofrades Pacheco</h4>
             <p class="text-xs text-brand-aqua font-medium">Psicóloga Sanitaria Colegiada N.º BI05747 (COP) · EuroPsy</p>
-            <p class="text-xs text-brand-graphite/70 mt-0.5">Consultas en Salamanca Centro, Roelos de Sayago (Zamora) y atención online.</p>
+            <p class="text-xs text-brand-graphite/70 mt-0.5">Consulta en Salamanca Centro y atención online.</p>
           </div>
         </div>
 
@@ -414,7 +478,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <!-- Banner de Ambiente 1: Imagen de respiro y calma antes de Tarifas (Framer Motion scroll fade-in) -->
   <AmbientBanner 
     client:visible
-    imageUrl="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1920&q=80" 
+    imageUrl="/assets/media/Luisa_Banner.jpeg" 
     alt="Ambiente acogedor, luz suave y calma" 
     badgeText="Espacio para tu Bienestar"
     quote="Darte un tiempo para ti no es un lujo, es el primer paso para volver a habitar tu vida con serenidad."
@@ -463,7 +527,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
               </div>
               <div class="flex items-center gap-2">
                 <CheckCircle2 class="w-4 h-4 text-brand-aqua" />
-                <span>Presencial (Salamanca/Zamora) u Online</span>
+                <span>Presencial en Salamanca u Online</span>
               </div>
               <div class="flex items-center gap-2">
                 <CheckCircle2 class="w-4 h-4 text-brand-aqua" />
@@ -574,150 +638,201 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
 
       </div>
 
-      <!-- Cuadro Explicativo de la Primera Cita y Cuestionario Previo (Texto Exacto de la Clienta) -->
-      <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-10 border border-gray-100 shadow-sm hover:shadow-card-hover transition-shadow space-y-6">
+      <!-- Pasos para pedir cita y Cuestionario Previo (Requisitos Cruciales) -->
+      <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-10 border border-gray-100 shadow-sm hover:shadow-card-hover transition-shadow space-y-8">
         <div class="flex items-center gap-3 text-brand-aqua">
           <div class="w-10 h-10 rounded-xl bg-brand-aqua/10 flex items-center justify-center shrink-0">
-            <MapPin class="w-5 h-5 text-brand-aqua" />
+            <ClipboardList class="w-5 h-5 text-brand-aqua" />
           </div>
           <div>
-            <h4 class="text-lg font-semibold text-brand-graphite">
-              Información sobre la primera cita en consulta
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-aqua">Proceso de Acogida</span>
+            <h4 class="text-xl sm:text-2xl font-semibold text-brand-graphite">
+              Pasos para pedir cita
             </h4>
-            <p class="text-xs text-brand-graphite/60">
-              Ubicación, duración y cuestionario previo de acogida
-            </p>
           </div>
         </div>
 
-        <div class="space-y-4 text-sm sm:text-base text-brand-graphite leading-relaxed">
-          <p>
-            La consulta está en la Calle del Prior, número 5, 1B (Salamanca). Las sesiones tienen una duración aproximada de una hora y los honorarios son de 70 euros. En la primera sesión se evalúa el caso y se establecen los objetivos terapéuticos.
-          </p>
-          <p>
-            Para ganar algo de tiempo, te invito a rellenar este cuestionario en un par de minutos, por favor, y así aprovechamos al máximo la sesión:
-          </p>
+        <p class="text-sm sm:text-base text-brand-graphite leading-relaxed">
+          La consulta presencial se ubica en la <strong>Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Las sesiones tienen una duración aproximada de una hora (70 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos terapéuticos.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          <!-- Paso 1 Obligatorio: Rellenar cuestionario previo -->
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200/80 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-bold uppercase tracking-wider">
+                <span>Paso 1</span>
+              </div>
+              <h5 class="text-lg font-semibold text-brand-graphite">
+                Rellenar cuestionario previo
+              </h5>
+              <p class="text-xs sm:text-sm text-brand-graphite/80 leading-relaxed">
+                Antes de iniciar el proceso, te invitamos a completar este formulario confidencial de acogida.
+              </p>
+              <div class="p-3.5 rounded-xl bg-white border border-gray-200 text-xs text-brand-graphite/85 italic">
+                “Para agilizar temas de facturación y aprovechar al máximo el tiempo de sesión.”
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a 
+                href="#" 
+                class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
+              >
+                <ClipboardList class="w-4 h-4" />
+                <span>Rellenar cuestionario previo</span>
+                <ExternalLink class="w-3.5 h-3.5 text-white/80" />
+              </a>
+            </div>
+          </div>
+
+          <!-- Paso 2 Obligatorio: Disponibilidad horaria -->
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200/80 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-bold uppercase tracking-wider">
+                <span>Paso 2</span>
+              </div>
+              <h5 class="text-lg font-semibold text-brand-graphite">
+                Disponibilidad horaria
+              </h5>
+              <!-- Recuadro de aviso con el texto literal solicitado -->
+              <div class="p-4 rounded-xl bg-brand-aqua/10 border border-brand-aqua/20 text-xs sm:text-sm text-brand-graphite leading-relaxed">
+                <p class="font-semibold text-brand-aqua mb-1">Aviso de asignación:</p>
+                <p class="font-medium">
+                  Indica si tu disponibilidad es de mañanas, tardes o flexible. De esto dependerá el profesional del equipo que te atienda.
+                </p>
+              </div>
+              <p class="text-xs text-brand-graphite/70">
+                Así podremos coordinar tu sesión con Luisa Cofrades o con M.ª Paz Urbón según compatibilidad de agendas.
+              </p>
+            </div>
+
+            <div class="pt-2">
+              <a 
+                href="#contacto" 
+                class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite border border-gray-200 font-medium text-xs sm:text-sm transition-colors shadow-xs"
+              >
+                <Calendar class="w-4 h-4 text-brand-aqua" />
+                <span>Indicar disponibilidad en el contacto</span>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div class="pt-2">
-          <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSchCicLOpw2Lt_aJ6FGr4VvUC5wAxPSjW_PoVJtpWAE_4jkMg/viewform"
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-sm shadow-sm hover:shadow-card-hover transition-all duration-200 group"
-          >
-            <ClipboardList class="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform" />
-            <span>Rellenar Cuestionario Previo (Google Forms)</span>
-            <ExternalLink class="w-4 h-4 text-white/80 ml-1" />
-          </a>
-        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Sección de Sedes Presenciales (Salamanca y Zamora) -->
-  <section id="sedes" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100">
+  <!-- Sección El Espacio: Galería de Acuarelas y Ubicación en Salamanca Centro -->
+  <section id="sedes" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Dónde Encontrarme</span>
-        <h2 class="text-3xl sm:text-4xl font-light text-brand-graphite tracking-tight mt-2">
-          Consultas en <span class="font-semibold text-brand-aqua">Salamanca y Zamora</span>
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Dónde Encontrarme · El Espacio</span>
+        <h2 class="text-3xl sm:text-4xl font-light text-brand-graphite tracking-tight">
+          Un entorno de calma en pleno <span class="font-semibold text-brand-aqua">centro de Salamanca</span>
         </h2>
-        <p class="mt-3 text-brand-graphite/70 text-sm sm:text-base leading-relaxed">
-          Espacios diseñados para ofrecer privacidad, calidez y tranquilidad. También disponible en formato de videoconsulta online.
+        <p class="text-brand-graphite/70 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          Un espacio cuidado en cada detalle para inspirar serenidad, intimidad y seguridad desde el instante en que cruzas la puerta.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <!-- Galería Visual Artística de la Clínica (Acuarelas) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         
-        <!-- Sede Salamanca -->
-        <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-sm flex flex-col justify-between hover:shadow-card-hover transition-all">
-          <div>
-            <div class="aspect-[16/9] rounded-2xl overflow-hidden mb-6 bg-gray-100 border border-gray-100">
-              <img 
-                src="/assets/media/consulta-1.jpg" 
-                alt="Consulta de Psicología en Salamanca" 
-                width="800"
-                height="450"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-aqua mb-2">
-              <MapPin class="w-4 h-4" />
-              <span>Sede Principal</span>
-            </div>
-            <h3 class="text-2xl font-semibold text-brand-graphite mb-2">Salamanca Centro</h3>
-            <p class="text-sm text-brand-graphite/80 leading-relaxed">
-              <strong>Dirección:</strong> Calle del Prior 5-7, 1º B (CP 37002, junto a la Plaza Mayor).
-            </p>
-            <p class="text-xs text-brand-graphite/60 mt-2">
-              Horario: Lunes a Viernes de 09:00 a 20:00 (con cita previa concertada).
-            </p>
+        <!-- Acuarela 1: Espacio_art -->
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm bg-gray-50">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img 
+              src="/assets/media/Espacio_art.jpeg" 
+              alt="Acuarela de la consulta principal y sillones de acogida" 
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
           </div>
-
-          <div class="mt-6 pt-4 border-t border-gray-200/60 flex items-center justify-between">
-            <a 
-              href="https://maps.app.goo.gl/StfS44aCLH8NWewG6" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
-            >
-              <span>Abrir en Google Maps</span>
-              <ExternalLink class="w-3.5 h-3.5" />
-            </a>
-            <a href="#contacto" class="text-xs font-medium px-3.5 py-1.5 rounded-lg bg-brand-aqua/10 text-brand-aqua hover:bg-brand-aqua/20 transition-colors">
-              Pedir cita en Salamanca
-            </a>
+          <div class="p-4 bg-white border-t border-gray-100">
+            <h4 class="text-sm font-semibold text-brand-graphite">Consulta Principal</h4>
+            <p class="text-xs text-brand-graphite/60 mt-0.5">Sillones de acogida y diálogo terapéutico</p>
           </div>
         </div>
 
-        <!-- Sede Zamora -->
-        <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-sm flex flex-col justify-between hover:shadow-card-hover transition-all">
-          <div>
-            <div class="aspect-[16/9] rounded-2xl overflow-hidden mb-6 bg-gray-100 border border-gray-100">
-              <img 
-                src="/assets/media/dos.jpg" 
-                alt="Consulta en Roelos de Sayago Zamora" 
-                width="800"
-                height="450"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-aqua mb-2">
-              <MapPin class="w-4 h-4" />
-              <span>Sede Comarcal</span>
-            </div>
-            <h3 class="text-2xl font-semibold text-brand-graphite mb-2">Roelos de Sayago (Zamora)</h3>
-            <p class="text-sm text-brand-graphite/80 leading-relaxed">
-              <strong>Ubicación:</strong> Roelos de Sayago, comarca de Sayago (Zamora).
-            </p>
-            <p class="text-xs text-brand-graphite/60 mt-2">
-              Atención presencial puntual y periódica adaptada a pacientes de la provincia de Zamora.
-            </p>
+        <!-- Acuarela 2: Espacio-2art -->
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm bg-gray-50">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img 
+              src="/assets/media/Espacio-2art.jpeg" 
+              alt="Acuarela del rincón de reflexión y trabajo clínico" 
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
           </div>
-
-          <div class="mt-6 pt-4 border-t border-gray-200/60 flex items-center justify-between">
-            <a 
-              href="http://goo.gl/Mr6WuY" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
-            >
-              <span>Ver ubicación en mapa</span>
-              <ExternalLink class="w-3.5 h-3.5" />
-            </a>
-            <a href="#contacto" class="text-xs font-medium px-3.5 py-1.5 rounded-lg bg-brand-aqua/10 text-brand-aqua hover:bg-brand-aqua/20 transition-colors">
-              Pedir cita en Zamora
-            </a>
+          <div class="p-4 bg-white border-t border-gray-100">
+            <h4 class="text-sm font-semibold text-brand-graphite">Espacio de Serenidad</h4>
+            <p class="text-xs text-brand-graphite/60 mt-0.5">Ambiente cálido pensado para la regulación somática</p>
           </div>
         </div>
 
+        <!-- Acuarela 3: ventana_art -->
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm bg-gray-50">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img 
+              src="/assets/media/ventana_art.jpeg" 
+              alt="Acuarela del ventanal y luz natural del centro" 
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+          <div class="p-4 bg-white border-t border-gray-100">
+            <h4 class="text-sm font-semibold text-brand-graphite">Luz Natural</h4>
+            <p class="text-xs text-brand-graphite/60 mt-0.5">Vistas y luminosidad para una respiración tranquila</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Ficha de la Sede Salamanca Centro -->
+      <div class="bg-gray-50 rounded-3xl p-8 sm:p-10 border border-gray-100 shadow-sm max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-3">
+          <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-aqua">
+            <MapPin class="w-4 h-4" />
+            <span>Sede Presencial</span>
+          </div>
+          <h3 class="text-2xl font-semibold text-brand-graphite">Salamanca Centro</h3>
+          <p class="text-sm text-brand-graphite/80 leading-relaxed">
+            <strong>Dirección:</strong> Calle del Prior 5-7, 1º B (CP 37002, junto a la Plaza Mayor).
+          </p>
+          <p class="text-xs text-brand-graphite/60">
+            Horario: Lunes a Viernes de 09:00 a 20:00 (con cita previa concertada). También disponible en formato de videoconsulta online.
+          </p>
+        </div>
+
+        <div class="shrink-0 flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto">
+          <a 
+            href="https://maps.app.goo.gl/StfS44aCLH8NWewG6" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite border border-gray-200 text-xs font-semibold transition-colors shadow-xs"
+          >
+            <span>Abrir en Google Maps</span>
+            <ExternalLink class="w-3.5 h-3.5 text-brand-aqua" />
+          </a>
+          <a 
+            href="#contacto" 
+            class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white text-xs font-semibold transition-colors shadow-sm"
+          >
+            Pedir cita en Salamanca
+          </a>
+        </div>
       </div>
 
     </div>
@@ -774,6 +889,45 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         ))}
       </div>
 
+      <!-- Reel de Instagram Oficial (Divulgación y Recursos Clínicos) -->
+      <div class="mt-16 pt-12 border-t border-gray-200/70">
+        <div class="text-center max-w-xl mx-auto mb-8 space-y-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-50 text-pink-700 text-xs font-semibold uppercase tracking-wider border border-pink-100">
+            <span>Instagram · @luisacofrades</span>
+          </div>
+          <h3 class="text-2xl font-light text-brand-graphite tracking-tight">
+            Píldoras y reflexiones en <span class="font-semibold text-brand-aqua">vídeo</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-brand-graphite/70">
+            Contenido divulgativo sobre gestión del trauma, apego y salud mental para tu día a día:
+          </p>
+        </div>
+
+        <div class="max-w-md mx-auto bg-white rounded-3xl p-4 sm:p-5 border border-gray-100 shadow-sm hover:shadow-card-hover transition-all">
+          <div class="rounded-2xl overflow-hidden aspect-[9/16] bg-gray-50 border border-gray-100">
+            <iframe
+              src="https://www.instagram.com/reel/C_3GyMaMovd/embed"
+              class="w-full h-full border-0"
+              scrolling="no"
+              allowtransparency="true"
+              title="Reel de Instagram de Luisa Cofrades"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="mt-4 text-center">
+            <a 
+              href="https://www.instagram.com/reel/C_3GyMaMovd/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
+            >
+              <span>Ver vídeo en Instagram</span>
+              <ExternalLink class="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -806,6 +960,33 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
       </div>
 
       <InteractiveTriage client:visible />
+
+      <!-- Reconocimiento del local a pie de calle (Cristalera con flores) -->
+      <div class="mt-12 max-w-3xl mx-auto bg-gray-50 rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center gap-6">
+        <div class="w-full sm:w-44 aspect-square rounded-2xl overflow-hidden border border-gray-200 shrink-0 shadow-xs bg-white">
+          <img 
+            src="/assets/media/logo_flores.jpg" 
+            alt="Fachada y cristalera identificativa con flores del gabinete en Salamanca" 
+            width="400"
+            height="400"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="space-y-2 text-center sm:text-left">
+          <div class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-aqua">
+            <MapPin class="w-3.5 h-3.5" />
+            <span>Cómo encontrarnos a pie de calle</span>
+          </div>
+          <h4 class="text-base sm:text-lg font-semibold text-brand-graphite">
+            Identifica nuestra cristalera al llegar
+          </h4>
+          <p class="text-xs sm:text-sm text-brand-graphite/75 leading-relaxed">
+            Nuestra entrada cuenta con la cristalera corporativa con motivos florales en <strong>Calle del Prior 5-7, 1º B (Salamanca)</strong>, junto a la Plaza Mayor. Un acceso discreto, accesible y diseñado para tu comodidad y privacidad.
+          </p>
+        </div>
+      </div>
 
     </div>
   </section>

@@ -57,7 +57,7 @@ export default function HeroMotion() {
             variants={itemVariants}
             className="mt-6 text-lg sm:text-xl text-brand-graphite/80 leading-relaxed font-normal"
           >
-            ¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas con consultas en <strong>Salamanca</strong> y <strong>Zamora</strong>, y atención <strong>online</strong>.
+            ¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas con consulta en <strong>Salamanca Centro</strong> y atención <strong>online</strong>. Mirada sistémica, humanista e integrativa.
           </motion.p>
 
           {/* Bloque de CTAs */}

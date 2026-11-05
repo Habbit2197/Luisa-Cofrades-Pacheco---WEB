@@ -72,23 +72,14 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
         "url": "https://luisa-cofrades-pacheco---web.javier-barmont97.workers.dev",
         "telephone": "+34675809974",
         "priceRange": "$$",
-        "address": [
-          {
-            "@type": "PostalAddress",
-            "streetAddress": "Calle del Prior 5-7, 1º B",
-            "addressLocality": "Salamanca",
-            "postalCode": "37002",
-            "addressRegion": "Salamanca",
-            "addressCountry": "ES"
-          },
-          {
-            "@type": "PostalAddress",
-            "streetAddress": "Roelos de Sayago",
-            "addressLocality": "Roelos de Sayago",
-            "addressRegion": "Zamora",
-            "addressCountry": "ES"
-          }
-        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle del Prior 5-7, 1º B",
+          "addressLocality": "Salamanca",
+          "postalCode": "37002",
+          "addressRegion": "Salamanca",
+          "addressCountry": "ES"
+        },
         "geo": {
           "@type": "GeoCoordinates",
           "latitude": "40.9650",
@@ -112,17 +103,9 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           
-          <!-- Logo con isotipo multicolor corporativo -->
+          <!-- Logo con vídeo animado corporativo -->
           <a href="/" class="flex items-center gap-3 group" aria-label="Inicio - Luisa Cofrades">
-            <img 
-              src="/assets/branding/cropped-logo-simbolo404x.png" 
-              alt="Símbolo Luisa Cofrades" 
-              width="40"
-              height="40"
-              loading="eager"
-              decoding="async"
-              class="w-10 h-10 object-contain rounded-full shadow-sm group-hover:scale-105 transition-transform" 
-            />
+            <video src="/assets/branding/entrada_logo.mp4" autoplay loop muted playsinline className="h-12 w-auto object-contain" />
             <div class="flex flex-col">
               <span class="text-base sm:text-lg font-semibold tracking-tight text-brand-graphite group-hover:text-brand-aqua transition-colors">
                 Luisa Cofrades Pacheco
@@ -136,7 +119,7 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
           <!-- Navegación desktop: enlaces de navegación -->
           <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-graphite/80">
             <a href="/" class="hover:text-brand-aqua transition-colors">Inicio</a>
-            <a href="/#sobre-mi" class="hover:text-brand-aqua transition-colors">Sobre Mí</a>
+            <a href="/#el-equipo" class="hover:text-brand-aqua transition-colors">El Equipo</a>
             <a href="/#emdr" class="hover:text-brand-aqua transition-colors">EMDR</a>
             <a href="/#tarifas" class="hover:text-brand-aqua transition-colors">Tarifas</a>
             <a href="/#contacto" class="hover:text-brand-aqua transition-colors">Contacto</a>
@@ -189,7 +172,7 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
       >
         <div class="flex flex-col gap-4 text-base font-medium text-brand-graphite">
           <a href="/" class="mobile-nav-link py-2 border-b border-gray-100 hover:text-brand-aqua transition-colors">Inicio</a>
-          <a href="/#sobre-mi" class="mobile-nav-link py-2 border-b border-gray-100 hover:text-brand-aqua transition-colors">Sobre Mí</a>
+          <a href="/#el-equipo" class="mobile-nav-link py-2 border-b border-gray-100 hover:text-brand-aqua transition-colors">El Equipo</a>
           <a href="/#emdr" class="mobile-nav-link py-2 border-b border-gray-100 hover:text-brand-aqua transition-colors">EMDR</a>
           <a href="/#tarifas" class="mobile-nav-link py-2 border-b border-gray-100 hover:text-brand-aqua transition-colors">Tarifas</a>
           <a href="/#contacto" class="mobile-nav-link py-2 hover:text-brand-aqua transition-colors">Contacto</a>

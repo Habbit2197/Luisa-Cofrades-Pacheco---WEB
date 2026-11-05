@@ -285,7 +285,7 @@ export default function TherapyExplorer() {
               </div>
 
               <p className="text-xs text-brand-graphite/70 leading-relaxed">
-                Sesiones presenciales en <strong>Salamanca</strong> y <strong>Zamora</strong>, o por <strong>videoconsulta online</strong>.
+                Sesiones presenciales en <strong>Salamanca</strong> o por <strong>videoconsulta online</strong>.
               </p>
 
               <div className="pt-2 flex flex-col gap-2.5">
