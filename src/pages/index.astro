@@ -73,9 +73,9 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch mb-20 lg:mb-24">
         
         <!-- Tarjeta Profesional 1: Luisa Cofrades Pacheco -->
-        <article class="group bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-aqua/10 overflow-hidden flex flex-col h-full">
-          <!-- Imagen superior ancho completo con aspecto controlado y zoom suave -->
-          <div class="w-full aspect-[4/5] overflow-hidden relative bg-gray-50">
+        <article class="group relative bg-white rounded-[2rem] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-brand-graphite/5 flex flex-col">
+          <!-- Imagen Espectacular con zoom 110% -->
+          <div class="relative w-full aspect-[4/5] overflow-hidden rounded-t-[2rem]">
             <img 
               src="/assets/media/Luisa_Art.jpeg" 
               alt="Luisa Cofrades Pacheco - Directora Clínica y Psicóloga General Sanitaria" 
@@ -83,20 +83,27 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
               height="750"
               loading="lazy"
               decoding="async"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
             />
           </div>
 
-          <!-- Cuerpo de texto con respiro visual editorial -->
-          <div class="p-8 flex flex-col flex-grow justify-between space-y-6">
+          <!-- La Matrícula Flotante (Sello Oficial) -->
+          <div class="relative z-10 px-8">
+            <div class="absolute -top-5 left-8 bg-brand-aqua text-white text-xs sm:text-sm font-bold tracking-wide uppercase px-5 py-2.5 rounded-full shadow-xl border-2 border-white">
+              N.º Col. BI05747 (COP)
+            </div>
+          </div>
+
+          <!-- Cuerpo de Texto (Elegancia) -->
+          <div class="p-8 pt-8 flex flex-col flex-grow justify-between space-y-6">
             <div class="space-y-4">
               <div>
                 <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold block mb-1">Dirección Clínica & Fundadora</span>
-                <h3 class="text-2xl sm:text-3xl font-bold text-brand-graphite tracking-tight">
+                <h3 class="text-3xl font-bold text-brand-graphite mb-1">
                   Luisa Cofrades Pacheco
                 </h3>
                 <p class="text-brand-aqua font-medium mb-4">
-                  Colegiada N.º BI05747 (COP) · Especialista EuroPsy en Psicoterapia
+                  Especialista EuroPsy en Psicoterapia
                 </p>
               </div>
 
@@ -145,9 +152,9 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         </article>
 
         <!-- Tarjeta Profesional 2: M.ª Paz Urbón -->
-        <article class="group bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-aqua/10 overflow-hidden flex flex-col h-full">
-          <!-- Imagen superior ancho completo con aspecto controlado y zoom suave -->
-          <div class="w-full aspect-[4/5] overflow-hidden relative bg-gray-50">
+        <article class="group relative bg-white rounded-[2rem] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-brand-graphite/5 flex flex-col">
+          <!-- Imagen Espectacular con zoom 110% -->
+          <div class="relative w-full aspect-[4/5] overflow-hidden rounded-t-[2rem]">
             <img 
               src="/assets/media/paz_urbon.jpeg" 
               alt="M.ª Paz Urbón - María de la Paz Palau Urbón, Psicóloga Sanitaria" 
@@ -155,20 +162,27 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
               height="750"
               loading="lazy"
               decoding="async"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
             />
           </div>
 
-          <!-- Cuerpo de texto con respiro visual editorial -->
-          <div class="p-8 flex flex-col flex-grow justify-between space-y-6">
+          <!-- La Matrícula Flotante (Sello Oficial) -->
+          <div class="relative z-10 px-8">
+            <div class="absolute -top-5 left-8 bg-brand-aqua text-white text-xs sm:text-sm font-bold tracking-wide uppercase px-5 py-2.5 rounded-full shadow-xl border-2 border-white">
+              N.º Col. CL05542 (COP)
+            </div>
+          </div>
+
+          <!-- Cuerpo de Texto (Elegancia) -->
+          <div class="p-8 pt-8 flex flex-col flex-grow justify-between space-y-6">
             <div class="space-y-4">
               <div>
                 <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold block mb-1">Equipo Clínico Colaborador</span>
-                <h3 class="text-2xl sm:text-3xl font-bold text-brand-graphite tracking-tight">
+                <h3 class="text-3xl font-bold text-brand-graphite mb-1">
                   M.ª Paz Urbón
                 </h3>
                 <p class="text-brand-aqua font-medium mb-4">
-                  Colegiada N.º CL05542 (COP CyL) · Psicóloga General Sanitaria
+                  Psicóloga General Sanitaria
                 </p>
               </div>
 
