@@ -105,7 +105,7 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
           
           <!-- Logo con vídeo animado corporativo -->
           <a href="/" class="group flex items-center flex-shrink-0" aria-label="Inicio - Luisa Cofrades Pacheco">
-            <div class="flex-shrink-0 w-40 sm:w-48 h-16 flex items-center justify-start">
+            <div class="flex-shrink-0 w-48 sm:w-56 md:w-64 h-16 flex items-center justify-start">
               <video 
                 id="logo-video"
                 src="/assets/branding/entrada_logo.mp4" 
@@ -113,7 +113,8 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
                 loop 
                 muted 
                 playsinline 
-                class="w-full h-full object-contain mix-blend-multiply" 
+                class="w-full h-full object-contain mix-blend-multiply scale-[1.35] md:scale-150 origin-left"
+                className="w-full h-full object-contain mix-blend-multiply scale-[1.35] md:scale-150 origin-left" 
               />
             </div>
             <span class="sr-only">Luisa Cofrades Pacheco - Psicología para vivir</span>
