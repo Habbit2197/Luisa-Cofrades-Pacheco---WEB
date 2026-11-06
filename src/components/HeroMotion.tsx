@@ -45,7 +45,7 @@ export default function HeroMotion() {
               loop 
               muted 
               playsInline 
-              className="w-64 sm:w-80 md:w-96 h-auto object-contain mb-8 mix-blend-multiply" 
+              className="w-full md:w-96 h-auto object-contain mb-8 mix-blend-multiply scale-110 sm:scale-100 origin-left" 
             />
           </motion.div>
 
