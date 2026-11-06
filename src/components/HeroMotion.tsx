@@ -37,6 +37,18 @@ export default function HeroMotion() {
           initial="hidden"
           animate="visible"
         >
+          {/* Vídeo Animado del Logotipo que corona el Hero */}
+          <motion.div variants={itemVariants}>
+            <video 
+              src="/assets/branding/entrada_logo.mp4" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="w-64 sm:w-80 md:w-96 h-auto object-contain mb-8 mix-blend-multiply" 
+            />
+          </motion.div>
+
           {/* Badge Acreditativo */}
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs sm:text-sm font-semibold mb-6 border border-brand-aqua/25">
             <ShieldCheck className="w-4 h-4 text-brand-aqua" />
