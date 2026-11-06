@@ -37,6 +37,10 @@
 }
 
 /* Paneles y tarjetas limpias sobre fondo blanco */
+.translate-y-\[-10px\] {
+  transform: translateY(-10px);
+}
+
 .glass-panel {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
