@@ -130,10 +130,59 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
           </a>
 
           <!-- Navegación desktop: enlaces de navegación -->
-          <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-graphite/80">
+          <nav class="hidden md:flex items-center gap-7 lg:gap-8 text-sm font-medium text-brand-graphite/80">
             <a href="/" class="hover:text-brand-aqua transition-colors">Inicio</a>
             <a href="/#el-equipo" class="hover:text-brand-aqua transition-colors">El Equipo</a>
-            <a href="/#emdr" class="hover:text-brand-aqua transition-colors">EMDR</a>
+            
+            <!-- Menú Desplegable Especialidades -->
+            <div class="relative group py-2">
+              <button 
+                type="button" 
+                class="flex items-center gap-1.5 hover:text-brand-aqua transition-colors focus:outline-none"
+                aria-expanded="false"
+                aria-haspopup="true"
+              >
+                <span>Especialidades</span>
+                <svg class="w-3.5 h-3.5 text-brand-graphite/60 group-hover:text-brand-aqua group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <!-- Submenú Flotante Desktop -->
+              <div class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
+                <div class="w-72 bg-white rounded-2xl shadow-xl border border-gray-100 p-2.5 space-y-1">
+                  <a 
+                    href="/psicoterapia-individual" 
+                    class="block px-3.5 py-2.5 rounded-xl hover:bg-brand-aqua/5 text-brand-graphite hover:text-brand-aqua transition-colors"
+                  >
+                    <p class="font-semibold text-sm">Psicoterapia de Adultos</p>
+                    <p class="text-xs text-brand-graphite/60 mt-0.5">Acompañamiento individual y trauma</p>
+                  </a>
+                  <a 
+                    href="/psicoterapia-infanto-juvenil" 
+                    class="block px-3.5 py-2.5 rounded-xl hover:bg-brand-aqua/5 text-brand-graphite hover:text-brand-aqua transition-colors"
+                  >
+                    <p class="font-semibold text-sm">Psicoterapia Infanto-Juvenil</p>
+                    <p class="text-xs text-brand-graphite/60 mt-0.5">Atención especializada a menores</p>
+                  </a>
+                  <a 
+                    href="/psicoterapia-infanto-juvenil#caja-de-arena" 
+                    class="block px-3.5 py-2.5 rounded-xl hover:bg-brand-aqua/5 text-brand-graphite hover:text-brand-aqua transition-colors"
+                  >
+                    <p class="font-semibold text-sm">Sand Play Therapy (Caja de Arena)</p>
+                    <p class="text-xs text-brand-graphite/60 mt-0.5">Técnica simbólica e integradora</p>
+                  </a>
+                  <a 
+                    href="/#emdr" 
+                    class="block px-3.5 py-2.5 rounded-xl hover:bg-brand-aqua/5 text-brand-graphite hover:text-brand-aqua transition-colors"
+                  >
+                    <p class="font-semibold text-sm">Terapia EMDR</p>
+                    <p class="text-xs text-brand-graphite/60 mt-0.5">Reprocesamiento y evidencia científica</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <a href="/#tarifas" class="hover:text-brand-aqua transition-colors">Tarifas</a>
             <a href="/#contacto" class="hover:text-brand-aqua transition-colors">Contacto</a>
           </nav>
@@ -183,10 +232,39 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
         id="mobile-nav-menu" 
         class="hidden md:hidden border-t border-gray-100 bg-white/98 backdrop-blur-md px-6 py-5 shadow-lg"
       >
-        <div class="flex flex-col gap-4 text-base font-medium text-brand-graphite">
+        <div class="flex flex-col gap-3 text-base font-medium text-brand-graphite">
           <a href="/" class="mobile-nav-link py-2 border-b border-gray-100 hover:text-brand-aqua transition-colors">Inicio</a>
           <a href="/#el-equipo" class="mobile-nav-link py-2 border-b border-gray-100 hover:text-brand-aqua transition-colors">El Equipo</a>
-          <a href="/#emdr" class="mobile-nav-link py-2 border-b border-gray-100 hover:text-brand-aqua transition-colors">EMDR</a>
+          
+          <!-- Acordeón Móvil Especialidades -->
+          <div class="border-b border-gray-100 py-2">
+            <button 
+              id="mobile-especialidades-btn" 
+              type="button" 
+              class="w-full flex items-center justify-between py-1 text-left font-medium text-brand-graphite hover:text-brand-aqua transition-colors focus:outline-none"
+              aria-expanded="false"
+            >
+              <span>Especialidades</span>
+              <svg id="mobile-especialidades-icon" class="w-4 h-4 text-brand-graphite/60 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div id="mobile-especialidades-content" class="hidden flex-col gap-2 pt-2.5 pb-1 pl-4">
+              <a href="/psicoterapia-individual" class="mobile-nav-link py-1 text-sm text-brand-graphite/70 hover:text-brand-aqua transition-colors block">
+                Psicoterapia de Adultos
+              </a>
+              <a href="/psicoterapia-infanto-juvenil" class="mobile-nav-link py-1 text-sm text-brand-graphite/70 hover:text-brand-aqua transition-colors block">
+                Psicoterapia Infanto-Juvenil
+              </a>
+              <a href="/psicoterapia-infanto-juvenil#caja-de-arena" class="mobile-nav-link py-1 text-sm text-brand-graphite/70 hover:text-brand-aqua transition-colors block">
+                Sand Play Therapy (Caja de Arena)
+              </a>
+              <a href="/#emdr" class="mobile-nav-link py-1 text-sm text-brand-graphite/70 hover:text-brand-aqua transition-colors block">
+                Terapia EMDR
+              </a>
+            </div>
+          </div>
+
           <a href="/#tarifas" class="mobile-nav-link py-2 border-b border-gray-100 hover:text-brand-aqua transition-colors">Tarifas</a>
           <a href="/#contacto" class="mobile-nav-link py-2 hover:text-brand-aqua transition-colors">Contacto</a>
         </div>
@@ -235,6 +313,28 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
               toggleBtn.setAttribute('aria-label', 'Abrir menú de navegación');
             };
           });
+        }
+
+        // Acordeón de Especialidades en Móvil
+        const espBtn = document.getElementById('mobile-especialidades-btn');
+        const espContent = document.getElementById('mobile-especialidades-content');
+        const espIcon = document.getElementById('mobile-especialidades-icon');
+
+        if (espBtn && espContent) {
+          espBtn.onclick = () => {
+            const isExpanded = !espContent.classList.contains('hidden');
+            if (isExpanded) {
+              espContent.classList.add('hidden');
+              espContent.classList.remove('flex');
+              espIcon?.classList.remove('rotate-180');
+              espBtn.setAttribute('aria-expanded', 'false');
+            } else {
+              espContent.classList.remove('hidden');
+              espContent.classList.add('flex');
+              espIcon?.classList.add('rotate-180');
+              espBtn.setAttribute('aria-expanded', 'true');
+            }
+          };
         }
 
         // Intercambio de vídeo a logo estático al hacer scroll para máxima nitidez
