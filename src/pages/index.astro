@@ -29,7 +29,8 @@ import {
   Play, 
   ShieldCheck,
   Users,
-  GraduationCap
+  GraduationCap,
+  Newspaper
 } from 'lucide-react';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -37,7 +38,7 @@ import path from 'node:path';
 // Cargar artículos para la sección destacada
 const dataPath = path.resolve('data.json');
 const siteData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
-const postsDestacados = (siteData.posts || []).slice(0, 4);
+const postsDestacados = (siteData.posts || []).slice(0, 3);
 ---
 
 <Layout 
@@ -47,7 +48,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 4);
   <!-- Hero Section con Framer Motion, imagen de la taza/vela y propuesta de valor -->
   <HeroSection />
 
-  <!-- Sección El Equipo (Sustituye a Sobre Mí: Luisa Cofrades y M.ª Paz Urbon) -->
+  <!-- Sección El Equipo (Sustituye a Sobre Mí: Luisa Cofrades y Mari Paz Palau Urbón) -->
   <section id="el-equipo" class="py-20 sm:py-24 lg:py-28 bg-[#f8fbfa] border-b border-gray-100/80 scroll-mt-20">
     <!-- Anclas para compatibilidad de navegación interna -->
     <div id="sobre-mi" class="scroll-mt-20"></div>
@@ -69,13 +70,13 @@ const postsDestacados = (siteData.posts || []).slice(0, 4);
         </p>
       </div>
 
-      <!-- Grid de 2 Columnas para El Equipo (1 col móvil, 2 col desktop) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch mb-20 lg:mb-24">
+      <!-- Grid Asimétrico para El Equipo: Luisa (Directora/Fundadora lg:col-span-2) y Mari Paz (Colaboradora lg:col-span-1) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 items-stretch mb-20 lg:mb-24">
         
-        <!-- Tarjeta Profesional 1: Luisa Cofrades Pacheco -->
-        <article class="group relative bg-white rounded-[2rem] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-brand-graphite/5 flex flex-col">
-          <!-- Imagen Espectacular con zoom 110% -->
-          <div class="relative w-full aspect-[4/5] overflow-hidden rounded-t-[2rem]">
+        <!-- Tarjeta Profesional 1: Luisa Cofrades Pacheco (Directora Clínica & Fundadora) -->
+        <article class="group relative bg-white rounded-[2rem] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-brand-graphite/5 flex flex-col md:flex-row lg:col-span-2 overflow-hidden ring-1 ring-brand-aqua/20">
+          <!-- Imagen Espectacular con zoom 105% -->
+          <div class="relative w-full md:w-5/12 aspect-[4/5] md:aspect-auto overflow-hidden shrink-0">
             <img 
               src="/assets/media/Luisa_Art.jpeg" 
               alt="Luisa Cofrades Pacheco - Directora Clínica y Psicóloga General Sanitaria" 
@@ -83,37 +84,37 @@ const postsDestacados = (siteData.posts || []).slice(0, 4);
               height="750"
               loading="lazy"
               decoding="async"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             />
-          </div>
-
-          <!-- La Matrícula Flotante (Sello Oficial) -->
-          <div class="relative z-10 px-8">
-            <div class="absolute -top-5 left-8 bg-brand-aqua text-white text-xs sm:text-sm font-bold tracking-wide uppercase px-5 py-2.5 rounded-full shadow-xl border-2 border-white">
+            <!-- Matrícula Flotante Oficial -->
+            <div class="absolute top-6 left-6 z-10 bg-brand-aqua text-white text-xs sm:text-sm font-bold tracking-wide uppercase px-4 py-2 rounded-full shadow-xl border-2 border-white">
               N.º Col. BI05747 (COP)
             </div>
           </div>
 
-          <!-- Cuerpo de Texto (Elegancia) -->
-          <div class="p-8 pt-8 flex flex-col flex-grow justify-between space-y-6">
+          <!-- Cuerpo de Texto (Elegancia y Jerarquía Directiva) -->
+          <div class="p-8 sm:p-10 flex flex-col justify-between flex-grow space-y-6">
             <div class="space-y-4">
               <div>
-                <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold block mb-1">Dirección Clínica & Fundadora</span>
-                <h3 class="text-3xl font-bold text-brand-graphite mb-1">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-bold uppercase tracking-wider border border-brand-aqua/20 mb-2">
+                  <Award class="w-3.5 h-3.5 text-brand-aqua" />
+                  <span>Dirección Clínica & Fundadora</span>
+                </div>
+                <h3 class="text-3xl sm:text-4xl font-bold text-brand-graphite mb-1">
                   Luisa Cofrades Pacheco
                 </h3>
-                <p class="text-brand-aqua font-medium mb-4">
+                <p class="text-brand-aqua font-semibold text-sm sm:text-base mb-4">
                   Especialista EuroPsy en Psicoterapia
                 </p>
               </div>
 
               <!-- Biografía en tono gris suave -->
-              <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/80">
+              <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/80 text-justify sm:text-left">
                 <p>
                   Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado con respeto, sin juicios ni etiquetas.
                 </p>
                 <p>
-                  Desarrollo mi intervención clínica desde una <strong class="text-brand-graphite font-semibold">Mirada sistémica, humanista e integrativa</strong>, aunando el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> y la <strong class="text-brand-graphite font-semibold">Terapia Sensoriomotriz</strong> con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.
+                  Desarrollo mi intervención clínica desde una <strong class="text-brand-graphite font-semibold">mirada sistémica, humanista e integrativa</strong>, aunando el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> y la <strong class="text-brand-graphite font-semibold">Terapia Sensoriomotriz</strong> con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.
                 </p>
               </div>
 
@@ -151,80 +152,77 @@ const postsDestacados = (siteData.posts || []).slice(0, 4);
           </div>
         </article>
 
-        <!-- Tarjeta Profesional 2: M.ª Paz Urbón -->
-        <article class="group relative bg-white rounded-[2rem] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-brand-graphite/5 flex flex-col">
-          <!-- Imagen Espectacular con zoom 110% -->
+        <!-- Tarjeta Profesional 2: Mari Paz Palau Urbón (Equipo Clínico Colaborador) -->
+        <article class="group relative bg-white rounded-[2rem] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-brand-graphite/5 flex flex-col lg:col-span-1">
+          <!-- Imagen Espectacular con zoom 105% -->
           <div class="relative w-full aspect-[4/5] overflow-hidden rounded-t-[2rem]">
             <img 
               src="/assets/media/paz_urbon.jpeg" 
-              alt="M.ª Paz Urbón - María de la Paz Palau Urbón, Psicóloga Sanitaria" 
+              alt="Mari Paz Palau Urbón - Psicóloga General Sanitaria" 
               width="600"
               height="750"
               loading="lazy"
               decoding="async"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             />
           </div>
 
           <!-- La Matrícula Flotante (Sello Oficial) -->
-          <div class="relative z-10 px-8">
-            <div class="absolute -top-5 left-8 bg-brand-aqua text-white text-xs sm:text-sm font-bold tracking-wide uppercase px-5 py-2.5 rounded-full shadow-xl border-2 border-white">
-              N.º Col. CL05542 (COP)
+          <div class="relative z-10 px-6 sm:px-8">
+            <div class="absolute -top-5 left-6 sm:left-8 bg-brand-aqua text-white text-xs sm:text-sm font-bold tracking-wide uppercase px-5 py-2.5 rounded-full shadow-xl border-2 border-white">
+              N.º Col. CL-05542 (COP)
             </div>
           </div>
 
           <!-- Cuerpo de Texto (Elegancia) -->
-          <div class="p-8 pt-8 flex flex-col flex-grow justify-between space-y-6">
+          <div class="p-6 sm:p-8 pt-8 flex flex-col flex-grow justify-between space-y-6">
             <div class="space-y-4">
               <div>
                 <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold block mb-1">Equipo Clínico Colaborador</span>
-                <h3 class="text-3xl font-bold text-brand-graphite mb-1">
-                  M.ª Paz Urbón
+                <h3 class="text-2xl sm:text-3xl font-bold text-brand-graphite mb-1">
+                  Mari Paz Palau Urbón
                 </h3>
-                <p class="text-brand-aqua font-medium mb-4">
+                <p class="text-brand-aqua font-medium mb-4 text-sm">
                   Psicóloga General Sanitaria
                 </p>
               </div>
 
               <!-- Biografía en tono gris suave -->
-              <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/80">
+              <div class="space-y-4 text-sm leading-relaxed text-brand-graphite/80 text-justify sm:text-left">
                 <p>
-                  Psicóloga General Sanitaria colaboradora en el gabinete, con amplia dedicación y calidez en el acompañamiento psicoterapéutico infanto-juvenil, de familias y personas adultas en procesos de cambio y superación de dificultades emocionales.
-                </p>
-                <p>
-                  Acompaño en la gestión de la ansiedad, el fortalecimiento de la autoestima, la intervención en problemas de conducta y apego, y el restablecimiento de una comunicación familiar saludable, siempre desde la empatía activa, la confidencialidad y la evidencia clínica.
+                  Psicóloga General Sanitaria. Licenciada en Psicología por la Universidad Pontificia de Salamanca. Terapeuta EMDR y amplia experiencia en terapia cognitivo-conductual. Creo en una psicología cercana y humana, en la que cada persona pueda encontrar un espacio seguro donde sentirse escuchada, comprendida y acompañada. Por eso, quiero ofrecerte un lugar en el que pedas parar, conectar contigo, dar espacio a lo que sientes y, sobre todo, aprender a cuidarte. Un espacio para ti, a tu ritmo.
                 </p>
               </div>
 
               <!-- Acreditaciones en cápsulas -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs font-medium text-brand-graphite">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 pt-2 text-xs font-medium text-brand-graphite">
                 <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
                   <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                  <span>Colegiada N.º CL05542</span>
+                  <span>Colegiada N.º CL-05542</span>
                 </div>
                 <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
                   <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                  <span>Psicóloga General Sanitaria</span>
+                  <span>Licenciada en Psicología (UPSA)</span>
                 </div>
                 <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
                   <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                  <span>Atención Infanto-Juvenil</span>
+                  <span>Terapeuta EMDR</span>
                 </div>
                 <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
                   <CheckCircle2 class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
-                  <span>Consulta Presencial y Online</span>
+                  <span>Terapia Cognitivo-Conductual</span>
                 </div>
               </div>
             </div>
 
-            <!-- Botón de Cita con M.ª Paz Urbón -->
+            <!-- Botón de Cita con Mari Paz Palau Urbón -->
             <div class="pt-6 border-t border-gray-100">
               <a 
                 href="#contacto" 
                 class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-brand-graphite border border-gray-200 font-medium text-sm transition-all shadow-xs hover:border-brand-aqua"
               >
                 <Calendar class="w-4 h-4 text-brand-aqua" />
-                <span>Concertar cita con M.ª Paz</span>
+                <span>Concertar cita con Mari Paz</span>
               </a>
             </div>
           </div>
@@ -331,6 +329,103 @@ const postsDestacados = (siteData.posts || []).slice(0, 4);
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- Pasos para pedir cita y Cuestionario Previo (Accesibilidad UX Inmediata) -->
+  <section id="pedir-cita" class="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white rounded-3xl p-8 sm:p-10 border border-gray-100 shadow-xl shadow-brand-aqua/5 space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-6">
+          <div class="flex items-center gap-3 text-brand-aqua">
+            <div class="w-11 h-11 rounded-2xl bg-brand-aqua/10 flex items-center justify-center shrink-0">
+              <ClipboardList class="w-6 h-6 text-brand-aqua" />
+            </div>
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-brand-aqua">Proceso de Acogida</span>
+              <h2 class="text-2xl sm:text-3xl font-light text-brand-graphite">
+                Pasos para <span class="font-semibold text-brand-aqua">pedir cita</span>
+              </h2>
+            </div>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-100">
+            <CheckCircle2 class="w-3.5 h-3.5 text-emerald-600" />
+            <span>Atención Presencial en Salamanca y Online</span>
+          </div>
+        </div>
+
+        <p class="text-sm sm:text-base text-brand-graphite leading-relaxed">
+          La consulta presencial se ubica en la <strong>Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Las sesiones tienen una duración aproximada de una hora (70 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos terapéuticos.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          <!-- Paso 1 Obligatorio: Rellenar cuestionario previo -->
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200/80 flex flex-col justify-between space-y-4 hover:border-brand-aqua/50 transition-colors">
+            <div class="space-y-3">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-bold uppercase tracking-wider">
+                <span>Paso 1 · Imprescindible</span>
+              </div>
+              <h3 class="text-lg font-semibold text-brand-graphite">
+                Rellenar cuestionario previo
+              </h3>
+              <p class="text-xs sm:text-sm text-brand-graphite/80 leading-relaxed">
+                Antes de iniciar el proceso, te invitamos a completar este formulario confidencial de acogida.
+              </p>
+              <div class="p-3.5 rounded-xl bg-white border border-gray-200 text-xs text-brand-graphite/85 italic">
+                “Para agilizar temas de facturación y aprovechar al máximo el tiempo de sesión.”
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSchCicLOpw2Lt_aJ6FGr4VvUC5wAxPSjW_PoVJtpWAE_4jkMg/viewform" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-semibold text-xs sm:text-sm shadow-sm hover:shadow-card-hover transition-all"
+              >
+                <ClipboardList class="w-4 h-4" />
+                <span>Rellenar cuestionario previo</span>
+                <ExternalLink class="w-3.5 h-3.5 text-white/80" />
+              </a>
+            </div>
+          </div>
+
+          <!-- Paso 2 Obligatorio: Disponibilidad horaria -->
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200/80 flex flex-col justify-between space-y-4 hover:border-brand-aqua/50 transition-colors">
+            <div class="space-y-3">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-bold uppercase tracking-wider">
+                <span>Paso 2 · Asignación</span>
+              </div>
+              <h3 class="text-lg font-semibold text-brand-graphite">
+                Disponibilidad horaria
+              </h3>
+              <!-- Recuadro de aviso con el texto literal solicitado -->
+              <div class="p-4 rounded-xl bg-brand-aqua/10 border border-brand-aqua/20 text-xs sm:text-sm text-brand-graphite leading-relaxed">
+                <p class="font-semibold text-brand-aqua mb-1">Aviso de asignación y disponibilidad:</p>
+                <p class="font-medium">
+                  Indica si tu disponibilidad es de mañanas, tardes o flexible. En función de esto y tu motivo de consulta se te asignará el profesional que mejor pueda responder a tu demanda.
+                </p>
+              </div>
+              <p class="text-xs text-brand-graphite/70">
+                Así podremos coordinar tu sesión con Luisa Cofrades o con Mari Paz Palau Urbón según la especialidad requerida y la compatibilidad de horarios.
+              </p>
+            </div>
+
+            <div class="pt-2">
+              <a 
+                href="#contacto" 
+                class="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite border border-gray-200 font-medium text-xs sm:text-sm transition-colors shadow-xs"
+              >
+                <Calendar class="w-4 h-4 text-brand-aqua" />
+                <span>Indicar disponibilidad en el contacto</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
@@ -760,8 +855,49 @@ const postsDestacados = (siteData.posts || []).slice(0, 4);
             </a>
           </div>
 
-          <!-- Cuadrícula de artículos (1 o 2 columnas) -->
+          <!-- Cuadrícula de artículos y prensa (1 o 2 columnas) -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            
+            <!-- Tarjeta Destacada de Prensa: Entrevista en Tribuna Salamanca -->
+            <article class="bg-white rounded-3xl p-7 sm:p-8 border-2 border-brand-aqua/30 shadow-sm flex flex-col justify-between hover:shadow-card-hover hover:border-brand-aqua hover:-translate-y-1 transition-all duration-300 relative group">
+              <div>
+                <div class="flex items-center justify-between text-xs font-semibold mb-3">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
+                    <Newspaper class="w-3.5 h-3.5 text-amber-600" />
+                    <span>Prensa</span>
+                  </span>
+                  <span class="text-gray-400 font-normal">Tribuna Salamanca</span>
+                </div>
+
+                <h3 class="text-lg sm:text-xl font-semibold text-brand-graphite group-hover:text-brand-aqua transition-colors leading-snug">
+                  <a 
+                    href="https://www.tribunasalamanca.com/noticias/351664/luisa-cofrades" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Entrevista en Tribuna Salamanca: Luisa Cofrades
+                  </a>
+                </h3>
+
+                <p class="mt-3 text-brand-graphite/70 text-sm leading-relaxed line-clamp-3">
+                  Presentación de su libro «Supervivencia emocional»: una obra para acercar la psicoterapia, la resolución del trauma y el cuidado del bienestar a todo el mundo.
+                </p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                <a 
+                  href="https://www.tribunasalamanca.com/noticias/351664/luisa-cofrades" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
+                >
+                  <span>Leer entrevista completa</span>
+                  <ExternalLink class="w-3.5 h-3.5" />
+                </a>
+                <span class="text-[11px] text-gray-400">tribunasalamanca.com</span>
+              </div>
+            </article>
+
             {postsDestacados.map((post: any) => (
               <article class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-100 shadow-sm flex flex-col justify-between hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
                 <div>
@@ -958,12 +1094,12 @@ const postsDestacados = (siteData.posts || []).slice(0, 4);
                   <span>Aviso de asignación:</span>
                 </p>
                 <p class="text-gray-100 font-medium">
-                  Indica si tu disponibilidad es de mañanas, tardes o flexible. De esto dependerá el profesional del equipo que te atienda.
+                  Indica si tu disponibilidad es de mañanas, tardes o flexible. En función de esto y tu motivo de consulta se te asignará el profesional que mejor pueda responder a tu demanda.
                 </p>
               </div>
               
               <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                Así podremos coordinar tu sesión con <strong class="text-white">Luisa Cofrades</strong> o con <strong class="text-white">M.ª Paz Urbón</strong> según compatibilidad de agendas.
+                Así podremos coordinar tu sesión con <strong class="text-white">Luisa Cofrades</strong> o con <strong class="text-white">Mari Paz Palau Urbón</strong> según compatibilidad de agendas.
               </p>
             </div>
 
