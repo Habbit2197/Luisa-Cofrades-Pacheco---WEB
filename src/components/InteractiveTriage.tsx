@@ -25,7 +25,8 @@ export default function InteractiveTriage() {
     { id: 'pareja', label: 'Problemas de Pareja o Familia', desc: 'Conflictos de comunicación, rupturas o dinámicas familiares tensas' },
     { id: 'duelo', label: 'Duelo y Pérdidas', desc: 'Acompañamiento respetuoso ante la pérdida de un ser querido o cambio vital' },
     { id: 'autoestima', label: 'Autoestima y Crecimiento', desc: 'Fortalecer la confianza personal y aprender a poner límites' },
-    { id: 'forense', label: 'Peritaje Psicológico Oficial', desc: 'Evaluaciones periciales para juzgados y tribunales' }
+    { id: 'forense', label: 'Peritaje Psicológico Oficial', desc: 'Evaluaciones periciales para juzgados y tribunales' },
+    { id: 'otros', label: 'Otros', desc: 'Cualquier otra consulta, situación personal o necesidad no recogida anteriormente' }
   ];
 
   const modalities = [

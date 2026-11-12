@@ -1,0 +1,239 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { 
+  Award, 
+  CheckCircle2, 
+  Calendar, 
+  Phone, 
+  ArrowLeft, 
+  ShieldCheck, 
+  HeartHandshake, 
+  GraduationCap, 
+  Sparkles, 
+  MapPin,
+  Compass
+} from 'lucide-react';
+---
+
+<Layout 
+  title="Luisa Cofrades Pacheco | Psicóloga Sanitaria y Psicoterapeuta en Salamanca"
+  description="Conoce la trayectoria, formación y motivación clínica de Luisa Cofrades Pacheco. Especialista EuroPsy en Psicoterapia, EMDR y trauma complejo."
+  image="/assets/media/luisa_sinperro.jpeg"
+>
+  <!-- Cabecera / Breadcrumb -->
+  <header class="bg-gradient-to-b from-brand-aqua/10 via-white to-white border-b border-gray-100 pt-12 pb-12 sm:pt-16 sm:pb-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Enlace para volver a la sección de equipo -->
+      <a 
+        href="/#el-equipo" 
+        class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-brand-aqua hover:text-brand-aqua-dark mb-8 transition-colors group"
+      >
+        <ArrowLeft class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <span>Volver a El Equipo</span>
+      </a>
+
+      <!-- Tarjeta de Presentación Principal -->
+      <div class="flex flex-col md:flex-row gap-8 lg:gap-10 items-center md:items-start">
+        
+        <!-- Fotografía Oficial de Luisa Cofrades -->
+        <div class="w-48 sm:w-56 md:w-64 shrink-0">
+          <div class="relative aspect-square rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-gray-50">
+            <img 
+              src="/assets/media/luisa_sinperro.jpeg" 
+              alt="Luisa Cofrades Pacheco - Psicóloga Sanitaria y Directora Clínica"
+              width="600"
+              height="600"
+              loading="eager"
+              decoding="async"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-3 text-center">
+            <span class="inline-block px-3 py-1 rounded-full bg-brand-aqua/10 text-brand-aqua text-[11px] font-bold uppercase tracking-wider border border-brand-aqua/20">
+              Col. BI05747 (COP)
+            </span>
+          </div>
+        </div>
+
+        <!-- Títulos y acreditación principal -->
+        <div class="flex-1 text-center md:text-left space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-bold uppercase tracking-wider border border-brand-aqua/20">
+            <Award class="w-4 h-4 text-brand-aqua" />
+            <span>Dirección Clínica & Fundadora</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-light text-brand-graphite tracking-tight leading-tight">
+            Luisa Cofrades <span class="font-semibold text-brand-aqua">Pacheco</span>
+          </h1>
+
+          <p class="text-base sm:text-lg font-medium text-brand-graphite/90">
+            Psicóloga Sanitaria Acreditada · Especialista EuroPsy en Psicoterapia
+          </p>
+
+          <p class="text-xs sm:text-sm text-brand-graphite/70 flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1 pt-1">
+            <span class="flex items-center gap-1.5">
+              <MapPin class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+              <span>Salamanca Centro (Calle del Prior 5-7, 1º B)</span>
+            </span>
+            <span class="flex items-center gap-1.5">
+              <ShieldCheck class="w-3.5 h-3.5 text-brand-aqua shrink-0" />
+              <span>Centro Sanitario Junta CyL: 37-C22-0544</span>
+            </span>
+          </p>
+
+          <!-- Botones de Acción Directa -->
+          <div class="pt-4 flex flex-wrap items-center justify-center md:justify-start gap-3">
+            <a 
+              href="/#contacto" 
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white text-sm font-semibold shadow-sm hover:shadow-card-hover transition-all"
+            >
+              <Calendar class="w-4 h-4" />
+              <span>Concertar cita</span>
+            </a>
+            <a 
+              href="tel:+34675809974" 
+              class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-brand-graphite text-sm font-semibold transition-colors shadow-xs"
+            >
+              <Phone class="w-4 h-4 text-brand-aqua" />
+              <span>675 80 99 74</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Contenido de Lectura Cómoda (Máximo max-w-3xl) -->
+  <main class="py-16 sm:py-20 bg-white">
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14 text-brand-graphite leading-relaxed">
+      
+      <!-- Bloque: Presentación y Visión de la Psicoterapia -->
+      <section class="space-y-5">
+        <h2 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight border-b border-gray-100 pb-3 flex items-center gap-2.5">
+          <HeartHandshake class="w-6 h-6 text-brand-aqua" />
+          <span>Psicología para vivir</span>
+        </h2>
+        
+        <p class="text-base sm:text-lg text-brand-graphite/85 leading-relaxed">
+          Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado con respeto, sin juicios ni etiquetas.
+        </p>
+        <p class="text-base sm:text-lg text-brand-graphite/85 leading-relaxed">
+          Desarrollo mi intervención clínica desde una mirada sistémica, humanista e integrativa, aunando el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> y la <strong class="text-brand-graphite font-semibold">Terapia Sensoriomotriz</strong> con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.
+        </p>
+      </section>
+
+      <!-- Bloque: ¿Cuál es mi formación? (Biografía ampliada) -->
+      <section class="space-y-5">
+        <h2 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight border-b border-gray-100 pb-3 flex items-center gap-2.5">
+          <GraduationCap class="w-6 h-6 text-brand-aqua" />
+          <span>¿Cuál es mi formación?</span>
+        </h2>
+
+        <p class="text-base sm:text-lg text-brand-graphite/90 leading-relaxed text-justify sm:text-left">
+          Tras un largo proceso de formación y experiencia internacional, aprendiendo y ejerciendo la psicología en lugares tan diversos como la India (técnicas de psicología oriental y meditación), Alemania (salud mental deportiva), Italia (discapacidad), Canadá, México y Suiza (Youth Camp Counselling), llego a Salamanca donde continuo mi formación en su ocho veces centenaria Universidad, realizando el Máster de Intervenciones en Psicoterapia y el de Terapia Sistémica de la Universidad Pontificia de forma conjunta, especializándome en situaciones de pérdida, violencia y crisis. A partir de ahí creo en la formación continua y me decanté por la formación en EMDR y trauma complejo como Terapia Sensoriomotriz.
+        </p>
+      </section>
+
+      <!-- Bloque: Acreditaciones Oficiales -->
+      <section class="space-y-5 bg-[#f8fbfa] p-8 rounded-3xl border border-gray-100">
+        <h3 class="text-lg font-semibold text-brand-graphite flex items-center gap-2">
+          <Sparkles class="w-5 h-5 text-brand-aqua" />
+          <span>Acreditaciones y Colegiación Oficial</span>
+        </h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-medium text-brand-graphite/85">
+          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-gray-100 shadow-xs">
+            <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0 mt-0.5" />
+            <span>Psicóloga Sanitaria Acreditada (COP BI05747)</span>
+          </div>
+          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-gray-100 shadow-xs">
+            <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0 mt-0.5" />
+            <span>Psicóloga y Psicoterapeuta EuroPsy certificada</span>
+          </div>
+          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-gray-100 shadow-xs">
+            <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0 mt-0.5" />
+            <span>Miembro División Psicoterapia Consejo General COP</span>
+          </div>
+          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-gray-100 shadow-xs">
+            <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0 mt-0.5" />
+            <span>Especialista EMDR (Miembro Asociación EMDR España)</span>
+          </div>
+          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-gray-100 shadow-xs">
+            <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0 mt-0.5" />
+            <span>Especialista en Terapia Sensoriomotriz</span>
+          </div>
+          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-gray-100 shadow-xs">
+            <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0 mt-0.5" />
+            <span>Perito Judicial Psicológico acreditada (TSJ CyL)</span>
+          </div>
+          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-gray-100 shadow-xs sm:col-span-2">
+            <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0 mt-0.5" />
+            <span>Docente externa Máster Psicología General Sanitaria (USAL)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bloque: ¿Cuál es mi motivación? -->
+      <section class="space-y-5">
+        <h2 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight border-b border-gray-100 pb-3 flex items-center gap-2.5">
+          <Compass class="w-6 h-6 text-brand-aqua" />
+          <span>¿Cuál es mi motivación?</span>
+        </h2>
+
+        <!-- Cita destacada con fondo suave de cristal -->
+        <blockquote class="p-8 rounded-3xl bg-brand-aqua/5 border-l-4 border-brand-aqua text-brand-graphite text-base sm:text-lg leading-relaxed space-y-4">
+          <p class="italic text-brand-graphite/95">
+            “Ayudar a las personas a superar resistencias, desbloquear emociones, tomar conciencia de sus propios recursos y ganar la confianza para ponerlos a su servicio. Son casi 25 años acumulando experiencia y ayudando a personas a solventar sus problemas y sortear situaciones críticas.”
+          </p>
+          <p class="font-medium text-brand-graphite not-italic pt-2 border-t border-brand-aqua/15 text-sm sm:text-base">
+            Haber formado parte de sus vidas y su mundo emocional ha sido y es un privilegio y un honor, y por ello, por su confianza, les doy las gracias.
+          </p>
+          <span class="block not-italic text-xs font-semibold text-brand-aqua uppercase tracking-wider pt-1">
+            — Luisa Cofrades Pacheco
+          </span>
+        </blockquote>
+      </section>
+
+      <!-- Bloque CTA Final: Contacto y Reserva -->
+      <section class="pt-8 border-t border-gray-100">
+        <div class="bg-brand-graphite text-white p-8 sm:p-10 rounded-3xl text-center space-y-6 shadow-xl">
+          <div class="max-w-xl mx-auto space-y-2">
+            <span class="text-xs uppercase tracking-widest text-brand-aqua font-bold">Inicia tu proceso terapéutico</span>
+            <h3 class="text-2xl sm:text-3xl font-light text-white tracking-tight">
+              ¿Hablamos sobre lo que <span class="font-semibold text-brand-aqua">necesitas?</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Atención en consulta presencial en el centro de Salamanca y por videoconsulta online confidencial.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <a 
+              href="/#contacto" 
+              class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white text-sm font-semibold transition-all shadow-md"
+            >
+              <Calendar class="w-4 h-4" />
+              <span>Concertar cita</span>
+            </a>
+            <a 
+              href="https://wa.me/34675809974?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20concertar%20una%20cita%20con%20Luisa" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm font-semibold transition-all"
+            >
+              <span>Escribir por WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Footer global -->
+  <Footer />
+</Layout>
