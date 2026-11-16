@@ -5,10 +5,9 @@ import { Calendar, Phone, ArrowLeft, CheckCircle2, ShieldCheck, HeartHandshake, 
 import { Image } from 'astro:assets';
 import cajaArenaImg from '../assets/media/caja_arena.jpg';
 import cda1Img from '../assets/media/cda-1.jpg';
-import partidoArenaImg from '../assets/media/partido_arena.jpeg';
-import arenaPrincesasImg from '../assets/media/arena_princesas.jpeg';
-import estanteriaMunecosImg from '../assets/media/estanteria_muñecos.jpeg';
-import casaArenaImg from '../assets/media/casa_arena.jpeg';
+import juguetesEstanteriaImg from '../assets/media/Juguetes_estanteria.jpeg';
+import dinosArenaImg from '../assets/media/Dinos_arena.jpeg';
+import robotsLegosImg from '../assets/media/robots_legos.jpeg';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -86,7 +85,7 @@ const parrafos = servicio.contenidoCompleto
               <span>Abordaje Terapéutico</span>
             </h2>
             <p class="text-slateText-muted text-sm sm:text-base leading-relaxed">
-              En la consulta de <strong>Salamanca</strong> o en modalidad <strong>online</strong>, cada proceso se diseña adaptado a tu ritmo, combinando la orientación integradora con técnicas basadas en la evidencia (EMDR, Terapia Sensoriomotriz y Regulación Emocional).
+              En la consulta de <strong>Salamanca</strong> o en modalidad <strong>online</strong>, cada proceso se diseña adaptado a tu ritmo, combinando la orientación integradora con técnicas basadas en la evidencia (EMDR y Regulación Emocional).
             </p>
           </div>
 
@@ -143,7 +142,7 @@ const parrafos = servicio.contenidoCompleto
                   Estanterías con cientos de figuras clasificadas (animales, personajes, naturaleza, barreras) que el niño o joven elige libremente para proyectar su realidad interna:
                 </p>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                   <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
                     <Image 
                       src={cda1Img} 
@@ -153,29 +152,22 @@ const parrafos = servicio.contenidoCompleto
                   </div>
                   <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
                     <Image 
-                      src={partidoArenaImg} 
-                      alt="Sesión de Caja de Arena: partido_arena" 
+                      src={juguetesEstanteriaImg} 
+                      alt="Miniaturas y juguetes en estantería para sesión de Caja de Arena" 
                       class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
                     />
                   </div>
                   <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
                     <Image 
-                      src={arenaPrincesasImg} 
-                      alt="Sesión de Caja de Arena: arena_princesas" 
+                      src={dinosArenaImg} 
+                      alt="Figuras y dinosaurios en la arena para elaboración simbólica" 
                       class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
                     />
                   </div>
                   <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
                     <Image 
-                      src={estanteriaMunecosImg} 
-                      alt="Sesión de Caja de Arena: estanteria_muñecos" 
-                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
-                    />
-                  </div>
-                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group col-span-2 sm:col-span-1">
-                    <Image 
-                      src={casaArenaImg} 
-                      alt="Sesión de Caja de Arena: casa_arena" 
+                      src={robotsLegosImg} 
+                      alt="Figuras, robots y construcciones para terapia en arena" 
                       class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
                     />
                   </div>

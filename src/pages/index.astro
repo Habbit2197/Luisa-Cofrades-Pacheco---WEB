@@ -76,8 +76,8 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         <!-- BLOQUE PRINCIPAL (Luisa Cofrades: Fundadora y Directora) -->
         <article class="w-full flex flex-col lg:flex-row gap-8 lg:gap-12 bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-gray-100 items-center lg:items-stretch">
           
-          <!-- Foto de Luisa con recorte retrato premium -->
-          <div class="w-full lg:w-[40%] xl:w-[35%] shrink-0 flex items-center justify-center">
+          <!-- Foto de Luisa con recorte retrato premium (tamaño equilibrado) -->
+          <div class="w-full lg:w-[32%] xl:w-[28%] shrink-0 flex items-center justify-center">
             <img 
               src="/assets/media/luisa_sinperro.jpeg" 
               alt="Luisa Cofrades Pacheco - Directora Clínica y Fundadora" 
@@ -85,7 +85,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
               height="750" 
               loading="lazy" 
               decoding="async" 
-              class="w-full aspect-[4/5] max-h-[500px] object-cover object-top rounded-3xl shadow-lg"
+              class="w-full aspect-[4/5] max-h-[420px] object-cover object-top rounded-3xl shadow-lg"
             />
           </div>
 
@@ -111,7 +111,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
                   Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado con respeto, sin juicios ni etiquetas.
                 </p>
                 <p>
-                  Desarrollo mi intervención clínica desde una <strong class="text-brand-graphite font-semibold">mirada sistémica, humanista e integrativa</strong>, aunando el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> y la <strong class="text-brand-graphite font-semibold">Terapia Sensoriomotriz</strong> con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.
+                  Desarrollo mi intervención clínica desde una <strong class="text-brand-graphite font-semibold">mirada sistémica, humanista e integrativa</strong>, aunando el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.
                 </p>
               </div>
 
@@ -164,7 +164,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
           </h4>
 
           <article class="max-w-3xl bg-gray-50/70 p-6 md:p-8 rounded-2xl border border-gray-100 flex flex-col md:flex-row gap-6 items-center md:items-start shadow-xs hover:border-gray-200 transition-colors">
-            <!-- Foto reducida a avatar circular / miniatura pequeña -->
+            <!-- Foto de Mari Paz con tamaño más visible y equilibrado -->
             <img 
               src="/assets/media/paz_urbon.jpeg" 
               alt="Mari Paz Palau Urbón - Psicóloga General Sanitaria" 
@@ -172,7 +172,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
               height="200" 
               loading="lazy" 
               decoding="async" 
-              class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover shrink-0 shadow-sm border-2 border-white"
+              class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shrink-0 shadow-md border-2 border-white"
             />
 
             <!-- Contenido con tipografía secundaria y discreta -->
@@ -702,7 +702,8 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   </section>
 
   <!-- Sección El Espacio: Galería de Acuarelas y Ubicación en Salamanca Centro -->
-  <section id="sedes" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100 scroll-mt-20">
+  <section id="espacio" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100 scroll-mt-24 relative">
+    <div id="sedes" class="absolute -top-24 left-0 pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
@@ -944,7 +945,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
                 loading="lazy"
               ></iframe>
             </div>
-            <div class="mt-4 text-center">
+            <div class="mt-4 pt-3 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
               <a 
                 href="https://www.instagram.com/reel/C_3GyMaMovd/" 
                 target="_blank" 
@@ -953,6 +954,13 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
               >
                 <span>Ver vídeo en Instagram</span>
                 <ExternalLink class="w-3.5 h-3.5" />
+              </a>
+              <a 
+                href="#espacio" 
+                class="inline-flex items-center gap-1.5 text-xs font-medium text-brand-graphite/70 hover:text-brand-aqua transition-colors"
+              >
+                <span>Conoce nuestro espacio</span>
+                <ArrowRight class="w-3.5 h-3.5" />
               </a>
             </div>
           </div>

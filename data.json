@@ -11,7 +11,7 @@
     "profesion": "Psicóloga General Sanitaria y Psicoterapeuta",
     "telefono": "+34 675 80 99 74",
     "telefonoLimpio": "34675809974",
-    "email": "contacto@luisacofrades.com",
+    "email": "lcofrades@cop.es",
     "ubicaciones": [
       {
         "sede": "Salamanca",
@@ -66,12 +66,11 @@
   "sobreMi": {
     "titulo": "¿Quiénes somos?",
     "subtitulo": "Psicología para vivir",
-    "perfil": "Luisa A. Cofrades Pacheco Psicóloga sanitaria acreditada. Psicóloga y psicoterapeuta Europsy certificada. Miembro de la División de Psicoterapia del Consejo General del COP. Colegiada n. º: BI05747 Especialista en EMDR, Nivel I y II para adultos y adolescentes, así como en protocolo EMDR Caja de Arena en niños con Trauma Complejo. Miembro de la Asociación EMDR España. Perito judicial psicológico acreditada en los juzgados y en el Tribunal Superior de Justicia de Castilla y León. Especialista en Terapia Sensoriomotriz. Docente externa del Máster en Psicología General Sanitaria de la Universidad de Salamanca. Titular de “Luisa Cofrades. Psicología para vivir”, centro sanitario reconocido por la Junta de Castilla y León con el número: 37-C22-0544 ¿Cuál es mi formación? Tras un largo proceso de formación y experiencia internacional, aprendiendo y ejerciendo la psicología en lugares tan diversos como la India (técnicas de psicología oriental y meditación), Alemania (salud mental deportiva), Italia (discapacidad), Canadá, México y Suiza (Youth Camp Counselling), llego a Salamanca donde continuo mi formación en su ocho veces centenaria Universidad, realizando el Máster de Intervenciones en Psicoterapia y el de Terapia Sistémica de la Universidad Pontificia de forma conjunta, especializándome en situaciones de pérdida, violencia y crisis. Una vez finalizado el paréntesis formativo, reinicio mi camino profesional en ámbitos como el daño cerebral (ASDACE), las adicciones (Centro de día de Cáritas Diocesana), y la psicooncología (AECC y Hospital Clínico Universitario de Salamanca), para finalmente abrir mi propia consulta en la ciudad de Salamanca. En ella, y en la región de Castilla y León, desarrollo esta hermosa profesión que tanto ofrece al ser humano en una y otra dirección. ¿Cuál es mi motivación? Ayudar a las personas a superar resistencias, desbloquear emociones, tomar conciencia de sus propios recursos y ganar la confianza para ponerlos a su servicio. Son casi 25 años acumulando experiencia y ayudando a personas a solventar sus problemas y sortear situaciones críticas. Haber formado parte de sus vidas y su mundo emocional ha sido y es un privilegio y un honor, y por ello, por su confianza, les doy las gracias. Psicóloga colaboradora a tiempo parcial María de la Paz Palau Urbón, CL05542",
+    "perfil": "Luisa A. Cofrades Pacheco Psicóloga sanitaria acreditada. Psicóloga y psicoterapeuta Europsy certificada. Miembro de la División de Psicoterapia del Consejo General del COP. Colegiada n. º: BI05747 Especialista en EMDR, Nivel I y II para adultos y adolescentes, así como en protocolo EMDR Caja de Arena en niños con Trauma Complejo. Miembro de la Asociación EMDR España. Perito judicial psicológico acreditada en los juzgados y en el Tribunal Superior de Justicia de Castilla y León. Docente externa del Máster en Psicología General Sanitaria de la Universidad de Salamanca. Titular de “Luisa Cofrades. Psicología para vivir”, centro sanitario reconocido por la Junta de Castilla y León con el número: 37-C22-0544 ¿Cuál es mi formación? Tras un largo proceso de formación y experiencia internacional, aprendiendo y ejerciendo la psicología en lugares tan diversos como la India (técnicas de psicología oriental y meditación), Alemania (salud mental deportiva), Italia (discapacidad), Canadá, México y Suiza (Youth Camp Counselling), llego a Salamanca donde continuo mi formación en su ocho veces centenaria Universidad, realizando el Máster de Intervenciones en Psicoterapia y el de Terapia Sistémica de la Universidad Pontificia de forma conjunta, especializándome en situaciones de pérdida, violencia y crisis. Una vez finalizado el paréntesis formativo, reinicio mi camino profesional en ámbitos como el daño cerebral (ASDACE), las adicciones (Centro de día de Cáritas Diocesana), y la psicooncología (AECC y Hospital Clínico Universitario de Salamanca), para finalmente abrir mi propia consulta en la ciudad de Salamanca. En ella, y en la región de Castilla y León, desarrollo esta hermosa profesión que tanto ofrece al ser humano en una y otra dirección. ¿Cuál es mi motivación? Ayudar a las personas a superar resistencias, desbloquear emociones, tomar conciencia de sus propios recursos y ganar la confianza para ponerlos a su servicio. Son casi 25 años acumulando experiencia y ayudando a personas a solventar sus problemas y sortear situaciones críticas. Haber formado parte de sus vidas y su mundo emocional ha sido y es un privilegio y un honor, y por ello, por su confianza, les doy las gracias. Psicóloga colaboradora a tiempo parcial María de la Paz Palau Urbón, CL05542",
     "acreditaciones": [
       "Psicóloga Sanitaria Acreditada",
       "Psicóloga y psicoterapeuta",
       "Especialista en EMDR (Miembro de la Asociación EMDR España)",
-      "Especialista en Terapia Sensoriomotriz",
       "Perito judicial psicológico acreditada en los juzgados y en el Tribunal Superior de Justicia de Castilla y León",
       "Docente externa del Máster en Psicología General Sanitaria de la Universidad de Salamanca"
     ],
@@ -117,11 +116,11 @@
     {
       "id": 367,
       "slug": "psicoterapia-individual",
-      "titulo": "Psicoterapia familiar",
+      "titulo": "Psicoterapia familiar sistémica",
       "urlOriginal": "https://luisacofrades.com/psicoterapia-individual/",
-      "extracto": "La intervención familiar está basada en una correcta valoración del modelo relacional y la dinámica familiar, dotando a cada uno de los miembros de los recursos necesarios para una convivencia más sana y más satisfactori...",
-      "contenidoCompleto": "La intervención familiar está basada en una correcta valoración del modelo relacional y la dinámica familiar, dotando a cada uno de los miembros de los recursos necesarios para una convivencia más sana y más satisfactoria.",
-      "rawHtml": "<p>La intervención familiar está basada en una correcta valoración del modelo relacional y la dinámica familiar, dotando a cada uno de los miembros de los recursos necesarios para una convivencia más sana y más satisfactoria.</p>\n"
+      "extracto": "Con este enfoque se entiende a la familia como un sistema interconectado, donde lo que le sucede a un miembro afecta a todos los demás.",
+      "contenidoCompleto": "Con este enfoque se entiende a la familia como un sistema interconectado, donde lo que le sucede a un miembro afecta a todos los demás. La intervención familiar está basada en una correcta valoración del modelo relacional y la dinámica familiar, dotando a cada uno de los miembros de los recursos necesarios para una convivencia más sana y más satisfactoria.",
+      "rawHtml": "<p>Con este enfoque se entiende a la familia como un sistema interconectado, donde lo que le sucede a un miembro afecta a todos los demás.</p>\n<p>La intervención familiar está basada en una correcta valoración del modelo relacional y la dinámica familiar, dotando a cada uno de los miembros de los recursos necesarios para una convivencia más sana y más satisfactoria.</p>\n"
     },
     {
       "id": 364,

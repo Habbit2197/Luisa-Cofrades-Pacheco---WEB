@@ -122,7 +122,7 @@ const difficulties: Difficulty[] = [
       'Espacio seguro para modular la frustración y el enfado',
       'Estrategias prácticas de autorregulación emocional'
     ],
-    therapyMethod: 'Terapia Sensoriomotriz y Gestión de Impulsos',
+    therapyMethod: 'Regulación Emocional y Gestión de Impulsos',
     linkSlug: 'psicoterapia'
   },
   {
