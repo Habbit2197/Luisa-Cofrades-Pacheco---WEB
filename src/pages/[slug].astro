@@ -119,13 +119,13 @@ const parrafos = servicio.contenidoCompleto
               </blockquote>
 
               <!-- Imagen Principal de la Caja de Arena -->
-              <div class="relative overflow-hidden rounded-2xl border border-gray-200 shadow-md group">
+              <div class="relative overflow-hidden rounded-2xl border border-gray-200 shadow-md group cursor-pointer">
                 <Image 
                   src={cajaArenaImg} 
                   alt="Sesión de Sand Play Therapy (Caja de Arena) con figuras simbólicas y arena" 
-                  class="w-full h-72 sm:h-96 object-cover rounded-xl shadow-sm group-hover:scale-102 transition-transform duration-500"
+                  class="w-full h-72 sm:h-96 object-cover rounded-xl shadow-sm group-hover:scale-102 transition-transform duration-500 cursor-pointer gallery-image"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-graphite/70 via-transparent to-transparent flex items-end p-6">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-graphite/70 via-transparent to-transparent flex items-end p-6 pointer-events-none">
                   <p class="text-white text-xs sm:text-sm font-medium">
                     Bandeja reglamentaria azul y arena fina: el escenario seguro para dar forma a mundos internos no aflorados.
                   </p>
@@ -143,32 +143,32 @@ const parrafos = servicio.contenidoCompleto
                 </p>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
+                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group cursor-pointer">
                     <Image 
                       src={cda1Img} 
                       alt="Estanterías de figuras y miniaturas simbólicas para Sand Play" 
-                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
+                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 cursor-pointer gallery-image" 
                     />
                   </div>
-                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
+                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group cursor-pointer">
                     <Image 
                       src={juguetesEstanteriaImg} 
                       alt="Miniaturas y juguetes en estantería para sesión de Caja de Arena" 
-                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
+                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 cursor-pointer gallery-image" 
                     />
                   </div>
-                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
+                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group cursor-pointer">
                     <Image 
                       src={dinosArenaImg} 
                       alt="Figuras y dinosaurios en la arena para elaboración simbólica" 
-                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
+                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 cursor-pointer gallery-image" 
                     />
                   </div>
-                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group">
+                  <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm group cursor-pointer">
                     <Image 
                       src={robotsLegosImg} 
                       alt="Figuras, robots y construcciones para terapia en arena" 
-                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300" 
+                      class="w-full aspect-square object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 cursor-pointer gallery-image" 
                     />
                   </div>
                 </div>
@@ -272,6 +272,73 @@ const parrafos = servicio.contenidoCompleto
       </div>
     </div>
   </section>
+
+  <!-- Modal Nativo Lightbox para la Galería de Imágenes -->
+  <dialog 
+    id="image-modal" 
+    class="backdrop:bg-black/80 backdrop:backdrop-blur-sm fixed inset-0 m-auto max-w-5xl w-full h-full bg-transparent p-4 open:flex flex-col justify-center items-center rounded-none shadow-none border-0 outline-none z-50 cursor-zoom-out"
+  >
+    <button 
+      id="modal-close-btn"
+      type="button" 
+      aria-label="Cerrar modal"
+      class="absolute top-4 right-4 text-white hover:text-brand-aqua text-3xl cursor-pointer p-2 leading-none z-50 transition-colors"
+    >
+      &times;
+    </button>
+    <img 
+      id="modal-image" 
+      src="" 
+      alt="" 
+      class="max-h-full max-w-full object-contain rounded-xl shadow-2xl cursor-default" 
+    />
+  </dialog>
+
+  <style>
+    dialog:not([open]) {
+      display: none;
+    }
+  </style>
+
+  <script is:inline>
+    function initGalleryModal() {
+      const modal = document.getElementById('image-modal');
+      const modalImage = document.getElementById('modal-image');
+      const closeBtn = document.getElementById('modal-close-btn');
+      const galleryImages = document.querySelectorAll('.gallery-image');
+
+      if (!modal || !modalImage) return;
+
+      galleryImages.forEach((img) => {
+        img.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const src = img.currentSrc || img.getAttribute('src');
+          const alt = img.getAttribute('alt') || 'Imagen ampliada de la galería';
+          if (src) {
+            modalImage.setAttribute('src', src);
+            modalImage.setAttribute('alt', alt);
+            modal.showModal();
+          }
+        });
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          modal.close();
+        });
+      }
+
+      modal.addEventListener('click', (e) => {
+        if (e.target !== modalImage) {
+          modal.close();
+        }
+      });
+    }
+
+    initGalleryModal();
+    document.addEventListener('astro:page-load', initGalleryModal);
+  </script>
 
   <Footer />
 </Layout>
