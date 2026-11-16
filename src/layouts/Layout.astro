@@ -100,12 +100,12 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
   <body class="bg-white text-brand-graphite font-sans antialiased selection:bg-brand-aqua/20 selection:text-brand-aqua-dark flex flex-col min-h-screen">
     <!-- Barra superior de navegación corporativa -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20 sm:h-24">
+      <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+        <div class="flex items-center justify-between min-h-[5.5rem] sm:min-h-[6.5rem] lg:min-h-[7rem] py-3 sm:py-4 lg:py-5">
           
           <!-- Logo con fade-in y slide-in estático al hacer scroll -->
           <a href="/" class="group flex items-center flex-shrink-0" aria-label="Inicio - Luisa Cofrades Pacheco">
-            <div class="flex-shrink-0 relative w-48 sm:w-56 md:w-64 h-20 flex items-center justify-start">
+            <div class="flex-shrink-0 relative w-48 sm:w-56 md:w-64 h-16 sm:h-20 lg:h-22 flex items-center justify-start">
               <img 
                 id="logo-static"
                 src="/assets/branding/logo-luisa-positivo404x.png" 
@@ -114,14 +114,14 @@ const ogType = type || (isBlogPost ? 'article' : 'website');
                 height="108"
                 loading="eager"
                 decoding="async"
-                class="w-full h-full object-contain scale-[1.25] md:scale-[1.35] origin-[left_center] opacity-0 translate-y-[-10px] transition-all duration-500 ease-out" 
+                class="w-full h-full object-contain scale-[1.12] sm:scale-[1.18] md:scale-[1.22] origin-[left_center] opacity-0 translate-y-[-10px] transition-all duration-500 ease-out" 
               />
             </div>
             <span class="sr-only">Luisa Cofrades Pacheco - Psicología para vivir</span>
           </a>
 
           <!-- Navegación desktop: enlaces de navegación -->
-          <nav class="hidden md:flex items-center gap-7 lg:gap-8 text-sm font-medium text-brand-graphite/80">
+          <nav class="hidden md:flex items-center gap-6 lg:gap-8 xl:gap-10 text-sm font-medium text-brand-graphite/80">
             <a href="/" class="hover:text-brand-aqua transition-colors">Inicio</a>
             <a href="/#espacio" class="hover:text-brand-aqua transition-colors">Nuestro espacio</a>
             <a href="/#el-equipo" class="hover:text-brand-aqua transition-colors">El Equipo</a>
