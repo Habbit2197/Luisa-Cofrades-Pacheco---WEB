@@ -27,7 +27,7 @@ export default function HeroMotion() {
   };
 
   return (
-    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 lg:pt-28 lg:pb-24">
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 lg:pt-24 pb-16 lg:pb-24">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         
         {/* Contenido textual principal */}
@@ -37,8 +37,8 @@ export default function HeroMotion() {
           initial="hidden"
           animate="visible"
         >
-          {/* Vídeo Animado del Logotipo que corona el Hero */}
-          <motion.div variants={itemVariants}>
+          {/* Vídeo Animado del Logotipo que corona el Hero (solo en desktop y tablet) */}
+          <motion.div variants={itemVariants} className="hidden md:block">
             <video 
               src="/assets/branding/entrada_logo.mp4" 
               autoPlay 
