@@ -29,7 +29,8 @@ import {
   ShieldCheck,
   Users,
   GraduationCap,
-  Newspaper
+  Newspaper,
+  Globe
 } from 'lucide-react';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -342,7 +343,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         </div>
 
         <p class="text-sm sm:text-base text-brand-graphite leading-relaxed">
-          La consulta presencial se ubica en la <strong>Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Las sesiones tienen una duración aproximada de una hora (75 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos terapéuticos.
+          La consulta presencial se ubica en la <strong>Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Las sesiones tienen una duración de 50 minutos (80 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos terapéuticos.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
@@ -549,152 +550,316 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <section id="tarifas" class="py-20 sm:py-24 lg:py-28 bg-gray-50 border-b border-gray-100 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-2xl mx-auto mb-16">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
         <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Claridad y Transparencia</span>
-        <h2 class="text-3xl sm:text-4xl font-light text-brand-graphite tracking-tight mt-2">
+        <h2 class="text-3xl sm:text-4xl font-light text-brand-graphite tracking-tight">
           Tarifas y <span class="font-semibold text-brand-aqua">Honorarios de Consulta</span>
         </h2>
-        <p class="mt-3 text-brand-graphite/70 text-sm sm:text-base leading-relaxed">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-sm font-semibold border border-brand-aqua/20">
+          <Clock class="w-4 h-4 text-brand-aqua" />
+          <span>Todas las sesiones duran 50 minutos</span>
+        </div>
+        <p class="text-brand-graphite/70 text-sm sm:text-base leading-relaxed">
           Precios claros para cada modalidad de acompañamiento, sin cuotas ocultas ni compromisos de permanencia.
         </p>
       </div>
 
-      <!-- Grid de las 3 Tarifas Exactas -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+      <!-- Grid de las 6 Tarifas Exactas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto mb-14">
         
-        <!-- Sesión individual: 75 € -->
-        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
+        <!-- 1. Sesión individual: 80 € -->
+        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center mb-5">
               <CreditCard class="w-6 h-6" />
             </div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-brand-aqua">Adultos</span>
-            <h3 class="text-2xl font-semibold text-brand-graphite mt-1 mb-3">Sesión individual</h3>
-            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-6">
-              Intervención psicoterapéutica individualizada para ansiedad, trauma (EMDR), duelo, regulación emocional y crecimiento personal.
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-aqua">Individual</span>
+            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión individual</h3>
+            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
+              Intervención psicoterapéutica individualizada para adultos, adolescentes, trauma (EMDR), duelo y regulación emocional.
             </p>
 
-            <div class="flex items-baseline gap-2 mb-6">
-              <span class="text-4xl font-bold text-brand-graphite">75 €</span>
+            <div class="flex items-baseline gap-2 mb-5">
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">80 €</span>
               <span class="text-xs text-brand-graphite/60">/ sesión</span>
             </div>
 
-            <div class="space-y-2.5 text-xs text-brand-graphite border-t border-gray-100 pt-5">
+            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
               <div class="flex items-center gap-2">
-                <Clock class="w-4 h-4 text-brand-aqua" />
-                <span>Duración aprox. de 1 hora</span>
+                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>Duración de 50 minutos</span>
               </div>
               <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua" />
+                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
                 <span>Presencial en Salamanca u Online</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua" />
-                <span>Evaluación de caso y objetivos clínicos</span>
               </div>
             </div>
           </div>
 
-          <div class="mt-8 pt-4">
+          <div class="mt-6 pt-3">
             <a 
               href="#contacto" 
-              class="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
             >
               Pedir cita individual
             </a>
           </div>
         </div>
 
-        <!-- Sesión pareja: 80 € (Destacada) -->
-        <div class="bg-white rounded-3xl p-8 border-2 border-brand-aqua shadow-card-hover transition-all flex flex-col justify-between relative">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-aqua text-white text-[11px] font-semibold uppercase tracking-wider shadow-sm">
+        <!-- 2. Sesión de pareja: 90 € -->
+        <div class="bg-white rounded-3xl p-7 sm:p-8 border-2 border-brand-aqua shadow-card-hover transition-all flex flex-col justify-between relative">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full bg-brand-aqua text-white text-[11px] font-semibold uppercase tracking-wider shadow-sm">
             Especializada
           </div>
 
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center mb-5">
               <HeartHandshake class="w-6 h-6" />
             </div>
             <span class="text-xs font-semibold uppercase tracking-wider text-brand-aqua">Relaciones y Vínculos</span>
-            <h3 class="text-2xl font-semibold text-brand-graphite mt-1 mb-3">Sesión pareja</h3>
-            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-6">
-              Espacio neutral y mediador para abordar crisis de relación, comunicación no violenta (CNV), rupturas y reconexión afectiva.
+            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión de pareja</h3>
+            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
+              Espacio neutral y mediador para abordar crisis de relación, comunicación no violenta, rupturas y reconexión afectiva.
             </p>
 
-            <div class="flex items-baseline gap-2 mb-6">
-              <span class="text-4xl font-bold text-brand-graphite">80 €</span>
+            <div class="flex items-baseline gap-2 mb-5">
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">90 €</span>
               <span class="text-xs text-brand-graphite/60">/ sesión</span>
             </div>
 
-            <div class="space-y-2.5 text-xs text-brand-graphite border-t border-gray-100 pt-5">
+            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
               <div class="flex items-center gap-2">
-                <Clock class="w-4 h-4 text-brand-aqua" />
-                <span>Duración aprox. de 1 hora</span>
+                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>Duración de 50 minutos</span>
               </div>
               <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua" />
+                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
                 <span>Presencial o por videoconsulta</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua" />
-                <span>Enfoque sistémico y reparador</span>
               </div>
             </div>
           </div>
 
-          <div class="mt-8 pt-4">
+          <div class="mt-6 pt-3">
             <a 
               href="#contacto" 
-              class="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
             >
               Pedir cita de pareja
             </a>
           </div>
         </div>
 
-        <!-- Sesión niños: 65 € -->
-        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
+        <!-- 3. Sesión con Isabel: 90 € -->
+        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-accent-sky/20 text-[#0284C7] flex items-center justify-center mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-accent-sky/20 text-[#0284C7] flex items-center justify-center mb-5">
               <Sparkles class="w-6 h-6" />
             </div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-[#0284C7]">Infanto-Juvenil</span>
-            <h3 class="text-2xl font-semibold text-brand-graphite mt-1 mb-3">Sesión niños</h3>
-            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-6">
-              Acompañamiento a niños y adolescentes mediante técnicas adaptadas (EMDR Caja de Arena, expresión y juego) y orientación a progenitores.
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#0284C7]">Equipo Clínico</span>
+            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión con Isabel</h3>
+            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
+              Atención psicoterapéutica especializada y cercana con Isabel, orientada a tus necesidades y objetivos terapéuticos.
             </p>
 
-            <div class="flex items-baseline gap-2 mb-6">
-              <span class="text-4xl font-bold text-brand-graphite">65 €</span>
+            <div class="flex items-baseline gap-2 mb-5">
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">90 €</span>
               <span class="text-xs text-brand-graphite/60">/ sesión</span>
             </div>
 
-            <div class="space-y-2.5 text-xs text-brand-graphite border-t border-gray-100 pt-5">
+            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
               <div class="flex items-center gap-2">
-                <Clock class="w-4 h-4 text-brand-aqua" />
-                <span>Duración aprox. de 1 hora</span>
+                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>Duración de 50 minutos</span>
               </div>
               <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua" />
-                <span>Consulta adaptada en Salamanca</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua" />
-                <span>Pautas periódicas para las familias</span>
+                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>Atención clínica personalizada</span>
               </div>
             </div>
           </div>
 
-          <div class="mt-8 pt-4">
+          <div class="mt-6 pt-3">
             <a 
               href="#contacto" 
-              class="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
             >
-              Pedir cita infanto-juvenil
+              Pedir cita con Isabel
             </a>
           </div>
         </div>
 
+        <!-- 4. Sesión en inglés: 85 € -->
+        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-5 border border-indigo-100">
+              <Globe class="w-6 h-6 text-indigo-600" />
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-600">English Therapy</span>
+            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión en inglés</h3>
+            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
+              Psicoterapia individual en inglés para pacientes internacionales o personas que prefieran expresarse en lengua inglesa.
+            </p>
+
+            <div class="flex items-baseline gap-2 mb-5">
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">85 €</span>
+              <span class="text-xs text-brand-graphite/60">/ sesión</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
+              <div class="flex items-center gap-2">
+                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>Duración de 50 minutos</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>In-person in Salamanca or Online</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-3">
+            <a 
+              href="#contacto" 
+              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+            >
+              Pedir cita en inglés
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. Sesión en francés: 100 € -->
+        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-5 border border-violet-100">
+              <Globe class="w-6 h-6 text-violet-600" />
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-violet-600">En français</span>
+            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión en francés</h3>
+            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
+              Consultation psychologique et psychothérapie en français. Accompagnement clinique en présentiel ou par visioconsultation.
+            </p>
+
+            <div class="flex items-baseline gap-2 mb-5">
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">100 €</span>
+              <span class="text-xs text-brand-graphite/60">/ sesión</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
+              <div class="flex items-center gap-2">
+                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>Duración de 50 minutos</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>En cabinet à Salamanque ou en ligne</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-3">
+            <a 
+              href="#contacto" 
+              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+            >
+              Pedir cita en francés
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. Supervisión: 100 € -->
+        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mb-5 border border-amber-100">
+              <Award class="w-6 h-6 text-amber-600" />
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-700">Profesionales</span>
+            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Supervisión</h3>
+            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
+              Supervisión de casos clínicos para profesionales de la psicología, abordaje del trauma, apego y orientación terapéutica integradora.
+            </p>
+
+            <div class="flex items-baseline gap-2 mb-5">
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">100 €</span>
+              <span class="text-xs text-brand-graphite/60">/ sesión</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
+              <div class="flex items-center gap-2">
+                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>Duración de 50 minutos</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+                <span>Para psicólogos y terapeutas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-3">
+            <a 
+              href="#contacto" 
+              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+            >
+              Solicitar supervisión
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bloque de Políticas y Reembolsos -->
+      <div class="mt-16 pt-12 border-t border-gray-200/80 max-w-5xl mx-auto">
+        <div class="text-center max-w-xl mx-auto mb-10 space-y-2">
+          <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Garantías y Normativa</span>
+          <h3 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
+            Políticas y <span class="font-semibold text-brand-aqua">Reembolsos</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-brand-graphite/70 leading-relaxed">
+            Información importante sobre la gestión de tus citas y coberturas de seguros de salud.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          
+          <!-- Bloque: Política de cancelaciones -->
+          <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200/80 shadow-xs hover:shadow-card-hover transition-all flex flex-col justify-between">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5 border border-amber-100">
+                <Clock class="w-5 h-5 text-amber-600" />
+              </div>
+              <h4 class="text-xl font-semibold text-brand-graphite mb-3">
+                Política de cancelaciones
+              </h4>
+              <p class="text-xs sm:text-sm text-brand-graphite/80 leading-relaxed text-justify sm:text-left">
+                Si no puedes asistir a tu cita, te pedimos que nos avises con al menos 24 horas de antelación. Las cancelaciones realizadas con menos de 24 horas de antelación deberán abonarse íntegramente, salvo situaciones excepcionales o de emergencia.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-2 text-xs text-amber-700/85 font-medium">
+              <CheckCircle2 class="w-4 h-4 text-amber-600 shrink-0" />
+              <span>Aviso previo con un mínimo de 24 horas</span>
+            </div>
+          </div>
+
+          <!-- Bloque: Reembolso de las sesiones si resides en España -->
+          <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200/80 shadow-xs hover:shadow-card-hover transition-all flex flex-col justify-between">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center mb-5 border border-brand-aqua/20">
+                <ShieldCheck class="w-5 h-5 text-brand-aqua" />
+              </div>
+              <h4 class="text-xl font-semibold text-brand-graphite mb-3">
+                Reembolso de las sesiones si resides en España
+              </h4>
+              <p class="text-xs sm:text-sm text-brand-graphite/80 leading-relaxed text-justify sm:text-left">
+                Algunas pólizas de seguro médico privado incluyen el reembolso total o parcial de sesiones de terapia psicológica realizadas fuera de su cuadro médico. Las condiciones, porcentajes de cobertura y modalidades varían según la compañía, por lo que te recomendamos consultar directamente con tu aseguradora el número máximo de sesiones cubiertas o si requieren autorización e informe clínico previo.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-2 text-xs text-brand-aqua-dark font-medium">
+              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+              <span>Seguros privados con modalidad de reembolso</span>
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </div>
@@ -1021,7 +1186,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             Pasos obligatorios para coordinar tu cita
           </h3>
           <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-            La consulta presencial se ubica en la <strong class="text-white">Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Duración aprox. de una hora (75 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos.
+            La consulta presencial se ubica en la <strong class="text-white">Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Duración de 50 minutos (80 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos.
           </p>
         </div>
 
