@@ -4,7 +4,6 @@ import HeroSection from '../components/HeroSection.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
 import TherapyExplorer from '../components/TherapyExplorer';
 import InteractiveTriage from '../components/InteractiveTriage';
-import Testimonials from '../components/Testimonials.astro';
 import FaqSection from '../components/FaqSection.astro';
 import Footer from '../components/Footer.astro';
 import AmbientBanner from '../components/AmbientBanner';
@@ -189,7 +188,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
 
               <!-- Biografía en tamaño text-sm y color gris suave para marcar segundo plano -->
               <p class="text-xs sm:text-sm text-gray-600 leading-relaxed text-justify md:text-left">
-                Psicóloga General Sanitaria. Licenciada en Psicología por la Universidad Pontificia de Salamanca. Terapeuta EMDR y amplia experiencia en terapia cognitivo-conductual. Creo en una psicología cercana y humana, en la que cada persona pueda encontrar un espacio seguro donde sentirse escuchada, comprendida y acompañada. Por eso, quiero ofrecerte un lugar en el que pedas parar, conectar contigo, dar espacio a lo que sientes y, sobre todo, aprender a cuidarte. Un espacio para ti, a tu ritmo.
+                Psicóloga General Sanitaria. Licenciada en Psicología por la Universidad Pontificia de Salamanca. Terapeuta EMDR y amplia experiencia en terapia cognitivo-conductual. Creo en una psicología cercana y humana, en la que cada persona pueda encontrar un espacio seguro donde sentirse escuchada, comprendida y acompañada. Por eso, quiero ofrecerte un lugar en el que puedas parar, conectar contigo, dar espacio a lo que sientes y, sobre todo, aprender a cuidarte. Un espacio para ti, a tu ritmo.
               </p>
 
               <!-- Acreditaciones compactas -->
@@ -972,7 +971,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
     </div>
   </section>
 
-  <!-- Banner de Ambiente 2: Imagen de respiro y confianza antes de Testimonios (Framer Motion scroll fade-in) -->
+  <!-- Banner de Ambiente 2: Imagen de respiro y confianza antes de Citas y Triaje (Framer Motion scroll fade-in) -->
   <AmbientBanner 
     client:visible
     imageUrl="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1920&q=80" 
@@ -982,9 +981,6 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
     subtitle="Acompañamiento clínico respaldado por la evidencia científica y la calidez humana."
     icon="heart"
   />
-
-  <!-- Sección de Testimonios -->
-  <Testimonials />
 
   <!-- Súper-Sección Unificada de Citas y Triaje Clínico (Bloque de Alto Contraste) -->
   <section id="contacto" class="py-20 sm:py-24 lg:py-28 bg-brand-graphite text-white relative overflow-hidden scroll-mt-20 border-t border-gray-800">
