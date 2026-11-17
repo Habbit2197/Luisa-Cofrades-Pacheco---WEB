@@ -17,6 +17,20 @@
 /enlaces/  /  301
 /enlaces  /  301
 
+# Redirecciones de Localizaciones de WordPress (evitar 404s)
+/salamanca/*  /  301
+/salamanca/   /  301
+/salamanca    /  301
+/zamora/*     /  301
+/zamora/      /  301
+/zamora       /  301
+/gijon/*      /  301
+/gijon/       /  301
+/gijon        /  301
+/asturias/*   /  301
+/asturias/    /  301
+/asturias     /  301
+
 # Redirecciones de Artículos de Blog con estructura de fechas de WordPress
 /2023/11/25/supervivencia-emocional-una-ventana-hacia-la-sensibilidad/*  /blog/supervivencia-emocional-una-ventana-hacia-la-sensibilidad  301
 /2021/11/26/que-me-emociona/*  /blog/que-me-emociona  301

@@ -100,8 +100,12 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
                 <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-graphite tracking-tight mb-1">
                   Luisa Cofrades Pacheco
                 </h3>
-                <p class="text-brand-aqua font-semibold text-base sm:text-lg mb-4">
+                <p class="text-brand-aqua font-semibold text-base sm:text-lg mb-1.5">
                   Especialista EuroPsy en Psicoterapia · Psicóloga Sanitaria Colegiada N.º BI05747 (COP)
+                </p>
+                <p class="text-xs sm:text-sm text-brand-graphite/70 font-medium mb-4 flex items-center gap-1.5">
+                  <ShieldCheck class="w-4 h-4 text-brand-aqua shrink-0" />
+                  <span>Centro Sanitario Reconocido Junta de Castilla y León · N.º 37-C22-0544</span>
                 </p>
               </div>
 
@@ -116,10 +120,14 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
               </div>
 
               <!-- Acreditaciones en cápsulas -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs sm:text-sm font-medium text-brand-graphite">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-2 text-xs sm:text-sm font-medium text-brand-graphite">
                 <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
                   <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
                   <span>Colegiada N.º BI05747 (COP)</span>
+                </div>
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                  <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+                  <span>Reg. Sanitario CyL: 37-C22-0544</span>
                 </div>
                 <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
                   <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
@@ -129,9 +137,9 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
                   <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
                   <span>Asociación EMDR España</span>
                 </div>
-                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100 sm:col-span-2 lg:col-span-2">
                   <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                  <span>Docente colaboradora USAL</span>
+                  <span>Docente colaboradora Máster USAL</span>
                 </div>
               </div>
             </div>

@@ -64,6 +64,18 @@ export default function HeroMotion() {
             <span className="font-semibold text-brand-aqua">centro de Luisa Cofrades</span>
           </motion.h1>
 
+          {/* Registro Sanitario y Acreditación Oficial */}
+          <motion.div variants={itemVariants} className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm text-brand-graphite/70 font-medium">
+            <span className="inline-flex items-center gap-1.5 text-brand-aqua font-semibold">
+              <ShieldCheck className="w-4 h-4 text-brand-aqua shrink-0" />
+              <span>Centro Sanitario Reconocido Junta CyL</span>
+            </span>
+            <span className="hidden sm:inline text-gray-300">·</span>
+            <span>N.º 37-C22-0544</span>
+            <span className="hidden sm:inline text-gray-300">·</span>
+            <span>Col. BI05747 (COP)</span>
+          </motion.div>
+
           {/* Subtítulo Empático */}
           <motion.p 
             variants={itemVariants}
