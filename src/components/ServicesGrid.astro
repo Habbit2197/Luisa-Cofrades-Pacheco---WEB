@@ -1,45 +1,73 @@
 ---
-import { Brain, Heart, Sparkles, Activity, Users, Scale, Shield, ArrowUpRight, FileText } from 'lucide-react';
+import { Brain, Heart, Sparkles, Activity, Users, Scale, Shield, RotateCw, FileText, ArrowRight } from 'lucide-react';
 
 const servicios = [
   {
     id: "emdr",
     title: "Terapia EMDR",
-    tagline: "Especialidad en Trauma y Bloqueos",
+    tagline: "Trauma y Bloqueos",
     desc: "Método psicoterapéutico avalado por la OMS para reprocesar experiencias traumáticas, duelos no resueltos, fobias y recuerdos dolorosos enquistados.",
     icon: Brain,
-    badge: "Especialista Acreditada",
-    pdfUrl: "/assets/documentos/quecc81-es-emdr.pdf"
+    badge: "Acreditada OMS",
+    pdfUrl: "/assets/documentos/quecc81-es-emdr.pdf",
+    backBg: "bg-teal-50/90 border-teal-200/80",
+    iconBg: "bg-teal-100/70 text-teal-700",
+    accentColor: "text-teal-700"
   },
   {
     id: "ansiedad-panico",
     title: "Ansiedad y Ataques de Pánico",
-    tagline: "Regulación Neurofisiológica",
+    tagline: "Regulación Somática",
     desc: "Comprensión del sistema de alerta corporal, reestructuración cognitiva y herramientas de autorregulación somática para desactivar la hiperactivación y el miedo.",
     icon: Activity,
-    badge: "Frecuente"
+    badge: "Frecuente",
+    backBg: "bg-sky-50/90 border-sky-200/80",
+    iconBg: "bg-sky-100/70 text-sky-700",
+    accentColor: "text-sky-700"
   },
   {
     id: "familiar",
     title: "Psicoterapia familiar sistémica",
-    tagline: "Vínculos y Dinámica Familiar",
+    tagline: "Vínculos Familiares",
     desc: "Con este enfoque se entiende a la familia como un sistema interconectado, donde lo que le sucede a un miembro afecta a todos los demás.",
     icon: Sparkles,
-    badge: "Enfoque Sistémico"
+    badge: "Enfoque Sistémico",
+    backBg: "bg-purple-50/90 border-purple-200/80",
+    iconBg: "bg-purple-100/70 text-purple-700",
+    accentColor: "text-purple-700"
   },
   {
     id: "adultos-pareja",
     title: "Psicoterapia de Adultos y Pareja",
-    tagline: "Vínculos y Crisis Vitales",
+    tagline: "Relaciones y Vínculos",
     desc: "Acompañamiento en momentos de incertidumbre, crisis de relación, rupturas dolorosas, problemas de comunicación y reconexión afectiva genuina.",
-    icon: Users
+    icon: Users,
+    badge: "Afectiva",
+    backBg: "bg-indigo-50/90 border-indigo-200/80",
+    iconBg: "bg-indigo-100/70 text-indigo-700",
+    accentColor: "text-indigo-700"
   },
   {
     id: "autoestima-duelo",
     title: "Autoestima, Duelo y Resiliencia",
-    tagline: "Reconstrucción del Autoconcepto",
+    tagline: "Autoconcepto y Sanación",
     desc: "Sanar pérdidas significativas, trascender la autocrítica destructiva y consolidar un diálogo interno compasivo, firme y constructivo.",
-    icon: Heart
+    icon: Heart,
+    badge: "Resiliencia",
+    backBg: "bg-rose-50/90 border-rose-200/80",
+    iconBg: "bg-rose-100/70 text-rose-700",
+    accentColor: "text-rose-700"
+  },
+  {
+    id: "neuropsicologia",
+    title: "Neuropsicología: Evaluación y Neurorehabilitación",
+    tagline: "Daño Cerebral y Memoria",
+    desc: "Evaluación neuropsicológica de memoria, atención, lenguaje y funciones ejecutivas. Intervención mediante programas individualizados de neurorehabilitación y estimulación. Atención especializada a daño cerebral, deterioro mental y enfermedades neurodegenerativas para favorecer la autonomía y calidad de vida.",
+    icon: Brain,
+    badge: "Nueva Área",
+    backBg: "bg-emerald-50/90 border-emerald-200/80",
+    iconBg: "bg-emerald-100/70 text-emerald-700",
+    accentColor: "text-emerald-700"
   },
   {
     id: "peritajes",
@@ -47,14 +75,17 @@ const servicios = [
     tagline: "Evaluación Forense Oficial",
     desc: "Informes y peritajes psicológicos rigurosos con ratificación judicial en juzgados y en el Tribunal Superior de Justicia de Castilla y León.",
     icon: Scale,
-    badge: "Judicial TSJ"
+    badge: "Judicial TSJ",
+    backBg: "bg-amber-50/90 border-amber-200/80",
+    iconBg: "bg-amber-100/70 text-amber-800",
+    accentColor: "text-amber-800"
   }
 ];
 ---
 
-<section id="servicios" class="py-20 sm:py-24 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="servicios" class="py-20 sm:py-24 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
   <!-- Cabecera de la sección -->
-  <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+  <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-semibold uppercase tracking-wider mb-4 border border-brand-aqua/20">
       <Shield class="w-3.5 h-3.5 text-brand-aqua" />
       <span>Áreas de Intervención y Terapias</span>
@@ -63,74 +94,178 @@ const servicios = [
       Un enfoque integrador y científico, <br />
       <span class="font-semibold text-brand-aqua">centrado en tu historia única</span>
     </h2>
-    <p class="mt-4 text-base sm:text-lg text-brand-graphite/70 leading-relaxed">
-      Cada persona procesa el dolor de forma singular. Combinamos la psicoterapia relacional con técnicas somáticas y neurobiológicas avanzadas.
+    <p class="mt-4 text-sm sm:text-base md:text-lg text-brand-graphite/70 leading-relaxed max-w-2xl mx-auto">
+      Toca cualquier tarjeta para descubrir nuestro abordaje clínico para cada especialidad.
     </p>
   </div>
 
-  <!-- Grid de tarjetas con micro-interacciones -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <!-- Grid Interactivo de Flip Cards (2 columnas en móvil/tablet para experiencia compacta) -->
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6">
     {servicios.map((item) => {
       const Icon = item.icon;
       return (
-        <article class="group relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden">
-          
-          {/* Acento decorativo sutil al hover */}
-          <div class="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-gradient-to-r group-hover:from-accent-sky group-hover:to-brand-aqua transition-all duration-300"></div>
-
-          <div>
-            <div class="flex items-center justify-between gap-4 mb-6">
-              <div class="w-14 h-14 rounded-2xl bg-brand-aqua/10 flex items-center justify-center text-brand-aqua group-hover:bg-brand-aqua group-hover:text-white transition-colors duration-300 shadow-sm">
-                <Icon class="w-7 h-7" />
+        <div 
+          class="flip-card-wrapper perspective-1000 w-full h-[300px] sm:h-[320px] md:h-[330px] select-none cursor-pointer group"
+          role="button"
+          tabindex="0"
+          aria-label={`Tarjeta de servicio: ${item.title}. Haz clic para girar y leer descripción.`}
+        >
+          <div class="flip-card-inner relative w-full h-full duration-500 transform-style-3d transition-transform">
+            
+            <!-- CARA FRONTAL: Fondo blanco/pastel suave, centrado, icono y título -->
+            <div class="flip-card-front absolute inset-0 w-full h-full backface-hidden rounded-3xl p-4 sm:p-6 bg-white border border-gray-100/90 shadow-sm hover:shadow-card-hover hover:border-brand-aqua/30 transition-all flex flex-col items-center justify-between text-center overflow-hidden">
+              
+              <!-- Badge superior -->
+              <div class="w-full flex items-center justify-between text-[10px] sm:text-xs">
+                {item.badge ? (
+                  <span class="px-2 py-0.5 rounded-full bg-gray-50 border border-gray-200 text-gray-500 font-medium tracking-tight">
+                    {item.badge}
+                  </span>
+                ) : <span />}
+                
+                <span class="text-gray-400 group-hover:text-brand-aqua transition-colors flex items-center gap-1 font-medium" title="Girar">
+                  <RotateCw class="w-3 h-3 group-hover:rotate-180 transition-transform duration-500" />
+                </span>
               </div>
 
-              {item.badge && (
-                <span class="text-xs font-medium px-3 py-1 rounded-full bg-gray-50 text-brand-graphite border border-gray-200">
-                  {item.badge}
+              <!-- Contenido Central: Icono y Título -->
+              <div class="flex flex-col items-center justify-center my-auto px-1">
+                <div class={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl ${item.iconBg} flex items-center justify-center shadow-xs mb-3 transition-transform group-hover:scale-105 duration-300`}>
+                  <Icon class="w-6 h-6 sm:w-8 sm:h-8" />
+                </div>
+                
+                <h3 class="text-xs sm:text-sm md:text-base font-semibold text-brand-graphite leading-snug tracking-tight">
+                  {item.title}
+                </h3>
+
+                <p class="text-[10px] sm:text-xs text-brand-aqua font-medium mt-1 uppercase tracking-wider">
+                  {item.tagline}
+                </p>
+              </div>
+
+              <!-- Pie frontal con indicación de interacción -->
+              <div class="w-full pt-2 border-t border-gray-100 flex items-center justify-center">
+                <span class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-brand-aqua group-hover:translate-x-0.5 transition-transform">
+                  <span>Tocar para ver</span>
+                  <ArrowRight class="w-3 h-3" />
                 </span>
-              )}
+              </div>
+
             </div>
 
-            <p class="text-xs uppercase tracking-wider font-semibold text-brand-aqua mb-1">
-              {item.tagline}
-            </p>
-            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite group-hover:text-brand-aqua transition-colors">
-              {item.title}
-            </h3>
+            <!-- CARA TRASERA: Fondo pastel suave, texto descriptivo centrado y legible -->
+            <div class={`flip-card-back absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl p-4 sm:p-5 ${item.backBg} border shadow-card-hover flex flex-col items-center justify-between text-center overflow-y-auto`}>
+              
+              <!-- Título de cabecera trasera -->
+              <div class="w-full flex items-center justify-between pb-1.5 border-b border-black/5">
+                <span class={`text-[10px] sm:text-xs font-bold uppercase tracking-wider ${item.accentColor} truncate pr-2`}>
+                  {item.title}
+                </span>
+                <span class="text-gray-400 shrink-0" title="Volver al frente">
+                  <RotateCw class="w-3 h-3" />
+                </span>
+              </div>
 
-            <p class="mt-3.5 text-brand-graphite/70 text-sm sm:text-base leading-relaxed">
-              {item.desc}
-            </p>
+              <!-- Texto Descriptivo Centrado y Legible -->
+              <div class="my-auto py-2 px-1">
+                <p class="text-[11px] sm:text-xs md:text-[13px] text-brand-graphite leading-relaxed text-center font-normal">
+                  {item.desc}
+                </p>
+              </div>
+
+              <!-- Acciones al pie -->
+              <div class="w-full pt-2 border-t border-black/5 flex flex-col gap-1 items-center justify-center">
+                {item.pdfUrl && (
+                  <a 
+                    href={item.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-aqua hover:underline"
+                    onclick="event.stopPropagation();"
+                  >
+                    <FileText class="w-3 h-3" />
+                    <span>Guía EMDR en PDF</span>
+                  </a>
+                )}
+
+                <a 
+                  href="#contacto"
+                  class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
+                  onclick="event.stopPropagation();"
+                >
+                  <span>Concertar cita</span>
+                  <ArrowRight class="w-3 h-3" />
+                </a>
+              </div>
+
+            </div>
+
           </div>
-
-          <!-- Pie de tarjeta -->
-          <div class="mt-8 pt-5 border-t border-gray-100 flex items-center justify-between">
-            {item.pdfUrl ? (
-              <a 
-                href={item.pdfUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
-              >
-                <FileText class="w-4 h-4" />
-                <span>Ver guía PDF "¿Qué es EMDR?"</span>
-              </a>
-            ) : (
-              <span class="text-xs text-brand-graphite/60 font-medium">Presencial y Online</span>
-            )}
-
-            <a 
-              href="#contacto" 
-              class="inline-flex items-center gap-1 text-sm font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
-              aria-label={`Consultar sobre ${item.title}`}
-            >
-              <span>Consultar</span>
-              <ArrowUpRight class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-          </div>
-
-        </article>
+        </div>
       );
     })}
   </div>
 </section>
+
+<style>
+  .perspective-1000 {
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+  }
+  .flip-card-inner.is-flipped {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+  }
+</style>
+
+<script>
+  function setupFlipCards() {
+    const cards = document.querySelectorAll<HTMLElement>('.flip-card-wrapper');
+    cards.forEach((card) => {
+      // Toggle flip on click
+      card.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (target && target.closest('a')) {
+          return; // Allow direct navigation for links inside
+        }
+        const inner = card.querySelector('.flip-card-inner');
+        if (inner) {
+          inner.classList.toggle('is-flipped');
+        }
+      });
+
+      // Accessible keyboard control
+      card.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const inner = card.querySelector('.flip-card-inner');
+          if (inner) {
+            inner.classList.toggle('is-flipped');
+          }
+        }
+      });
+    });
+  }
+
+  // Initial and reactive lifecycle execution
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupFlipCards);
+    } else {
+      setupFlipCards();
+    }
+    document.addEventListener('astro:page-load', setupFlipCards);
+  }
+</script>

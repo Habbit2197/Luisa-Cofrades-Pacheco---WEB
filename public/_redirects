@@ -8,6 +8,15 @@
 /posts/  /blog  301
 /feed/  /  301
 
+# Redirecciones de Enlaces Residuales WordPress (evitar 404s)
+/author/luisacofrades/*  /luisa-cofrades  301
+/author/luisacofrades/  /luisa-cofrades  301
+/author/luisacofrades  /luisa-cofrades  301
+/author/*  /luisa-cofrades  301
+/enlaces/*  /  301
+/enlaces/  /  301
+/enlaces  /  301
+
 # Redirecciones de Artículos de Blog con estructura de fechas de WordPress
 /2023/11/25/supervivencia-emocional-una-ventana-hacia-la-sensibilidad/*  /blog/supervivencia-emocional-una-ventana-hacia-la-sensibilidad  301
 /2021/11/26/que-me-emociona/*  /blog/que-me-emociona  301

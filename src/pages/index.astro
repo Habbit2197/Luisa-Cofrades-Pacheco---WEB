@@ -157,62 +157,113 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
           </div>
         </article>
 
-        <!-- BLOQUE SECUNDARIO (Colaboradora - Mari Paz Palau Urbón) -->
+        <!-- BLOQUE SECUNDARIO (Colaboradoras del centro) -->
         <div class="mt-32 md:mt-40 pt-8">
           <h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-8">
             Colaboradoras del centro
           </h4>
 
-          <article class="max-w-3xl bg-gray-50/70 p-6 md:p-8 rounded-2xl border border-gray-100 flex flex-col md:flex-row gap-6 items-center md:items-start shadow-xs hover:border-gray-200 transition-colors">
-            <!-- Foto de Mari Paz con tamaño más visible y equilibrado -->
-            <img 
-              src="/assets/media/paz_urbon.jpeg" 
-              alt="Mari Paz Palau Urbón - Psicóloga General Sanitaria" 
-              width="200" 
-              height="200" 
-              loading="lazy" 
-              decoding="async" 
-              class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shrink-0 shadow-md border-2 border-white"
-            />
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Article Mari Paz Palau Urbón -->
+            <article class="bg-gray-50/70 p-6 md:p-8 rounded-2xl border border-gray-100 flex flex-col md:flex-row gap-6 items-center md:items-start shadow-xs hover:border-gray-200 transition-colors">
+              <!-- Foto de Mari Paz con tamaño más visible y equilibrado -->
+              <img 
+                src="/assets/media/paz_urbon.jpeg" 
+                alt="Mari Paz Palau Urbón - Psicóloga General Sanitaria" 
+                width="200" 
+                height="200" 
+                loading="lazy" 
+                decoding="async" 
+                class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shrink-0 shadow-md border-2 border-white"
+              />
 
-            <!-- Contenido con tipografía secundaria y discreta -->
-            <div class="flex-1 space-y-3 text-center md:text-left">
-              <div>
-                <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold block mb-0.5">Equipo Clínico Colaborador</span>
-                <h4 class="text-xl font-bold text-brand-graphite">
-                  Mari Paz Palau Urbón
-                </h4>
-                <p class="text-xs sm:text-sm text-brand-aqua font-medium">
-                  Psicóloga General Sanitaria · N.º Col. CL-05542
+              <!-- Contenido con tipografía secundaria y discreta -->
+              <div class="flex-1 space-y-3 text-center md:text-left">
+                <div>
+                  <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold block mb-0.5">Equipo Clínico Colaborador</span>
+                  <h4 class="text-xl font-bold text-brand-graphite">
+                    Mari Paz Palau Urbón
+                  </h4>
+                  <p class="text-xs sm:text-sm text-brand-aqua font-medium">
+                    Psicóloga General Sanitaria · N.º Col. CL-05542
+                  </p>
+                </div>
+
+                <!-- Biografía en tamaño text-sm y color gris suave para marcar segundo plano -->
+                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed text-justify md:text-left">
+                  Psicóloga General Sanitaria. Licenciada en Psicología por la Universidad Pontificia de Salamanca. Terapeuta EMDR y amplia experiencia en terapia cognitivo-conductual. Creo en una psicología cercana y humana, en la que cada persona pueda encontrar un espacio seguro donde sentirse escuchada, comprendida y acompañada. Por eso, quiero ofrecerte un lugar en el que puedas parar, conectar contigo, dar espacio a lo que sientes y, sobre todo, aprender a cuidarte. Un espacio para ti, a tu ritmo.
                 </p>
+
+                <!-- Acreditaciones compactas -->
+                <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs text-gray-500">
+                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Terapeuta EMDR</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Licenciada UPSA</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Terapia Cognitivo-Conductual</span>
+                </div>
+
+                <!-- Enlace discreto a cita -->
+                <div class="pt-2">
+                  <a 
+                    href="#contacto" 
+                    class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
+                  >
+                    <Calendar class="w-3.5 h-3.5" />
+                    <span>Concertar cita</span>
+                  </a>
+                </div>
               </div>
+            </article>
 
-              <!-- Biografía en tamaño text-sm y color gris suave para marcar segundo plano -->
-              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed text-justify md:text-left">
-                Psicóloga General Sanitaria. Licenciada en Psicología por la Universidad Pontificia de Salamanca. Terapeuta EMDR y amplia experiencia en terapia cognitivo-conductual. Creo en una psicología cercana y humana, en la que cada persona pueda encontrar un espacio seguro donde sentirse escuchada, comprendida y acompañada. Por eso, quiero ofrecerte un lugar en el que puedas parar, conectar contigo, dar espacio a lo que sientes y, sobre todo, aprender a cuidarte. Un espacio para ti, a tu ritmo.
-              </p>
+            <!-- Article Alba Rodríguez Marcos -->
+            <article class="bg-gray-50/70 p-6 md:p-8 rounded-2xl border border-gray-100 flex flex-col md:flex-row gap-6 items-center md:items-start shadow-xs hover:border-gray-200 transition-colors">
+              <!-- Foto de Alba -->
+              <img 
+                src="/assets/media/alba.jpeg" 
+                alt="Alba Rodríguez Marcos - Psicóloga General Sanitaria" 
+                width="200" 
+                height="200" 
+                loading="lazy" 
+                decoding="async" 
+                class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shrink-0 shadow-md border-2 border-white"
+              />
 
-              <!-- Acreditaciones compactas -->
-              <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs text-gray-500">
-                <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Terapeuta EMDR</span>
-                <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Licenciada UPSA</span>
-                <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Terapia Cognitivo-Conductual</span>
+              <!-- Contenido de Alba -->
+              <div class="flex-1 space-y-3 text-center md:text-left">
+                <div>
+                  <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold block mb-0.5">Equipo Clínico Colaborador</span>
+                  <h4 class="text-xl font-bold text-brand-graphite">
+                    Alba Rodríguez Marcos
+                  </h4>
+                  <p class="text-xs sm:text-sm text-brand-aqua font-medium">
+                    Psicóloga General Sanitaria · N.º Col. CL-05594
+                  </p>
+                </div>
+
+                <!-- Biografía literal solicitada -->
+                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed text-justify md:text-left">
+                  Soy graduada en psicología por la Universidad Pontificia de Salamanca. Cuento con una experiencia en terapia familiar, individual e infantil. A lo largo de mi trayectoria también he acompañado a personas y familias que conviven con enfermedades degenerativas y demencias y con sus dificultades en el día a día. Pienso que acompañar empieza por la escucha y el respeto, ayudando a cada persona a comprender y gestionar aquello que le genera incomodidad. Mi objetivo es ofrecer un espacio seguro, sin juicios y lleno de magia, donde los adultos, las familias y los más pequeños puedan sentirse escuchados, comprendidos y acompañados. Cada paso juntos nos ayuda a crecer.
+                </p>
+
+                <!-- Acreditaciones compactas -->
+                <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs text-gray-500">
+                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Graduada UPSA</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Terapia Familiar e Infantil</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Acompañamiento y Demencias</span>
+                </div>
+
+                <!-- Enlace discreto a cita -->
+                <div class="pt-2">
+                  <a 
+                    href="#contacto" 
+                    class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
+                  >
+                    <Calendar class="w-3.5 h-3.5" />
+                    <span>Concertar cita</span>
+                  </a>
+                </div>
               </div>
-
-              <!-- Enlace discreto a cita -->
-              <div class="pt-2">
-                <a 
-                  href="#contacto" 
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
-                >
-                  <Calendar class="w-3.5 h-3.5" />
-                  <span>Concertar cita</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- TODO: Añadir tarjetas de Ana y Alba cuando envíen foto y texto -->
+            </article>
+          </div>
         </div>
 
       </div>
@@ -564,7 +615,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         </p>
       </div>
 
-      <!-- Grid de las 6 Tarifas Exactas -->
+      <!-- Grid de Tarifas -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto mb-14">
         
         <!-- 1. Sesión individual: 80 € -->
@@ -727,46 +778,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
           </div>
         </div>
 
-        <!-- 5. Sesión en francés: 100 € -->
-        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-5 border border-violet-100">
-              <Globe class="w-6 h-6 text-violet-600" />
-            </div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-violet-600">En français</span>
-            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión en francés</h3>
-            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
-              Consultation psychologique et psychothérapie en français. Accompagnement clinique en présentiel ou par visioconsultation.
-            </p>
-
-            <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">100 €</span>
-              <span class="text-xs text-brand-graphite/60">/ sesión</span>
-            </div>
-
-            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
-              <div class="flex items-center gap-2">
-                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Duración de 50 minutos</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>En cabinet à Salamanque ou en ligne</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-3">
-            <a 
-              href="#contacto" 
-              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
-            >
-              Pedir cita en francés
-            </a>
-          </div>
-        </div>
-
-        <!-- 6. Supervisión: 100 € -->
+        <!-- 5. Supervisión: 100 € -->
         <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mb-5 border border-amber-100">
@@ -807,20 +819,19 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
 
       </div>
 
-      <!-- Bloque de Políticas y Reembolsos -->
-      <div class="mt-16 pt-12 border-t border-gray-200/80 max-w-5xl mx-auto">
+      <!-- Bloque de Políticas: Política de Cancelaciones -->
+      <div class="mt-16 pt-12 border-t border-gray-200/80 max-w-4xl mx-auto">
         <div class="text-center max-w-xl mx-auto mb-10 space-y-2">
           <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Garantías y Normativa</span>
           <h3 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
-            Políticas y <span class="font-semibold text-brand-aqua">Reembolsos</span>
+            Política de <span class="font-semibold text-brand-aqua">Cancelaciones</span>
           </h3>
           <p class="text-xs sm:text-sm text-brand-graphite/70 leading-relaxed">
-            Información importante sobre la gestión de tus citas y coberturas de seguros de salud.
+            Información importante sobre la gestión y reserva de tus citas.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          
+        <div class="max-w-2xl mx-auto">
           <!-- Bloque: Política de cancelaciones -->
           <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200/80 shadow-xs hover:shadow-card-hover transition-all flex flex-col justify-between">
             <div>
@@ -839,26 +850,6 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
               <span>Aviso previo con un mínimo de 24 horas</span>
             </div>
           </div>
-
-          <!-- Bloque: Reembolso de las sesiones si resides en España -->
-          <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200/80 shadow-xs hover:shadow-card-hover transition-all flex flex-col justify-between">
-            <div>
-              <div class="w-11 h-11 rounded-2xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center mb-5 border border-brand-aqua/20">
-                <ShieldCheck class="w-5 h-5 text-brand-aqua" />
-              </div>
-              <h4 class="text-xl font-semibold text-brand-graphite mb-3">
-                Reembolso de las sesiones si resides en España
-              </h4>
-              <p class="text-xs sm:text-sm text-brand-graphite/80 leading-relaxed text-justify sm:text-left">
-                Algunas pólizas de seguro médico privado incluyen el reembolso total o parcial de sesiones de terapia psicológica realizadas fuera de su cuadro médico. Las condiciones, porcentajes de cobertura y modalidades varían según la compañía, por lo que te recomendamos consultar directamente con tu aseguradora el número máximo de sesiones cubiertas o si requieren autorización e informe clínico previo.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-2 text-xs text-brand-aqua-dark font-medium">
-              <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-              <span>Seguros privados con modalidad de reembolso</span>
-            </div>
-          </div>
-
         </div>
       </div>
 
