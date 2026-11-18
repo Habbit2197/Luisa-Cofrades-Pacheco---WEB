@@ -15,8 +15,8 @@ export async function getStaticPaths() {
   const dataPath = path.resolve('data.json');
   const siteData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 
-  // Excluir slugs reservados
-  const excluded = ['index', 'sobre-mi', 'contacto', 'aviso-legal', 'politica-de-privacidad', 'politica-de-cookies'];
+  // Excluir slugs reservados y páginas migradas a anclas (ej. formacion-y-educacion -> #emdr)
+  const excluded = ['index', 'sobre-mi', 'contacto', 'aviso-legal', 'politica-de-privacidad', 'politica-de-cookies', 'formacion-y-educacion'];
 
   return siteData.servicios
     .filter((s: any) => !excluded.includes(s.slug))

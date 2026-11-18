@@ -31,6 +31,17 @@
 /asturias/    /  301
 /asturias     /  301
 
+# Redirecciones de Formación y Educación a Terapia EMDR (Sitelinks Technical SEO)
+/formacion/*                /#emdr             301
+/formacion/                 /#emdr             301
+/formacion                  /#emdr             301
+/educacion/*                /#emdr             301
+/educacion/                 /#emdr             301
+/educacion                  /#emdr             301
+/formacion-y-educacion/*    /#emdr             301
+/formacion-y-educacion/     /#emdr             301
+/formacion-y-educacion      /#emdr             301
+
 # Redirecciones de Artículos de Blog con estructura de fechas de WordPress
 /2023/11/25/supervivencia-emocional-una-ventana-hacia-la-sensibilidad/*  /blog/supervivencia-emocional-una-ventana-hacia-la-sensibilidad  301
 /2021/11/26/que-me-emociona/*  /blog/que-me-emociona  301
