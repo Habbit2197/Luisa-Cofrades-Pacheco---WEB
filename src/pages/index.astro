@@ -48,22 +48,21 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <!-- Hero Section con Framer Motion, imagen de la taza/vela y propuesta de valor -->
   <HeroSection />
 
-  <!-- Sección El Equipo (Sustituye a Sobre Mí: Luisa Cofrades y Mari Paz Palau Urbón) -->
-  <section id="el-equipo" class="py-20 sm:py-24 lg:py-28 bg-[#f8fbfa] border-b border-gray-100/80 scroll-mt-20">
+  <!-- Sección Sobre Mí: Biografía y Dirección de Luisa Cofrades -->
+  <section id="sobre-mi" class="py-20 sm:py-24 lg:py-28 bg-[#f8fbfa] border-b border-gray-100/80 scroll-mt-20">
     <!-- Anclas para compatibilidad de navegación interna -->
-    <div id="sobre-mi" class="scroll-mt-20"></div>
     <div id="el-centro" class="scroll-mt-20"></div>
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Cabecera de la Sección El Equipo -->
+      <!-- Cabecera de la Sección Sobre Mí -->
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-semibold uppercase tracking-wider border border-brand-aqua/20">
-          <Users class="w-4 h-4 text-brand-aqua" />
-          <span>El Equipo · Psicología para Vivir</span>
+          <Award class="w-4 h-4 text-brand-aqua" />
+          <span>Dirección Clínica & Fundadora</span>
         </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-brand-graphite tracking-tight leading-tight">
-          Profesionales comprometidas con <span class="font-semibold text-brand-aqua">tu bienestar y salud mental</span>
+          Sobre <span class="font-semibold text-brand-aqua">mí</span>
         </h2>
         <p class="text-brand-graphite/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
           Acompañamiento clínico integral con una <strong class="text-brand-graphite font-semibold">mirada sistémica, humanista e integrativa</strong>, rigor científico y calidez humana en cada proceso terapéutico.
@@ -165,11 +164,22 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
           </div>
         </article>
 
-        <!-- BLOQUE SECUNDARIO (Colaboradoras del centro) -->
-        <div class="mt-32 md:mt-40 pt-8">
-          <h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-8">
-            Colaboradoras del centro
-          </h4>
+        <!-- SECCIÓN EQUIPO: Colaboradoras del centro (Mari Paz, Alba) -->
+        <div id="equipo" class="mt-28 md:mt-36 pt-12 border-t border-gray-200/70 scroll-mt-24">
+          <div id="el-equipo" class="scroll-mt-24"></div>
+          
+          <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs font-semibold uppercase tracking-wider border border-brand-aqua/20">
+              <Users class="w-4 h-4 text-brand-aqua" />
+              <span>Psicología para Vivir</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-light text-brand-graphite tracking-tight">
+              Equipo
+            </h2>
+            <p class="text-brand-graphite/70 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+              Psicólogas sanitarias colegiadas que colaboran en el centro, compartiendo nuestro compromiso ético, cercanía y rigor científico.
+            </p>
+          </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Article Mari Paz Palau Urbón -->
@@ -402,7 +412,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         </div>
 
         <p class="text-sm sm:text-base text-brand-graphite leading-relaxed">
-          La consulta presencial se ubica en la <strong>Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Las sesiones tienen una duración de 50 minutos (80 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos terapéuticos.
+          La consulta presencial se ubica en la <strong>Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Las sesiones tienen una duración de 50 minutos (75 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos terapéuticos.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
@@ -864,18 +874,19 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
     </div>
   </section>
 
-  <!-- Sección El Espacio: Galería de Acuarelas y Ubicación en Salamanca Centro -->
-  <section id="espacio" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100 scroll-mt-24 relative">
+  <!-- Sección Nuestro Espacio: Galería de Acuarelas y Ubicación en Salamanca Centro -->
+  <section id="nuestro-espacio" class="py-20 sm:py-24 lg:py-28 bg-white border-b border-gray-100 scroll-mt-24 relative">
+    <div id="espacio" class="scroll-mt-24"></div>
     <div id="sedes" class="absolute -top-24 left-0 pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Dónde Encontrarme · El Espacio</span>
+        <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Dónde Encontrarme</span>
         <h2 class="text-3xl sm:text-4xl font-light text-brand-graphite tracking-tight">
-          Un entorno de calma en pleno <span class="font-semibold text-brand-aqua">centro de Salamanca</span>
+          Nuestro <span class="font-semibold text-brand-aqua">espacio</span>
         </h2>
         <p class="text-brand-graphite/70 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-          Un espacio cuidado en cada detalle para inspirar serenidad, intimidad y seguridad desde el instante en que cruzas la puerta.
+          Un entorno de calma en pleno centro de Salamanca, cuidado en cada detalle para inspirar serenidad, intimidad y seguridad desde el instante en que cruzas la puerta.
         </p>
       </div>
 
@@ -1119,7 +1130,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
                 <ExternalLink class="w-3.5 h-3.5" />
               </a>
               <a 
-                href="#espacio" 
+                href="#nuestro-espacio" 
                 class="inline-flex items-center gap-1.5 text-xs font-medium text-brand-graphite/70 hover:text-brand-aqua transition-colors"
               >
                 <span>Conoce nuestro espacio</span>
@@ -1185,7 +1196,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             Pasos obligatorios para coordinar tu cita
           </h3>
           <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-            La consulta presencial se ubica en la <strong class="text-white">Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Duración de 50 minutos (80 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos.
+            La consulta presencial se ubica en la <strong class="text-white">Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Duración de 50 minutos (75 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos.
           </p>
         </div>
 
