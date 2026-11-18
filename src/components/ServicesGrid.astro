@@ -110,7 +110,7 @@ const servicios = [
           tabindex="0"
           aria-label={`Tarjeta de servicio: ${item.title}. Haz clic para girar y leer descripción.`}
         >
-          <div class="relative w-full h-full min-h-[320px] transition-transform duration-500 [transform-style:preserve-3d] flip-card-inner">
+          <div class="relative w-full h-full min-h-[320px] transition-transform duration-500 [transform-style:preserve-3d] flip-card-inner cursor-pointer">
             
             <!-- CARA FRONTAL (Front): Fondo sutil gradiente suave, bordes redondeados, borde fino y sombra suave -->
             <div class="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] flex flex-col items-center justify-center p-6 bg-gradient-to-br from-white to-gray-50 rounded-2xl border border-gray-100 shadow-sm text-center overflow-hidden">
@@ -211,56 +211,36 @@ const servicios = [
   /* Soporte de compatibilidad WebKit para animaciones 3D fluidas */
   .flip-card-inner {
     -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
   }
   .flip-card-front,
   .flip-card-back {
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
-  .flip-card-inner.is-flipped {
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
+  .flip-card-inner.\[transform\:rotateY\(180deg\)\] {
+    transform: rotateY(180deg) !important;
+    -webkit-transform: rotateY(180deg) !important;
   }
 </style>
 
 <script>
-  function setupFlipCards() {
-    // Seleccionar todos los elementos .flip-card-inner
-    const flipCardInners = document.querySelectorAll<HTMLElement>('.flip-card-inner');
-
-    flipCardInners.forEach((card) => {
-      const toggleCard = (e: Event) => {
-        const target = e.target as HTMLElement;
-        // Permitir que los enlaces dentro de la tarjeta se abran sin voltear la tarjeta
-        if (target && target.closest('a')) {
-          return;
-        }
-        card.classList.toggle('[transform:rotateY(180deg)]');
-        card.classList.toggle('is-flipped');
-      };
-
-      // Click listener directo sobre cada contenedor interno
-      card.addEventListener('click', toggleCard);
-
-      // Accesibilidad por teclado (Enter / Espacio)
-      const wrapper = card.closest('.flip-card-wrapper');
-      if (wrapper) {
-        wrapper.addEventListener('keydown', (e: KeyboardEvent) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleCard(e);
-          }
-        });
-      }
+  function initFlipCards() {
+    const cards = document.querySelectorAll('.flip-card-inner');
+    cards.forEach(card => {
+      // Limpiar listeners previos para evitar duplicados
+      const newCard = card.cloneNode(true);
+      card.parentNode.replaceChild(newCard, card);
+      
+      newCard.addEventListener('click', function(e) {
+        // Evitar giro si se hace clic en un enlace interno (ej. botón de cita)
+        if (e.target.closest('a') || e.target.closest('button')) return;
+        this.classList.toggle('[transform:rotateY(180deg)]');
+      });
     });
   }
 
-  // Ejecución en carga inicial y compatibilidad con transiciones de página
-  if (typeof document !== 'undefined') {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setupFlipCards);
-    } else {
-      setupFlipCards();
-    }
-    document.addEventListener('astro:page-load', setupFlipCards);
-  }
+  // Ejecutar al cargar la página y en cada transición de Astro
+  document.addEventListener('DOMContentLoaded', initFlipCards);
+  document.addEventListener('astro:page-load', initFlipCards);
 </script>
