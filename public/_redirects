@@ -5,8 +5,18 @@
 /sobre-mi/  /#sobre-mi  301
 /contacto/  /#contacto  301
 /servicios/  /#servicios  301
-/posts/  /blog  301
 /feed/  /  301
+
+# Redirecciones de Blog y Posts a Sand Play Therapy (Sitelinks Technical SEO)
+/post/*      /#sand-play-therapy  301
+/post/       /#sand-play-therapy  301
+/post        /#sand-play-therapy  301
+/posts/*     /#sand-play-therapy  301
+/posts/      /#sand-play-therapy  301
+/posts       /#sand-play-therapy  301
+/blog/*      /#sand-play-therapy  301
+/blog/       /#sand-play-therapy  301
+/blog        /#sand-play-therapy  301
 
 # Redirecciones de Enlaces Residuales WordPress (evitar 404s y forzar Sitelinks)
 /author/luisacofrades/*  /#sobre-mi  301
