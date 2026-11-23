@@ -1,12 +1,12 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { getCloudflareEnv } from '../../../lib/siteConfig';
+import { env } from 'cloudflare:workers';
 
 const ALLOWED_TYPES = ['image/webp', 'image/jpeg', 'image/png'];
 const MAX_SIZE = 5 * 1024 * 1024; // 5MB
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.formData();
     const file = formData.get('file');
@@ -46,8 +46,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const baseWithoutExt = cleanBase.replace(/\.[^/.]+$/, '');
     const cleanFilename = `${baseWithoutExt.slice(0, 40)}-${Date.now()}.${ext}`;
 
-    const env = await getCloudflareEnv((locals as any)?.runtime);
-    const r2 = env?.LUISA_MEDIA;
+    const r2 = (env as any)?.LUISA_MEDIA;
 
     if (!r2 || typeof r2.put !== 'function') {
       return new Response(JSON.stringify({ error: 'Bucket R2 (LUISA_MEDIA) no disponible en este entorno.' }), {

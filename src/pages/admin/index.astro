@@ -3,7 +3,7 @@ export const prerender = false;
 
 import { getSiteConfig } from '../../lib/siteConfig';
 
-const config = await getSiteConfig(Astro.locals?.runtime);
+const config = await getSiteConfig();
 ---
 
 <!doctype html>

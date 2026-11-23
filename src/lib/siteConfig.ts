@@ -1,3 +1,5 @@
+import { env } from 'cloudflare:workers';
+
 export interface SiteConfig {
   banner: {
     active: boolean;
@@ -55,32 +57,12 @@ export const DEFAULT_CONFIG: SiteConfig = {
 };
 
 /**
- * Obtiene el entorno de Cloudflare de forma resiliente tanto en Worker runtime,
- * Astro locals, como en modo dev o fallback.
- */
-export async function getCloudflareEnv(runtime?: any): Promise<any> {
-  if (runtime?.env) return runtime.env;
-  if (runtime?.LUISA_CONFIG) return runtime;
-  try {
-    const cf = await import('cloudflare:workers');
-    if (cf?.env) return cf.env;
-  } catch {
-    // Fuera de workerd runtime
-  }
-  if (typeof process !== 'undefined' && process.env) {
-    return process.env;
-  }
-  return null;
-}
-
-/**
  * Obtiene la configuración del sitio desde el KV LUISA_CONFIG bajo la clave 'site_config'.
  * Si el KV no existe o está vacío, devuelve DEFAULT_CONFIG garantizando cero caídas.
  */
-export async function getSiteConfig(runtime?: any): Promise<SiteConfig> {
+export async function getSiteConfig(): Promise<SiteConfig> {
   try {
-    const env = await getCloudflareEnv(runtime);
-    const kv = env?.LUISA_CONFIG;
+    const kv = (env as any)?.LUISA_CONFIG;
     if (!kv || typeof kv.get !== 'function') {
       return DEFAULT_CONFIG;
     }
@@ -128,8 +110,8 @@ export async function getSiteConfig(runtime?: any): Promise<SiteConfig> {
 /**
  * Guarda la configuración del sitio en el KV LUISA_CONFIG bajo la clave 'site_config'.
  */
-export async function saveSiteConfig(newConfig: Partial<SiteConfig>, runtime?: any): Promise<SiteConfig> {
-  const current = await getSiteConfig(runtime);
+export async function saveSiteConfig(newConfig: Partial<SiteConfig>): Promise<SiteConfig> {
+  const current = await getSiteConfig();
   const merged: SiteConfig = {
     ...current,
     ...newConfig,
@@ -155,8 +137,7 @@ export async function saveSiteConfig(newConfig: Partial<SiteConfig>, runtime?: a
     }
   };
 
-  const env = await getCloudflareEnv(runtime);
-  const kv = env?.LUISA_CONFIG;
+  const kv = (env as any)?.LUISA_CONFIG;
   if (!kv || typeof kv.put !== 'function') {
     throw new Error('KV LUISA_CONFIG no disponible en el runtime para persistir los cambios.');
   }

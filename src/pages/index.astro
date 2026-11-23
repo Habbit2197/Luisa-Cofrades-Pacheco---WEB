@@ -41,7 +41,7 @@ import siteData from '../../data.json';
 const postsDestacados = (siteData.posts || []).slice(0, 3);
 
 // Configuración dinámica desde Cloudflare KV (con fallback seguro a DEFAULT_CONFIG)
-const siteConfig = await getSiteConfig((Astro.locals as any)?.runtime);
+const siteConfig = await getSiteConfig();
 ---
 
 <Layout 

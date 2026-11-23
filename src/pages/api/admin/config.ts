@@ -3,9 +3,9 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { getSiteConfig, saveSiteConfig } from '../../../lib/siteConfig';
 
-export const GET: APIRoute = async ({ locals }) => {
+export const GET: APIRoute = async () => {
   try {
-    const config = await getSiteConfig((locals as any)?.runtime);
+    const config = await getSiteConfig();
     return new Response(JSON.stringify(config), {
       status: 200,
       headers: {
@@ -21,7 +21,7 @@ export const GET: APIRoute = async ({ locals }) => {
   }
 };
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
     if (!body || typeof body !== 'object') {
@@ -31,7 +31,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       });
     }
 
-    const updated = await saveSiteConfig(body, (locals as any)?.runtime);
+    const updated = await saveSiteConfig(body);
     return new Response(JSON.stringify({ success: true, config: updated }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
