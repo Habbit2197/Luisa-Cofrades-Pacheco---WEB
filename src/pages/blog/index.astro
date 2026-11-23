@@ -2,11 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import { BookOpen, Calendar, ArrowRight, User, Sparkles } from 'lucide-react';
-import fs from 'node:fs';
-import path from 'node:path';
+import siteData from '../../../data.json';
 
-const dataPath = path.resolve('data.json');
-const siteData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 const posts = siteData.posts || [];
 ---
 

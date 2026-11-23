@@ -1,8 +1,17 @@
 name = "luisa-cofrades-pacheco---web"
 compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = "./dist"
 
 [vars]
 ENVIRONMENT = "production"
+
+[[kv_namespaces]]
+binding = "LUISA_CONFIG"
+id = "b781e39e8da543b7bfee888297bf4a92"
+
+[[r2_buckets]]
+binding = "LUISA_MEDIA"
+bucket_name = "luisa-media"

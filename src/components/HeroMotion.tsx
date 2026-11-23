@@ -2,7 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, ShieldCheck, HeartHandshake, PhoneCall, Sparkles } from 'lucide-react';
 
-export default function HeroMotion() {
+interface HeroMotionProps {
+  subtitle?: string;
+  badge?: string;
+  imageUrl?: string;
+}
+
+export default function HeroMotion({ subtitle, badge, imageUrl }: HeroMotionProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -52,7 +58,7 @@ export default function HeroMotion() {
           {/* Badge Acreditativo */}
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs sm:text-sm font-semibold mb-6 border border-brand-aqua/25">
             <ShieldCheck className="w-4 h-4 text-brand-aqua" />
-            <span>Psicóloga Sanitaria Colegiada · Especialista en EMDR y Trauma</span>
+            <span>{badge || 'Psicóloga Sanitaria Colegiada · Especialista en EMDR y Trauma'}</span>
           </motion.div>
 
           {/* Titular Principal */}
@@ -81,7 +87,11 @@ export default function HeroMotion() {
             variants={itemVariants}
             className="mt-6 text-lg sm:text-xl text-brand-graphite/80 leading-relaxed font-normal"
           >
-            ¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas con consulta en <strong>Salamanca Centro</strong> y atención <strong>online</strong>. Mirada sistémica, humanista e integrativa.
+            {subtitle ? (
+              subtitle
+            ) : (
+              <>¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas con consulta en <strong>Salamanca Centro</strong> y atención <strong>online</strong>. Mirada sistémica, humanista e integrativa.</>
+            )}
           </motion.p>
 
           {/* Bloque de CTAs */}
@@ -145,7 +155,7 @@ export default function HeroMotion() {
               {/* Imagen de la taza y la vela */}
               <div className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-gray-50 border border-gray-100">
                 <img
-                  src="/assets/media/tacita.jpeg"
+                  src={imageUrl || "/assets/media/tacita.jpeg"}
                   alt="Espacio terapéutico de Psicología para vivir con taza y vela"
                   width={800}
                   height={500}

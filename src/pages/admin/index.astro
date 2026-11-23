@@ -1,0 +1,655 @@
+---
+export const prerender = false;
+
+import { getSiteConfig } from '../../lib/siteConfig';
+
+const config = await getSiteConfig(Astro.locals?.runtime);
+---
+
+<!doctype html>
+<html lang="es" class="h-full bg-[#f8faf9]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Administración | Psicología para vivir · Luisa Cofrades</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="h-full text-brand-graphite font-sans antialiased">
+    <!-- Barra Superior de Navegación -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-xs">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-brand-aqua/20 flex items-center justify-center text-brand-aqua-dark font-bold text-lg border border-brand-aqua/30">
+            LC
+          </div>
+          <div>
+            <h1 class="text-sm sm:text-base font-semibold text-brand-graphite leading-tight">
+              Panel de Control
+            </h1>
+            <p class="text-[11px] text-gray-500 hidden sm:block">
+              Psicología para vivir · Luisa Cofrades
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-gray-600 hover:text-brand-aqua-dark hover:bg-gray-100 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            <span class="hidden sm:inline">Ver web pública</span>
+          </a>
+
+          <button
+            type="button"
+            id="topSaveBtn"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-semibold text-xs sm:text-sm shadow-sm transition-all duration-200"
+          >
+            <span id="topSaveSpinner" class="hidden">
+              <svg class="animate-spin w-4 h-4 text-white" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+            </span>
+            <span id="topSaveText">Guardar cambios</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 pb-28 space-y-8">
+      
+      <!-- Presentación rápida -->
+      <div class="bg-gradient-to-r from-brand-aqua/15 via-white to-brand-aqua/10 p-6 rounded-3xl border border-brand-aqua/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-light text-brand-graphite">
+            Configuración dinámica de <span class="font-semibold text-brand-aqua-dark">luisacofrades.com</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-600 mt-1 max-w-2xl">
+            Edita avisos inmediatos, precios de consulta, textos destacados e imágenes sin necesidad de modificar el código ni redesplegar.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-medium text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 shrink-0">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Cloudflare KV Conectado</span>
+        </div>
+      </div>
+
+      <form id="adminForm" class="space-y-8">
+        
+        <!-- 1. Tarjeta: Aviso Importante (Banner Superior) -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+          <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base sm:text-lg font-semibold text-brand-graphite">
+                  Aviso Importante (Banner Superior en Portada)
+                </h3>
+                <p class="text-xs text-gray-500">
+                  Ideal para avisos de vacaciones, días festivos o cambios de horario en la clínica.
+                </p>
+              </div>
+            </div>
+
+            <!-- Toggle Switch -->
+            <label class="relative inline-flex items-center cursor-pointer select-none">
+              <input
+                type="checkbox"
+                id="bannerActive"
+                class="sr-only peer"
+                checked={config.banner?.active}
+              />
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-aqua"></div>
+              <span class="ml-2 text-xs font-semibold text-gray-700 hidden sm:inline" id="bannerActiveLabel">
+                {config.banner?.active ? 'Activo' : 'Desactivado'}
+              </span>
+            </label>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label for="bannerMessage" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                Mensaje del aviso
+              </label>
+              <input
+                type="text"
+                id="bannerMessage"
+                value={config.banner?.message || ''}
+                placeholder="Ej: La consulta permanecerá cerrada por vacaciones del 1 al 15 de agosto. Puedes solicitar cita para septiembre."
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm text-brand-graphite transition-all outline-hidden"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="bannerLinkText" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Texto del enlace (opcional)
+                </label>
+                <input
+                  type="text"
+                  id="bannerLinkText"
+                  value={config.banner?.linkText || ''}
+                  placeholder="Ej: Más información o Pedir cita"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-xs sm:text-sm text-brand-graphite outline-hidden"
+                />
+              </div>
+              <div>
+                <label for="bannerLinkUrl" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  URL del enlace (opcional)
+                </label>
+                <input
+                  type="text"
+                  id="bannerLinkUrl"
+                  value={config.banner?.linkUrl || ''}
+                  placeholder="Ej: #contacto o /aviso"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-xs sm:text-sm text-brand-graphite outline-hidden"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Tarjeta: Tarifas y Precios de Consulta -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <div class="w-10 h-10 rounded-2xl bg-brand-aqua/15 text-brand-aqua-dark flex items-center justify-center border border-brand-aqua/25">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-base sm:text-lg font-semibold text-brand-graphite">
+                Tarifas y Honorarios de Consulta
+              </h3>
+              <p class="text-xs text-gray-500">
+                Modifica los precios mostrados en la sección de tarifas y en los pasos de reserva.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Sesión Individual -->
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
+              <label for="tarifIndividual" class="block text-xs font-semibold text-brand-graphite">
+                Sesión Individual (Estándar)
+              </label>
+              <input
+                type="text"
+                id="tarifIndividual"
+                value={config.tarifs?.individual || '75 €'}
+                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
+              />
+              <span class="text-[11px] text-gray-500 block">Presencial / Online (50 min)</span>
+            </div>
+
+            <!-- Sesión en Inglés -->
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
+              <label for="tarifIngles" class="block text-xs font-semibold text-brand-graphite">
+                Sesión en Inglés
+              </label>
+              <input
+                type="text"
+                id="tarifIngles"
+                value={config.tarifs?.ingles || '85 €'}
+                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
+              />
+              <span class="text-[11px] text-gray-500 block">English Therapy (50 min)</span>
+            </div>
+
+            <!-- Sesión de Pareja -->
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
+              <label for="tarifPareja" class="block text-xs font-semibold text-brand-graphite">
+                Sesión de Pareja
+              </label>
+              <input
+                type="text"
+                id="tarifPareja"
+                value={config.tarifs?.pareja || '90 €'}
+                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
+              />
+              <span class="text-[11px] text-gray-500 block">Vínculos y relaciones</span>
+            </div>
+
+            <!-- Sesión con Isabel -->
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
+              <label for="tarifIsabel" class="block text-xs font-semibold text-brand-graphite">
+                Sesión con Isabel
+              </label>
+              <input
+                type="text"
+                id="tarifIsabel"
+                value={config.tarifs?.isabel || '90 €'}
+                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
+              />
+              <span class="text-[11px] text-gray-500 block">Equipo clínico colaborador</span>
+            </div>
+
+            <!-- Supervisión -->
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
+              <label for="tarifSupervision" class="block text-xs font-semibold text-brand-graphite">
+                Supervisión de Casos
+              </label>
+              <input
+                type="text"
+                id="tarifSupervision"
+                value={config.tarifs?.supervision || '100 €'}
+                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
+              />
+              <span class="text-[11px] text-gray-500 block">Para profesionales de la salud</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Tarjeta: Textos Destacados -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <div class="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-base sm:text-lg font-semibold text-brand-graphite">
+                Textos Destacados de Portada
+              </h3>
+              <p class="text-xs text-gray-500">
+                Personaliza los párrafos y llamadas de atención principales de la página inicial.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-5">
+            <div>
+              <label for="heroSubtitle" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                Subtítulo del Hero (Cabecera principal)
+              </label>
+              <textarea
+                id="heroSubtitle"
+                rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-xs sm:text-sm text-brand-graphite leading-relaxed outline-hidden"
+              >{config.hero?.subtitle}</textarea>
+            </div>
+
+            <div>
+              <label for="bookingStepsDescription" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                Texto explicativo en "Pasos para pedir cita"
+              </label>
+              <textarea
+                id="bookingStepsDescription"
+                rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-xs sm:text-sm text-brand-graphite leading-relaxed outline-hidden"
+              >{config.bookingSteps?.description}</textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Tarjeta: Gestión de Imágenes Principales -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <div class="w-10 h-10 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center border border-sky-100">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-base sm:text-lg font-semibold text-brand-graphite">
+                Gestión de Imágenes Principales
+              </h3>
+              <p class="text-xs text-gray-500">
+                Sube fotos en formato WEBP, JPEG o PNG (hasta 5 MB) alojadas en Cloudflare R2 con entrega rápida.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Imagen 1: Hero (Taza / Espacio) -->
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-semibold text-brand-graphite block mb-1">
+                  Imagen Portada (Hero)
+                </span>
+                <p class="text-[11px] text-gray-500 mb-2">Tarjeta visual junto al titular.</p>
+                
+                <div class="relative w-full aspect-[16/10] bg-gray-200 rounded-xl overflow-hidden border border-gray-300/80 mb-3 shadow-inner">
+                  <img
+                    id="previewHero"
+                    src={config.images?.hero}
+                    alt="Previsualización Hero"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <input
+                  type="hidden"
+                  id="imageHeroInput"
+                  value={config.images?.hero}
+                />
+                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite font-medium text-xs border border-gray-200 cursor-pointer shadow-xs transition-colors">
+                  <svg class="w-4 h-4 text-brand-aqua-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                  <span id="labelHeroFile">Cambiar imagen</span>
+                  <input
+                    type="file"
+                    class="sr-only file-uploader"
+                    data-target-input="imageHeroInput"
+                    data-target-preview="previewHero"
+                    data-target-label="labelHeroFile"
+                    accept="image/webp,image/jpeg,image/png"
+                  />
+                </label>
+              </div>
+            </div>
+
+            <!-- Imagen 2: Fotografía Luisa Cofrades -->
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-semibold text-brand-graphite block mb-1">
+                  Fotografía de Luisa Cofrades
+                </span>
+                <p class="text-[11px] text-gray-500 mb-2">Bloque principal en "Sobre mí".</p>
+                
+                <div class="relative w-full aspect-[4/5] bg-gray-200 rounded-xl overflow-hidden border border-gray-300/80 mb-3 shadow-inner">
+                  <img
+                    id="previewLuisa"
+                    src={config.images?.luisaProfile}
+                    alt="Previsualización Luisa Cofrades"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <input
+                  type="hidden"
+                  id="imageLuisaInput"
+                  value={config.images?.luisaProfile}
+                />
+                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite font-medium text-xs border border-gray-200 cursor-pointer shadow-xs transition-colors">
+                  <svg class="w-4 h-4 text-brand-aqua-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                  <span id="labelLuisaFile">Cambiar foto</span>
+                  <input
+                    type="file"
+                    class="sr-only file-uploader"
+                    data-target-input="imageLuisaInput"
+                    data-target-preview="previewLuisa"
+                    data-target-label="labelLuisaFile"
+                    accept="image/webp,image/jpeg,image/png"
+                  />
+                </label>
+              </div>
+            </div>
+
+            <!-- Imagen 3: Banner de Ambiente -->
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-semibold text-brand-graphite block mb-1">
+                  Banner de Ambiente y Calma
+                </span>
+                <p class="text-[11px] text-gray-500 mb-2">Fondo del banner antes de tarifas.</p>
+                
+                <div class="relative w-full aspect-[16/10] bg-gray-200 rounded-xl overflow-hidden border border-gray-300/80 mb-3 shadow-inner">
+                  <img
+                    id="previewBanner"
+                    src={config.images?.banner}
+                    alt="Previsualización Banner Ambiente"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <input
+                  type="hidden"
+                  id="imageBannerInput"
+                  value={config.images?.banner}
+                />
+                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite font-medium text-xs border border-gray-200 cursor-pointer shadow-xs transition-colors">
+                  <svg class="w-4 h-4 text-brand-aqua-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                  <span id="labelBannerFile">Cambiar imagen</span>
+                  <input
+                    type="file"
+                    class="sr-only file-uploader"
+                    data-target-input="imageBannerInput"
+                    data-target-preview="previewBanner"
+                    data-target-label="labelBannerFile"
+                    accept="image/webp,image/jpeg,image/png"
+                  />
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </form>
+    </main>
+
+    <!-- Barra Inferior Fija para Guardar Cambios -->
+    <div class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 z-40 shadow-lg">
+      <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
+        <p class="text-xs text-gray-500 hidden sm:block">
+          Los cambios se guardan directamente en Cloudflare KV y se reflejan al instante en la web.
+        </p>
+        <button
+          type="button"
+          id="bottomSaveBtn"
+          class="w-full sm:w-auto ml-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-semibold text-sm shadow-md transition-all duration-200"
+        >
+          <span id="bottomSaveSpinner" class="hidden">
+            <svg class="animate-spin w-4 h-4 text-white" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+          </span>
+          <span id="bottomSaveText">Guardar todos los cambios</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast de Notificación Visual -->
+    <div
+      id="toast"
+      class="fixed top-20 right-4 sm:right-8 z-50 transform transition-all duration-300 translate-y-[-20px] opacity-0 pointer-events-none max-w-sm"
+    >
+      <div id="toastContent" class="flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-medium border bg-white">
+        <span id="toastIcon"></span>
+        <span id="toastMessage"></span>
+      </div>
+    </div>
+
+    <!-- Script de Lógica Frontend -->
+    <script>
+      function setupAdmin() {
+        const form = document.getElementById('adminForm');
+        const topSaveBtn = document.getElementById('topSaveBtn');
+        const bottomSaveBtn = document.getElementById('bottomSaveBtn');
+        const topSaveSpinner = document.getElementById('topSaveSpinner');
+        const bottomSaveSpinner = document.getElementById('bottomSaveSpinner');
+        const topSaveText = document.getElementById('topSaveText');
+        const bottomSaveText = document.getElementById('bottomSaveText');
+
+        const bannerActiveCheckbox = document.getElementById('bannerActive') as HTMLInputElement | null;
+        const bannerActiveLabel = document.getElementById('bannerActiveLabel');
+
+        const toast = document.getElementById('toast');
+        const toastContent = document.getElementById('toastContent');
+        const toastIcon = document.getElementById('toastIcon');
+        const toastMessage = document.getElementById('toastMessage');
+
+        let toastTimeout: any = null;
+
+        function showToast(message: string, isError = false) {
+          if (!toast || !toastContent || !toastIcon || !toastMessage) return;
+          clearTimeout(toastTimeout);
+
+          toastMessage.textContent = message;
+          if (isError) {
+            toastContent.className = 'flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-medium border border-rose-200 bg-rose-50 text-rose-800';
+            toastIcon.innerHTML = `<svg class="w-5 h-5 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+          } else {
+            toastContent.className = 'flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-medium border border-emerald-200 bg-emerald-50 text-emerald-800';
+            toastIcon.innerHTML = `<svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
+          }
+
+          toast.classList.remove('translate-y-[-20px]', 'opacity-0', 'pointer-events-none');
+          toast.classList.add('translate-y-0', 'opacity-100');
+
+          toastTimeout = setTimeout(() => {
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('translate-y-[-20px]', 'opacity-0', 'pointer-events-none');
+          }, 4500);
+        }
+
+        // Toggle label update
+        if (bannerActiveCheckbox && bannerActiveLabel) {
+          bannerActiveCheckbox.addEventListener('change', () => {
+            bannerActiveLabel.textContent = bannerActiveCheckbox.checked ? 'Activo' : 'Desactivado';
+          });
+        }
+
+        // Manejo de subida de imágenes con previsualización inmediata
+        const uploaders = document.querySelectorAll('.file-uploader');
+        uploaders.forEach((input) => {
+          input.addEventListener('change', async (e) => {
+            const target = e.target as HTMLInputElement;
+            const file = target.files?.[0];
+            if (!file) return;
+
+            const targetInputId = target.getAttribute('data-target-input');
+            const targetPreviewId = target.getAttribute('data-target-preview');
+            const targetLabelId = target.getAttribute('data-target-label');
+
+            const labelEl = targetLabelId ? document.getElementById(targetLabelId) : null;
+            const prevLabel = labelEl ? labelEl.textContent : 'Subir';
+            if (labelEl) labelEl.textContent = 'Subiendo a R2...';
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+              const res = await fetch('/api/admin/upload', {
+                method: 'POST',
+                body: formData
+              });
+              const data = await res.json();
+
+              if (!res.ok || !data.success) {
+                throw new Error(data.error || 'Error al subir la imagen');
+              }
+
+              // Actualizar input oculto y previsualización
+              if (targetInputId) {
+                const hiddenInput = document.getElementById(targetInputId) as HTMLInputElement | null;
+                if (hiddenInput) hiddenInput.value = data.url;
+              }
+              if (targetPreviewId) {
+                const previewImg = document.getElementById(targetPreviewId) as HTMLImageElement | null;
+                if (previewImg) previewImg.src = data.url;
+              }
+
+              showToast('Imagen subida con éxito a Cloudflare R2');
+            } catch (err: any) {
+              showToast(err.message || 'Error en la subida', true);
+            } finally {
+              if (labelEl) labelEl.textContent = prevLabel;
+              target.value = '';
+            }
+          });
+        });
+
+        // Guardar configuración completa
+        async function handleSave() {
+          setLoading(true);
+
+          const payload = {
+            banner: {
+              active: (document.getElementById('bannerActive') as HTMLInputElement)?.checked || false,
+              message: (document.getElementById('bannerMessage') as HTMLInputElement)?.value.trim() || '',
+              linkText: (document.getElementById('bannerLinkText') as HTMLInputElement)?.value.trim() || '',
+              linkUrl: (document.getElementById('bannerLinkUrl') as HTMLInputElement)?.value.trim() || ''
+            },
+            tarifs: {
+              individual: (document.getElementById('tarifIndividual') as HTMLInputElement)?.value.trim() || '75 €',
+              ingles: (document.getElementById('tarifIngles') as HTMLInputElement)?.value.trim() || '85 €',
+              pareja: (document.getElementById('tarifPareja') as HTMLInputElement)?.value.trim() || '90 €',
+              isabel: (document.getElementById('tarifIsabel') as HTMLInputElement)?.value.trim() || '90 €',
+              supervision: (document.getElementById('tarifSupervision') as HTMLInputElement)?.value.trim() || '100 €'
+            },
+            hero: {
+              subtitle: (document.getElementById('heroSubtitle') as HTMLTextAreaElement)?.value.trim() || ''
+            },
+            bookingSteps: {
+              description: (document.getElementById('bookingStepsDescription') as HTMLTextAreaElement)?.value.trim() || ''
+            },
+            images: {
+              hero: (document.getElementById('imageHeroInput') as HTMLInputElement)?.value || '',
+              luisaProfile: (document.getElementById('imageLuisaInput') as HTMLInputElement)?.value || '',
+              banner: (document.getElementById('imageBannerInput') as HTMLInputElement)?.value || ''
+            }
+          };
+
+          try {
+            const res = await fetch('/api/admin/config', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(payload)
+            });
+
+            const data = await res.json();
+            if (!res.ok || !data.success) {
+              throw new Error(data.error || 'Error al guardar la configuración');
+            }
+
+            showToast('¡Configuración guardada correctamente!');
+          } catch (err: any) {
+            showToast(err.message || 'Error al guardar los cambios', true);
+          } finally {
+            setLoading(false);
+          }
+        }
+
+        function setLoading(isLoading: boolean) {
+          if (topSaveBtn) (topSaveBtn as HTMLButtonElement).disabled = isLoading;
+          if (bottomSaveBtn) (bottomSaveBtn as HTMLButtonElement).disabled = isLoading;
+
+          if (topSaveSpinner && topSaveText) {
+            topSaveSpinner.classList.toggle('hidden', !isLoading);
+            topSaveText.textContent = isLoading ? 'Guardando...' : 'Guardar cambios';
+          }
+          if (bottomSaveSpinner && bottomSaveText) {
+            bottomSaveSpinner.classList.toggle('hidden', !isLoading);
+            bottomSaveText.textContent = isLoading ? 'Guardando...' : 'Guardar todos los cambios';
+          }
+        }
+
+        topSaveBtn?.addEventListener('click', handleSave);
+        bottomSaveBtn?.addEventListener('click', handleSave);
+      }
+
+      document.addEventListener('DOMContentLoaded', setupAdmin);
+      document.addEventListener('astro:page-load', setupAdmin);
+    </script>
+  </body>
+</html>

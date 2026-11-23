@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
@@ -7,6 +9,7 @@ import InteractiveTriage from '../components/InteractiveTriage';
 import FaqSection from '../components/FaqSection.astro';
 import Footer from '../components/Footer.astro';
 import AmbientBanner from '../components/AmbientBanner';
+import { getSiteConfig } from '../lib/siteConfig';
 import { 
   Award, 
   CheckCircle2, 
@@ -32,21 +35,44 @@ import {
   Newspaper,
   Globe
 } from 'lucide-react';
-import fs from 'node:fs';
-import path from 'node:path';
+import siteData from '../../data.json';
 
 // Cargar artículos para la sección destacada
-const dataPath = path.resolve('data.json');
-const siteData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 const postsDestacados = (siteData.posts || []).slice(0, 3);
+
+// Configuración dinámica desde Cloudflare KV (con fallback seguro a DEFAULT_CONFIG)
+const siteConfig = await getSiteConfig((Astro.locals as any)?.runtime);
 ---
 
 <Layout 
   title="Psicología para vivir centro de Luisa Cofrades." 
   description="¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas."
 >
-  <!-- Hero Section con Framer Motion, imagen de la taza/vela y propuesta de valor -->
-  <HeroSection />
+  <!-- Aviso Importante (Banner Superior en Portada si está activo) -->
+  {siteConfig.banner?.active && siteConfig.banner?.message && (
+    <aside aria-label="Aviso importante" class="bg-gradient-to-r from-amber-500/15 via-amber-400/25 to-amber-500/15 border-b border-amber-300 py-3 px-4 text-center text-xs sm:text-sm font-medium text-brand-graphite flex flex-wrap items-center justify-center gap-2 relative z-30">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500 text-white text-[11px] font-bold uppercase tracking-wider">
+        Aviso
+      </span>
+      <span>{siteConfig.banner.message}</span>
+      {siteConfig.banner.linkUrl && (
+        <a 
+          href={siteConfig.banner.linkUrl} 
+          class="inline-flex items-center gap-1 underline font-semibold text-brand-graphite hover:text-brand-aqua-dark ml-1 transition-colors"
+        >
+          <span>{siteConfig.banner.linkText || 'Más información'}</span>
+          <ArrowRight class="w-3.5 h-3.5 inline" />
+        </a>
+      )}
+    </aside>
+  )}
+
+  <!-- Hero Section con Framer Motion, imagen configurable y propuesta de valor -->
+  <HeroSection 
+    subtitle={siteConfig.hero?.subtitle}
+    badge={siteConfig.hero?.badge}
+    imageUrl={siteConfig.images?.hero}
+  />
 
   <!-- Sección Sobre Mí: Biografía y Dirección de Luisa Cofrades -->
   <section id="sobre-mi" class="py-20 sm:py-24 lg:py-28 bg-[#f8fbfa] border-b border-gray-100/80 scroll-mt-20">
@@ -78,7 +104,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
           <!-- Foto de Luisa con recorte retrato premium (tamaño equilibrado) -->
           <div class="w-full lg:w-[32%] xl:w-[28%] shrink-0 flex items-center justify-center">
             <img 
-              src="/assets/media/luisa_sinperro.jpeg" 
+              src={siteConfig.images?.luisaProfile || "/assets/media/luisa_sinperro.jpeg"} 
               alt="Luisa Cofrades Pacheco - Directora Clínica y Fundadora" 
               width="600" 
               height="750" 
@@ -412,7 +438,9 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
         </div>
 
         <p class="text-sm sm:text-base text-brand-graphite leading-relaxed">
-          La consulta presencial se ubica en la <strong>Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Las sesiones tienen una duración de 50 minutos (75 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos terapéuticos.
+          {siteConfig.bookingSteps?.description || (
+            <>La consulta presencial se ubica en la <strong>Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Las sesiones tienen una duración de 50 minutos ({siteConfig.tarifs?.individual || '75 €'}). En la primera sesión se evalúa el caso clínico y se establecen los objetivos terapéuticos.</>
+          )}
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
@@ -610,7 +638,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
   <!-- Banner de Ambiente 1: Imagen de respiro y calma antes de Tarifas (Framer Motion scroll fade-in) -->
   <AmbientBanner 
     client:visible
-    imageUrl="/assets/media/Luisa_Banner.jpeg" 
+    imageUrl={siteConfig.images?.banner || "/assets/media/Luisa_Banner.jpeg"} 
     alt="Ambiente acogedor, luz suave y calma" 
     badgeText="Espacio para tu Bienestar"
     quote="Darte un tiempo para ti no es un lujo, es el primer paso para volver a habitar tu vida con serenidad."
@@ -652,7 +680,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             </p>
 
             <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">80 €</span>
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.individual || '75 €'}</span>
               <span class="text-xs text-brand-graphite/60">/ sesión</span>
             </div>
 
@@ -695,7 +723,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             </p>
 
             <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">90 €</span>
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.pareja || '90 €'}</span>
               <span class="text-xs text-brand-graphite/60">/ sesión</span>
             </div>
 
@@ -734,7 +762,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             </p>
 
             <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">90 €</span>
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.isabel || '90 €'}</span>
               <span class="text-xs text-brand-graphite/60">/ sesión</span>
             </div>
 
@@ -773,7 +801,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             </p>
 
             <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">85 €</span>
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.ingles || '85 €'}</span>
               <span class="text-xs text-brand-graphite/60">/ sesión</span>
             </div>
 
@@ -812,7 +840,7 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             </p>
 
             <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">100 €</span>
+              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.supervision || '100 €'}</span>
               <span class="text-xs text-brand-graphite/60">/ sesión</span>
             </div>
 
@@ -1199,7 +1227,9 @@ const postsDestacados = (siteData.posts || []).slice(0, 3);
             Pasos obligatorios para coordinar tu cita
           </h3>
           <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-            La consulta presencial se ubica en la <strong class="text-white">Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Duración de 50 minutos (75 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos.
+            {siteConfig.bookingSteps?.description || (
+              <>La consulta presencial se ubica en la <strong class="text-white">Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Duración de 50 minutos ({siteConfig.tarifs?.individual || '75 €'}). En la primera sesión se evalúa el caso clínico y se establecen los objetivos.</>
+            )}
           </p>
         </div>
 

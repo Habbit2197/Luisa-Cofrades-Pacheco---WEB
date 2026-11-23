@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
+import cloudflare from '@astrojs/cloudflare';
 
 // Dominio provisional Cloudflare Workers (fácilmente sustituible por el dominio final)
 export const SITE_URL = 'https://luisa-cofrades-pacheco---web.javier-barmont97.workers.dev';
@@ -9,6 +10,9 @@ export const SITE_URL = 'https://luisa-cofrades-pacheco---web.javier-barmont97.w
 export default defineConfig({
   site: SITE_URL,
   output: 'static',
+  adapter: cloudflare({
+    prerenderEnvironment: 'node'
+  }),
   integrations: [
     tailwind({
       applyBaseStyles: true,

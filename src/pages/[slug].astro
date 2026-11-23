@@ -8,13 +8,9 @@ import cda1Img from '../assets/media/cda-1.jpg';
 import juguetesEstanteriaImg from '../assets/media/Juguetes_estanteria.jpeg';
 import dinosArenaImg from '../assets/media/Dinos_arena.jpeg';
 import robotsLegosImg from '../assets/media/robots_legos.jpeg';
-import fs from 'node:fs';
-import path from 'node:path';
+import siteData from '../../data.json';
 
 export async function getStaticPaths() {
-  const dataPath = path.resolve('data.json');
-  const siteData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
-
   // Excluir slugs reservados y páginas migradas a anclas (ej. formacion-y-educacion -> #emdr)
   const excluded = ['index', 'sobre-mi', 'contacto', 'aviso-legal', 'politica-de-privacidad', 'politica-de-cookies', 'formacion-y-educacion'];
 
