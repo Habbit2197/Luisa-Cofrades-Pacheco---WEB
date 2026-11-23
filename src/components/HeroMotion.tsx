@@ -3,12 +3,32 @@ import { motion } from 'framer-motion';
 import { Calendar, ShieldCheck, HeartHandshake, PhoneCall, Sparkles } from 'lucide-react';
 
 interface HeroMotionProps {
+  title?: string;
+  titleHighlight?: string;
   subtitle?: string;
   badge?: string;
+  registryNotice?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  ctaSecondaryText?: string;
+  ctaSecondaryLink?: string;
+  phoneText?: string;
   imageUrl?: string;
 }
 
-export default function HeroMotion({ subtitle, badge, imageUrl }: HeroMotionProps) {
+export default function HeroMotion({
+  title = 'Psicología para vivir',
+  titleHighlight = 'centro de Luisa Cofrades',
+  subtitle,
+  badge = 'Psicóloga Sanitaria Colegiada · Especialista en EMDR y Trauma',
+  registryNotice,
+  ctaText = 'Solicitar primera consulta',
+  ctaLink = '#contacto',
+  ctaSecondaryText = 'Ver tarifas',
+  ctaSecondaryLink = '#tarifas',
+  phoneText = '675 80 99 74',
+  imageUrl
+}: HeroMotionProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,7 +78,7 @@ export default function HeroMotion({ subtitle, badge, imageUrl }: HeroMotionProp
           {/* Badge Acreditativo */}
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-aqua/10 text-brand-aqua text-xs sm:text-sm font-semibold mb-6 border border-brand-aqua/25">
             <ShieldCheck className="w-4 h-4 text-brand-aqua" />
-            <span>{badge || 'Psicóloga Sanitaria Colegiada · Especialista en EMDR y Trauma'}</span>
+            <span>{badge}</span>
           </motion.div>
 
           {/* Titular Principal */}
@@ -66,8 +86,8 @@ export default function HeroMotion({ subtitle, badge, imageUrl }: HeroMotionProp
             variants={itemVariants}
             className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-brand-graphite leading-[1.14]"
           >
-            Psicología para vivir <br />
-            <span className="font-semibold text-brand-aqua">centro de Luisa Cofrades</span>
+            {title} <br />
+            <span className="font-semibold text-brand-aqua">{titleHighlight}</span>
           </motion.h1>
 
           {/* Registro Sanitario y Acreditación Oficial */}
@@ -77,9 +97,7 @@ export default function HeroMotion({ subtitle, badge, imageUrl }: HeroMotionProp
               <span>Centro Sanitario Reconocido Junta CyL</span>
             </span>
             <span className="hidden sm:inline text-gray-300">·</span>
-            <span>N.º 37-C22-0544</span>
-            <span className="hidden sm:inline text-gray-300">·</span>
-            <span>Col. BI05747 (COP)</span>
+            <span>{registryNotice || 'N.º 37-C22-0544 · Col. BI05747 (COP)'}</span>
           </motion.div>
 
           {/* Subtítulo Empático */}
@@ -97,27 +115,27 @@ export default function HeroMotion({ subtitle, badge, imageUrl }: HeroMotionProp
           {/* Bloque de CTAs */}
           <motion.div variants={itemVariants} className="mt-8 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
             <a
-              href="#contacto"
+              href={ctaLink}
               className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium shadow-sm hover:shadow-card-hover transition-all duration-300 group"
             >
               <Calendar className="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform" />
-              <span>Solicitar primera consulta</span>
+              <span>{ctaText}</span>
             </a>
 
             <a
-              href="#tarifas"
+              href={ctaSecondaryLink}
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-brand-graphite font-medium border border-gray-200 shadow-sm transition-colors duration-200"
             >
-              <span>Ver tarifas</span>
+              <span>{ctaSecondaryText}</span>
             </a>
 
             <a
-              href="tel:+34675809974"
-              aria-label="Llamar por teléfono al 675 80 99 74"
+              href={`tel:+34${phoneText.replace(/\D/g, '')}`}
+              aria-label={`Llamar por teléfono al ${phoneText}`}
               className="inline-flex items-center justify-center gap-2 px-4 py-3.5 text-brand-aqua hover:text-brand-aqua-dark font-semibold text-sm transition-colors"
             >
               <PhoneCall className="w-4 h-4 text-brand-aqua" />
-              <span>675 80 99 74</span>
+              <span>{phoneText}</span>
             </a>
           </motion.div>
 

@@ -2,17 +2,25 @@
 import HeroMotion from './HeroMotion';
 
 interface Props {
+  title?: string;
+  titleHighlight?: string;
   subtitle?: string;
   badge?: string;
+  registryNotice?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  ctaSecondaryText?: string;
+  ctaSecondaryLink?: string;
+  phoneText?: string;
   imageUrl?: string;
 }
 
-const { subtitle, badge, imageUrl } = Astro.props;
+const props = Astro.props;
 ---
 
 <section class="relative overflow-hidden bg-white border-b border-gray-100">
   <!-- Patrón de textura sutil de fondo en tonos aqua muy suaves -->
   <div class="absolute inset-0 bg-[radial-gradient(#ACE1DE_1px,transparent_1px)] [background-size:32px_32px] opacity-25 pointer-events-none"></div>
   
-  <HeroMotion client:load subtitle={subtitle} badge={badge} imageUrl={imageUrl} />
+  <HeroMotion client:load {...props} />
 </section>

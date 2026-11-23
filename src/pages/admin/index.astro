@@ -11,645 +11,1936 @@ const config = await getSiteConfig();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel de Administración | Psicología para vivir · Luisa Cofrades</title>
+    <title>Panel de Administración | Luisa Cofrades</title>
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script id="config-data" type="application/json" set:html={JSON.stringify(config)} />
   </head>
-  <body class="h-full text-brand-graphite font-sans antialiased">
-    <!-- Barra Superior de Navegación -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-xs">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <body class="h-full text-[#2D3748] font-sans antialiased bg-[#f8faf9] flex flex-col">
+    
+    <!-- Top Sticky Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-xs">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <!-- Left: Brand / Title -->
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-xl bg-brand-aqua/20 flex items-center justify-center text-brand-aqua-dark font-bold text-lg border border-brand-aqua/30">
+          <div class="w-9 h-9 rounded-xl bg-teal-500/15 flex items-center justify-center text-teal-700 font-bold text-base border border-teal-500/25">
             LC
           </div>
           <div>
-            <h1 class="text-sm sm:text-base font-semibold text-brand-graphite leading-tight">
-              Panel de Control
-            </h1>
+            <div class="flex items-center gap-2">
+              <h1 class="text-sm sm:text-base font-semibold text-gray-800 leading-tight">
+                Panel CMS
+              </h1>
+              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200">
+                v2.0
+              </span>
+            </div>
             <p class="text-[11px] text-gray-500 hidden sm:block">
               Psicología para vivir · Luisa Cofrades
             </p>
           </div>
         </div>
 
-        <div class="flex items-center gap-3">
+        <!-- Center: Status Badge -->
+        <div class="flex items-center gap-2">
+          <div id="statusBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 transition-all">
+            <span id="statusDot" class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span id="statusText">Todos los cambios guardados</span>
+          </div>
+        </div>
+
+        <!-- Right: Actions -->
+        <div class="flex items-center gap-2 sm:gap-3">
           <a
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-gray-600 hover:text-brand-aqua-dark hover:bg-gray-100 transition-colors"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-gray-600 hover:text-teal-700 hover:bg-gray-100 transition-colors"
+            title="Ver la página web en una nueva pestaña"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-            <span class="hidden sm:inline">Ver web pública</span>
+            <span class="hidden md:inline">Ver web</span>
           </a>
 
           <button
             type="button"
-            id="topSaveBtn"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-semibold text-xs sm:text-sm shadow-sm transition-all duration-200"
+            id="openResetModalBtn"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 transition-colors"
+            title="Restaurar toda la configuración a los valores por defecto del sistema"
           >
-            <span id="topSaveSpinner" class="hidden">
-              <svg class="animate-spin w-4 h-4 text-white" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-              </svg>
-            </span>
-            <span id="topSaveText">Guardar cambios</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span class="hidden lg:inline">Restaurar valores</span>
+          </button>
+
+          <a
+            href="/cdn-cgi/access/logout"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-gray-600 hover:text-red-700 hover:bg-red-50 border border-gray-200 hover:border-red-200 transition-colors"
+            title="Cerrar sesión de Cloudflare Access"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <span class="hidden sm:inline">Cerrar sesión</span>
+          </a>
+
+          <button
+            type="button"
+            id="saveAllBtn"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-sm transition-all duration-200 disabled:opacity-50"
+          >
+            <svg id="saveSpinner" class="hidden animate-spin w-4 h-4 text-white" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+            <span id="saveText">Guardar cambios</span>
           </button>
         </div>
+
       </div>
     </header>
 
-    <!-- Contenido Principal -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 pb-28 space-y-8">
+    <!-- Main Container: Sidebar + Content -->
+    <div class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col md:flex-row gap-8 items-start">
       
-      <!-- Presentación rápida -->
-      <div class="bg-gradient-to-r from-brand-aqua/15 via-white to-brand-aqua/10 p-6 rounded-3xl border border-brand-aqua/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-light text-brand-graphite">
-            Configuración dinámica de <span class="font-semibold text-brand-aqua-dark">luisacofrades.com</span>
-          </h2>
-          <p class="text-xs sm:text-sm text-gray-600 mt-1 max-w-2xl">
-            Edita avisos inmediatos, precios de consulta, textos destacados e imágenes sin necesidad de modificar el código ni redesplegar.
-          </p>
-        </div>
-        <div class="flex items-center gap-2 text-xs font-medium text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 shrink-0">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Cloudflare KV Conectado</span>
-        </div>
-      </div>
-
-      <form id="adminForm" class="space-y-8">
+      <!-- Left Sidebar (Desktop) / Tab Navigation -->
+      <aside class="w-full md:w-64 shrink-0 md:sticky md:top-24 bg-white rounded-3xl p-3 border border-gray-200/80 shadow-xs space-y-1">
+        <p class="px-3 pt-2 pb-1 text-[11px] font-bold uppercase tracking-wider text-gray-400">
+          Secciones de la Web
+        </p>
         
-        <!-- 1. Tarjeta: Aviso Importante (Banner Superior) -->
-        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
-          <div class="flex items-center justify-between border-b border-gray-100 pb-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </div>
+        <button
+          type="button"
+          data-tab="tab-aviso-hero"
+          class="nav-tab active w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all text-left bg-teal-50 text-teal-800"
+        >
+          <svg class="w-4 h-4 shrink-0 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          <span>Aviso y Portada</span>
+        </button>
+
+        <button
+          type="button"
+          data-tab="tab-equipo-about"
+          class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all text-left text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+        >
+          <svg class="w-4 h-4 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <span>Equipo y Sobre mí</span>
+        </button>
+
+        <button
+          type="button"
+          data-tab="tab-servicios"
+          class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all text-left text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+        >
+          <svg class="w-4 h-4 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+          <span>Servicios (Flip Cards)</span>
+        </button>
+
+        <button
+          type="button"
+          data-tab="tab-tarifas"
+          class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all text-left text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+        >
+          <svg class="w-4 h-4 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Tarifas</span>
+        </button>
+
+        <button
+          type="button"
+          data-tab="tab-citas-contacto"
+          class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all text-left text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+        >
+          <svg class="w-4 h-4 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>Cita y Contacto</span>
+        </button>
+
+        <button
+          type="button"
+          data-tab="tab-imagenes-seo"
+          class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all text-left text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+        >
+          <svg class="w-4 h-4 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span>Imágenes y SEO</span>
+        </button>
+
+        <div class="pt-4 px-2">
+          <div class="p-3 rounded-2xl bg-gray-50 border border-gray-100 text-[11px] text-gray-500 space-y-1">
+            <p class="font-semibold text-gray-700">Atajo de teclado:</p>
+            <p><kbd class="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-[10px] font-mono">Ctrl+S</kbd> o <kbd class="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-[10px] font-mono">⌘S</kbd> para guardar.</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Main Content Area -->
+      <main class="flex-1 w-full space-y-8 pb-20">
+        
+        <!-- SECTION 1: Aviso y Portada -->
+        <div id="tab-aviso-hero" class="tab-pane space-y-8">
+          
+          <!-- Banner Superior de Aviso -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-4">
               <div>
-                <h3 class="text-base sm:text-lg font-semibold text-brand-graphite">
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800">
                   Aviso Importante (Banner Superior en Portada)
                 </h3>
                 <p class="text-xs text-gray-500">
-                  Ideal para avisos de vacaciones, días festivos o cambios de horario en la clínica.
+                  Muestra un banner superior en toda la portada para vacaciones, avisos o novedades.
                 </p>
               </div>
+
+              <!-- Switch -->
+              <label class="relative inline-flex items-center cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  id="banner_active"
+                  class="sr-only peer"
+                />
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
+                <span class="ml-2.5 text-xs font-semibold text-gray-700 hidden sm:inline" id="bannerActiveLabel">
+                  Desactivado
+                </span>
+              </label>
             </div>
 
-            <!-- Toggle Switch -->
-            <label class="relative inline-flex items-center cursor-pointer select-none">
-              <input
-                type="checkbox"
-                id="bannerActive"
-                class="sr-only peer"
-                checked={config.banner?.active}
-              />
-              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-aqua"></div>
-              <span class="ml-2 text-xs font-semibold text-gray-700 hidden sm:inline" id="bannerActiveLabel">
-                {config.banner?.active ? 'Activo' : 'Desactivado'}
-              </span>
-            </label>
-          </div>
+            <div class="space-y-4">
+              <div>
+                <label for="banner_message" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Mensaje del aviso
+                </label>
+                <input
+                  type="text"
+                  id="banner_message"
+                  placeholder="Ej: La consulta permanecerá cerrada por vacaciones del 1 al 15 de agosto. Puedes pedir cita previa para septiembre."
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-sm text-gray-800 outline-hidden"
+                />
+              </div>
 
-          <div class="space-y-4">
-            <div>
-              <label for="bannerMessage" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
-                Mensaje del aviso
-              </label>
-              <input
-                type="text"
-                id="bannerMessage"
-                value={config.banner?.message || ''}
-                placeholder="Ej: La consulta permanecerá cerrada por vacaciones del 1 al 15 de agosto. Puedes solicitar cita para septiembre."
-                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm text-brand-graphite transition-all outline-hidden"
-              />
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="banner_linkText" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Texto del enlace (opcional)
+                  </label>
+                  <input
+                    type="text"
+                    id="banner_linkText"
+                    placeholder="Ej: Más información o Pedir cita"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="banner_linkUrl" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    URL del enlace (opcional)
+                  </label>
+                  <input
+                    type="text"
+                    id="banner_linkUrl"
+                    placeholder="Ej: #contacto o https://..."
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Hero Section (Portada Principal) -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="border-b border-gray-100 pb-4">
+              <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                Sección Hero (Portada Principal)
+              </h3>
+              <p class="text-xs text-gray-500">
+                Textos principales, badges y llamadas a la acción en la cabecera de la web.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="hero_title" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Título principal
+                  </label>
+                  <input
+                    type="text"
+                    id="hero_title"
+                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-sm font-medium text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="hero_titleHighlight" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Título resaltado (en color aguamarina)
+                  </label>
+                  <input
+                    type="text"
+                    id="hero_titleHighlight"
+                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-sm font-semibold text-teal-700 outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="hero_subtitle" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Subtítulo descriptivo
+                </label>
+                <textarea
+                  id="hero_subtitle"
+                  rows="3"
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-sm text-gray-800 outline-hidden leading-relaxed"
+                ></textarea>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="hero_badge" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Badge superior (Acreditación)
+                  </label>
+                  <input
+                    type="text"
+                    id="hero_badge"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-xs sm:text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="hero_registryNotice" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Registro Sanitario y Colegiación
+                  </label>
+                  <input
+                    type="text"
+                    id="hero_registryNotice"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-xs sm:text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2 border-t border-gray-100">
+                <div>
+                  <label for="hero_ctaText" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Texto Botón Principal (CTA)
+                  </label>
+                  <input
+                    type="text"
+                    id="hero_ctaText"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-xs sm:text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="hero_ctaLink" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Enlace Botón Principal
+                  </label>
+                  <input
+                    type="text"
+                    id="hero_ctaLink"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-xs sm:text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="hero_phoneText" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Teléfono en Hero
+                  </label>
+                  <input
+                    type="text"
+                    id="hero_phoneText"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-xs sm:text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- SECTION 2: Equipo y Sobre mí -->
+        <div id="tab-equipo-about" class="tab-pane hidden space-y-8">
+          
+          <!-- Sobre mí: Luisa Cofrades -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="border-b border-gray-100 pb-4">
+              <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                Dirección Clínica & Sobre mí (Luisa Cofrades)
+              </h3>
+              <p class="text-xs text-gray-500">
+                Textos, biografía y títulos oficiales de Luisa Cofrades Pacheco.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="about_luisaName" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Nombre completo
+                  </label>
+                  <input
+                    type="text"
+                    id="about_luisaName"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-sm font-semibold text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="about_luisaRole" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Cargo y Acreditación Principal
+                  </label>
+                  <input
+                    type="text"
+                    id="about_luisaRole"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="about_luisaRegNotice" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Número de Registro Sanitario CyL
+                </label>
+                <input
+                  type="text"
+                  id="about_luisaRegNotice"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-sm text-gray-800 outline-hidden"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="about_luisaBio1" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Biografía (Párrafo 1)
+                  </label>
+                  <textarea
+                    id="about_luisaBio1"
+                    rows="4"
+                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-xs sm:text-sm text-gray-800 outline-hidden leading-relaxed"
+                  ></textarea>
+                </div>
+                <div>
+                  <label for="about_luisaBio2" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Biografía (Párrafo 2)
+                  </label>
+                  <textarea
+                    id="about_luisaBio2"
+                    rows="4"
+                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 text-xs sm:text-sm text-gray-800 outline-hidden leading-relaxed"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Equipo Clínico Colaborador (Dynamic List CRUD) -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+              <div>
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                  Equipo Clínico Colaborador
+                </h3>
+                <p class="text-xs text-gray-500">
+                  Añade, edita, ordena con las flechas o elimina psicólogas del equipo.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                id="addTeamBtn"
+                class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-xs transition-colors shadow-xs"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Añadir profesional</span>
+              </button>
+            </div>
+
+            <div id="teamListContainer" class="space-y-4">
+              <!-- Rendered dynamically by JavaScript -->
+            </div>
+          </section>
+
+          <!-- Tarjetas Informativas del Centro -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="border-b border-gray-100 pb-4">
+              <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                Tarjetas Informativas del Centro
+              </h3>
+              <p class="text-xs text-gray-500">
+                Textos de los 3 bloques inferiores en "Sobre mí": ¿Quiénes somos?, Formación y Supervisión.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Bloque 1 -->
+              <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/60 space-y-3">
+                <label for="about_quienesSomosTitle" class="block text-xs font-bold text-gray-800">
+                  Bloque 1: Título y Descripción
+                </label>
+                <input
+                  type="text"
+                  id="about_quienesSomosTitle"
+                  class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-xs sm:text-sm font-semibold text-gray-800 outline-hidden"
+                />
+                <textarea
+                  id="about_quienesSomosText"
+                  rows="3"
+                  class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 outline-hidden"
+                ></textarea>
+              </div>
+
+              <!-- Bloque 2 -->
+              <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/60 space-y-3">
+                <label for="about_formacionTitle" class="block text-xs font-bold text-gray-800">
+                  Bloque 2: Formación y Educación
+                </label>
+                <input
+                  type="text"
+                  id="about_formacionTitle"
+                  class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-xs sm:text-sm font-semibold text-gray-800 outline-hidden"
+                />
+                <textarea
+                  id="about_formacionText"
+                  rows="3"
+                  class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 outline-hidden"
+                ></textarea>
+              </div>
+
+              <!-- Bloque 3 -->
+              <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/60 space-y-3">
+                <label for="about_supervisionTitle" class="block text-xs font-bold text-gray-800">
+                  Bloque 3: Supervisión Clínica
+                </label>
+                <input
+                  type="text"
+                  id="about_supervisionTitle"
+                  class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-xs sm:text-sm font-semibold text-gray-800 outline-hidden"
+                />
+                <textarea
+                  id="about_supervisionText"
+                  rows="3"
+                  class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 outline-hidden"
+                ></textarea>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- SECTION 3: Servicios (Flip Cards) -->
+        <div id="tab-servicios" class="tab-pane hidden space-y-8">
+          
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+              <div>
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                  Catálogo de Terapias y Servicios (Flip Cards 3D)
+                </h3>
+                <p class="text-xs text-gray-500">
+                  Gestiona las tarjetas giratorias de servicios. Puedes añadir nuevas, cambiar icono, textos o reordenarlas.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                id="addServicioBtn"
+                class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-xs transition-colors shadow-xs"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Añadir servicio</span>
+              </button>
+            </div>
+
+            <div id="serviciosListContainer" class="space-y-4">
+              <!-- Rendered dynamically by JavaScript -->
+            </div>
+          </section>
+
+        </div>
+
+        <!-- SECTION 4: Tarifas -->
+        <div id="tab-tarifas" class="tab-pane hidden space-y-8">
+          
+          <!-- Encabezados de Tarifas -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="border-b border-gray-100 pb-4">
+              <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                Encabezado de la Sección de Tarifas
+              </h3>
+              <p class="text-xs text-gray-500">
+                Títulos y avisos generales visibles en la tabla de honorarios de consulta.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="tarifas_badge" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Badge superior
+                  </label>
+                  <input
+                    type="text"
+                    id="tarifas_badge"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="tarifas_durationNotice" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Aviso de duración general
+                  </label>
+                  <input
+                    type="text"
+                    id="tarifas_durationNotice"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm font-semibold text-teal-700 outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="tarifas_title" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Título
+                  </label>
+                  <input
+                    type="text"
+                    id="tarifas_title"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm font-medium text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="tarifas_titleHighlight" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Título resaltado
+                  </label>
+                  <input
+                    type="text"
+                    id="tarifas_titleHighlight"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm font-semibold text-teal-700 outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="tarifas_subtitle" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Subtítulo explicativo
+                </label>
+                <input
+                  type="text"
+                  id="tarifas_subtitle"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                />
+              </div>
+            </div>
+          </section>
+
+          <!-- Listado Dinámico de Tarifas -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+              <div>
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                  Tarifas y Precios de Sesiones
+                </h3>
+                <p class="text-xs text-gray-500">
+                  Modifica precios, añade modalidades nuevas o marca una sesión como destacada.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                id="addTarifaBtn"
+                class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-xs transition-colors shadow-xs"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Añadir tarifa</span>
+              </button>
+            </div>
+
+            <div id="tarifasListContainer" class="space-y-4">
+              <!-- Rendered dynamically by JavaScript -->
+            </div>
+          </section>
+
+        </div>
+
+        <!-- SECTION 5: Cita y Contacto -->
+        <div id="tab-citas-contacto" class="tab-pane hidden space-y-8">
+          
+          <!-- Pasos de Reserva y Acogida -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="border-b border-gray-100 pb-4">
+              <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                Pasos de Reserva y Cuestionario Previo
+              </h3>
+              <p class="text-xs text-gray-500">
+                Configura el texto de bienvenida, enlace al formulario de Google Forms y mensajes de asignación.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <label for="cita_bookingStepsDesc" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Texto descriptivo de los pasos (Ubicación, duración y precio)
+                </label>
+                <textarea
+                  id="cita_bookingStepsDesc"
+                  rows="3"
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 text-xs sm:text-sm text-gray-800 outline-hidden leading-relaxed"
+                ></textarea>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="cita_questionnaireTitle" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Título Paso 1 (Cuestionario)
+                  </label>
+                  <input
+                    type="text"
+                    id="cita_questionnaireTitle"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="cita_questionnaireUrl" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    URL de Google Forms (Cuestionario)
+                  </label>
+                  <input
+                    type="text"
+                    id="cita_questionnaireUrl"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-teal-700 font-medium outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="cita_questionnaireQuote" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Cita / Justificación del formulario
+                </label>
+                <input
+                  type="text"
+                  id="cita_questionnaireQuote"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-gray-100">
+                <div>
+                  <label for="cita_availabilityTitle" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Título Paso 2 (Disponibilidad)
+                  </label>
+                  <input
+                    type="text"
+                    id="cita_availabilityTitle"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="cita_whatsappMessage" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Mensaje predeterminado de WhatsApp
+                  </label>
+                  <input
+                    type="text"
+                    id="cita_whatsappMessage"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="cita_availabilityNotice" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Aviso de asignación clínica
+                </label>
+                <textarea
+                  id="cita_availabilityNotice"
+                  rows="2"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-xs text-gray-800 outline-hidden leading-relaxed"
+                ></textarea>
+              </div>
+            </div>
+          </section>
+
+          <!-- Datos de Contacto y Normativa -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="border-b border-gray-100 pb-4">
+              <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                Datos de Contacto, Sede y Cancelaciones
+              </h3>
+              <p class="text-xs text-gray-500">
+                Teléfonos, dirección postal, horarios y política de cancelación de 24 horas.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label for="cita_phoneFormatted" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Teléfono visible
+                  </label>
+                  <input
+                    type="text"
+                    id="cita_phoneFormatted"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm font-semibold text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="cita_whatsapp" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Número WhatsApp (sin espacios ni '+')
+                  </label>
+                  <input
+                    type="text"
+                    id="cita_whatsapp"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="cita_email" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Correo electrónico
+                  </label>
+                  <input
+                    type="email"
+                    id="cita_email"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="cita_address" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Dirección postal
+                  </label>
+                  <input
+                    type="text"
+                    id="cita_address"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="cita_schedule" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Horario de atención
+                  </label>
+                  <input
+                    type="text"
+                    id="cita_schedule"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="cita_mapsUrl" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Enlace de Google Maps
+                </label>
+                <input
+                  type="text"
+                  id="cita_mapsUrl"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-teal-700 outline-hidden"
+                />
+              </div>
+
+              <div>
+                <label for="cita_cancellationPolicy" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Política de Cancelaciones (Regla de las 24 horas)
+                </label>
+                <textarea
+                  id="cita_cancellationPolicy"
+                  rows="3"
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 text-xs sm:text-sm text-gray-800 outline-hidden leading-relaxed"
+                ></textarea>
+              </div>
+
+              <div class="pt-2 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="cita_fachadaTitle" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Título bloque cristalera a pie de calle
+                  </label>
+                  <input
+                    type="text"
+                    id="cita_fachadaTitle"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-sm text-gray-800 outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label for="cita_fachadaText" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Texto identificativo cristalera
+                  </label>
+                  <textarea
+                    id="cita_fachadaText"
+                    rows="2"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-teal-500 text-xs text-gray-800 outline-hidden leading-relaxed"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- SECTION 6: Imágenes y SEO -->
+        <div id="tab-imagenes-seo" class="tab-pane hidden space-y-8">
+          
+          <!-- SEO & Metadatos -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="border-b border-gray-100 pb-4">
+              <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                SEO y Metadatos para Google
+              </h3>
+              <p class="text-xs text-gray-500">
+                Configura el título y la descripción que indexan los motores de búsqueda.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <label for="seo_metaTitle" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Meta Título (Etiqueta &lt;title&gt;)
+                </label>
+                <input
+                  type="text"
+                  id="seo_metaTitle"
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 text-sm font-semibold text-gray-800 outline-hidden"
+                />
+              </div>
+
+              <div>
+                <label for="seo_metaDescription" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Meta Descripción (&lt;meta name="description"&gt;)
+                </label>
+                <textarea
+                  id="seo_metaDescription"
+                  rows="3"
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-teal-500 text-xs sm:text-sm text-gray-800 outline-hidden leading-relaxed"
+                ></textarea>
+              </div>
+            </div>
+          </section>
+
+          <!-- Galería de Imágenes en R2 y Web -->
+          <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+            <div class="border-b border-gray-100 pb-4">
+              <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                Imágenes Principales de la Web (Almacenamiento Cloudflare R2)
+              </h3>
+              <p class="text-xs text-gray-500">
+                Puedes subir fotos directamente a R2 desde aquí o pegar URLs existentes. Se actualizarán al instante.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              
+              <!-- Imagen Hero -->
+              <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+                <div>
+                  <span class="text-xs font-bold text-gray-800 block">Imagen Portada (Hero)</span>
+                  <span class="text-[11px] text-gray-500 mb-2 block">Foto principal de la taza o consulta</span>
+                  <div class="w-full aspect-video rounded-xl bg-gray-200 overflow-hidden border border-gray-200 mb-3">
+                    <img id="preview_img_hero" src="" alt="Hero preview" class="w-full h-full object-cover" />
+                  </div>
+                  <input
+                    type="text"
+                    id="img_hero"
+                    class="w-full px-3 py-1.5 rounded-lg border border-gray-200 text-xs text-gray-700 outline-hidden mb-2"
+                  />
+                </div>
+                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-teal-50 text-teal-700 border border-teal-200 text-xs font-semibold cursor-pointer transition-colors shadow-2xs">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <span>Subir a R2</span>
+                  <input type="file" accept="image/webp,image/jpeg,image/png" class="sr-only image-uploader" data-target="img_hero" data-preview="preview_img_hero" />
+                </label>
+              </div>
+
+              <!-- Retrato Luisa -->
+              <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+                <div>
+                  <span class="text-xs font-bold text-gray-800 block">Foto de Luisa Cofrades</span>
+                  <span class="text-[11px] text-gray-500 mb-2 block">Retrato en la sección "Sobre mí"</span>
+                  <div class="w-full aspect-video rounded-xl bg-gray-200 overflow-hidden border border-gray-200 mb-3">
+                    <img id="preview_img_luisaProfile" src="" alt="Luisa preview" class="w-full h-full object-cover" />
+                  </div>
+                  <input
+                    type="text"
+                    id="img_luisaProfile"
+                    class="w-full px-3 py-1.5 rounded-lg border border-gray-200 text-xs text-gray-700 outline-hidden mb-2"
+                  />
+                </div>
+                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-teal-50 text-teal-700 border border-teal-200 text-xs font-semibold cursor-pointer transition-colors shadow-2xs">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <span>Subir a R2</span>
+                  <input type="file" accept="image/webp,image/jpeg,image/png" class="sr-only image-uploader" data-target="img_luisaProfile" data-preview="preview_img_luisaProfile" />
+                </label>
+              </div>
+
+              <!-- Banner 1 -->
+              <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+                <div>
+                  <span class="text-xs font-bold text-gray-800 block">Banner de Respiro 1</span>
+                  <span class="text-[11px] text-gray-500 mb-2 block">Antes de Tarifas (Ambiente y calma)</span>
+                  <div class="w-full aspect-video rounded-xl bg-gray-200 overflow-hidden border border-gray-200 mb-3">
+                    <img id="preview_img_banner" src="" alt="Banner 1 preview" class="w-full h-full object-cover" />
+                  </div>
+                  <input
+                    type="text"
+                    id="img_banner"
+                    class="w-full px-3 py-1.5 rounded-lg border border-gray-200 text-xs text-gray-700 outline-hidden mb-2"
+                  />
+                </div>
+                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-teal-50 text-teal-700 border border-teal-200 text-xs font-semibold cursor-pointer transition-colors shadow-2xs">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <span>Subir a R2</span>
+                  <input type="file" accept="image/webp,image/jpeg,image/png" class="sr-only image-uploader" data-target="img_banner" data-preview="preview_img_banner" />
+                </label>
+              </div>
+
+              <!-- Banner 2 -->
+              <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+                <div>
+                  <span class="text-xs font-bold text-gray-800 block">Banner de Respiro 2</span>
+                  <span class="text-[11px] text-gray-500 mb-2 block">Antes de Citas (Naturaleza o calma)</span>
+                  <div class="w-full aspect-video rounded-xl bg-gray-200 overflow-hidden border border-gray-200 mb-3">
+                    <img id="preview_img_banner2" src="" alt="Banner 2 preview" class="w-full h-full object-cover" />
+                  </div>
+                  <input
+                    type="text"
+                    id="img_banner2"
+                    class="w-full px-3 py-1.5 rounded-lg border border-gray-200 text-xs text-gray-700 outline-hidden mb-2"
+                  />
+                </div>
+                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-teal-50 text-teal-700 border border-teal-200 text-xs font-semibold cursor-pointer transition-colors shadow-2xs">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <span>Subir a R2</span>
+                  <input type="file" accept="image/webp,image/jpeg,image/png" class="sr-only image-uploader" data-target="img_banner2" data-preview="preview_img_banner2" />
+                </label>
+              </div>
+
+              <!-- Fachada / Flores -->
+              <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+                <div>
+                  <span class="text-xs font-bold text-gray-800 block">Cristalera a pie de calle</span>
+                  <span class="text-[11px] text-gray-500 mb-2 block">Foto identificativa de la entrada</span>
+                  <div class="w-full aspect-video rounded-xl bg-gray-200 overflow-hidden border border-gray-200 mb-3">
+                    <img id="preview_img_fachada" src="" alt="Fachada preview" class="w-full h-full object-cover" />
+                  </div>
+                  <input
+                    type="text"
+                    id="img_fachada"
+                    class="w-full px-3 py-1.5 rounded-lg border border-gray-200 text-xs text-gray-700 outline-hidden mb-2"
+                  />
+                </div>
+                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-teal-50 text-teal-700 border border-teal-200 text-xs font-semibold cursor-pointer transition-colors shadow-2xs">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <span>Subir a R2</span>
+                  <input type="file" accept="image/webp,image/jpeg,image/png" class="sr-only image-uploader" data-target="img_fachada" data-preview="preview_img_fachada" />
+                </label>
+              </div>
+
+              <!-- Logo -->
+              <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+                <div>
+                  <span class="text-xs font-bold text-gray-800 block">Logo Corporativo</span>
+                  <span class="text-[11px] text-gray-500 mb-2 block">Icono o símbolo de cabecera</span>
+                  <div class="w-full aspect-video rounded-xl bg-gray-200 overflow-hidden border border-gray-200 mb-3 flex items-center justify-center p-2 bg-white">
+                    <img id="preview_img_logo" src="" alt="Logo preview" class="max-h-full max-w-full object-contain" />
+                  </div>
+                  <input
+                    type="text"
+                    id="img_logo"
+                    class="w-full px-3 py-1.5 rounded-lg border border-gray-200 text-xs text-gray-700 outline-hidden mb-2"
+                  />
+                </div>
+                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-teal-50 text-teal-700 border border-teal-200 text-xs font-semibold cursor-pointer transition-colors shadow-2xs">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <span>Subir a R2</span>
+                  <input type="file" accept="image/webp,image/jpeg,image/png" class="sr-only image-uploader" data-target="img_logo" data-preview="preview_img_logo" />
+                </label>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- Modal de Confirmación para Restaurar Valores por Defecto -->
+    <div id="resetModal" class="fixed inset-0 z-50 bg-gray-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+      <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-gray-100 space-y-5 animate-in fade-in zoom-in-95 duration-200">
+        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-200/60">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold text-gray-900">
+            ¿Restaurar valores por defecto?
+          </h4>
+          <p class="text-xs sm:text-sm text-gray-600 mt-1 leading-relaxed">
+            Esta acción restablecerá todas las tarifas, textos, equipo y configuraciones a los valores oficiales predeterminados. Los cambios no guardados se perderán.
+          </p>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button
+            type="button"
+            id="cancelResetBtn"
+            class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            id="confirmResetBtn"
+            class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 transition-colors shadow-xs"
+          >
+            Sí, restaurar todo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3 rounded-2xl bg-gray-900 text-white text-xs sm:text-sm shadow-xl border border-gray-800 transition-all duration-300 translate-y-20 opacity-0 pointer-events-none">
+      <span id="toastIcon" class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span id="toastMsg">Cambios guardados con éxito</span>
+    </div>
+
+    <!-- Client-Side CMS JavaScript Engine -->
+    <script is:inline>
+      // 1. Initial State parsing
+      const initialConfig = JSON.parse(document.getElementById('config-data').textContent);
+      let state = JSON.parse(JSON.stringify(initialConfig));
+      let isDirty = false;
+
+      // 2. DOM Elements
+      const statusBadge = document.getElementById('statusBadge');
+      const statusDot = document.getElementById('statusDot');
+      const statusText = document.getElementById('statusText');
+      const saveAllBtn = document.getElementById('saveAllBtn');
+      const saveSpinner = document.getElementById('saveSpinner');
+      const saveText = document.getElementById('saveText');
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastIcon = document.getElementById('toastIcon');
+
+      function showToast(message, isError = false) {
+        toastMsg.textContent = message;
+        toastIcon.className = isError ? 'w-2 h-2 rounded-full bg-rose-500' : 'w-2 h-2 rounded-full bg-emerald-400';
+        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+          toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        }, 3500);
+      }
+
+      function setDirty(dirty = true) {
+        isDirty = dirty;
+        if (dirty) {
+          statusBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-300 transition-all animate-pulse';
+          statusDot.className = 'w-2 h-2 rounded-full bg-amber-500';
+          statusText.textContent = 'Cambios sin guardar';
+        } else {
+          statusBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 transition-all';
+          statusDot.className = 'w-2 h-2 rounded-full bg-emerald-500';
+          statusText.textContent = 'Todos los cambios guardados';
+        }
+      }
+
+      // 3. Tab Switching
+      const tabs = document.querySelectorAll('.nav-tab');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.getAttribute('data-tab');
+          tabs.forEach(t => {
+            t.classList.remove('active', 'bg-teal-50', 'text-teal-800');
+            t.classList.add('text-gray-600');
+            const icon = t.querySelector('svg');
+            if (icon) {
+              icon.classList.remove('text-teal-600');
+              icon.classList.add('text-gray-400');
+            }
+          });
+
+          tab.classList.add('active', 'bg-teal-50', 'text-teal-800');
+          tab.classList.remove('text-gray-600');
+          const activeIcon = tab.querySelector('svg');
+          if (activeIcon) {
+            activeIcon.classList.remove('text-gray-400');
+            activeIcon.classList.add('text-teal-600');
+          }
+
+          tabPanes.forEach(pane => {
+            if (pane.id === target) {
+              pane.classList.remove('hidden');
+            } else {
+              pane.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // 4. Fill Static Inputs
+      function populateStaticInputs() {
+        // Banner
+        const bannerActive = document.getElementById('banner_active');
+        if (bannerActive) bannerActive.checked = !!state.banner?.active;
+        const bannerLabel = document.getElementById('bannerActiveLabel');
+        if (bannerLabel) bannerLabel.textContent = state.banner?.active ? 'Activo' : 'Desactivado';
+        document.getElementById('banner_message').value = state.banner?.message || '';
+        document.getElementById('banner_linkText').value = state.banner?.linkText || '';
+        document.getElementById('banner_linkUrl').value = state.banner?.linkUrl || '';
+
+        // Hero
+        document.getElementById('hero_title').value = state.hero?.title || '';
+        document.getElementById('hero_titleHighlight').value = state.hero?.titleHighlight || '';
+        document.getElementById('hero_subtitle').value = state.hero?.subtitle || '';
+        document.getElementById('hero_badge').value = state.hero?.badge || '';
+        document.getElementById('hero_registryNotice').value = state.hero?.registryNotice || '';
+        document.getElementById('hero_ctaText').value = state.hero?.ctaText || '';
+        document.getElementById('hero_ctaLink').value = state.hero?.ctaLink || '';
+        document.getElementById('hero_phoneText').value = state.hero?.phoneText || '';
+
+        // About / Luisa
+        document.getElementById('about_luisaName').value = state.about?.luisaName || '';
+        document.getElementById('about_luisaRole').value = state.about?.luisaRole || '';
+        document.getElementById('about_luisaRegNotice').value = state.about?.luisaRegNotice || '';
+        document.getElementById('about_luisaBio1').value = state.about?.luisaBio1 || '';
+        document.getElementById('about_luisaBio2').value = state.about?.luisaBio2 || '';
+        document.getElementById('about_quienesSomosTitle').value = state.about?.quienesSomosTitle || '';
+        document.getElementById('about_quienesSomosText').value = state.about?.quienesSomosText || '';
+        document.getElementById('about_formacionTitle').value = state.about?.formacionTitle || '';
+        document.getElementById('about_formacionText').value = state.about?.formacionText || '';
+        document.getElementById('about_supervisionTitle').value = state.about?.supervisionTitle || '';
+        document.getElementById('about_supervisionText').value = state.about?.supervisionText || '';
+
+        // Tarifas Headers
+        document.getElementById('tarifas_badge').value = state.tarifas?.badge || '';
+        document.getElementById('tarifas_title').value = state.tarifas?.title || '';
+        document.getElementById('tarifas_titleHighlight').value = state.tarifas?.titleHighlight || '';
+        document.getElementById('tarifas_durationNotice').value = state.tarifas?.durationNotice || '';
+        document.getElementById('tarifas_subtitle').value = state.tarifas?.subtitle || '';
+
+        // Citas & Contacto
+        document.getElementById('cita_bookingStepsDesc').value = state.citaYContacto?.bookingStepsDescription || '';
+        document.getElementById('cita_questionnaireTitle').value = state.citaYContacto?.questionnaireTitle || '';
+        document.getElementById('cita_questionnaireUrl').value = state.citaYContacto?.questionnaireUrl || '';
+        document.getElementById('cita_questionnaireQuote').value = state.citaYContacto?.questionnaireQuote || '';
+        document.getElementById('cita_availabilityTitle').value = state.citaYContacto?.availabilityTitle || '';
+        document.getElementById('cita_availabilityNotice').value = state.citaYContacto?.availabilityNotice || '';
+        document.getElementById('cita_phoneFormatted').value = state.citaYContacto?.phoneFormatted || '';
+        document.getElementById('cita_whatsapp').value = state.citaYContacto?.whatsapp || '';
+        document.getElementById('cita_whatsappMessage').value = state.citaYContacto?.whatsappMessage || '';
+        document.getElementById('cita_email').value = state.citaYContacto?.email || '';
+        document.getElementById('cita_address').value = state.citaYContacto?.address || '';
+        document.getElementById('cita_schedule').value = state.citaYContacto?.schedule || '';
+        document.getElementById('cita_mapsUrl').value = state.citaYContacto?.mapsUrl || '';
+        document.getElementById('cita_cancellationPolicy').value = state.citaYContacto?.cancellationPolicy || '';
+        document.getElementById('cita_fachadaTitle').value = state.citaYContacto?.fachadaTitle || '';
+        document.getElementById('cita_fachadaText').value = state.citaYContacto?.fachadaText || '';
+
+        // SEO
+        document.getElementById('seo_metaTitle').value = state.seo?.metaTitle || '';
+        document.getElementById('seo_metaDescription').value = state.seo?.metaDescription || '';
+
+        // Images
+        const imgHero = document.getElementById('img_hero');
+        imgHero.value = state.images?.hero || '';
+        document.getElementById('preview_img_hero').src = imgHero.value;
+
+        const imgLuisa = document.getElementById('img_luisaProfile');
+        imgLuisa.value = state.images?.luisaProfile || '';
+        document.getElementById('preview_img_luisaProfile').src = imgLuisa.value;
+
+        const imgBanner = document.getElementById('img_banner');
+        imgBanner.value = state.images?.banner || '';
+        document.getElementById('preview_img_banner').src = imgBanner.value;
+
+        const imgBanner2 = document.getElementById('img_banner2');
+        imgBanner2.value = state.images?.banner2 || '';
+        document.getElementById('preview_img_banner2').src = imgBanner2.value;
+
+        const imgFachada = document.getElementById('img_fachada');
+        imgFachada.value = state.images?.fachada || '';
+        document.getElementById('preview_img_fachada').src = imgFachada.value;
+
+        const imgLogo = document.getElementById('img_logo');
+        imgLogo.value = state.images?.logo || '';
+        document.getElementById('preview_img_logo').src = imgLogo.value;
+      }
+
+      // Listen for static input changes
+      document.body.addEventListener('input', (e) => {
+        if (e.target.matches('input, textarea, select')) {
+          setDirty(true);
+        }
+      });
+
+      const bannerToggle = document.getElementById('banner_active');
+      if (bannerToggle) {
+        bannerToggle.addEventListener('change', () => {
+          const label = document.getElementById('bannerActiveLabel');
+          if (label) label.textContent = bannerToggle.checked ? 'Activo' : 'Desactivado';
+          setDirty(true);
+        });
+      }
+
+      // Handle image url text changes to update preview
+      ['hero', 'luisaProfile', 'banner', 'banner2', 'fachada', 'logo'].forEach(k => {
+        const inp = document.getElementById(`img_${k}`);
+        const prev = document.getElementById(`preview_img_${k}`);
+        if (inp && prev) {
+          inp.addEventListener('input', () => {
+            prev.src = inp.value;
+          });
+        }
+      });
+
+      // 5. Render Dynamic Lists (Team, Servicios, Tarifas)
+      
+      // === TEAM ===
+      function renderTeamList() {
+        const container = document.getElementById('teamListContainer');
+        if (!container) return;
+        container.innerHTML = '';
+
+        if (!state.team || state.team.length === 0) {
+          container.innerHTML = '<p class="text-xs text-gray-400 py-4 text-center">No hay profesionales registrados en el equipo.</p>';
+          return;
+        }
+
+        state.team.forEach((m, idx) => {
+          const card = document.createElement('div');
+          card.className = 'p-5 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-4 hover:border-teal-200 transition-colors';
+          card.innerHTML = `
+            <div class="flex items-center justify-between border-b border-gray-200/60 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-teal-100 text-teal-800 text-xs font-bold flex items-center justify-center">
+                  ${idx + 1}
+                </span>
+                <span class="text-xs font-semibold text-gray-800">${m.name || 'Nueva profesional'}</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button type="button" class="team-up p-1 rounded-lg hover:bg-gray-200 text-gray-500 hover:text-gray-800 disabled:opacity-30" title="Subir" ${idx === 0 ? 'disabled' : ''}>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+                </button>
+                <button type="button" class="team-down p-1 rounded-lg hover:bg-gray-200 text-gray-500 hover:text-gray-800 disabled:opacity-30" title="Bajar" ${idx === state.team.length - 1 ? 'disabled' : ''}>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <button type="button" class="team-del p-1 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-600 transition-colors" title="Eliminar profesional">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="bannerLinkText" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
-                  Texto del enlace (opcional)
-                </label>
-                <input
-                  type="text"
-                  id="bannerLinkText"
-                  value={config.banner?.linkText || ''}
-                  placeholder="Ej: Más información o Pedir cita"
-                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-xs sm:text-sm text-brand-graphite outline-hidden"
-                />
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Nombre completo</label>
+                <input type="text" class="team-name w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs sm:text-sm text-gray-800" value="${m.name || ''}" />
               </div>
               <div>
-                <label for="bannerLinkUrl" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
-                  URL del enlace (opcional)
-                </label>
-                <input
-                  type="text"
-                  id="bannerLinkUrl"
-                  value={config.banner?.linkUrl || ''}
-                  placeholder="Ej: #contacto o /aviso"
-                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-xs sm:text-sm text-brand-graphite outline-hidden"
-                />
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Cargo y Colegiación</label>
+                <input type="text" class="team-role w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs sm:text-sm text-gray-800" value="${m.role || ''}" />
               </div>
             </div>
-          </div>
-        </section>
-
-        <!-- 2. Tarjeta: Tarifas y Precios de Consulta -->
-        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
-          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
-            <div class="w-10 h-10 rounded-2xl bg-brand-aqua/15 text-brand-aqua-dark flex items-center justify-center border border-brand-aqua/25">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-base sm:text-lg font-semibold text-brand-graphite">
-                Tarifas y Honorarios de Consulta
-              </h3>
-              <p class="text-xs text-gray-500">
-                Modifica los precios mostrados en la sección de tarifas y en los pasos de reserva.
-              </p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Sesión Individual -->
-            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
-              <label for="tarifIndividual" class="block text-xs font-semibold text-brand-graphite">
-                Sesión Individual (Estándar)
-              </label>
-              <input
-                type="text"
-                id="tarifIndividual"
-                value={config.tarifs?.individual || '75 €'}
-                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
-              />
-              <span class="text-[11px] text-gray-500 block">Presencial / Online (50 min)</span>
-            </div>
-
-            <!-- Sesión en Inglés -->
-            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
-              <label for="tarifIngles" class="block text-xs font-semibold text-brand-graphite">
-                Sesión en Inglés
-              </label>
-              <input
-                type="text"
-                id="tarifIngles"
-                value={config.tarifs?.ingles || '85 €'}
-                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
-              />
-              <span class="text-[11px] text-gray-500 block">English Therapy (50 min)</span>
-            </div>
-
-            <!-- Sesión de Pareja -->
-            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
-              <label for="tarifPareja" class="block text-xs font-semibold text-brand-graphite">
-                Sesión de Pareja
-              </label>
-              <input
-                type="text"
-                id="tarifPareja"
-                value={config.tarifs?.pareja || '90 €'}
-                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
-              />
-              <span class="text-[11px] text-gray-500 block">Vínculos y relaciones</span>
-            </div>
-
-            <!-- Sesión con Isabel -->
-            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
-              <label for="tarifIsabel" class="block text-xs font-semibold text-brand-graphite">
-                Sesión con Isabel
-              </label>
-              <input
-                type="text"
-                id="tarifIsabel"
-                value={config.tarifs?.isabel || '90 €'}
-                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
-              />
-              <span class="text-[11px] text-gray-500 block">Equipo clínico colaborador</span>
-            </div>
-
-            <!-- Supervisión -->
-            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-2">
-              <label for="tarifSupervision" class="block text-xs font-semibold text-brand-graphite">
-                Supervisión de Casos
-              </label>
-              <input
-                type="text"
-                id="tarifSupervision"
-                value={config.tarifs?.supervision || '100 €'}
-                class="w-full px-3.5 py-2 rounded-xl bg-white border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-sm font-semibold text-brand-graphite outline-hidden"
-              />
-              <span class="text-[11px] text-gray-500 block">Para profesionales de la salud</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- 3. Tarjeta: Textos Destacados -->
-        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
-          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
-            <div class="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-base sm:text-lg font-semibold text-brand-graphite">
-                Textos Destacados de Portada
-              </h3>
-              <p class="text-xs text-gray-500">
-                Personaliza los párrafos y llamadas de atención principales de la página inicial.
-              </p>
-            </div>
-          </div>
-
-          <div class="space-y-5">
-            <div>
-              <label for="heroSubtitle" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
-                Subtítulo del Hero (Cabecera principal)
-              </label>
-              <textarea
-                id="heroSubtitle"
-                rows="3"
-                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-xs sm:text-sm text-brand-graphite leading-relaxed outline-hidden"
-              >{config.hero?.subtitle}</textarea>
-            </div>
 
             <div>
-              <label for="bookingStepsDescription" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
-                Texto explicativo en "Pasos para pedir cita"
-              </label>
-              <textarea
-                id="bookingStepsDescription"
-                rows="3"
-                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/20 text-xs sm:text-sm text-brand-graphite leading-relaxed outline-hidden"
-              >{config.bookingSteps?.description}</textarea>
+              <label class="block text-[11px] font-semibold text-gray-600 mb-1">Biografía</label>
+              <textarea rows="3" class="team-bio w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 leading-relaxed">${m.bio || ''}</textarea>
             </div>
-          </div>
-        </section>
 
-        <!-- 4. Tarjeta: Gestión de Imágenes Principales -->
-        <section class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
-          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
-            <div class="w-10 h-10 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center border border-sky-100">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-base sm:text-lg font-semibold text-brand-graphite">
-                Gestión de Imágenes Principales
-              </h3>
-              <p class="text-xs text-gray-500">
-                Sube fotos en formato WEBP, JPEG o PNG (hasta 5 MB) alojadas en Cloudflare R2 con entrega rápida.
-              </p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <!-- Imagen 1: Hero (Taza / Espacio) -->
-            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <span class="text-xs font-semibold text-brand-graphite block mb-1">
-                  Imagen Portada (Hero)
-                </span>
-                <p class="text-[11px] text-gray-500 mb-2">Tarjeta visual junto al titular.</p>
-                
-                <div class="relative w-full aspect-[16/10] bg-gray-200 rounded-xl overflow-hidden border border-gray-300/80 mb-3 shadow-inner">
-                  <img
-                    id="previewHero"
-                    src={config.images?.hero}
-                    alt="Previsualización Hero"
-                    class="w-full h-full object-cover"
-                  />
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Especialidades (separadas por comas)</label>
+                <input type="text" class="team-tags w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800" value="${(m.tags || []).join(', ')}" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Foto (R2 o URL)</label>
+                <div class="flex items-center gap-2">
+                  <input type="text" class="team-photo w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800" value="${m.photoUrl || ''}" />
+                  <label class="shrink-0 px-2.5 py-1.5 rounded-xl bg-white hover:bg-teal-50 text-teal-700 border border-teal-200 text-xs font-semibold cursor-pointer">
+                    <span>Subir</span>
+                    <input type="file" accept="image/webp,image/jpeg,image/png" class="sr-only team-file" />
+                  </label>
                 </div>
               </div>
-
-              <div>
-                <input
-                  type="hidden"
-                  id="imageHeroInput"
-                  value={config.images?.hero}
-                />
-                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite font-medium text-xs border border-gray-200 cursor-pointer shadow-xs transition-colors">
-                  <svg class="w-4 h-4 text-brand-aqua-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                  </svg>
-                  <span id="labelHeroFile">Cambiar imagen</span>
-                  <input
-                    type="file"
-                    class="sr-only file-uploader"
-                    data-target-input="imageHeroInput"
-                    data-target-preview="previewHero"
-                    data-target-label="labelHeroFile"
-                    accept="image/webp,image/jpeg,image/png"
-                  />
-                </label>
-              </div>
             </div>
+          `;
 
-            <!-- Imagen 2: Fotografía Luisa Cofrades -->
-            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
-              <div>
-                <span class="text-xs font-semibold text-brand-graphite block mb-1">
-                  Fotografía de Luisa Cofrades
-                </span>
-                <p class="text-[11px] text-gray-500 mb-2">Bloque principal en "Sobre mí".</p>
-                
-                <div class="relative w-full aspect-[4/5] bg-gray-200 rounded-xl overflow-hidden border border-gray-300/80 mb-3 shadow-inner">
-                  <img
-                    id="previewLuisa"
-                    src={config.images?.luisaProfile}
-                    alt="Previsualización Luisa Cofrades"
-                    class="w-full h-full object-cover object-top"
-                  />
-                </div>
-              </div>
+          // Event bindings
+          const nameInput = card.querySelector('.team-name');
+          nameInput.addEventListener('input', (e) => { m.name = e.target.value; setDirty(true); });
 
-              <div>
-                <input
-                  type="hidden"
-                  id="imageLuisaInput"
-                  value={config.images?.luisaProfile}
-                />
-                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite font-medium text-xs border border-gray-200 cursor-pointer shadow-xs transition-colors">
-                  <svg class="w-4 h-4 text-brand-aqua-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                  </svg>
-                  <span id="labelLuisaFile">Cambiar foto</span>
-                  <input
-                    type="file"
-                    class="sr-only file-uploader"
-                    data-target-input="imageLuisaInput"
-                    data-target-preview="previewLuisa"
-                    data-target-label="labelLuisaFile"
-                    accept="image/webp,image/jpeg,image/png"
-                  />
-                </label>
-              </div>
-            </div>
+          const roleInput = card.querySelector('.team-role');
+          roleInput.addEventListener('input', (e) => { m.role = e.target.value; setDirty(true); });
 
-            <!-- Imagen 3: Banner de Ambiente -->
-            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-3 flex flex-col justify-between">
-              <div>
-                <span class="text-xs font-semibold text-brand-graphite block mb-1">
-                  Banner de Ambiente y Calma
-                </span>
-                <p class="text-[11px] text-gray-500 mb-2">Fondo del banner antes de tarifas.</p>
-                
-                <div class="relative w-full aspect-[16/10] bg-gray-200 rounded-xl overflow-hidden border border-gray-300/80 mb-3 shadow-inner">
-                  <img
-                    id="previewBanner"
-                    src={config.images?.banner}
-                    alt="Previsualización Banner Ambiente"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+          const bioInput = card.querySelector('.team-bio');
+          bioInput.addEventListener('input', (e) => { m.bio = e.target.value; setDirty(true); });
 
-              <div>
-                <input
-                  type="hidden"
-                  id="imageBannerInput"
-                  value={config.images?.banner}
-                />
-                <label class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite font-medium text-xs border border-gray-200 cursor-pointer shadow-xs transition-colors">
-                  <svg class="w-4 h-4 text-brand-aqua-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                  </svg>
-                  <span id="labelBannerFile">Cambiar imagen</span>
-                  <input
-                    type="file"
-                    class="sr-only file-uploader"
-                    data-target-input="imageBannerInput"
-                    data-target-preview="previewBanner"
-                    data-target-label="labelBannerFile"
-                    accept="image/webp,image/jpeg,image/png"
-                  />
-                </label>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-      </form>
-    </main>
-
-    <!-- Barra Inferior Fija para Guardar Cambios -->
-    <div class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 z-40 shadow-lg">
-      <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
-        <p class="text-xs text-gray-500 hidden sm:block">
-          Los cambios se guardan directamente en Cloudflare KV y se reflejan al instante en la web.
-        </p>
-        <button
-          type="button"
-          id="bottomSaveBtn"
-          class="w-full sm:w-auto ml-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-semibold text-sm shadow-md transition-all duration-200"
-        >
-          <span id="bottomSaveSpinner" class="hidden">
-            <svg class="animate-spin w-4 h-4 text-white" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-            </svg>
-          </span>
-          <span id="bottomSaveText">Guardar todos los cambios</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Toast de Notificación Visual -->
-    <div
-      id="toast"
-      class="fixed top-20 right-4 sm:right-8 z-50 transform transition-all duration-300 translate-y-[-20px] opacity-0 pointer-events-none max-w-sm"
-    >
-      <div id="toastContent" class="flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-medium border bg-white">
-        <span id="toastIcon"></span>
-        <span id="toastMessage"></span>
-      </div>
-    </div>
-
-    <!-- Script de Lógica Frontend -->
-    <script>
-      function setupAdmin() {
-        const form = document.getElementById('adminForm');
-        const topSaveBtn = document.getElementById('topSaveBtn');
-        const bottomSaveBtn = document.getElementById('bottomSaveBtn');
-        const topSaveSpinner = document.getElementById('topSaveSpinner');
-        const bottomSaveSpinner = document.getElementById('bottomSaveSpinner');
-        const topSaveText = document.getElementById('topSaveText');
-        const bottomSaveText = document.getElementById('bottomSaveText');
-
-        const bannerActiveCheckbox = document.getElementById('bannerActive') as HTMLInputElement | null;
-        const bannerActiveLabel = document.getElementById('bannerActiveLabel');
-
-        const toast = document.getElementById('toast');
-        const toastContent = document.getElementById('toastContent');
-        const toastIcon = document.getElementById('toastIcon');
-        const toastMessage = document.getElementById('toastMessage');
-
-        let toastTimeout: any = null;
-
-        function showToast(message: string, isError = false) {
-          if (!toast || !toastContent || !toastIcon || !toastMessage) return;
-          clearTimeout(toastTimeout);
-
-          toastMessage.textContent = message;
-          if (isError) {
-            toastContent.className = 'flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-medium border border-rose-200 bg-rose-50 text-rose-800';
-            toastIcon.innerHTML = `<svg class="w-5 h-5 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
-          } else {
-            toastContent.className = 'flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-medium border border-emerald-200 bg-emerald-50 text-emerald-800';
-            toastIcon.innerHTML = `<svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
-          }
-
-          toast.classList.remove('translate-y-[-20px]', 'opacity-0', 'pointer-events-none');
-          toast.classList.add('translate-y-0', 'opacity-100');
-
-          toastTimeout = setTimeout(() => {
-            toast.classList.remove('translate-y-0', 'opacity-100');
-            toast.classList.add('translate-y-[-20px]', 'opacity-0', 'pointer-events-none');
-          }, 4500);
-        }
-
-        // Toggle label update
-        if (bannerActiveCheckbox && bannerActiveLabel) {
-          bannerActiveCheckbox.addEventListener('change', () => {
-            bannerActiveLabel.textContent = bannerActiveCheckbox.checked ? 'Activo' : 'Desactivado';
+          const tagsInput = card.querySelector('.team-tags');
+          tagsInput.addEventListener('input', (e) => {
+            m.tags = e.target.value.split(',').map(s => s.trim()).filter(Boolean);
+            setDirty(true);
           });
-        }
 
-        // Manejo de subida de imágenes con previsualización inmediata
-        const uploaders = document.querySelectorAll('.file-uploader');
-        uploaders.forEach((input) => {
-          input.addEventListener('change', async (e) => {
-            const target = e.target as HTMLInputElement;
-            const file = target.files?.[0];
+          const photoInput = card.querySelector('.team-photo');
+          photoInput.addEventListener('input', (e) => { m.photoUrl = e.target.value; setDirty(true); });
+
+          const fileInput = card.querySelector('.team-file');
+          fileInput.addEventListener('change', async () => {
+            const file = fileInput.files?.[0];
             if (!file) return;
-
-            const targetInputId = target.getAttribute('data-target-input');
-            const targetPreviewId = target.getAttribute('data-target-preview');
-            const targetLabelId = target.getAttribute('data-target-label');
-
-            const labelEl = targetLabelId ? document.getElementById(targetLabelId) : null;
-            const prevLabel = labelEl ? labelEl.textContent : 'Subir';
-            if (labelEl) labelEl.textContent = 'Subiendo a R2...';
-
-            const formData = new FormData();
-            formData.append('file', file);
-
-            try {
-              const res = await fetch('/api/admin/upload', {
-                method: 'POST',
-                body: formData
-              });
-              const data = await res.json();
-
-              if (!res.ok || !data.success) {
-                throw new Error(data.error || 'Error al subir la imagen');
-              }
-
-              // Actualizar input oculto y previsualización
-              if (targetInputId) {
-                const hiddenInput = document.getElementById(targetInputId) as HTMLInputElement | null;
-                if (hiddenInput) hiddenInput.value = data.url;
-              }
-              if (targetPreviewId) {
-                const previewImg = document.getElementById(targetPreviewId) as HTMLImageElement | null;
-                if (previewImg) previewImg.src = data.url;
-              }
-
-              showToast('Imagen subida con éxito a Cloudflare R2');
-            } catch (err: any) {
-              showToast(err.message || 'Error en la subida', true);
-            } finally {
-              if (labelEl) labelEl.textContent = prevLabel;
-              target.value = '';
+            const url = await uploadImage(file);
+            if (url) {
+              m.photoUrl = url;
+              photoInput.value = url;
+              setDirty(true);
             }
           });
+
+          card.querySelector('.team-up').addEventListener('click', () => {
+            if (idx > 0) {
+              const temp = state.team[idx];
+              state.team[idx] = state.team[idx - 1];
+              state.team[idx - 1] = temp;
+              renderTeamList();
+              setDirty(true);
+            }
+          });
+
+          card.querySelector('.team-down').addEventListener('click', () => {
+            if (idx < state.team.length - 1) {
+              const temp = state.team[idx];
+              state.team[idx] = state.team[idx + 1];
+              state.team[idx + 1] = temp;
+              renderTeamList();
+              setDirty(true);
+            }
+          });
+
+          card.querySelector('.team-del').addEventListener('click', () => {
+            if (confirm(`¿Eliminar a ${m.name || 'esta persona'} del equipo?`)) {
+              state.team.splice(idx, 1);
+              renderTeamList();
+              setDirty(true);
+            }
+          });
+
+          container.appendChild(card);
         });
-
-        // Guardar configuración completa
-        async function handleSave() {
-          setLoading(true);
-
-          const payload = {
-            banner: {
-              active: (document.getElementById('bannerActive') as HTMLInputElement)?.checked || false,
-              message: (document.getElementById('bannerMessage') as HTMLInputElement)?.value.trim() || '',
-              linkText: (document.getElementById('bannerLinkText') as HTMLInputElement)?.value.trim() || '',
-              linkUrl: (document.getElementById('bannerLinkUrl') as HTMLInputElement)?.value.trim() || ''
-            },
-            tarifs: {
-              individual: (document.getElementById('tarifIndividual') as HTMLInputElement)?.value.trim() || '75 €',
-              ingles: (document.getElementById('tarifIngles') as HTMLInputElement)?.value.trim() || '85 €',
-              pareja: (document.getElementById('tarifPareja') as HTMLInputElement)?.value.trim() || '90 €',
-              isabel: (document.getElementById('tarifIsabel') as HTMLInputElement)?.value.trim() || '90 €',
-              supervision: (document.getElementById('tarifSupervision') as HTMLInputElement)?.value.trim() || '100 €'
-            },
-            hero: {
-              subtitle: (document.getElementById('heroSubtitle') as HTMLTextAreaElement)?.value.trim() || ''
-            },
-            bookingSteps: {
-              description: (document.getElementById('bookingStepsDescription') as HTMLTextAreaElement)?.value.trim() || ''
-            },
-            images: {
-              hero: (document.getElementById('imageHeroInput') as HTMLInputElement)?.value || '',
-              luisaProfile: (document.getElementById('imageLuisaInput') as HTMLInputElement)?.value || '',
-              banner: (document.getElementById('imageBannerInput') as HTMLInputElement)?.value || ''
-            }
-          };
-
-          try {
-            const res = await fetch('/api/admin/config', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(payload)
-            });
-
-            const data = await res.json();
-            if (!res.ok || !data.success) {
-              throw new Error(data.error || 'Error al guardar la configuración');
-            }
-
-            showToast('¡Configuración guardada correctamente!');
-          } catch (err: any) {
-            showToast(err.message || 'Error al guardar los cambios', true);
-          } finally {
-            setLoading(false);
-          }
-        }
-
-        function setLoading(isLoading: boolean) {
-          if (topSaveBtn) (topSaveBtn as HTMLButtonElement).disabled = isLoading;
-          if (bottomSaveBtn) (bottomSaveBtn as HTMLButtonElement).disabled = isLoading;
-
-          if (topSaveSpinner && topSaveText) {
-            topSaveSpinner.classList.toggle('hidden', !isLoading);
-            topSaveText.textContent = isLoading ? 'Guardando...' : 'Guardar cambios';
-          }
-          if (bottomSaveSpinner && bottomSaveText) {
-            bottomSaveSpinner.classList.toggle('hidden', !isLoading);
-            bottomSaveText.textContent = isLoading ? 'Guardando...' : 'Guardar todos los cambios';
-          }
-        }
-
-        topSaveBtn?.addEventListener('click', handleSave);
-        bottomSaveBtn?.addEventListener('click', handleSave);
       }
 
-      document.addEventListener('DOMContentLoaded', setupAdmin);
-      document.addEventListener('astro:page-load', setupAdmin);
+      const addTeamBtn = document.getElementById('addTeamBtn');
+      if (addTeamBtn) {
+        addTeamBtn.addEventListener('click', () => {
+          if (!state.team) state.team = [];
+          state.team.push({
+            id: 'team-' + Date.now(),
+            name: '',
+            role: 'Psicóloga Sanitaria',
+            bio: '',
+            photoUrl: '/assets/media/alba.jpeg',
+            tags: ['Atención Clínica'],
+            citaLink: '#contacto'
+          });
+          renderTeamList();
+          setDirty(true);
+        });
+      }
+
+      // === SERVICIOS ===
+      function renderServiciosList() {
+        const container = document.getElementById('serviciosListContainer');
+        if (!container) return;
+        container.innerHTML = '';
+
+        if (!state.servicios || state.servicios.length === 0) {
+          container.innerHTML = '<p class="text-xs text-gray-400 py-4 text-center">No hay servicios registrados.</p>';
+          return;
+        }
+
+        const icons = ['brain', 'box', 'activity', 'sparkles', 'users', 'heart', 'scale', 'shield'];
+
+        state.servicios.forEach((s, idx) => {
+          const card = document.createElement('div');
+          card.className = 'p-5 rounded-2xl bg-gray-50 border border-gray-200/80 space-y-4 hover:border-teal-200 transition-colors';
+          card.innerHTML = `
+            <div class="flex items-center justify-between border-b border-gray-200/60 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-teal-100 text-teal-800 text-xs font-bold flex items-center justify-center">
+                  ${idx + 1}
+                </span>
+                <span class="text-xs font-semibold text-gray-800">${s.title || 'Nuevo servicio'}</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button type="button" class="serv-up p-1 rounded-lg hover:bg-gray-200 text-gray-500 hover:text-gray-800 disabled:opacity-30" title="Subir" ${idx === 0 ? 'disabled' : ''}>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+                </button>
+                <button type="button" class="serv-down p-1 rounded-lg hover:bg-gray-200 text-gray-500 hover:text-gray-800 disabled:opacity-30" title="Bajar" ${idx === state.servicios.length - 1 ? 'disabled' : ''}>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <button type="button" class="serv-del p-1 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-600 transition-colors" title="Eliminar servicio">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="sm:col-span-2">
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Título del Servicio</label>
+                <input type="text" class="serv-title w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs sm:text-sm text-gray-800 font-semibold" value="${s.title || ''}" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Icono</label>
+                <select class="serv-icon w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 outline-hidden">
+                  ${icons.map(ic => `<option value="${ic}" ${s.icon === ic ? 'selected' : ''}>${ic}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Tagline / Subtítulo</label>
+                <input type="text" class="serv-tagline w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800" value="${s.tagline || ''}" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Badge (Etiqueta superior)</label>
+                <input type="text" class="serv-badge w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800" value="${s.badge || ''}" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-semibold text-gray-600 mb-1">Descripción Detallada (Reverso de la tarjeta)</label>
+              <textarea rows="3" class="serv-desc w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 leading-relaxed">${s.desc || ''}</textarea>
+            </div>
+          `;
+
+          // Event bindings
+          card.querySelector('.serv-title').addEventListener('input', (e) => { s.title = e.target.value; setDirty(true); });
+          card.querySelector('.serv-tagline').addEventListener('input', (e) => { s.tagline = e.target.value; setDirty(true); });
+          card.querySelector('.serv-badge').addEventListener('input', (e) => { s.badge = e.target.value; setDirty(true); });
+          card.querySelector('.serv-desc').addEventListener('input', (e) => { s.desc = e.target.value; setDirty(true); });
+          card.querySelector('.serv-icon').addEventListener('change', (e) => { s.icon = e.target.value; setDirty(true); });
+
+          card.querySelector('.serv-up').addEventListener('click', () => {
+            if (idx > 0) {
+              const temp = state.servicios[idx];
+              state.servicios[idx] = state.servicios[idx - 1];
+              state.servicios[idx - 1] = temp;
+              renderServiciosList();
+              setDirty(true);
+            }
+          });
+
+          card.querySelector('.serv-down').addEventListener('click', () => {
+            if (idx < state.servicios.length - 1) {
+              const temp = state.servicios[idx];
+              state.servicios[idx] = state.servicios[idx + 1];
+              state.servicios[idx + 1] = temp;
+              renderServiciosList();
+              setDirty(true);
+            }
+          });
+
+          card.querySelector('.serv-del').addEventListener('click', () => {
+            if (confirm(`¿Eliminar el servicio "${s.title || 'este servicio'}"?`)) {
+              state.servicios.splice(idx, 1);
+              renderServiciosList();
+              setDirty(true);
+            }
+          });
+
+          container.appendChild(card);
+        });
+      }
+
+      const addServicioBtn = document.getElementById('addServicioBtn');
+      if (addServicioBtn) {
+        addServicioBtn.addEventListener('click', () => {
+          if (!state.servicios) state.servicios = [];
+          state.servicios.push({
+            id: 'servicio-' + Date.now(),
+            title: '',
+            tagline: 'Especialidad Clínica',
+            desc: '',
+            badge: 'Terapia Especializada',
+            icon: 'sparkles'
+          });
+          renderServiciosList();
+          setDirty(true);
+        });
+      }
+
+      // === TARIFAS ===
+      function renderTarifasList() {
+        const container = document.getElementById('tarifasListContainer');
+        if (!container) return;
+        container.innerHTML = '';
+
+        if (!state.tarifas?.items || state.tarifas.items.length === 0) {
+          container.innerHTML = '<p class="text-xs text-gray-400 py-4 text-center">No hay tarifas registradas.</p>';
+          return;
+        }
+
+        state.tarifas.items.forEach((t, idx) => {
+          const card = document.createElement('div');
+          card.className = `p-5 rounded-2xl ${t.highlight ? 'bg-teal-50/50 border-2 border-teal-300' : 'bg-gray-50 border border-gray-200/80'} space-y-4 hover:border-teal-300 transition-colors`;
+          card.innerHTML = `
+            <div class="flex items-center justify-between border-b border-gray-200/60 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-teal-100 text-teal-800 text-xs font-bold flex items-center justify-center">
+                  ${idx + 1}
+                </span>
+                <span class="text-xs font-semibold text-gray-800">${t.name || 'Nueva tarifa'}</span>
+                ${t.highlight ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-600 text-white uppercase tracking-wider">Destacada</span>' : ''}
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button type="button" class="tar-up p-1 rounded-lg hover:bg-gray-200 text-gray-500 hover:text-gray-800 disabled:opacity-30" title="Subir" ${idx === 0 ? 'disabled' : ''}>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+                </button>
+                <button type="button" class="tar-down p-1 rounded-lg hover:bg-gray-200 text-gray-500 hover:text-gray-800 disabled:opacity-30" title="Bajar" ${idx === state.tarifas.items.length - 1 ? 'disabled' : ''}>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <button type="button" class="tar-del p-1 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-600 transition-colors" title="Eliminar tarifa">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="sm:col-span-2">
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Nombre de la Sesión</label>
+                <input type="text" class="tar-name w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs sm:text-sm text-gray-800 font-semibold" value="${t.name || ''}" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Precio (con símbolo)</label>
+                <input type="text" class="tar-price w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs sm:text-sm text-teal-700 font-bold" value="${t.price || ''}" placeholder="Ej: 75 €" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Duración</label>
+                <input type="text" class="tar-dur w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800" value="${t.duration || '50 minutos'}" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Etiqueta / Tag</label>
+                <input type="text" class="tar-tag w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800" value="${t.tag || 'Individual'}" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Modalidad</label>
+                <input type="text" class="tar-mod w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800" value="${t.modality || 'Presencial / Online'}" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-semibold text-gray-600 mb-1">Descripción</label>
+              <textarea rows="2" class="tar-desc w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 leading-relaxed">${t.description || ''}</textarea>
+            </div>
+
+            <div class="flex items-center gap-2 pt-1">
+              <input type="checkbox" id="tar-hl-${idx}" class="tar-hl rounded text-teal-600 focus:ring-teal-500" ${t.highlight ? 'checked' : ''} />
+              <label for="tar-hl-${idx}" class="text-xs font-semibold text-gray-700 select-none cursor-pointer">
+                Destacar esta tarjeta (Borde y etiqueta "Especializada")
+              </label>
+            </div>
+          `;
+
+          // Event bindings
+          card.querySelector('.tar-name').addEventListener('input', (e) => { t.name = e.target.value; setDirty(true); });
+          card.querySelector('.tar-price').addEventListener('input', (e) => { t.price = e.target.value; setDirty(true); });
+          card.querySelector('.tar-dur').addEventListener('input', (e) => { t.duration = e.target.value; setDirty(true); });
+          card.querySelector('.tar-tag').addEventListener('input', (e) => { t.tag = e.target.value; setDirty(true); });
+          card.querySelector('.tar-mod').addEventListener('input', (e) => { t.modality = e.target.value; setDirty(true); });
+          card.querySelector('.tar-desc').addEventListener('input', (e) => { t.description = e.target.value; setDirty(true); });
+          card.querySelector('.tar-hl').addEventListener('change', (e) => {
+            t.highlight = e.target.checked;
+            renderTarifasList();
+            setDirty(true);
+          });
+
+          card.querySelector('.tar-up').addEventListener('click', () => {
+            if (idx > 0) {
+              const temp = state.tarifas.items[idx];
+              state.tarifas.items[idx] = state.tarifas.items[idx - 1];
+              state.tarifas.items[idx - 1] = temp;
+              renderTarifasList();
+              setDirty(true);
+            }
+          });
+
+          card.querySelector('.tar-down').addEventListener('click', () => {
+            if (idx < state.tarifas.items.length - 1) {
+              const temp = state.tarifas.items[idx];
+              state.tarifas.items[idx] = state.tarifas.items[idx + 1];
+              state.tarifas.items[idx + 1] = temp;
+              renderTarifasList();
+              setDirty(true);
+            }
+          });
+
+          card.querySelector('.tar-del').addEventListener('click', () => {
+            if (confirm(`¿Eliminar la tarifa "${t.name || 'esta sesión'}"?`)) {
+              state.tarifas.items.splice(idx, 1);
+              renderTarifasList();
+              setDirty(true);
+            }
+          });
+
+          container.appendChild(card);
+        });
+      }
+
+      const addTarifaBtn = document.getElementById('addTarifaBtn');
+      if (addTarifaBtn) {
+        addTarifaBtn.addEventListener('click', () => {
+          if (!state.tarifas) state.tarifas = { badge: '', title: '', titleHighlight: '', durationNotice: '', subtitle: '', items: [] };
+          if (!state.tarifas.items) state.tarifas.items = [];
+          state.tarifas.items.push({
+            id: 'tarifa-' + Date.now(),
+            name: '',
+            price: '80 €',
+            duration: '50 minutos',
+            tag: 'Individual',
+            modality: 'Presencial u Online',
+            description: '',
+            highlight: false
+          });
+          renderTarifasList();
+          setDirty(true);
+        });
+      }
+
+      // 6. Image Upload Handler
+      async function uploadImage(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        showToast('Subiendo imagen a Cloudflare R2...');
+
+        try {
+          const res = await fetch('/api/admin/upload', {
+            method: 'POST',
+            body: formData
+          });
+          const data = await res.json();
+          if (!res.ok || !data.success) {
+            throw new Error(data.error || 'Fallo en la subida');
+          }
+          showToast('Imagen subida correctamente');
+          return data.url;
+        } catch (err) {
+          showToast('Error al subir: ' + (err.message || 'Error de red'), true);
+          return null;
+        }
+      }
+
+      document.querySelectorAll('.image-uploader').forEach(input => {
+        input.addEventListener('change', async () => {
+          const file = input.files?.[0];
+          if (!file) return;
+          const targetId = input.getAttribute('data-target');
+          const previewId = input.getAttribute('data-preview');
+          const url = await uploadImage(file);
+          if (url) {
+            const targetEl = document.getElementById(targetId);
+            const prevEl = document.getElementById(previewId);
+            if (targetEl) targetEl.value = url;
+            if (prevEl) prevEl.src = url;
+            setDirty(true);
+          }
+        });
+      });
+
+      // 7. Collect and Save State
+      function collectFormState() {
+        const next = JSON.parse(JSON.stringify(state));
+
+        // Banner
+        next.banner = next.banner || {};
+        next.banner.active = document.getElementById('banner_active').checked;
+        next.banner.message = document.getElementById('banner_message').value;
+        next.banner.linkText = document.getElementById('banner_linkText').value;
+        next.banner.linkUrl = document.getElementById('banner_linkUrl').value;
+
+        // Hero
+        next.hero = next.hero || {};
+        next.hero.title = document.getElementById('hero_title').value;
+        next.hero.titleHighlight = document.getElementById('hero_titleHighlight').value;
+        next.hero.subtitle = document.getElementById('hero_subtitle').value;
+        next.hero.badge = document.getElementById('hero_badge').value;
+        next.hero.registryNotice = document.getElementById('hero_registryNotice').value;
+        next.hero.ctaText = document.getElementById('hero_ctaText').value;
+        next.hero.ctaLink = document.getElementById('hero_ctaLink').value;
+        next.hero.phoneText = document.getElementById('hero_phoneText').value;
+
+        // About / Luisa
+        next.about = next.about || {};
+        next.about.luisaName = document.getElementById('about_luisaName').value;
+        next.about.luisaRole = document.getElementById('about_luisaRole').value;
+        next.about.luisaRegNotice = document.getElementById('about_luisaRegNotice').value;
+        next.about.luisaBio1 = document.getElementById('about_luisaBio1').value;
+        next.about.luisaBio2 = document.getElementById('about_luisaBio2').value;
+        next.about.quienesSomosTitle = document.getElementById('about_quienesSomosTitle').value;
+        next.about.quienesSomosText = document.getElementById('about_quienesSomosText').value;
+        next.about.formacionTitle = document.getElementById('about_formacionTitle').value;
+        next.about.formacionText = document.getElementById('about_formacionText').value;
+        next.about.supervisionTitle = document.getElementById('about_supervisionTitle').value;
+        next.about.supervisionText = document.getElementById('about_supervisionText').value;
+
+        // Tarifas
+        next.tarifas = next.tarifas || {};
+        next.tarifas.badge = document.getElementById('tarifas_badge').value;
+        next.tarifas.title = document.getElementById('tarifas_title').value;
+        next.tarifas.titleHighlight = document.getElementById('tarifas_titleHighlight').value;
+        next.tarifas.durationNotice = document.getElementById('tarifas_durationNotice').value;
+        next.tarifas.subtitle = document.getElementById('tarifas_subtitle').value;
+
+        // Cita y Contacto
+        next.citaYContacto = next.citaYContacto || {};
+        next.citaYContacto.bookingStepsDescription = document.getElementById('cita_bookingStepsDesc').value;
+        next.citaYContacto.questionnaireTitle = document.getElementById('cita_questionnaireTitle').value;
+        next.citaYContacto.questionnaireUrl = document.getElementById('cita_questionnaireUrl').value;
+        next.citaYContacto.questionnaireQuote = document.getElementById('cita_questionnaireQuote').value;
+        next.citaYContacto.availabilityTitle = document.getElementById('cita_availabilityTitle').value;
+        next.citaYContacto.availabilityNotice = document.getElementById('cita_availabilityNotice').value;
+        next.citaYContacto.phoneFormatted = document.getElementById('cita_phoneFormatted').value;
+        next.citaYContacto.whatsapp = document.getElementById('cita_whatsapp').value;
+        next.citaYContacto.whatsappMessage = document.getElementById('cita_whatsappMessage').value;
+        next.citaYContacto.email = document.getElementById('cita_email').value;
+        next.citaYContacto.address = document.getElementById('cita_address').value;
+        next.citaYContacto.schedule = document.getElementById('cita_schedule').value;
+        next.citaYContacto.mapsUrl = document.getElementById('cita_mapsUrl').value;
+        next.citaYContacto.cancellationPolicy = document.getElementById('cita_cancellationPolicy').value;
+        next.citaYContacto.fachadaTitle = document.getElementById('cita_fachadaTitle').value;
+        next.citaYContacto.fachadaText = document.getElementById('cita_fachadaText').value;
+
+        // SEO
+        next.seo = next.seo || {};
+        next.seo.metaTitle = document.getElementById('seo_metaTitle').value;
+        next.seo.metaDescription = document.getElementById('seo_metaDescription').value;
+
+        // Images
+        next.images = next.images || {};
+        next.images.hero = document.getElementById('img_hero').value;
+        next.images.luisaProfile = document.getElementById('img_luisaProfile').value;
+        next.images.banner = document.getElementById('img_banner').value;
+        next.images.banner2 = document.getElementById('img_banner2').value;
+        next.images.fachada = document.getElementById('img_fachada').value;
+        next.images.logo = document.getElementById('img_logo').value;
+
+        return next;
+      }
+
+      async function saveChanges() {
+        const payload = collectFormState();
+        saveSpinner.classList.remove('hidden');
+        saveText.textContent = 'Guardando...';
+        saveAllBtn.disabled = true;
+
+        try {
+          const res = await fetch('/api/admin/config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (!res.ok || !data.success) {
+            throw new Error(data.error || 'Error al guardar');
+          }
+          state = data.config;
+          setDirty(false);
+          showToast('Configuración guardada correctamente');
+        } catch (err) {
+          showToast('Error al guardar: ' + (err.message || 'Error de red'), true);
+        } finally {
+          saveSpinner.classList.add('hidden');
+          saveText.textContent = 'Guardar cambios';
+          saveAllBtn.disabled = false;
+        }
+      }
+
+      saveAllBtn.addEventListener('click', saveChanges);
+
+      // Keyboard Shortcut: Cmd+S / Ctrl+S
+      window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          saveChanges();
+        }
+      });
+
+      // 8. Reset Modal
+      const resetModal = document.getElementById('resetModal');
+      const openResetModalBtn = document.getElementById('openResetModalBtn');
+      const cancelResetBtn = document.getElementById('cancelResetBtn');
+      const confirmResetBtn = document.getElementById('confirmResetBtn');
+
+      openResetModalBtn.addEventListener('click', () => {
+        resetModal.classList.remove('hidden');
+      });
+
+      cancelResetBtn.addEventListener('click', () => {
+        resetModal.classList.add('hidden');
+      });
+
+      confirmResetBtn.addEventListener('click', async () => {
+        confirmResetBtn.disabled = true;
+        confirmResetBtn.textContent = 'Restaurando...';
+        try {
+          const res = await fetch('/api/admin/config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'reset' })
+          });
+          const data = await res.json();
+          if (!res.ok || !data.success) {
+            throw new Error(data.error || 'Error al restaurar');
+          }
+          state = data.config;
+          populateStaticInputs();
+          renderTeamList();
+          renderServiciosList();
+          renderTarifasList();
+          setDirty(false);
+          resetModal.classList.add('hidden');
+          showToast('Valores por defecto restaurados con éxito');
+        } catch (err) {
+          showToast('Error: ' + (err.message || 'Error de red'), true);
+        } finally {
+          confirmResetBtn.disabled = false;
+          confirmResetBtn.textContent = 'Sí, restaurar todo';
+        }
+      });
+
+      // 9. Initial Load
+      populateStaticInputs();
+      renderTeamList();
+      renderServiciosList();
+      renderTarifasList();
+      setDirty(false);
     </script>
   </body>
 </html>

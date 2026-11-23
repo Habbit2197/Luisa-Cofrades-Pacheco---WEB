@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { getSiteConfig, saveSiteConfig } from '../../../lib/siteConfig';
+import { getSiteConfig, saveSiteConfig, resetSiteConfig } from '../../../lib/siteConfig';
 
 export const GET: APIRoute = async () => {
   try {
@@ -27,6 +27,14 @@ export const POST: APIRoute = async ({ request }) => {
     if (!body || typeof body !== 'object') {
       return new Response(JSON.stringify({ error: 'Cuerpo de petición inválido' }), {
         status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    if (body.action === 'reset' || body.reset === true) {
+      const reset = await resetSiteConfig();
+      return new Response(JSON.stringify({ success: true, config: reset, message: 'Configuración restaurada con éxito' }), {
+        status: 200,
         headers: { 'Content-Type': 'application/json' }
       });
     }

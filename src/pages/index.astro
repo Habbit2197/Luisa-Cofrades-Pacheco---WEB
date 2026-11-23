@@ -45,8 +45,8 @@ const siteConfig = await getSiteConfig();
 ---
 
 <Layout 
-  title="Psicología para vivir centro de Luisa Cofrades." 
-  description="¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas."
+  title={siteConfig.seo?.metaTitle || "Psicología para vivir centro de Luisa Cofrades."} 
+  description={siteConfig.seo?.metaDescription || "¿Cómo podemos ayudarte? Equipo especializado en trauma y experiencias adversas."}
 >
   <!-- Aviso Importante (Banner Superior en Portada si está activo) -->
   {siteConfig.banner?.active && siteConfig.banner?.message && (
@@ -69,8 +69,7 @@ const siteConfig = await getSiteConfig();
 
   <!-- Hero Section con Framer Motion, imagen configurable y propuesta de valor -->
   <HeroSection 
-    subtitle={siteConfig.hero?.subtitle}
-    badge={siteConfig.hero?.badge}
+    {...siteConfig.hero}
     imageUrl={siteConfig.images?.hero}
   />
 
@@ -88,10 +87,10 @@ const siteConfig = await getSiteConfig();
           <span>Dirección Clínica & Fundadora</span>
         </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-brand-graphite tracking-tight leading-tight">
-          Sobre <span class="font-semibold text-brand-aqua">mí</span>
+          {siteConfig.about?.title || 'Sobre'} <span class="font-semibold text-brand-aqua">{siteConfig.about?.titleHighlight || 'mí'}</span>
         </h2>
         <p class="text-brand-graphite/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-          Acompañamiento clínico integral con una <strong class="text-brand-graphite font-semibold">mirada sistémica, humanista e integrativa</strong>, rigor científico y calidez humana en cada proceso terapéutico.
+          {siteConfig.about?.subtitle || 'Acompañamiento clínico integral con una mirada sistémica, humanista e integrativa, rigor científico y calidez humana en cada proceso terapéutico.'}
         </p>
       </div>
 
@@ -104,8 +103,8 @@ const siteConfig = await getSiteConfig();
           <!-- Foto de Luisa con recorte retrato premium (tamaño equilibrado) -->
           <div class="w-full lg:w-[32%] xl:w-[28%] shrink-0 flex items-center justify-center">
             <img 
-              src={siteConfig.images?.luisaProfile || "/assets/media/luisa_sinperro.jpeg"} 
-              alt="Luisa Cofrades Pacheco - Directora Clínica y Fundadora" 
+              src={siteConfig.images?.luisaProfile || siteConfig.about?.luisaPhoto || "/assets/media/luisa_sinperro.jpeg"} 
+              alt={`${siteConfig.about?.luisaName || 'Luisa Cofrades Pacheco'} - Directora Clínica y Fundadora`} 
               width="600" 
               height="750" 
               loading="lazy" 
@@ -123,49 +122,41 @@ const siteConfig = await getSiteConfig();
                   <span>DIRECCIÓN CLÍNICA & FUNDADORA</span>
                 </span>
                 <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-graphite tracking-tight mb-1">
-                  Luisa Cofrades Pacheco
+                  {siteConfig.about?.luisaName || 'Luisa Cofrades Pacheco'}
                 </h3>
                 <p class="text-brand-aqua font-semibold text-base sm:text-lg mb-1.5">
-                  Especialista EuroPsy en Psicoterapia · Psicóloga Sanitaria Colegiada N.º BI05747 (COP)
+                  {siteConfig.about?.luisaRole || 'Especialista EuroPsy en Psicoterapia · Psicóloga Sanitaria Colegiada N.º BI05747 (COP)'}
                 </p>
                 <p class="text-xs sm:text-sm text-brand-graphite/70 font-medium mb-4 flex items-center gap-1.5">
                   <ShieldCheck class="w-4 h-4 text-brand-aqua shrink-0" />
-                  <span>Centro Sanitario Reconocido Junta de Castilla y León · N.º 37-C22-0544</span>
+                  <span>{siteConfig.about?.luisaRegNotice || 'Centro Sanitario Reconocido Junta de Castilla y León · N.º 37-C22-0544'}</span>
                 </p>
               </div>
 
               <!-- Biografía en tono gris suave -->
               <div class="space-y-4 text-sm sm:text-base leading-relaxed text-brand-graphite/85 text-justify sm:text-left">
                 <p>
-                  Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado con respeto, sin juicios ni etiquetas.
+                  {siteConfig.about?.luisaBio1 || 'Entiendo la psicoterapia como un encuentro profundamente humano y seguro. Un lugar de calma y confidencialidad donde detener el ritmo acelerado del día a día, respirar y ser escuchado con respeto, sin juicios ni etiquetas.'}
                 </p>
                 <p>
-                  Desarrollo mi intervención clínica desde una <strong class="text-brand-graphite font-semibold">mirada sistémica, humanista e integrativa</strong>, aunando el rigor neurofisiológico de la <strong class="text-brand-graphite font-semibold">Terapia EMDR</strong> con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.
+                  {siteConfig.about?.luisaBio2 || 'Desarrollo mi intervención clínica desde una mirada sistémica, humanista e integrativa, aunando el rigor neurofisiológico de la Terapia EMDR con el cuidado del vínculo terapéutico. Pionera en Salamanca en la aplicación de la Caja de Arena (Sand Play) para niños y adultos con trauma complejo.'}
                 </p>
               </div>
 
               <!-- Acreditaciones en cápsulas -->
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-2 text-xs sm:text-sm font-medium text-brand-graphite">
-                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                  <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                  <span>Colegiada N.º BI05747 (COP)</span>
-                </div>
-                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                  <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                  <span>Reg. Sanitario CyL: 37-C22-0544</span>
-                </div>
-                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                  <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                  <span>Especialista EuroPsy</span>
-                </div>
-                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                  <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                  <span>Asociación EMDR España</span>
-                </div>
-                <div class="flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100 sm:col-span-2 lg:col-span-2">
-                  <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                  <span>Docente colaboradora Máster USAL</span>
-                </div>
+                {(siteConfig.about?.luisaBadges || [
+                  'Colegiada N.º BI05747 (COP)',
+                  'Reg. Sanitario CyL: 37-C22-0544',
+                  'Especialista EuroPsy',
+                  'Asociación EMDR España',
+                  'Docente colaboradora Máster USAL'
+                ]).map((badge, bIdx) => (
+                  <div class={`flex items-center gap-2 p-2.5 rounded-xl bg-gray-50 border border-gray-100 ${bIdx === 4 ? 'sm:col-span-2 lg:col-span-2' : ''}`}>
+                    <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+                    <span>{badge}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -190,7 +181,7 @@ const siteConfig = await getSiteConfig();
           </div>
         </article>
 
-        <!-- SECCIÓN EQUIPO: Colaboradoras del centro (Mari Paz, Alba) -->
+        <!-- SECCIÓN EQUIPO: Colaboradoras del centro -->
         <div id="equipo" class="mt-28 md:mt-36 pt-12 border-t border-gray-200/70 scroll-mt-24">
           <div id="el-equipo" class="scroll-mt-24"></div>
           
@@ -208,105 +199,53 @@ const siteConfig = await getSiteConfig();
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Article Mari Paz Palau Urbón -->
-            <article class="bg-gray-50/70 p-6 md:p-8 rounded-2xl border border-gray-100 flex flex-col md:flex-row gap-6 items-center md:items-start shadow-xs hover:border-gray-200 transition-colors">
-              <!-- Foto de Mari Paz con tamaño más visible y equilibrado -->
-              <img 
-                src="/assets/media/paz_urbon.jpeg" 
-                alt="Mari Paz Palau Urbón - Psicóloga General Sanitaria" 
-                width="200" 
-                height="200" 
-                loading="lazy" 
-                decoding="async" 
-                class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shrink-0 shadow-md border-2 border-white"
-              />
+            {(siteConfig.team || []).map((member) => (
+              <article class="bg-gray-50/70 p-6 md:p-8 rounded-2xl border border-gray-100 flex flex-col md:flex-row gap-6 items-center md:items-start shadow-xs hover:border-gray-200 transition-colors">
+                <img 
+                  src={member.photoUrl} 
+                  alt={`${member.name} - ${member.role}`} 
+                  width="200" 
+                  height="200" 
+                  loading="lazy" 
+                  decoding="async" 
+                  class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shrink-0 shadow-md border-2 border-white"
+                />
 
-              <!-- Contenido con tipografía secundaria y discreta -->
-              <div class="flex-1 space-y-3 text-center md:text-left">
-                <div>
-                  <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold block mb-0.5">Equipo Clínico Colaborador</span>
-                  <h4 class="text-xl font-bold text-brand-graphite">
-                    Mari Paz Palau Urbón
-                  </h4>
-                  <p class="text-xs sm:text-sm text-brand-aqua font-medium">
-                    Psicóloga General Sanitaria · N.º Col. CL-05542
+                <div class="flex-1 space-y-3 text-center md:text-left">
+                  <div>
+                    <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold block mb-0.5">Equipo Clínico Colaborador</span>
+                    <h4 class="text-xl font-bold text-brand-graphite">
+                      {member.name}
+                    </h4>
+                    <p class="text-xs sm:text-sm text-brand-aqua font-medium">
+                      {member.role}
+                    </p>
+                  </div>
+
+                  <p class="text-xs sm:text-sm text-gray-600 leading-relaxed text-justify md:text-left">
+                    {member.bio}
                   </p>
+
+                  {member.tags && member.tags.length > 0 && (
+                    <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs text-gray-500">
+                      {member.tags.map((tag) => (
+                        <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div class="pt-2">
+                    <a 
+                      href={member.citaLink || "#contacto"} 
+                      class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
+                    >
+                      <Calendar class="w-3.5 h-3.5" />
+                      <span>Concertar cita</span>
+                    </a>
+                  </div>
                 </div>
-
-                <!-- Biografía en tamaño text-sm y color gris suave para marcar segundo plano -->
-                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed text-justify md:text-left">
-                  Psicóloga General Sanitaria. Licenciada en Psicología por la Universidad Pontificia de Salamanca. Terapeuta EMDR y amplia experiencia en terapia cognitivo-conductual. Creo en una psicología cercana y humana, en la que cada persona pueda encontrar un espacio seguro donde sentirse escuchada, comprendida y acompañada. Por eso, quiero ofrecerte un lugar en el que puedas parar, conectar contigo, dar espacio a lo que sientes y, sobre todo, aprender a cuidarte. Un espacio para ti, a tu ritmo.
-                </p>
-
-                <!-- Acreditaciones compactas -->
-                <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs text-gray-500">
-                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Terapeuta EMDR</span>
-                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Licenciada UPSA</span>
-                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Terapia Cognitivo-Conductual</span>
-                </div>
-
-                <!-- Enlace discreto a cita -->
-                <div class="pt-2">
-                  <a 
-                    href="#contacto" 
-                    class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
-                  >
-                    <Calendar class="w-3.5 h-3.5" />
-                    <span>Concertar cita</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- Article Alba Rodríguez Marcos -->
-            <article class="bg-gray-50/70 p-6 md:p-8 rounded-2xl border border-gray-100 flex flex-col md:flex-row gap-6 items-center md:items-start shadow-xs hover:border-gray-200 transition-colors">
-              <!-- Foto de Alba -->
-              <img 
-                src="/assets/media/alba.jpeg" 
-                alt="Alba Rodríguez Marcos - Psicóloga General Sanitaria" 
-                width="200" 
-                height="200" 
-                loading="lazy" 
-                decoding="async" 
-                class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shrink-0 shadow-md border-2 border-white"
-              />
-
-              <!-- Contenido de Alba -->
-              <div class="flex-1 space-y-3 text-center md:text-left">
-                <div>
-                  <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold block mb-0.5">Equipo Clínico Colaborador</span>
-                  <h4 class="text-xl font-bold text-brand-graphite">
-                    Alba Rodríguez Marcos
-                  </h4>
-                  <p class="text-xs sm:text-sm text-brand-aqua font-medium">
-                    Psicóloga General Sanitaria · N.º Col. CL-05594
-                  </p>
-                </div>
-
-                <!-- Biografía literal solicitada -->
-                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed text-justify md:text-left">
-                  Soy graduada en psicología por la Universidad Pontificia de Salamanca. Cuento con una experiencia en terapia familiar, individual e infantil. A lo largo de mi trayectoria también he acompañado a personas y familias que conviven con enfermedades degenerativas y demencias y con sus dificultades en el día a día. Pienso que acompañar empieza por la escucha y el respeto, ayudando a cada persona a comprender y gestionar aquello que le genera incomodidad. Mi objetivo es ofrecer un espacio seguro, sin juicios y lleno de magia, donde los adultos, las familias y los más pequeños puedan sentirse escuchados, comprendidos y acompañados. Cada paso juntos nos ayuda a crecer.
-                </p>
-
-                <!-- Acreditaciones compactas -->
-                <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs text-gray-500">
-                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Graduada UPSA</span>
-                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Terapia Familiar e Infantil</span>
-                  <span class="px-2.5 py-1 rounded-lg bg-white border border-gray-200">Acompañamiento y Demencias</span>
-                </div>
-
-                <!-- Enlace discreto a cita -->
-                <div class="pt-2">
-                  <a 
-                    href="#contacto" 
-                    class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-aqua hover:text-brand-aqua-dark transition-colors"
-                  >
-                    <Calendar class="w-3.5 h-3.5" />
-                    <span>Concertar cita</span>
-                  </a>
-                </div>
-              </div>
-            </article>
+              </article>
+            ))}
           </div>
         </div>
 
@@ -314,12 +253,12 @@ const siteConfig = await getSiteConfig();
 
       <!-- Cabecera complementaria del Centro y sus Áreas -->
       <div class="text-center max-w-3xl mx-auto mb-12 space-y-3 pt-6 border-t border-gray-100">
-        <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold">El Centro · Psicología para Vivir</span>
+        <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold">{siteConfig.about?.centroBadge || 'El Centro · Psicología para Vivir'}</span>
         <h3 class="text-2xl sm:text-3xl font-light text-brand-graphite tracking-tight">
-          Un espacio seguro de <span class="font-semibold text-brand-aqua">calma, rigor y crecimiento</span>
+          {siteConfig.about?.centroTitle || 'Un espacio seguro de calma, rigor y crecimiento'}
         </h3>
         <p class="text-brand-graphite/70 text-sm sm:text-base leading-relaxed">
-          Equipo especializado en trauma y experiencias adversas con consulta presencial en Salamanca y atención terapéutica online.
+          {siteConfig.about?.centroSubtitle || 'Equipo especializado en trauma y experiencias adversas con consulta presencial en Salamanca y atención terapéutica online.'}
         </p>
       </div>
 
@@ -336,13 +275,12 @@ const siteConfig = await getSiteConfig();
             <div>
               <span class="text-xs uppercase tracking-wider text-brand-aqua font-semibold">Espacio Terapéutico</span>
               <h4 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1">
-                ¿Quiénes Somos? y Espacio Terapéutico
+                {siteConfig.about?.quienesSomosTitle || '¿Quiénes Somos? y Espacio Terapéutico'}
               </h4>
             </div>
 
-            <!-- Texto literal solicitado -->
             <p class="text-sm sm:text-base text-brand-graphite leading-relaxed text-justify sm:text-left">
-              Psicología para vivir es un espacio seguro, diseñado para que te sientas en calma desde el primer momento. Somos un equipo especializado en trauma y experiencias adversas, liderado por Luisa Cofrades. Integramos diferentes corrientes para ofrecerte un tratamiento a medida, siempre desde el rigor científico y la calidez humana.
+              {siteConfig.about?.quienesSomosText || 'Psicología para vivir es un espacio seguro, diseñado para que te sientas en calma desde el primer momento. Somos un equipo especializado en trauma y experiencias adversas, liderado por Luisa Cofrades. Integramos diferentes corrientes para ofrecerte un tratamiento a medida, siempre desde el rigor científico y la calidez humana.'}
             </p>
           </div>
 
@@ -364,13 +302,12 @@ const siteConfig = await getSiteConfig();
             <div>
               <span class="text-xs uppercase tracking-wider text-[#7C3AED] font-semibold">Grupos y Empresas</span>
               <h4 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1">
-                Formación y Educación
+                {siteConfig.about?.formacionTitle || 'Formación y Educación'}
               </h4>
             </div>
 
-            <!-- Texto literal solicitado -->
             <p class="text-sm sm:text-base text-brand-graphite leading-relaxed text-justify sm:text-left">
-              Impartimos formación especializada para grupos y empresas en áreas clave como buenos hábitos, resolución de conflictos, motivación, prevención de adicciones, escuela de padres y comunicación. Adaptamos nuestros talleres para aportar herramientas prácticas y transformadoras.
+              {siteConfig.about?.formacionText || 'Impartimos formación especializada para grupos y empresas en áreas clave como buenos hábitos, resolución de conflictos, motivación, prevención de adicciones, escuela de padres y comunicación. Adaptamos nuestros talleres para aportar herramientas prácticas y transformadoras.'}
             </p>
           </div>
 
@@ -392,13 +329,12 @@ const siteConfig = await getSiteConfig();
             <div>
               <span class="text-xs uppercase tracking-wider text-[#0284C7] font-semibold">Para Psicólogos</span>
               <h4 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1">
-                Supervisión Clínica
+                {siteConfig.about?.supervisionTitle || 'Supervisión Clínica'}
               </h4>
             </div>
 
-            <!-- Texto literal solicitado -->
             <p class="text-sm sm:text-base text-brand-graphite leading-relaxed text-justify sm:text-left">
-              Ofrecemos espacios de supervisión para otros profesionales de la psicología. Un acompañamiento clínico riguroso para analizar casos, resolver bloqueos terapéuticos y seguir creciendo en la práctica profesional con la mirada puesta en el abordaje del trauma.
+              {siteConfig.about?.supervisionText || 'Ofrecemos espacios de supervisión para otros profesionales de la psicología. Un acompañamiento clínico riguroso para analizar casos, resolver bloqueos terapéuticos y seguir creciendo en la práctica profesional con la mirada puesta en el abordaje del trauma.'}
             </p>
           </div>
 
@@ -633,7 +569,7 @@ const siteConfig = await getSiteConfig();
   </section>
 
   <!-- Grid de Terapias y Servicios Completo -->
-  <ServicesGrid />
+  <ServicesGrid servicios={siteConfig.servicios} />
 
   <!-- Banner de Ambiente 1: Imagen de respiro y calma antes de Tarifas (Framer Motion scroll fade-in) -->
   <AmbientBanner 
@@ -651,221 +587,79 @@ const siteConfig = await getSiteConfig();
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-        <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">Claridad y Transparencia</span>
+        <span class="text-xs uppercase tracking-widest text-brand-aqua font-semibold">{siteConfig.tarifas?.badge || 'Claridad y Transparencia'}</span>
         <h2 class="text-3xl sm:text-4xl font-light text-brand-graphite tracking-tight">
-          Tarifas y <span class="font-semibold text-brand-aqua">Honorarios de Consulta</span>
+          {siteConfig.tarifas?.title || 'Tarifas y'} <span class="font-semibold text-brand-aqua">{siteConfig.tarifas?.titleHighlight || 'Honorarios de Consulta'}</span>
         </h2>
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-aqua/10 text-brand-aqua text-sm font-semibold border border-brand-aqua/20">
           <Clock class="w-4 h-4 text-brand-aqua" />
-          <span>Todas las sesiones duran 50 minutos</span>
+          <span>{siteConfig.tarifas?.durationNotice || 'Todas las sesiones duran 50 minutos'}</span>
         </div>
         <p class="text-brand-graphite/70 text-sm sm:text-base leading-relaxed">
-          Precios claros para cada modalidad de acompañamiento, sin cuotas ocultas ni compromisos de permanencia.
+          {siteConfig.tarifas?.subtitle || 'Precios claros para cada modalidad de acompañamiento, sin cuotas ocultas ni compromisos de permanencia.'}
         </p>
       </div>
 
-      <!-- Grid de Tarifas -->
+      <!-- Grid de Tarifas Dinámico -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto mb-14">
-        
-        <!-- 1. Sesión individual: 80 € -->
-        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center mb-5">
-              <CreditCard class="w-6 h-6" />
-            </div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-brand-aqua">Individual</span>
-            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión individual</h3>
-            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
-              Intervención psicoterapéutica individualizada para adultos, adolescentes, trauma (EMDR), duelo y regulación emocional.
-            </p>
+        {(siteConfig.tarifas?.items || []).map((t) => {
+          const isHighlight = t.highlight;
+          return (
+            <div class={`bg-white rounded-3xl p-7 sm:p-8 ${isHighlight ? 'border-2 border-brand-aqua shadow-card-hover relative' : 'border border-gray-200 shadow-sm hover:shadow-card-hover'} transition-all flex flex-col justify-between`}>
+              {isHighlight && (
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full bg-brand-aqua text-white text-[11px] font-semibold uppercase tracking-wider shadow-sm">
+                  Especializada
+                </div>
+              )}
 
-            <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.individual || '75 €'}</span>
-              <span class="text-xs text-brand-graphite/60">/ sesión</span>
-            </div>
+              <div>
+                <div class="w-12 h-12 rounded-2xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center mb-5">
+                  {t.id === 'pareja' ? (
+                    <HeartHandshake class="w-6 h-6" />
+                  ) : t.id === 'isabel' ? (
+                    <Sparkles class="w-6 h-6 text-[#0284C7]" />
+                  ) : t.id === 'ingles' ? (
+                    <Globe class="w-6 h-6 text-indigo-600" />
+                  ) : t.id === 'supervision' ? (
+                    <Award class="w-6 h-6 text-amber-600" />
+                  ) : (
+                    <CreditCard class="w-6 h-6" />
+                  )}
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-aqua">{t.tag}</span>
+                <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">{t.name}</h3>
+                <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
+                  {t.description}
+                </p>
 
-            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
-              <div class="flex items-center gap-2">
-                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Duración de 50 minutos</span>
+                <div class="flex items-baseline gap-2 mb-5">
+                  <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{t.price}</span>
+                  <span class="text-xs text-brand-graphite/60">/ sesión</span>
+                </div>
+
+                <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
+                  <div class="flex items-center gap-2">
+                    <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
+                    <span>Duración de {t.duration}</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
+                    <span>{t.modality}</span>
+                  </div>
+                </div>
               </div>
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Presencial en Salamanca u Online</span>
-              </div>
-            </div>
-          </div>
 
-          <div class="mt-6 pt-3">
-            <a 
-              href="#contacto" 
-              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
-            >
-              Pedir cita individual
-            </a>
-          </div>
-        </div>
-
-        <!-- 2. Sesión de pareja: 90 € -->
-        <div class="bg-white rounded-3xl p-7 sm:p-8 border-2 border-brand-aqua shadow-card-hover transition-all flex flex-col justify-between relative">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full bg-brand-aqua text-white text-[11px] font-semibold uppercase tracking-wider shadow-sm">
-            Especializada
-          </div>
-
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-brand-aqua/10 text-brand-aqua flex items-center justify-center mb-5">
-              <HeartHandshake class="w-6 h-6" />
-            </div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-brand-aqua">Relaciones y Vínculos</span>
-            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión de pareja</h3>
-            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
-              Espacio neutral y mediador para abordar crisis de relación, comunicación no violenta, rupturas y reconexión afectiva.
-            </p>
-
-            <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.pareja || '90 €'}</span>
-              <span class="text-xs text-brand-graphite/60">/ sesión</span>
-            </div>
-
-            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
-              <div class="flex items-center gap-2">
-                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Duración de 50 minutos</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Presencial o por videoconsulta</span>
+              <div class="mt-6 pt-3">
+                <a 
+                  href="#contacto" 
+                  class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
+                >
+                  Pedir cita {t.name.toLowerCase().includes('pareja') ? 'de pareja' : t.name.toLowerCase().includes('isabel') ? 'con Isabel' : t.name.toLowerCase().includes('inglés') ? 'en inglés' : t.name.toLowerCase().includes('supervisión') ? 'supervisión' : 'individual'}
+                </a>
               </div>
             </div>
-          </div>
-
-          <div class="mt-6 pt-3">
-            <a 
-              href="#contacto" 
-              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
-            >
-              Pedir cita de pareja
-            </a>
-          </div>
-        </div>
-
-        <!-- 3. Sesión con Isabel: 90 € -->
-        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-accent-sky/20 text-[#0284C7] flex items-center justify-center mb-5">
-              <Sparkles class="w-6 h-6" />
-            </div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-[#0284C7]">Equipo Clínico</span>
-            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión con Isabel</h3>
-            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
-              Atención psicoterapéutica especializada y cercana con Isabel, orientada a tus necesidades y objetivos terapéuticos.
-            </p>
-
-            <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.isabel || '90 €'}</span>
-              <span class="text-xs text-brand-graphite/60">/ sesión</span>
-            </div>
-
-            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
-              <div class="flex items-center gap-2">
-                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Duración de 50 minutos</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Atención clínica personalizada</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-3">
-            <a 
-              href="#contacto" 
-              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
-            >
-              Pedir cita con Isabel
-            </a>
-          </div>
-        </div>
-
-        <!-- 4. Sesión en inglés: 85 € -->
-        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-5 border border-indigo-100">
-              <Globe class="w-6 h-6 text-indigo-600" />
-            </div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-600">English Therapy</span>
-            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Sesión en inglés</h3>
-            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
-              Psicoterapia individual en inglés para pacientes internacionales o personas que prefieran expresarse en lengua inglesa.
-            </p>
-
-            <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.ingles || '85 €'}</span>
-              <span class="text-xs text-brand-graphite/60">/ sesión</span>
-            </div>
-
-            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
-              <div class="flex items-center gap-2">
-                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Duración de 50 minutos</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>In-person in Salamanca or Online</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-3">
-            <a 
-              href="#contacto" 
-              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
-            >
-              Pedir cita en inglés
-            </a>
-          </div>
-        </div>
-
-        <!-- 5. Supervisión: 100 € -->
-        <div class="bg-white rounded-3xl p-7 sm:p-8 border border-gray-200 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mb-5 border border-amber-100">
-              <Award class="w-6 h-6 text-amber-600" />
-            </div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-amber-700">Profesionales</span>
-            <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">Supervisión</h3>
-            <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
-              Supervisión de casos clínicos para profesionales de la psicología, abordaje del trauma, apego y orientación terapéutica integradora.
-            </p>
-
-            <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{siteConfig.tarifs?.supervision || '100 €'}</span>
-              <span class="text-xs text-brand-graphite/60">/ sesión</span>
-            </div>
-
-            <div class="space-y-2 text-xs text-brand-graphite border-t border-gray-100 pt-4">
-              <div class="flex items-center gap-2">
-                <Clock class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Duración de 50 minutos</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-brand-aqua shrink-0" />
-                <span>Para psicólogos y terapeutas</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-3">
-            <a 
-              href="#contacto" 
-              class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
-            >
-              Solicitar supervisión
-            </a>
-          </div>
-        </div>
-
+          );
+        })}
       </div>
 
       <!-- Bloque de Políticas: Política de Cancelaciones -->
@@ -891,7 +685,7 @@ const siteConfig = await getSiteConfig();
                 Política de cancelaciones
               </h4>
               <p class="text-xs sm:text-sm text-brand-graphite/80 leading-relaxed text-justify sm:text-left">
-                Si no puedes asistir a tu cita, te pedimos que nos avises con al menos 24 horas de antelación. Las cancelaciones realizadas con menos de 24 horas de antelación deberán abonarse íntegramente, salvo situaciones excepcionales o de emergencia.
+                {siteConfig.citaYContacto?.cancellationPolicy || 'Si no puedes asistir a tu cita, te pedimos que nos avises con al menos 24 horas de antelación. Las cancelaciones realizadas con menos de 24 horas de antelación deberán abonarse íntegramente, salvo situaciones excepcionales o de emergencia.'}
               </p>
             </div>
             <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-2 text-xs text-amber-700/85 font-medium">
@@ -1180,7 +974,7 @@ const siteConfig = await getSiteConfig();
   <!-- Banner de Ambiente 2: Imagen de respiro y confianza antes de Citas y Triaje (Framer Motion scroll fade-in) -->
   <AmbientBanner 
     client:visible
-    imageUrl="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1920&q=80" 
+    imageUrl={siteConfig.images?.banner2 || "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1920&q=80"} 
     alt="Luz suave y naturaleza en calma" 
     badgeText="Vínculo Terapéutico y Confianza"
     quote="Sanar es aprender a mirarse con ternura, desatar viejos nudos y recuperar la confianza en tu camino."
@@ -1200,13 +994,13 @@ const siteConfig = await getSiteConfig();
       <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-brand-aqua text-xs font-semibold uppercase tracking-wider border border-white/10">
           <Calendar class="w-4 h-4 text-brand-aqua" />
-          <span>Atención Personalizada y Cita Previa</span>
+          <span>{siteConfig.citaYContacto?.badge || 'Atención Personalizada y Cita Previa'}</span>
         </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight">
-          Da el primer paso hacia <span class="font-semibold text-brand-aqua">tu bienestar</span>
+          {siteConfig.citaYContacto?.title || 'Da el primer paso hacia tu bienestar'}
         </h2>
         <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-          Responde a las preguntas de orientación y conoce los pasos para coordinar tu primera sesión presencial en Salamanca o por videoconsulta.
+          {siteConfig.citaYContacto?.subtitle || 'Responde a las preguntas de orientación y conoce los pasos para coordinar tu primera sesión presencial en Salamanca o por videoconsulta.'}
         </p>
       </div>
 
@@ -1221,15 +1015,13 @@ const siteConfig = await getSiteConfig();
         <div class="text-center max-w-xl mx-auto space-y-2">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-aqua/20 text-brand-aqua text-xs font-bold uppercase tracking-wider border border-brand-aqua/30">
             <ClipboardList class="w-3.5 h-3.5 text-brand-aqua" />
-            <span>Proceso de Acogida</span>
+            <span>{siteConfig.citaYContacto?.badge || 'Proceso de Acogida'}</span>
           </div>
           <h3 class="text-2xl sm:text-3xl font-semibold text-white">
-            Pasos obligatorios para coordinar tu cita
+            {siteConfig.citaYContacto?.title || 'Pasos obligatorios para coordinar tu cita'}
           </h3>
           <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-            {siteConfig.bookingSteps?.description || (
-              <>La consulta presencial se ubica en la <strong class="text-white">Calle del Prior, número 5-7, 1º B (Salamanca)</strong>. Duración de 50 minutos ({siteConfig.tarifs?.individual || '75 €'}). En la primera sesión se evalúa el caso clínico y se establecen los objetivos.</>
-            )}
+            {siteConfig.citaYContacto?.bookingStepsDescription || siteConfig.bookingSteps?.description || 'La consulta presencial se ubica en la Calle del Prior, número 5-7, 1º B (Salamanca). Las sesiones tienen una duración de 50 minutos (75 €). En la primera sesión se evalúa el caso clínico y se establecen los objetivos terapéuticos.'}
           </p>
         </div>
 
@@ -1246,21 +1038,21 @@ const siteConfig = await getSiteConfig();
               </div>
               
               <h4 class="text-xl sm:text-2xl font-semibold text-white">
-                Rellenar cuestionario previo
+                {siteConfig.citaYContacto?.questionnaireTitle || 'Rellenar cuestionario previo'}
               </h4>
               
               <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                Antes de iniciar el proceso, te invitamos a completar este formulario confidencial de acogida.
+                {siteConfig.citaYContacto?.questionnaireDesc || 'Antes de iniciar el proceso, te invitamos a completar este formulario confidencial de acogida.'}
               </p>
               
               <div class="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs sm:text-sm text-gray-200 italic leading-relaxed">
-                “Para agilizar temas de facturación y aprovechar al máximo el tiempo de sesión.”
+                “{siteConfig.citaYContacto?.questionnaireQuote || 'Para agilizar temas de facturación y aprovechar al máximo el tiempo de sesión.'}”
               </div>
             </div>
 
             <div class="pt-2">
               <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSchCicLOpw2Lt_aJ6FGr4VvUC5wAxPSjW_PoVJtpWAE_4jkMg/viewform" 
+                href={siteConfig.citaYContacto?.questionnaireUrl || "https://docs.google.com/forms/d/e/1FAIpQLSchCicLOpw2Lt_aJ6FGr4VvUC5wAxPSjW_PoVJtpWAE_4jkMg/viewform"} 
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center justify-center gap-2.5 w-full px-6 py-4 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-semibold text-sm shadow-md hover:shadow-card-hover transition-all duration-300 group"
@@ -1283,7 +1075,7 @@ const siteConfig = await getSiteConfig();
               </div>
               
               <h4 class="text-xl sm:text-2xl font-semibold text-white">
-                Disponibilidad horaria
+                {siteConfig.citaYContacto?.availabilityTitle || 'Disponibilidad horaria'}
               </h4>
               
               <!-- Recuadro de aviso con el texto literal solicitado -->
@@ -1293,18 +1085,18 @@ const siteConfig = await getSiteConfig();
                   <span>Aviso de asignación:</span>
                 </p>
                 <p class="text-gray-100 font-medium">
-                  Indica si tu disponibilidad es de mañanas, tardes o flexible. En función de esto y tu motivo de consulta se te asignará el profesional que mejor pueda responder a tu demanda.
+                  {siteConfig.citaYContacto?.availabilityNotice || 'Indica si tu disponibilidad es de mañanas, tardes o flexible. En función de esto y tu motivo de consulta se te asignará el profesional que mejor pueda responder a tu demanda.'}
                 </p>
               </div>
               
               <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                Así podremos coordinar tu sesión con <strong class="text-white">Luisa Cofrades</strong> o con <strong class="text-white">Mari Paz Palau Urbón</strong> según compatibilidad de agendas.
+                Así podremos coordinar tu sesión con <strong class="text-white">Luisa Cofrades</strong> o con el equipo según compatibilidad de agendas.
               </p>
             </div>
 
             <div class="pt-2">
               <a 
-                href="https://wa.me/34675809974?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20concertar%20una%20cita.%20Mi%20disponibilidad%20es:%20" 
+                href={`https://wa.me/${siteConfig.citaYContacto?.whatsapp || '34675809974'}?text=${encodeURIComponent(siteConfig.citaYContacto?.whatsappMessage || 'Hola, me gustaría solicitar información para concertar una cita. Mi disponibilidad es: ')}`} 
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center justify-center gap-2.5 w-full px-6 py-4 rounded-xl bg-white hover:bg-gray-100 text-brand-graphite font-semibold text-sm shadow-md transition-all duration-300"
@@ -1323,7 +1115,7 @@ const siteConfig = await getSiteConfig();
       <div class="mt-16 max-w-3xl mx-auto bg-white/5 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/10 shadow-lg flex flex-col sm:flex-row items-center gap-6">
         <div class="w-full sm:w-44 aspect-square rounded-2xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-white/10">
           <img 
-            src="/assets/media/logo_flores.jpg" 
+            src={siteConfig.images?.fachada || "/assets/media/logo_flores.jpg"} 
             alt="Fachada y cristalera identificativa con flores del gabinete en Salamanca" 
             width="400"
             height="400"
@@ -1338,10 +1130,10 @@ const siteConfig = await getSiteConfig();
             <span>Cómo encontrarnos a pie de calle</span>
           </div>
           <h4 class="text-base sm:text-lg font-semibold text-white">
-            Identifica nuestra cristalera al llegar
+            {siteConfig.citaYContacto?.fachadaTitle || 'Identifica nuestra cristalera al llegar'}
           </h4>
           <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-            Nuestra entrada cuenta con la cristalera corporativa con motivos florales en <strong class="text-white">Calle del Prior 5-7, 1º B (Salamanca)</strong>, junto a la Plaza Mayor. Un acceso discreto, accesible y diseñado para tu comodidad y privacidad.
+            {siteConfig.citaYContacto?.fachadaText || 'Nuestra entrada cuenta con la cristalera corporativa con motivos florales en Calle del Prior 5-7, 1º B (Salamanca), junto a la Plaza Mayor. Un acceso discreto, accesible y diseñado para tu comodidad y privacidad.'}
           </p>
         </div>
       </div>
@@ -1353,5 +1145,5 @@ const siteConfig = await getSiteConfig();
   <FaqSection />
 
   <!-- Footer con enlaces legales y acreditaciones -->
-  <Footer />
+  <Footer config={siteConfig} />
 </Layout>
