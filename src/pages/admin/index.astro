@@ -1534,7 +1534,7 @@ const config = await getSiteConfig();
 
             <div>
               <label class="block text-[11px] font-semibold text-gray-600 mb-1">Descripción Detallada (Reverso de la tarjeta)</label>
-              <textarea rows="3" class="serv-desc w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 leading-relaxed">${s.desc || ''}</textarea>
+              <textarea rows="3" class="serv-desc w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 leading-relaxed">${s.desc || s.description || ''}</textarea>
             </div>
           `;
 
@@ -1542,7 +1542,11 @@ const config = await getSiteConfig();
           card.querySelector('.serv-title').addEventListener('input', (e) => { s.title = e.target.value; setDirty(true); });
           card.querySelector('.serv-tagline').addEventListener('input', (e) => { s.tagline = e.target.value; setDirty(true); });
           card.querySelector('.serv-badge').addEventListener('input', (e) => { s.badge = e.target.value; setDirty(true); });
-          card.querySelector('.serv-desc').addEventListener('input', (e) => { s.desc = e.target.value; setDirty(true); });
+          card.querySelector('.serv-desc').addEventListener('input', (e) => { 
+            s.desc = e.target.value; 
+            s.description = e.target.value; 
+            setDirty(true); 
+          });
           card.querySelector('.serv-icon').addEventListener('change', (e) => { s.icon = e.target.value; setDirty(true); });
 
           card.querySelector('.serv-up').addEventListener('click', () => {
@@ -1586,6 +1590,7 @@ const config = await getSiteConfig();
             title: '',
             tagline: 'Especialidad Clínica',
             desc: '',
+            description: '',
             badge: 'Terapia Especializada',
             icon: 'sparkles'
           });
@@ -1658,7 +1663,7 @@ const config = await getSiteConfig();
 
             <div>
               <label class="block text-[11px] font-semibold text-gray-600 mb-1">Descripción</label>
-              <textarea rows="2" class="tar-desc w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 leading-relaxed">${t.description || ''}</textarea>
+              <textarea rows="2" class="tar-desc w-full px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs text-gray-800 leading-relaxed">${t.description || t.desc || ''}</textarea>
             </div>
 
             <div class="flex items-center gap-2 pt-1">
@@ -1675,7 +1680,11 @@ const config = await getSiteConfig();
           card.querySelector('.tar-dur').addEventListener('input', (e) => { t.duration = e.target.value; setDirty(true); });
           card.querySelector('.tar-tag').addEventListener('input', (e) => { t.tag = e.target.value; setDirty(true); });
           card.querySelector('.tar-mod').addEventListener('input', (e) => { t.modality = e.target.value; setDirty(true); });
-          card.querySelector('.tar-desc').addEventListener('input', (e) => { t.description = e.target.value; setDirty(true); });
+          card.querySelector('.tar-desc').addEventListener('input', (e) => { 
+            t.description = e.target.value; 
+            t.desc = e.target.value; 
+            setDirty(true); 
+          });
           card.querySelector('.tar-hl').addEventListener('change', (e) => {
             t.highlight = e.target.checked;
             renderTarifasList();
@@ -1727,6 +1736,7 @@ const config = await getSiteConfig();
             tag: 'Individual',
             modality: 'Presencial u Online',
             description: '',
+            desc: '',
             highlight: false
           });
           renderTarifasList();
@@ -1817,6 +1827,22 @@ const config = await getSiteConfig();
         next.tarifas.titleHighlight = document.getElementById('tarifas_titleHighlight').value;
         next.tarifas.durationNotice = document.getElementById('tarifas_durationNotice').value;
         next.tarifas.subtitle = document.getElementById('tarifas_subtitle').value;
+        if (Array.isArray(state.tarifas?.items)) {
+          next.tarifas.items = state.tarifas.items.map(t => ({
+            ...t,
+            description: t.description || t.desc || '',
+            desc: t.description || t.desc || ''
+          }));
+        }
+
+        // Servicios
+        if (Array.isArray(state.servicios)) {
+          next.servicios = state.servicios.map(s => ({
+            ...s,
+            desc: s.desc || s.description || '',
+            description: s.desc || s.description || ''
+          }));
+        }
 
         // Cita y Contacto
         next.citaYContacto = next.citaYContacto || {};

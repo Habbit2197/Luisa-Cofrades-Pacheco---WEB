@@ -56,6 +56,17 @@ const colorPalettes = [
       const palette = colorPalettes[idx % colorPalettes.length];
       const iconKey = (item.icon || 'sparkles').toLowerCase();
       const Icon = iconMap[iconKey] || Sparkles;
+      const defaultMatch = DEFAULT_CONFIG.servicios.find(
+        (s) => s.id === item.id || (item.title && s.title.toLowerCase() === item.title.toLowerCase())
+      );
+      const tagline = (typeof item.tagline === 'string' && item.tagline.trim() !== '')
+        ? item.tagline.trim()
+        : (defaultMatch?.tagline || '');
+      const desc = (typeof item.desc === 'string' && item.desc.trim() !== '')
+        ? item.desc.trim()
+        : (typeof (item as any).description === 'string' && (item as any).description.trim() !== '')
+          ? (item as any).description.trim()
+          : (defaultMatch?.desc || defaultMatch?.description || '');
 
       return (
         <div 
@@ -94,7 +105,7 @@ const colorPalettes = [
                 </h3>
 
                 <p class="text-[10px] sm:text-xs text-brand-aqua font-medium mt-1 uppercase tracking-wider">
-                  {item.tagline}
+                  {tagline}
                 </p>
               </div>
 
@@ -124,7 +135,7 @@ const colorPalettes = [
               <!-- Texto Descriptivo Centrado y Legible -->
               <div class="my-auto py-2 px-1">
                 <p class="text-[11px] sm:text-xs md:text-[13px] text-brand-graphite leading-relaxed text-center font-normal">
-                  {item.desc}
+                  {desc}
                 </p>
               </div>
 

@@ -27,6 +27,7 @@ export interface ServiceItem {
   title: string;
   tagline: string;
   desc: string;
+  description?: string;
   badge?: string;
   icon?: string;
   pdfUrl?: string;
@@ -40,6 +41,7 @@ export interface TarifItem {
   tag?: string;
   modality?: string;
   description: string;
+  desc?: string;
   highlight?: boolean;
 }
 
@@ -134,6 +136,7 @@ export interface SiteConfig {
   tarifs?: {
     individual: string;
     pareja: string;
+    ninos?: string;
     isabel: string;
     ingles: string;
     supervision: string;
@@ -308,6 +311,16 @@ export const DEFAULT_CONFIG: SiteConfig = {
         highlight: true
       },
       {
+        id: 'ninos',
+        name: 'Individual · Sesión con niños',
+        price: '70 €',
+        duration: '50 minutos',
+        tag: 'Infanto-Juvenil',
+        modality: 'Consulta adaptada en Salamanca',
+        description: 'Acompañamiento a niños y adolescentes mediante técnicas adaptadas (EMDR Caja de Arena, expresión y juego) y orientación a progenitores.',
+        highlight: false
+      },
+      {
         id: 'isabel',
         name: 'Sesión con Isabel',
         price: '90 €',
@@ -379,6 +392,7 @@ export const DEFAULT_CONFIG: SiteConfig = {
   tarifs: {
     individual: '75 €',
     pareja: '90 €',
+    ninos: '70 €',
     isabel: '90 €',
     ingles: '85 €',
     supervision: '100 €'
@@ -410,6 +424,59 @@ export async function getSiteConfig(): Promise<SiteConfig> {
       return DEFAULT_CONFIG;
     }
 
+    // Normalización robusta de servicios para preservar siempre desc, description y tagline
+    const rawServicios = Array.isArray(parsed.servicios) && parsed.servicios.length > 0 
+      ? parsed.servicios 
+      : DEFAULT_CONFIG.servicios;
+
+    const normalizedServicios: ServiceItem[] = rawServicios.map((s: any) => {
+      const defaultMatch = DEFAULT_CONFIG.servicios.find(
+        (ds) => ds.id === s.id || (s.title && ds.title.toLowerCase() === s.title.toLowerCase())
+      );
+      const desc = (typeof s.desc === 'string' && s.desc.trim() !== '')
+        ? s.desc.trim()
+        : (typeof s.description === 'string' && s.description.trim() !== '')
+          ? s.description.trim()
+          : (defaultMatch?.desc || defaultMatch?.description || '');
+      const tagline = (typeof s.tagline === 'string' && s.tagline.trim() !== '')
+        ? s.tagline.trim()
+        : (defaultMatch?.tagline || '');
+
+      return {
+        ...defaultMatch,
+        ...s,
+        desc,
+        description: desc,
+        tagline
+      };
+    });
+
+    // Normalización robusta de tarifas para preservar siempre description y desc
+    const rawTarifasItems = Array.isArray(parsed.tarifas?.items) && parsed.tarifas.items.length > 0
+      ? parsed.tarifas.items
+      : DEFAULT_CONFIG.tarifas.items;
+
+    const normalizedTarifasItems: TarifItem[] = rawTarifasItems.map((t: any) => {
+      const defaultMatch = DEFAULT_CONFIG.tarifas.items.find(
+        (dt) => dt.id === t.id || 
+                (t.name && dt.name.toLowerCase() === t.name.toLowerCase()) || 
+                (t.name && t.name.toLowerCase().includes('niñ') && dt.id === 'ninos') ||
+                (t.tag && t.tag.toLowerCase().includes('infanto') && dt.id === 'ninos')
+      );
+      const description = (typeof t.description === 'string' && t.description.trim() !== '')
+        ? t.description.trim()
+        : (typeof t.desc === 'string' && t.desc.trim() !== '')
+          ? t.desc.trim()
+          : (defaultMatch?.description || defaultMatch?.desc || '');
+
+      return {
+        ...defaultMatch,
+        ...t,
+        description,
+        desc: description
+      };
+    });
+
     // Merge profundo y seguro
     return {
       banner: {
@@ -425,13 +492,11 @@ export async function getSiteConfig(): Promise<SiteConfig> {
         ...(parsed.about || {})
       },
       team: Array.isArray(parsed.team) && parsed.team.length > 0 ? parsed.team : DEFAULT_CONFIG.team,
-      servicios: Array.isArray(parsed.servicios) && parsed.servicios.length > 0 ? parsed.servicios : DEFAULT_CONFIG.servicios,
+      servicios: normalizedServicios,
       tarifas: {
         ...DEFAULT_CONFIG.tarifas,
         ...(parsed.tarifas || {}),
-        items: Array.isArray(parsed.tarifas?.items) && parsed.tarifas.items.length > 0
-          ? parsed.tarifas.items
-          : DEFAULT_CONFIG.tarifas.items
+        items: normalizedTarifasItems
       },
       citaYContacto: {
         ...DEFAULT_CONFIG.citaYContacto,
@@ -481,11 +546,37 @@ export async function saveSiteConfig(newConfig: Partial<SiteConfig>): Promise<Si
       ...(newConfig.about || {})
     },
     team: Array.isArray(newConfig.team) ? newConfig.team : current.team,
-    servicios: Array.isArray(newConfig.servicios) ? newConfig.servicios : current.servicios,
+    servicios: Array.isArray(newConfig.servicios) 
+      ? newConfig.servicios.map((s: any) => {
+          const desc = (typeof s.desc === 'string' && s.desc.trim() !== '')
+            ? s.desc.trim()
+            : (typeof s.description === 'string' && s.description.trim() !== '')
+              ? s.description.trim()
+              : '';
+          return {
+            ...s,
+            desc,
+            description: desc
+          };
+        })
+      : current.servicios,
     tarifas: {
       ...current.tarifas,
       ...(newConfig.tarifas || {}),
-      items: Array.isArray(newConfig.tarifas?.items) ? newConfig.tarifas.items : current.tarifas.items
+      items: Array.isArray(newConfig.tarifas?.items) 
+        ? newConfig.tarifas.items.map((t: any) => {
+            const description = (typeof t.description === 'string' && t.description.trim() !== '')
+              ? t.description.trim()
+              : (typeof t.desc === 'string' && t.desc.trim() !== '')
+                ? t.desc.trim()
+                : '';
+            return {
+              ...t,
+              description,
+              desc: description
+            };
+          })
+        : current.tarifas.items
     },
     citaYContacto: {
       ...current.citaYContacto,

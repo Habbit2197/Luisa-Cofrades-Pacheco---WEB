@@ -604,6 +604,7 @@ const siteConfig = await getSiteConfig();
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto mb-14">
         {(siteConfig.tarifas?.items || []).map((t) => {
           const isHighlight = t.highlight;
+          const description = t.description || (t as any).desc || '';
           return (
             <div class={`bg-white rounded-3xl p-7 sm:p-8 ${isHighlight ? 'border-2 border-brand-aqua shadow-card-hover relative' : 'border border-gray-200 shadow-sm hover:shadow-card-hover'} transition-all flex flex-col justify-between`}>
               {isHighlight && (
@@ -622,15 +623,19 @@ const siteConfig = await getSiteConfig();
                     <Globe class="w-6 h-6 text-indigo-600" />
                   ) : t.id === 'supervision' ? (
                     <Award class="w-6 h-6 text-amber-600" />
+                  ) : t.id === 'ninos' || t.name.toLowerCase().includes('niñ') ? (
+                    <Sparkles class="w-6 h-6 text-teal-600" />
                   ) : (
                     <CreditCard class="w-6 h-6" />
                   )}
                 </div>
                 <span class="text-xs font-semibold uppercase tracking-wider text-brand-aqua">{t.tag}</span>
                 <h3 class="text-xl sm:text-2xl font-semibold text-brand-graphite mt-1 mb-2">{t.name}</h3>
-                <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
-                  {t.description}
-                </p>
+                {description && (
+                  <p class="text-xs text-brand-graphite/70 leading-relaxed mb-5">
+                    {description}
+                  </p>
+                )}
 
                 <div class="flex items-baseline gap-2 mb-5">
                   <span class="text-3xl sm:text-4xl font-bold text-brand-graphite">{t.price}</span>
@@ -654,7 +659,7 @@ const siteConfig = await getSiteConfig();
                   href="#contacto" 
                   class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-aqua hover:bg-brand-aqua-hover text-white font-medium text-xs sm:text-sm transition-colors shadow-sm"
                 >
-                  Pedir cita {t.name.toLowerCase().includes('pareja') ? 'de pareja' : t.name.toLowerCase().includes('isabel') ? 'con Isabel' : t.name.toLowerCase().includes('inglés') ? 'en inglés' : t.name.toLowerCase().includes('supervisión') ? 'supervisión' : 'individual'}
+                  Pedir cita {t.name.toLowerCase().includes('pareja') ? 'de pareja' : t.name.toLowerCase().includes('isabel') ? 'con Isabel' : t.name.toLowerCase().includes('inglés') ? 'en inglés' : t.name.toLowerCase().includes('supervisión') ? 'supervisión' : t.name.toLowerCase().includes('niñ') ? 'infanto-juvenil' : 'individual'}
                 </a>
               </div>
             </div>
